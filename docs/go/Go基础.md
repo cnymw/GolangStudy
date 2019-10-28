@@ -2,7 +2,7 @@
 
 ## Go 家族树
 
-![Go家族树](/docs/img/Go基础/Go家族树.png)
+![Go家族树](/docs/img/Go基础/Go-tree.png)
 
 # 二、数据类型
 
