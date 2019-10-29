@@ -1,8 +1,8 @@
 # 1、Go 起源
 
-## Go 家族树
+## 1.1 Go 家族树
 
-![Go家族树](/docs/img/Go基础/Go-tree.png)
+![Go家族树](/docs/img/go基础/go-tree.png)
 
 # 2、基本概念
 
@@ -228,4 +228,4 @@ w.Spokes = 20
 - ||
 
 # 思维导图
-- [Go 基础思维导图-图片版](/docs/img/Go基础/Go-start.jpg)
+- [Go 基础思维导图-图片版](/docs/img/go基础/go-start.jpg)
