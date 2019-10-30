@@ -20,6 +20,7 @@
 ## java
 
 ## 算法
+- [算法总结 leetcode题解](/docs/algorithm/算法.md)
 
 ## 数据库
 - [mysql 基础](/docs/database/mysql基础.md)
