@@ -20,6 +20,16 @@ var oranges int16 = 2
 var compote int = apples + oranges // compile error , invalid operation: apples + oranges (mismatched types int32 and int16)
 var compote = int(apples) + int(oranges) // compote=3
 ```
+apples 和 oranges 不是 int 类型，所以赋值给 int 类型变量会编译报错。
+```go
+i := 123
+j := int32(i)
+i = j // compile error , Cannot use 'j' (type int32) as type int in assignment
+```
+
+变量 i 属于类型 int，在内存中用一个 32 位字长(word)表示。(32 位内存布局方式）
+
+变量 j 由于做了精确的转换，属于 int32 类型。尽管 i 和 j 有着相同的内存布局，但是它们属于不同的类型：赋值操作 i = j 是一种类型错误，必须写成更精确的转换方式：i = int(j)。
 
 ### 2.1.2 浮点数
 - float32
