@@ -38,5 +38,6 @@
 
 ## redis
 - [redis 基础数据结构](/docs/redis/redis基础数据结构.md)
+- [redis 基础](/docs/redis/redis基础.md)
 
 ## 操作系统
