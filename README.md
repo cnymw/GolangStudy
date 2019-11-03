@@ -30,6 +30,7 @@
 ## git
 
 ## 消息队列
+- [RabbitMQ 基础](/docs/RabbitMQ/RabbitMQ基础.md)
 
 ## 网络
 
