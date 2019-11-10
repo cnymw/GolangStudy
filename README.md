@@ -22,12 +22,15 @@
 
 ## 数据库
 - [mysql 基础](/docs/database/mysql基础.md)
+- [mysql 知识点](/docs/database/mysql知识点.md)
 
 ## 设计模式
 
 ## docker
+- [docker 基础](/docs/docker/docker基础.md)
 
 ## git
+- [git 基础](/docs/git/git基础.md)
 
 ## 消息队列
 - [RabbitMQ 基础](/docs/RabbitMQ/RabbitMQ基础.md)
@@ -36,5 +39,6 @@
 
 ## redis
 - [redis 基础数据结构](/docs/redis/redis基础数据结构.md)
+- [redis 基础](/docs/redis/redis基础.md)
 
 ## 操作系统
