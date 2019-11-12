@@ -10,7 +10,6 @@
 
 ## 数据库
 - [mysql 基础](/docs/database/mysql基础.md)
-- [mysql 知识点](/docs/database/mysql知识点.md)
 
 ## 设计模式
 
@@ -27,6 +26,5 @@
 
 ## redis
 - [redis 基础数据结构](/docs/redis/redis基础数据结构.md)
-- [redis 基础](/docs/redis/redis基础.md)
 
 ## 操作系统
