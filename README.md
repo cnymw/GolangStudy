@@ -1,15 +1,3 @@
-* [go-study](#go-study)
-  * [go](#go)
-  * [算法](#算法)
-  * [数据库](#数据库)
-  * [设计模式](#设计模式)
-  * [docker](#docker)
-  * [git](#git)
-  * [消息队列](#消息队列)
-  * [网络](#网络)
-  * [redis](#redis)
-  * [操作系统](#操作系统)
-
 # go-study
 目前在很多地方有关于 go 相关的学习资料以及博客还比较少，所以我将个人学习的 go 语言的笔记以及资料都汇总在这里，希望大家能够有所收获。
 
@@ -17,8 +5,8 @@
 - [Go 基础](/docs/go/go基础.md)
 - [Go 并发](/docs/go/go并发.md)
 
-## 算法
-- [算法总结 leetcode题解](/docs/algorithm/算法.md)
+## 数据结构及算法
+- [数据结构及算法总结 leetcode题解](/docs/algorithm/算法.md)
 
 ## 数据库
 - [mysql 基础](/docs/database/mysql基础.md)
