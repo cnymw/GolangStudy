@@ -14,6 +14,7 @@
 - [mysql 基础](/docs/database/mysql基础.md)
 
 ## 设计模式
+- [策略模式](/docs/design/strategy/策略模式.md)
 
 ## docker
 - [docker 基础](/docs/docker/docker基础.md)
