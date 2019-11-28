@@ -18,6 +18,7 @@
 ## 设计模式
 - [策略模式](/docs/design/strategy/策略模式.md)
 - [观察者模式](/docs/design/observer/观察者模式.md)
+- [装饰器模式](/docs/design/decorator/装饰器模式.md)
 
 ## docker
 - [docker 基础](/docs/docker/docker基础.md)
