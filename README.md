@@ -9,11 +9,16 @@
 - [Go 基础](/docs/go/go基础.md)
 - [Go 并发](/docs/go/go并发.md)
 
+## OAuth 2.0
+- [ory 生态](/docs/oauth/ory生态介绍.md)
+- [OAuth2 规范-rfc6749](/docs/oauth/OAuth2-rfc6749.md)
+
 ## 数据结构及算法
 - [数据结构及算法总结 leetcode题解](/docs/algorithm/算法.md)
 
 ## 数据库
 - [mysql 基础](/docs/database/mysql基础.md)
+- [mysql 锁](/docs/database/mysql锁.md)
 
 ## 设计模式
 - [策略模式](/docs/design/strategy/策略模式.md)
