@@ -12,6 +12,7 @@
 ## OAuth 2.0
 - [ory 生态](/docs/oauth/ory生态介绍.md)
 - [OAuth2 规范-rfc6749](/docs/oauth/OAuth2-rfc6749.md)
+- [OAuth2.0 规范笔记](/docs/oauth/OAuth2.0规范笔记.md)
 - [OAuth2 规范中文翻译](https://github.com/jeansfish/RFC6749.zh-cn/blob/master/SUMMARY.md)
 
 ## 数据结构及算法
