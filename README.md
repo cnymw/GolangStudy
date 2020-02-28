@@ -6,8 +6,8 @@
 ![golang](/docs/img/go基础/golang.png)
 
 ## go
-- [Go 基础](/docs/go/go基础.md)
-- [Go 并发](/docs/go/go并发.md)
+- [Go 基础](https://github.com/cnymw/go-study/blob/master/docs/go/go%E5%9F%BA%E7%A1%80.md)
+- [Go 并发](https://github.com/cnymw/go-study/blob/master/docs/go/go%E5%B9%B6%E5%8F%91.md)
 
 ## OAuth 2.0
 - [ory 生态](/docs/oauth/ory生态介绍.md)
