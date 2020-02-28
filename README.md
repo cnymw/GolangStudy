@@ -3,11 +3,11 @@
 
 笔记中的所有 go 代码都放在 [learnGo](https://github.com/cnymw/learnGo)
 
-![golang](/docs/img/go基础/golang.png)
+![golang](/docs/img/golang.png)
 
 ## go
-- [Go 基础](https://github.com/cnymw/go-study/blob/master/docs/go/go%E5%9F%BA%E7%A1%80.md)
-- [Go 并发](https://github.com/cnymw/go-study/blob/master/docs/go/go%E5%B9%B6%E5%8F%91.md)
+- [Go 基础](/docs/go-基础.md)
+- [Go 并发](/docs/go-并发.md)
 
 ## OAuth 2.0
 - [ory 生态](/docs/oauth/ory生态介绍.md)
