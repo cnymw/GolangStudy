@@ -3,7 +3,7 @@
 
 笔记中的所有 go 代码都放在 [learnGo](https://github.com/cnymw/learnGo)
 
-![golang](https://github.com/cnymw/go-study/blob/master/docs/img/golang.png)
+![golang](https://cnymw.github.io/go-study/docs/img/golang.png)
 
 ## go
 - [Go 基础](/docs/go-基础.md)
