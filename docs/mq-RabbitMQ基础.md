@@ -2,7 +2,7 @@
 
 ## 1.1RabbitMQ 家族树
 
-![RabbitMQ家族树](/docs/img/RabbitMQ基础/RabbitMQ-tree.png)
+![RabbitMQ家族树](https://cnymw.github.io/go-study/docs/img/RabbitMQ-tree.png)
 
 # 二、RabbitMQ 安装配置
 
