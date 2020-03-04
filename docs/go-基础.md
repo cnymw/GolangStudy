@@ -2,7 +2,7 @@
 
 ## Go 家族树
 
-![Go家族树](https://cnymw.github.io/go-study/docs/img/go-tree.png)
+![Go家族树](https://cnymw.github.io/go-study/docs/img/go-基础/tree.png)
 
 # 基本概念
 
@@ -240,4 +240,4 @@ w.Spokes = 20
 
 go 基础的思维导图的原件以及 PDF 在 [go 基础思维导图](https://github.com/cnymw/go-study/tree/master/docs/mind/go基础) 下面，有需要的可以下载以便随时查看。
 
-![go 基础](https://cnymw.github.io/go-study/docs/img/go基础.jpg)
+![go 基础](https://cnymw.github.io/go-study/docs/img/go-基础/go-基础-思维导图.jpg)
