@@ -1,11 +1,18 @@
-# go-study
-目前在很多地方有关于 go 相关的学习资料以及博客还比较少，所以我将个人学习的 go 语言的笔记以及资料都汇总在这里，希望大家看了之后能够有所收获。
+# Go-Study: 从零开始学习 Go 语言
 
-访问 [go-study GithubPage](https://cnymw.github.io/go-study)
+[![在线阅读](https://badgen.net/badge/page/%E5%9C%A8%E7%BA%BF%E9%98%85%E8%AF%BB?icon=github&label)](https://cnymw.github.io/go-study)
+[![相关代码](https://badgen.net/badge/icon/%E7%9B%B8%E5%85%B3%E4%BB%A3%E7%A0%81?icon=github&label)](https://github.com/cnymw/learnGo)
+[![贡献者](https://badgen.net/github/contributors/cnymw/go-study)](https://github.com/cnymw/go-study/graphs/contributors)
 
-笔记中的所有 go 代码都放在 [learnGo](https://github.com/cnymw/learnGo)
+本项目旨在指导程序员们如何从基础开始系统的学习 Go 语言，并学习面试所需知识点。
 
-![golang](https://cnymw.github.io/go-study/docs/img/golang.png)
+Go 是一门非常容易上手的语言，语法简洁，代码易读，如果你有常用语言的基础，那看一本[Go 语言圣经](https://docs.hacknode.org/gopl-zh/index.html)后便可上手开发业务代码。
+
+但是，想通过 Go 语言的面试可能需要更加系统，全面的知识，本项目通过知识点的总结来提升面试通过的几率。
+
+本项目不是博客，一个问题不会讲的特别细致，如果想要更加深入的了解某个知识点的话，建议使用搜索引擎去搜索经典博客加深理解，项目中也会推荐一些好的文章供参考。
+
+本项目更加看重的是对于知识点系统的一个总结，能够通过一句话，一张思维导图来把一类知识进行讲解，这样在面试前把所有的思维导图都过一遍就能更大的提升面试通过的几率了，平时空余的时候拿出思维导图进行复习也能加深理解。
 
 ## go
 - [Go 基础](/docs/go-基础.md)
