@@ -72,7 +72,8 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 # 赞助作者
 
-![赞助6.88](https://cnymw.github.io/go-study/docs/img/首页/688.png)
+<img src="https://cnymw.github.io/go-study/docs/img/首页/688.png" width="110px"/>
+
 
 # 联系作者
 
