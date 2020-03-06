@@ -1,4 +1,4 @@
-# Go-Study: 从零开始学习 Go 语言
+# Go-Study: Go 面试学习
 
 [![在线阅读](https://badgen.net/badge/page/%E5%9C%A8%E7%BA%BF%E9%98%85%E8%AF%BB?icon=github&label)](https://cnymw.github.io/go-study)
 [![相关代码](https://badgen.net/badge/icon/%E7%9B%B8%E5%85%B3%E4%BB%A3%E7%A0%81?icon=github&label)](https://github.com/cnymw/learnGo)
@@ -69,3 +69,11 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 # 参考资料
 - [麻省理工学院公开课：算法导论](http://open.163.com/special/opencourse/algorithms.html)
 - [LeetCode All in One 题目讲解汇总](https://github.com/grandyang/leetcode)
+
+# 赞助作者
+
+![赞助6.88](https://cnymw.github.io/go-study/docs/img/首页/688.png)
+
+# 联系作者
+
+欢迎大家指出不足，如有任何疑问，请邮件联系 benjaminymw at foxmail dot com 或者直接修复并提交 Pull Request。
