@@ -18,11 +18,6 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [Go 基础](/docs/go-基础.md)
 - [Go 并发](/docs/go-并发.md)
 
-## OAuth 2.0
-- [ory 生态](/docs/oauth2-ory生态介绍.md)
-- [OAuth2 规范-rfc6749](/docs/oauth2-rfc6749.md)
-- [OAuth2 规范中文翻译](https://github.com/jeansfish/RFC6749.zh-cn/blob/master/SUMMARY.md)
-- [OAuth2.0 第一节 介绍](/docs/oauth2-1介绍.md)
 
 # 数据结构
 - [线性表](/docs/数据结构-线性表.md)
@@ -48,6 +43,12 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [策略模式](/docs/设计模式-策略模式.md)
 - [观察者模式](/docs/设计模式-观察者模式.md)
 - [装饰器模式](/docs/设计模式-装饰器模式.md)
+
+## OAuth 2.0
+- [ory 生态](/docs/oauth2-ory生态介绍.md)
+- [OAuth2 规范-rfc6749](/docs/oauth2-rfc6749.md)
+- [OAuth2 规范中文翻译](https://github.com/jeansfish/RFC6749.zh-cn/blob/master/SUMMARY.md)
+- [OAuth2.0 第一节 介绍](/docs/oauth2-1介绍.md)
 
 ## docker
 - [docker 基础](/docs/docker-docker基础.md)

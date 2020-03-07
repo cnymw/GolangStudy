@@ -1,4 +1,7 @@
 # leetcode 242 有效的字母异位词
+
+## 题目
+
 给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。
 
 示例 1:
@@ -16,81 +19,84 @@
 
 说明:你可以假设字符串只包含小写字母。
 
-题解：
+## 题解
 
-该题比较简单，从排序的思维来看的话，将字符串转化为 int 数组之后，排序完成就能得到从小到大排序好的数组。
+### 方法1：排序
+
+#### 算法
+
+该题比较简单，从排序的思维来看的话，将字符串转化为 byte 数组之后，排序完成就能得到排序好的数组。
 
 然后将两个排序好的数组进行一一比较之后便可知道两个字符串是否是字母异位词了。
 
-以下是实现：
+这里用到了 Go 标准库中的 sort，bytes 库，sort.Sort 用于排序两个 byte 数组，bytes.Equal 用于判断两个数组是否相等
+
+```go
+import (
+	"bytes"
+	"sort"
+)
+
+type Bytes []byte
+
+func isAnagram(s string, t string) bool {
+	if len(s) != len(t) {
+		return false
+	}
+	sBytes, tBytes := Bytes(s), Bytes(t)
+	sort.Sort(sBytes)
+	sort.Sort(tBytes)
+	return bytes.Equal(sBytes, tBytes)
+}
+
+func (s Bytes) Len() int {
+	return len(s)
+}
+
+func (s Bytes) Less(i, j int) bool {
+	return s[i] < s[j]
+}
+
+func (s Bytes) Swap(i, j int) {
+	s[i], s[j] = s[j], s[i]
+}
+```
+
+#### 复杂度分析
+
+- 时间复杂度：O(nlgn)，该算法的时间复杂度取决于 sort 库的排序算法效率，排序算法根据不同状况会使用最优的算法，总体的效率为 O(nlgn)
+- 空间复杂度：>O(n)，因为会新建 byte 数组，所以至少会有 O(n) 空间的损耗，总的空间复杂度取决于 sort 库所使用的排序算法，例如使用了堆排序，那么空间复杂度为 O(n)+O(1)。
+
+### 方法2：哈希表
+
+#### 算法
+
+如果两者所有字符的出现频率都是相等的，也能判断出两个字符串是有效的字母异位词。
+
+因为字符串只包含 26 个字母，所以定义一个大小为 26 的哈希表来存放出现字母的频率，如果在 s 中出现了单词，那么单词序列对应的频率加一，在 t 中出现的单词序列对应频率减一。
+
+最后统计哈希表所有字母序列对应频率为 0 即可。
 
 ```go
 func isAnagram(s string, t string) bool {
-    if len(s) != len(t) {
-        return false
-    }
-    sCh, tCh := make([]int, 0), make([]int, 0)
-    for _, ch := range s {
-        sCh = append(sCh, int(ch))
-    }
-    for _, ch := range t {
-        tCh = append(tCh, int(ch))
-    }
-    sSort := QuickSort{
-        Value: sCh,
-    }
-    tSort := QuickSort{
-        Value: tCh,
-    }
-    sSort.Sort()
-    tSort.Sort()
-    for index := 0; index < len(sSort.Value); index++ {
-        if sSort.Value[index] != tSort.Value[index] {
-            return false
-        }
-    }
-    return true
-}
-
-type QuickSort struct {
-    Value []int
-}
-
-func (q *QuickSort) Sort() () {
-    if len(q.Value) <= 1 {
-        return
-    }
-    quickSort(q.Value, 0, len(q.Value)-1)
-}
-
-func quickSort(s []int, left, right int) {
-    temp, index := s[left], left
-    i, j := left, right
-    for j >= i {
-        // 比temp大的放在右边
-        for j >= index && s[j] >= temp {
-            j--
-        }
-        if j >= index {
-            s[index] = s[j]
-            index = j
-        }
-    
-        // 比temp小的放在左边
-        for index >= i && s[i] <= temp {
-            i++
-        }
-        if index >= i {
-            s[index] = s[i]
-            index = i
-        }
-    }
-    s[index] = temp
-    if index-left > 1 {
-        quickSort(s, left, index-1)
-    }
-    if right-index > 1 {
-        quickSort(s, index+1, right)
-    }
+	if len(s) != len(t) {
+		return false
+	}
+	counter := make([]int, 26)
+	for i := 0; i < len(s); i++ {
+		counter[s[i]-'a']++
+		counter[t[i]-'a']--
+	}
+	for i := range counter {
+		if counter[i] != 0 {
+			return false
+		}
+	}
+	return true
 }
 ```
+
+#### 复杂度分析
+
+- 时间复杂度：O(n)，遍历字符串需要消耗 O(n) 时间，最后遍历哈希表 26 个字母的频率消耗 O(1) 时间，总体消耗 O(n)
+- 空间复杂度：O(1)，存放哈希表的空间只需要一个长度 26 的数组即可，所以复杂度为 O(1)
