@@ -1,8 +1,8 @@
-# Go-Study: Go 面试学习
+# GolangStudy: Golang 面试学习
 
-[![在线阅读](https://badgen.net/badge/page/%E5%9C%A8%E7%BA%BF%E9%98%85%E8%AF%BB?icon=github&label)](https://cnymw.github.io/go-study)
+[![在线阅读](https://badgen.net/badge/page/%E5%9C%A8%E7%BA%BF%E9%98%85%E8%AF%BB?icon=github&label)](https://cnymw.github.io/GolangStudy)
 [![相关代码](https://badgen.net/badge/icon/%E7%9B%B8%E5%85%B3%E4%BB%A3%E7%A0%81?icon=github&label)](https://github.com/cnymw/learnGo)
-[![贡献者](https://badgen.net/github/contributors/cnymw/go-study)](https://github.com/cnymw/go-study/graphs/contributors)
+[![贡献者](https://badgen.net/github/contributors/cnymw/GolangStudy)](https://github.com/cnymw/GolangStudy/graphs/contributors)
 
 本项目旨在指导程序员们如何从基础开始系统的学习 Go 语言，并学习面试所需知识点。
 
@@ -73,7 +73,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 # 赞助作者
 
-<img src="https://cnymw.github.io/go-study/docs/img/首页/688.png" width="110px"/>
+<img src="https://cnymw.github.io/GolangStudy/docs/img/首页/688.png" width="110px"/>
 
 
 # 联系作者

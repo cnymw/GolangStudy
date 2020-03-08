@@ -12,23 +12,23 @@ empty() -- 返回栈是否为空
 
 题解：
 
-这道题目非常有意思，同时考到了两个考点，队列和栈，有关队列的笔记可以看下 [队列](https://cnymw.github.io/go-study/docs/数据结构-队列.html)
+这道题目非常有意思，同时考到了两个考点，队列和栈，有关队列的笔记可以看下 [队列](https://cnymw.github.io/GolangStudy/docs/数据结构-队列.html)
 
 设原始序列为={1,2,3,4,5}，按顺序入栈后得到的栈如下所示:
 
-![stack](https://cnymw.github.io/go-study/docs/img/数据结构-栈/数据结构-栈-临时栈1.png)
+![stack](https://cnymw.github.io/GolangStudy/docs/img/数据结构-栈/数据结构-栈-临时栈1.png)
 
 出栈的顺序为={5,4,3,2,1}
 
 将原始序列插入到队列 A 中，得到的队列如下所示：
 
-![queueA](https://cnymw.github.io/go-study/docs/img/数据结构-栈/数据结构-栈-临时队列1.png)
+![queueA](https://cnymw.github.io/GolangStudy/docs/img/数据结构-栈/数据结构-栈-临时队列1.png)
 
 出队列的顺序为={1,2,3,4,5}，与预期的不符合，所以需要另外一个队列 B 来记录序列{1,2,3,4}，然后队列 A 才能弹出 5。
 
 所以为了弹出 5，还需要一个队列 B，也就是 A 按顺序出{1,2,3,4}，然后 B 按顺序进{1,2,3,4}，最终弹出 5 ，B的数据如下所示:
 
-![queueB](https://cnymw.github.io/go-study/docs/img/数据结构-栈/数据结构-栈-临时栈2.png)
+![queueB](https://cnymw.github.io/GolangStudy/docs/img/数据结构-栈/数据结构-栈-临时栈2.png)
 
 go 实现如下：
 ```go

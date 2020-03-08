@@ -10,7 +10,7 @@
 
 示例：
 
-![示例](https://cnymw.github.io/go-study/docs/img/数据结构-二叉查找树/数据结构-二叉查找树-示例1.png)
+![示例](https://cnymw.github.io/GolangStudy/docs/img/数据结构-二叉查找树/数据结构-二叉查找树-示例1.png)
 
 ```go
 输入:[4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]
