@@ -21,10 +21,10 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 # 数据结构
 - [线性表](/docs/数据结构-线性表.md)
-- [栈](/docs/数据结构-栈.md)
-- [链表](/docs/数据结构-链表.md)
-- [顺序表](/docs/数据结构-顺序表.md)
-- [队列](/docs/数据结构-队列.md)
+    - [栈](/docs/数据结构-栈.md)
+    - [顺序表](/docs/数据结构-顺序表.md)
+    - [链表](/docs/数据结构-链表.md)
+    - [队列](/docs/数据结构-队列.md)
 - [哈希表](/docs/数据结构-哈希表.md)
 - [二叉查找树](/docs/数据结构-二叉查找树.md)
 - [红黑树](/docs/数据结构-红黑树.md)
@@ -32,6 +32,9 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 # 算法
 - [排序算法总结](/docs/算法-排序算法.md)
+    - [插入排序](https://cnymw.github.io/GolangStudy/docs/算法-插入排序.md)
+    - [堆排序](https://cnymw.github.io/GolangStudy/docs/算法-堆排序.md)
+    - [归并排序](https://cnymw.github.io/GolangStudy/docs/算法-归并排序.md)
 - [动态规划](/docs/算法-动态规划.md)
 - [前中后缀表达式](/docs/算法-前中后缀表达式.md)
 
