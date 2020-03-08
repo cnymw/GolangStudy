@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<!-- saved from url=(0016)http://localhost -->
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>动态规划</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        #content-info{
+            width: auto;
+            margin: 0 auto;
+            text-align: center;
+        }
+        #author-info{
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        #title{
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            padding-top: 10px;
+            margin-bottom: 2px;
+            font-size: 34px;
+            color: #505050;
+        }
+        .text{
+            white-space:nowrap;
+            text-overflow: ellipsis;
+            display: inline-block;
+            margin-right: 20px;
+            margin-bottom: 2px;
+            font-size: 20px;
+            color: #8c8c8c;
+        }
+        #navBar{
+            width: auto;
+            height: auto;
+            position: fixed;
+            right:0;
+            bottom: 0;
+            background-color: #f0f3f4;
+            overflow-y: auto;
+            text-align: center;
+        }
+        #svg-container{
+            width: 100%;
+            overflow-x: scroll;
+            min-width: 0px;
+            margin: 0 10px;
+        }
+        #nav-thumbs{
+            overflow-y: scroll;
+            padding: 0 5px;
+        }
+        .nav-thumb{
+            position: relative;
+            margin: 10px auto;
+        }
+        .nav-thumb >p{
+            text-align: center;
+            font-size: 12px;
+            margin: 4px 0 0 0;
+        }
+        .nav-thumb >div{
+            position: relative;
+            display: inline-block;
+            border: 1px solid #c6cfd5;
+        }
+        .nav-thumb img{
+            display: block;
+        }
+        #main-content{
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #d0cfd8;
+            display: flex;
+            height: auto;
+            flex-flow: row wrap;
+            text-align:center;
+        }
+        #svg-container >svg{
+            display: block;
+            margin:10px auto;
+            margin-bottom: 0;
+        }
+        #copyright{
+            bottom: 0;
+            left: 50%;
+            margin: 5px auto;
+            font-size: 16px;
+            color: #515151;
+        }
+        #copyright >a{
+            text-decoration: none;
+            color: #77C;
+        }
+        .number{
+            position: absolute;
+            top:0;
+            left:0;
+            border-top:22px solid #08a1ef;
+            border-right: 22px solid transparent;
+        }
+        .pagenum{
+            font-size: 12px;
+            color: #fff;
+            position: absolute;
+            top: -23px;
+            left: 2px;
+        }
+            #navBar::-webkit-scrollbar{
+            width: 8px;
+            background-color: #f5f5f5;
+        }
+            #navBar::-webkit-scrollbar-track{
+            -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.3);
+            border-radius: 8px;
+            background-color: #fff;
+        }
+            #navBar::-webkit-scrollbar-thumb{
+            border-radius: 8px;
+            -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.3);
+            background-color: #6b6b70;
+        }
+        #navBar::-webkit-scrollbar-thumb:hover{
+            background-color: #4a4a4f;
+        }
+</style>
+  </head>
+  <body>
+    <div id="main-area">
+      <div id="content-info">
+        <div id="content-info">
+          <div id="title">动态规划</div>
+        </div>
+        <div id="author-info">
+          <div class="text" id="author-name">Benjamin</div>
+          <div class="text" id="share-time">2020-03-08</div>
+        </div>
+      </div>
+      <div id="main-content">
+        <div id="svg-container"><svg viewBox="0 0 1102 843" xmlns:ed="https://www.edrawsoft.cn/xml/2017/SVGExtensions/" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" ed:vSpacing="30" height="843" ed:hSpacing="30" id="page1" xmlns="http://www.w3.org/2000/svg" width="1102" preserveAspectRadio="xMinYMin meet" ed:name="Page-1">
+    <style type="text/css"><![CDATA[
+g[ed\:togtopicid],g[ed\:hyperlink],g[ed\:comment],g[ed\:note] {cursor:pointer;}
+g[id] {-moz-user-select: none;-ms-user-select: none;user-select: none;}
+svg text::selection,svg tspan::selection{background-color: #4285f4;color: #ffffff;fill: #ffffff;}
+.st26 {fill:#454545;font-family:STSong;font-size:11.25pt}
+.st25 {fill:#454545;font-family:STSong;font-size:14.25pt}
+.st27 {fill:#454545;font-family:STSong;font-size:9pt}
+]]></style>
+    <defs>
+        <linearGradient y1="0%" x2="0%" id="lg9" y2="100%" x1="0%">
+            <stop offset="0" stop-color="#ffffff"/>
+            <stop offset="0.25" stop-color="#f0f5f0"/>
+            <stop offset="0.75" stop-color="#e1ebe1"/>
+            <stop offset="1" stop-color="#c8d7c8"/>
+        </linearGradient>
+    </defs>
+    <rect y="0" x="0" height="843" fill="#ffffff" width="1102"/>
+    <path stroke-linecap="round" d="M-31.5,196.9C-32.5,197.2,-33.3,197.6,-33.3,198.4C-33.3,199.2,-32.5,200.2,-31.5,199.9C-28.9,198.9,-26.2,198,-24.3,196.4C-22.4,194.7,-21.3,192.4,-20.4,190.1C-19.4,187.8,-18.6,185.6,-17.8,183.4C-17.1,181.1,-16.5,178.8,-16,176.5C-15.5,174.2,-15,171.9,-14.6,169.6C-14.2,167.3,-13.8,164.9,-13.5,162.6C-13.1,160.3,-12.8,158,-12.5,155.7C-12.3,153.3,-12,151,-11.8,148.7C-11.5,146.3,-11.3,144,-11.1,141.7C-10.9,139.4,-10.7,137,-10.5,134.7C-10.3,132.4,-10.2,130,-10,127.7C-9.9,125.4,-9.7,123,-9.6,120.7C-9.5,118.4,-9.3,116,-9.2,113.7C-9.1,111.4,-9,109,-8.9,106.7C-8.8,104.4,-8.7,102,-8.6,99.7C-8.5,97.4,-8.4,95,-8.4,92.7C-8.3,90.4,-8.2,88,-8.1,85.7C-8.1,83.4,-8,81,-7.9,78.7C-7.9,76.4,-7.8,74,-7.7,71.7C-7.7,69.4,-7.6,67,-7.6,64.7C-7.5,62.4,-7.5,60,-7.4,57.7C-7.4,55.4,-7.3,53,-7.3,50.7C-7.2,48.4,-7.2,46,-7.1,43.7C-7.1,41.4,-7.1,39,-7,36.7C-7,34.4,-6.9,32,-6.9,29.7C-6.8,27.4,-6.8,25,-6.8,22.7C-6.7,20.4,-6.7,18,-6.6,15.7C-6.6,13.4,-6.5,11,-6.5,8.7C-6.5,6.4,-6.4,4,-6.4,1.7C-6.3,-0.6,-6.3,-3,-6.2,-5.3C-6.2,-7.6,-6.1,-9.9,-6.1,-12.3C-6,-14.6,-6,-16.9,-5.9,-19.3C-5.8,-21.6,-5.8,-23.9,-5.7,-26.3C-5.7,-28.6,-5.6,-30.9,-5.5,-33.3C-5.5,-35.6,-5.4,-37.9,-5.3,-40.3C-5.2,-42.6,-5.2,-44.9,-5.1,-47.3C-5,-49.6,-4.9,-51.9,-4.8,-54.3C-4.7,-56.6,-4.6,-58.9,-4.5,-61.2C-4.4,-63.6,-4.3,-65.9,-4.2,-68.2C-4.1,-70.6,-4,-72.9,-3.9,-75.2C-3.7,-77.6,-3.6,-79.9,-3.5,-82.2C-3.3,-84.5,-3.2,-86.9,-3.1,-89.2C-2.9,-91.5,-2.7,-93.8,-2.6,-96.2C-2.4,-98.5,-2.2,-100.8,-2,-103.2C-1.8,-105.5,-1.6,-107.8,-1.4,-110.1C-1.2,-112.4,-1,-114.8,-0.8,-117.1C-0.5,-119.4,-0.3,-121.7,-0,-124C0.2,-126.4,0.5,-128.7,0.8,-131C1.1,-133.3,1.4,-135.6,1.8,-137.9C2.1,-140.2,2.5,-142.5,2.8,-144.8C3.2,-147.1,3.6,-149.4,4.1,-151.7C4.5,-154,5,-156.3,5.5,-158.6C6,-160.8,6.6,-163.1,7.2,-165.4C7.8,-167.6,8.4,-169.8,9.1,-172.1C9.8,-174.3,10.6,-176.5,11.5,-178.6C12.3,-180.8,13.3,-182.9,14.4,-185C15.5,-187,16.8,-189,18.2,-190.9C19.6,-192.7,21,-194.4,23.2,-195.7C25.3,-197,28.1,-197.9,29.6,-198.2C31.1,-198.6,31.3,-198.5,31.5,-198.4C31.3,-198.5,31.1,-198.6,29.6,-198.3C28.1,-197.9,25.3,-197,23.1,-195.8C21,-194.5,19.5,-192.8,18.1,-190.9C16.7,-189.1,15.4,-187.1,14.3,-185.1C13.1,-183,12.2,-180.9,11.3,-178.7C10.4,-176.6,9.6,-174.4,8.9,-172.2C8.1,-169.9,7.5,-167.7,6.9,-165.4C6.2,-163.2,5.7,-160.9,5.1,-158.6C4.6,-156.4,4.1,-154.1,3.7,-151.8C3.2,-149.5,2.8,-147.2,2.4,-144.9C2,-142.6,1.6,-140.3,1.3,-138C0.9,-135.7,0.6,-133.4,0.3,-131.1C-0.1,-128.7,-0.4,-126.4,-0.6,-124.1C-0.9,-121.8,-1.2,-119.5,-1.4,-117.2C-1.7,-114.8,-1.9,-112.5,-2.2,-110.2C-2.4,-107.9,-2.6,-105.5,-2.8,-103.2C-3,-100.9,-3.2,-98.6,-3.4,-96.2C-3.6,-93.9,-3.8,-91.6,-3.9,-89.3C-4.1,-86.9,-4.3,-84.6,-4.4,-82.3C-4.6,-79.9,-4.7,-77.6,-4.8,-75.3C-5,-72.9,-5.1,-70.6,-5.2,-68.3C-5.4,-66,-5.5,-63.6,-5.6,-61.3C-5.7,-59,-5.8,-56.6,-5.9,-54.3C-6.1,-52,-6.2,-49.6,-6.3,-47.3C-6.4,-45,-6.5,-42.6,-6.5,-40.3C-6.6,-38,-6.7,-35.6,-6.8,-33.3C-6.9,-31,-7,-28.6,-7.1,-26.3C-7.1,-24,-7.2,-21.7,-7.3,-19.3C-7.4,-17,-7.4,-14.7,-7.5,-12.3C-7.6,-10,-7.6,-7.7,-7.7,-5.3C-7.8,-3,-7.8,-0.7,-7.9,1.7C-8,4,-8,6.3,-8.1,8.7C-8.1,11,-8.2,13.3,-8.3,15.7C-8.3,18,-8.4,20.3,-8.4,22.7C-8.5,25,-8.6,27.3,-8.6,29.7C-8.7,32,-8.7,34.3,-8.8,36.7C-8.9,39,-8.9,41.3,-9,43.7C-9,46,-9.1,48.3,-9.2,50.7C-9.2,53,-9.3,55.3,-9.4,57.7C-9.4,60,-9.5,62.3,-9.6,64.7C-9.6,67,-9.7,69.3,-9.8,71.6C-9.9,74,-9.9,76.3,-10,78.6C-10.1,81,-10.2,83.3,-10.3,85.6C-10.4,88,-10.5,90.3,-10.6,92.6C-10.6,95,-10.7,97.3,-10.9,99.6C-11,101.9,-11.1,104.3,-11.2,106.6C-11.3,108.9,-11.4,111.3,-11.6,113.6C-11.7,115.9,-11.8,118.2,-12,120.6C-12.1,122.9,-12.3,125.2,-12.5,127.5C-12.6,129.9,-12.8,132.2,-13,134.5C-13.2,136.8,-13.4,139.1,-13.6,141.5C-13.8,143.8,-14.1,146.1,-14.3,148.4C-14.6,150.7,-14.9,153,-15.2,155.3C-15.5,157.6,-15.8,159.9,-16.1,162.2C-16.5,164.5,-16.9,166.8,-17.3,169.1C-17.7,171.4,-18.2,173.6,-18.7,175.9C-19.3,178.1,-19.9,180.4,-20.6,182.5C-21.3,184.7,-22,186.8,-23,188.9C-23.9,191,-25,193,-26.5,194.4C-27.9,195.7,-29.7,196.3,-31.5,196.9z" transform="matrix(1,0,0,1,171,247)" id="103" ed:tosuperid="102" fill="#e0a7d3" stroke="#e0a7d3" ed:parentid="101" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-0.4C-2.7,-0.4,5.4,0.4,13.5,0.4" transform="matrix(1,0,0,1,282,49)" id="105" ed:tosuperid="104" stroke="#e0a7d3" fill="none" ed:parentid="102" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-31.5,128.1C-32.6,128.3,-33.3,128.8,-33.3,129.6C-33.3,130.4,-32.6,131.4,-31.5,131.1C-28.8,130.5,-26.2,129.9,-24.1,128.5C-22,127.1,-20.5,125,-19.3,122.8C-18.1,120.6,-17.1,118.4,-16.3,116.2C-15.5,114,-14.8,111.7,-14.2,109.4C-13.6,107.1,-13.1,104.8,-12.7,102.5C-12.2,100.1,-11.9,97.8,-11.5,95.5C-11.2,93.2,-10.9,90.8,-10.6,88.5C-10.3,86.2,-10.1,83.9,-9.9,81.5C-9.6,79.2,-9.4,76.9,-9.3,74.5C-9.1,72.2,-8.9,69.9,-8.8,67.5C-8.6,65.2,-8.5,62.9,-8.4,60.5C-8.2,58.2,-8.1,55.9,-8,53.5C-7.9,51.2,-7.8,48.9,-7.7,46.5C-7.6,44.2,-7.6,41.9,-7.5,39.5C-7.4,37.2,-7.3,34.9,-7.3,32.5C-7.2,30.2,-7.1,27.9,-7.1,25.5C-7,23.2,-6.9,20.9,-6.9,18.5C-6.8,16.2,-6.7,13.9,-6.7,11.5C-6.6,9.2,-6.5,6.9,-6.5,4.5C-6.4,2.2,-6.3,-0.1,-6.2,-2.5C-6.2,-4.8,-6.1,-7.1,-6,-9.4C-5.9,-11.8,-5.8,-14.1,-5.7,-16.4C-5.6,-18.8,-5.5,-21.1,-5.4,-23.4C-5.3,-25.8,-5.2,-28.1,-5.1,-30.4C-5,-32.7,-4.8,-35.1,-4.7,-37.4C-4.5,-39.7,-4.4,-42,-4.2,-44.4C-4,-46.7,-3.9,-49,-3.7,-51.3C-3.5,-53.7,-3.3,-56,-3,-58.3C-2.8,-60.6,-2.5,-62.9,-2.3,-65.3C-2,-67.6,-1.7,-69.9,-1.4,-72.2C-1.1,-74.5,-0.7,-76.8,-0.3,-79.1C0.1,-81.4,0.5,-83.7,0.9,-86C1.4,-88.3,1.9,-90.5,2.4,-92.8C3,-95.1,3.6,-97.3,4.2,-99.6C4.9,-101.8,5.6,-104,6.5,-106.2C7.3,-108.4,8.2,-110.5,9.2,-112.6C10.3,-114.7,11.4,-116.7,12.7,-118.6C14.1,-120.5,15.6,-122.3,17.3,-123.9C18.9,-125.5,20.7,-126.8,23,-127.8C25.4,-128.7,28.3,-129.3,29.8,-129.5C31.3,-129.8,31.4,-129.7,31.5,-129.6C31.4,-129.7,31.3,-129.8,29.8,-129.6C28.3,-129.3,25.3,-128.8,23,-127.9C20.6,-126.9,18.8,-125.6,17.2,-124C15.5,-122.4,13.9,-120.7,12.5,-118.7C11.2,-116.8,10,-114.8,8.9,-112.7C7.9,-110.6,6.9,-108.5,6.1,-106.3C5.2,-104.1,4.5,-101.9,3.8,-99.7C3.1,-97.5,2.5,-95.2,1.9,-92.9C1.3,-90.7,0.8,-88.4,0.3,-86.1C-0.2,-83.8,-0.6,-81.5,-1,-79.2C-1.4,-76.9,-1.8,-74.6,-2.1,-72.3C-2.5,-70,-2.8,-67.7,-3.1,-65.4C-3.4,-63,-3.7,-60.7,-3.9,-58.4C-4.2,-56.1,-4.4,-53.8,-4.7,-51.4C-4.9,-49.1,-5.1,-46.8,-5.3,-44.5C-5.5,-42.1,-5.7,-39.8,-5.8,-37.5C-6,-35.1,-6.2,-32.8,-6.3,-30.5C-6.4,-28.2,-6.6,-25.8,-6.7,-23.5C-6.9,-21.2,-7,-18.8,-7.1,-16.5C-7.2,-14.2,-7.3,-11.8,-7.4,-9.5C-7.5,-7.2,-7.7,-4.8,-7.8,-2.5C-7.8,-0.2,-7.9,2.2,-8,4.5C-8.1,6.8,-8.2,9.2,-8.3,11.5C-8.4,13.8,-8.5,16.1,-8.6,18.5C-8.7,20.8,-8.8,23.1,-8.9,25.5C-9,27.8,-9,30.1,-9.1,32.5C-9.2,34.8,-9.3,37.1,-9.4,39.5C-9.5,41.8,-9.6,44.1,-9.8,46.4C-9.9,48.8,-10,51.1,-10.1,53.4C-10.3,55.8,-10.4,58.1,-10.5,60.4C-10.7,62.7,-10.8,65.1,-11,67.4C-11.2,69.7,-11.4,72,-11.6,74.3C-11.8,76.7,-12,79,-12.2,81.3C-12.5,83.6,-12.8,85.9,-13,88.2C-13.3,90.5,-13.7,92.8,-14,95.1C-14.4,97.4,-14.8,99.7,-15.3,101.9C-15.7,104.2,-16.2,106.5,-16.8,108.7C-17.4,110.9,-18.1,113.1,-18.9,115.2C-19.7,117.3,-20.6,119.4,-21.8,121.3C-22.9,123.3,-24.2,125.1,-25.9,126.2C-27.6,127.3,-29.5,127.7,-31.5,128.1z" transform="matrix(1,0,0,1,171,316)" id="116" ed:tosuperid="115" fill="#70bdf2" stroke="#70bdf2" ed:parentid="101" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,27.6C3.1,27.6,-8.2,-27.6,13.5,-27.6" transform="matrix(1,0,0,1,282,159)" id="120" ed:tosuperid="119" stroke="#70bdf2" fill="none" ed:parentid="115" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-2.9C-2,-2.9,3.8,2.9,13.5,2.9" transform="matrix(1,0,0,1,282,189)" id="122" ed:tosuperid="121" stroke="#70bdf2" fill="none" ed:parentid="115" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-16.9C1.1,-16.9,-3.5,16.9,13.5,16.9" transform="matrix(1,0,0,1,282,203)" id="124" ed:tosuperid="123" stroke="#70bdf2" fill="none" ed:parentid="115" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-27.9C3.2,-27.9,-8.3,27.9,13.5,27.9" transform="matrix(1,0,0,1,282,214)" id="126" ed:tosuperid="125" stroke="#70bdf2" fill="none" ed:parentid="115" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,0C-2.7,0,5.4,0,13.5,0" transform="matrix(1,0,0,1,375,131)" id="138" ed:tosuperid="137" stroke="#70bdf2" fill="none" ed:parentid="119" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,16.5C1,16.5,-3.3,-16.5,13.5,-16.5" transform="matrix(1,0,0,1,568,115)" id="140" ed:tosuperid="139" stroke="#70bdf2" fill="none" ed:parentid="137" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,5.5C-1.4,5.5,2.4,-5.5,13.5,-5.5" transform="matrix(1,0,0,1,568,126)" id="146" ed:tosuperid="145" stroke="#70bdf2" fill="none" ed:parentid="137" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-5.5C-1.4,-5.5,2.4,5.5,13.5,5.5" transform="matrix(1,0,0,1,568,137)" id="148" ed:tosuperid="147" stroke="#70bdf2" fill="none" ed:parentid="137" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-16.5C1,-16.5,-3.3,16.5,13.5,16.5" transform="matrix(1,0,0,1,568,148)" id="150" ed:tosuperid="149" stroke="#70bdf2" fill="none" ed:parentid="137" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-3C-2,-3,3.8,3,13.5,3" transform="matrix(1,0,0,1,375,195)" id="164" ed:tosuperid="163" stroke="#70bdf2" fill="none" ed:parentid="121" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,0C-2.7,0,5.4,0,13.5,0" transform="matrix(1,0,0,1,375,220)" id="166" ed:tosuperid="165" stroke="#70bdf2" fill="none" ed:parentid="123" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,0C-2.7,0,5.4,0,13.5,0" transform="matrix(1,0,0,1,375,242)" id="168" ed:tosuperid="167" stroke="#70bdf2" fill="none" ed:parentid="125" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,0C-2.7,0,5.4,0,13.5,0" transform="matrix(1,0,0,1,468,242)" id="170" ed:tosuperid="169" stroke="#70bdf2" fill="none" ed:parentid="167" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-38.9C4.6,-38.9,-11.7,38.9,13.5,38.9" transform="matrix(1,0,0,1,282,225)" id="172" ed:tosuperid="171" stroke="#70bdf2" fill="none" ed:parentid="115" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,0C-2.7,0,5.4,0,13.5,0" transform="matrix(1,0,0,1,399,264)" id="174" ed:tosuperid="173" stroke="#70bdf2" fill="none" ed:parentid="171" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-31.5,51.4C-32.6,51.5,-33.3,52,-33.3,52.9C-33.3,53.7,-32.6,54.5,-31.5,54.4C-28.9,54.1,-26.4,53.7,-24.1,52.7C-21.8,51.8,-19.8,50.1,-18.1,48.2C-16.5,46.4,-15.1,44.3,-14,42.2C-12.8,40.1,-11.9,37.9,-11.1,35.7C-10.2,33.5,-9.5,31.2,-8.9,28.9C-8.2,26.7,-7.6,24.4,-7.1,22.1C-6.6,19.8,-6.1,17.5,-5.6,15.3C-5.1,13,-4.7,10.7,-4.2,8.4C-3.8,6.1,-3.4,3.8,-2.9,1.5C-2.5,-0.8,-2,-3.1,-1.6,-5.4C-1.1,-7.6,-0.6,-9.9,-0.1,-12.2C0.4,-14.5,0.9,-16.7,1.5,-19C2.1,-21.2,2.8,-23.5,3.5,-25.7C4.2,-27.9,5,-30.1,5.9,-32.2C6.8,-34.3,7.8,-36.4,9,-38.4C10.1,-40.4,11.4,-42.4,12.9,-44.1C14.5,-45.9,16.2,-47.5,18.1,-48.8C20,-50.1,22,-51.2,24.3,-51.8C26.6,-52.4,29,-52.7,31.5,-52.9C29,-52.7,26.6,-52.6,24.3,-52C22,-51.4,19.8,-50.4,17.9,-49.1C15.9,-47.8,14.2,-46.2,12.6,-44.4C11,-42.7,9.6,-40.8,8.4,-38.8C7.2,-36.7,6.2,-34.7,5.2,-32.5C4.2,-30.4,3.4,-28.2,2.6,-26C1.8,-23.8,1.1,-21.5,0.5,-19.3C-0.2,-17,-0.8,-14.8,-1.3,-12.5C-1.9,-10.2,-2.5,-7.9,-3,-5.7C-3.5,-3.4,-4,-1.1,-4.5,1.2C-5,3.5,-5.5,5.7,-5.9,8C-6.4,10.3,-6.9,12.6,-7.5,14.8C-8,17.1,-8.5,19.4,-9.1,21.6C-9.7,23.9,-10.3,26.1,-11,28.3C-11.7,30.5,-12.4,32.7,-13.3,34.8C-14.1,37,-15.1,39,-16.2,41C-17.3,43,-18.6,44.8,-20.1,46.4C-21.6,48,-23.4,49.4,-25.3,50.2C-27.2,51,-29.4,51.2,-31.5,51.4z" transform="matrix(1,0,0,1,171,393)" id="176" ed:tosuperid="175" fill="#e38d76" stroke="#e38d76" ed:parentid="101" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,13.6C0.4,13.6,-1.9,-13.6,13.5,-13.6" transform="matrix(1,0,0,1,327,326)" id="180" ed:tosuperid="179" stroke="#e38d76" fill="none" ed:parentid="175" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,2.6C-2.1,2.6,4,-2.6,13.5,-2.6" transform="matrix(1,0,0,1,327,337)" id="182" ed:tosuperid="181" stroke="#e38d76" fill="none" ed:parentid="175" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-8.4C-0.7,-8.4,0.8,8.4,13.5,8.4" transform="matrix(1,0,0,1,327,348)" id="184" ed:tosuperid="183" stroke="#e38d76" fill="none" ed:parentid="175" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-31.5,-19.9C-32.6,-20,-33.3,-19.2,-33.3,-18.4C-33.3,-17.6,-32.6,-16.9,-31.5,-16.9C-29.3,-16.8,-27,-16.7,-24.8,-16.3C-22.7,-15.9,-20.5,-15.2,-18.5,-14.2C-16.4,-13.3,-14.5,-12.2,-12.6,-10.8C-10.8,-9.5,-9,-8,-7.3,-6.5C-5.6,-4.9,-4,-3.3,-2.4,-1.6C-0.7,0.1,0.9,1.8,2.5,3.4C4.1,5.1,5.8,6.8,7.5,8.3C9.3,9.9,11.1,11.4,13.1,12.7C15,14,17,15.2,19.3,16.1C21.5,17,23.9,17.7,26,18C28.1,18.4,29.8,18.4,31.5,18.4C29.8,18.3,28.1,18.2,26.1,17.8C24,17.4,21.6,16.6,19.5,15.7C17.3,14.7,15.4,13.5,13.5,12.1C11.7,10.7,9.9,9.2,8.3,7.6C6.6,6,5,4.3,3.5,2.5C1.9,0.8,0.4,-1,-1.2,-2.7C-2.7,-4.5,-4.3,-6.2,-6,-7.9C-7.7,-9.5,-9.4,-11.1,-11.3,-12.6C-13.2,-14,-15.3,-15.4,-17.4,-16.5C-19.6,-17.6,-21.9,-18.4,-24.3,-19C-26.6,-19.5,-29.1,-19.7,-31.5,-19.9z" transform="matrix(1,0,0,1,171,464)" id="188" ed:tosuperid="187" fill="#7dbd8d" stroke="#7dbd8d" ed:parentid="101" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,19.1C1.6,19.1,-4.6,-19.1,13.5,-19.1" transform="matrix(1,0,0,1,402,463)" id="190" ed:tosuperid="189" stroke="#7dbd8d" fill="none" ed:parentid="187" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,19.5C1.7,19.5,-4.8,-19.5,13.5,-19.5" transform="matrix(1,0,0,1,554,425)" id="192" ed:tosuperid="191" stroke="#7dbd8d" fill="none" ed:parentid="189" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,8.5C-0.7,8.5,0.8,-8.5,13.5,-8.5" transform="matrix(1,0,0,1,554,436)" id="194" ed:tosuperid="193" stroke="#7dbd8d" fill="none" ed:parentid="189" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-8.5C-0.7,-8.5,0.8,8.5,13.5,8.5" transform="matrix(1,0,0,1,554,453)" id="196" ed:tosuperid="195" stroke="#7dbd8d" fill="none" ed:parentid="189" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-19.5C1.7,-19.5,-4.8,19.5,13.5,19.5" transform="matrix(1,0,0,1,554,464)" id="198" ed:tosuperid="197" stroke="#7dbd8d" fill="none" ed:parentid="189" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-11.4C-0.1,-11.4,-0.7,11.4,13.5,11.4" transform="matrix(1,0,0,1,402,494)" id="200" ed:tosuperid="199" stroke="#7dbd8d" fill="none" ed:parentid="187" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-22.4C2.2,-22.4,-6.1,22.4,13.5,22.4" transform="matrix(1,0,0,1,402,505)" id="202" ed:tosuperid="201" stroke="#7dbd8d" fill="none" ed:parentid="187" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-33.4C4,-33.4,-10.2,33.4,13.5,33.4" transform="matrix(1,0,0,1,402,516)" id="204" ed:tosuperid="203" stroke="#7dbd8d" fill="none" ed:parentid="187" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-31.5,-96.6C-32.6,-96.8,-33.3,-96,-33.3,-95.1C-33.3,-94.3,-32.6,-93.8,-31.5,-93.6C-29.4,-93.3,-27.4,-93,-25.6,-92C-23.8,-91.1,-22.3,-89.4,-21.1,-87.6C-19.8,-85.8,-18.8,-83.8,-17.9,-81.7C-17,-79.6,-16.3,-77.4,-15.6,-75.2C-15,-73,-14.4,-70.8,-13.9,-68.5C-13.4,-66.3,-13,-64,-12.6,-61.7C-12.3,-59.4,-11.9,-57.1,-11.6,-54.8C-11.3,-52.5,-11,-50.2,-10.8,-47.9C-10.5,-45.6,-10.3,-43.3,-10.1,-41C-9.9,-38.6,-9.7,-36.3,-9.5,-34C-9.3,-31.7,-9.1,-29.4,-9,-27C-8.8,-24.7,-8.7,-22.4,-8.5,-20C-8.3,-17.7,-8.2,-15.4,-8,-13.1C-7.9,-10.7,-7.7,-8.4,-7.6,-6.1C-7.4,-3.7,-7.3,-1.4,-7.1,0.9C-6.9,3.2,-6.8,5.6,-6.6,7.9C-6.4,10.2,-6.2,12.6,-6,14.9C-5.9,17.2,-5.6,19.5,-5.4,21.9C-5.2,24.2,-5,26.5,-4.7,28.8C-4.4,31.2,-4.2,33.5,-3.9,35.8C-3.6,38.1,-3.2,40.4,-2.9,42.7C-2.5,45,-2.1,47.3,-1.7,49.6C-1.2,51.9,-0.8,54.2,-0.2,56.5C0.3,58.8,0.9,61.1,1.5,63.3C2.1,65.6,2.9,67.8,3.7,70C4.5,72.2,5.4,74.4,6.4,76.5C7.4,78.6,8.5,80.6,9.8,82.6C11.1,84.5,12.6,86.4,14.2,88C15.9,89.7,17.7,91.1,19.8,92.3C21.9,93.4,24.4,94.2,26.4,94.7C28.4,95.1,29.9,95.1,31.5,95.1C29.9,95.1,28.4,95,26.4,94.6C24.4,94.1,22,93.3,19.9,92.1C17.8,91,16,89.5,14.4,87.9C12.8,86.2,11.4,84.3,10.1,82.4C8.8,80.4,7.8,78.4,6.8,76.3C5.8,74.2,4.9,72,4.2,69.8C3.4,67.6,2.7,65.4,2.1,63.1C1.5,60.9,1,58.6,0.5,56.3C-0,54.1,-0.4,51.8,-0.8,49.5C-1.2,47.2,-1.6,44.9,-1.9,42.6C-2.3,40.3,-2.5,38,-2.8,35.7C-3.1,33.3,-3.3,31,-3.6,28.7C-3.8,26.4,-4,24.1,-4.2,21.7C-4.4,19.4,-4.5,17.1,-4.7,14.8C-4.9,12.5,-5,10.1,-5.2,7.8C-5.3,5.5,-5.4,3.1,-5.6,0.8C-5.7,-1.5,-5.8,-3.8,-5.9,-6.2C-6.1,-8.5,-6.2,-10.8,-6.3,-13.2C-6.4,-15.5,-6.5,-17.8,-6.7,-20.2C-6.8,-22.5,-6.9,-24.8,-7.1,-27.2C-7.2,-29.5,-7.3,-31.8,-7.5,-34.1C-7.6,-36.5,-7.8,-38.8,-8,-41.1C-8.2,-43.5,-8.4,-45.8,-8.6,-48.1C-8.8,-50.5,-9,-52.8,-9.3,-55.1C-9.6,-57.4,-9.9,-59.8,-10.3,-62.1C-10.6,-64.4,-11,-66.7,-11.5,-69.1C-11.9,-71.4,-12.5,-73.7,-13.1,-76C-13.7,-78.2,-14.5,-80.5,-15.4,-82.7C-16.3,-84.9,-17.3,-87.1,-18.8,-89.2C-20.2,-91.3,-21.9,-93.3,-24.1,-94.5C-26.3,-95.7,-28.9,-96.2,-31.5,-96.6z" transform="matrix(1,0,0,1,171,541)" id="206" ed:tosuperid="205" fill="#ffcc56" stroke="#ffcc56" ed:parentid="101" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,19.1C1.6,19.1,-4.6,-19.1,13.5,-19.1" transform="matrix(1,0,0,1,432,617)" id="208" ed:tosuperid="207" stroke="#ffcc56" fill="none" ed:parentid="205" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,8.1C-0.8,8.1,1,-8.1,13.5,-8.1" transform="matrix(1,0,0,1,432,628)" id="210" ed:tosuperid="209" stroke="#ffcc56" fill="none" ed:parentid="205" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-2.9C-2,-2.9,3.8,2.9,13.5,2.9" transform="matrix(1,0,0,1,432,639)" id="212" ed:tosuperid="211" stroke="#ffcc56" fill="none" ed:parentid="205" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-13.9C0.5,-13.9,-2,13.9,13.5,13.9" transform="matrix(1,0,0,1,432,650)" id="214" ed:tosuperid="213" stroke="#ffcc56" fill="none" ed:parentid="205" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-31.5,-164.9C-32.5,-165.2,-33.3,-164.2,-33.3,-163.4C-33.3,-162.6,-32.5,-162.2,-31.5,-161.9C-29.6,-161.4,-27.8,-160.9,-26.2,-159.6C-24.7,-158.4,-23.5,-156.4,-22.4,-154.4C-21.4,-152.4,-20.5,-150.3,-19.8,-148.2C-19.1,-146,-18.4,-143.8,-17.9,-141.6C-17.3,-139.3,-16.8,-137.1,-16.4,-134.8C-15.9,-132.5,-15.5,-130.2,-15.2,-127.9C-14.8,-125.6,-14.5,-123.4,-14.2,-121C-13.9,-118.7,-13.6,-116.4,-13.4,-114.1C-13.1,-111.8,-12.9,-109.5,-12.7,-107.2C-12.4,-104.9,-12.2,-102.5,-12.1,-100.2C-11.9,-97.9,-11.7,-95.6,-11.5,-93.3C-11.4,-90.9,-11.2,-88.6,-11.1,-86.3C-11,-83.9,-10.8,-81.6,-10.7,-79.3C-10.6,-77,-10.5,-74.6,-10.4,-72.3C-10.2,-70,-10.1,-67.7,-10,-65.3C-9.9,-63,-9.8,-60.7,-9.8,-58.3C-9.7,-56,-9.6,-53.7,-9.5,-51.3C-9.4,-49,-9.3,-46.7,-9.3,-44.3C-9.2,-42,-9.1,-39.7,-9,-37.3C-8.9,-35,-8.9,-32.7,-8.8,-30.4C-8.7,-28,-8.7,-25.7,-8.6,-23.4C-8.5,-21,-8.4,-18.7,-8.4,-16.4C-8.3,-14,-8.2,-11.7,-8.2,-9.4C-8.1,-7,-8,-4.7,-7.9,-2.4C-7.9,-0,-7.8,2.3,-7.7,4.6C-7.6,7,-7.5,9.3,-7.4,11.6C-7.4,14,-7.3,16.3,-7.2,18.6C-7.1,21,-7,23.3,-6.9,25.6C-6.8,28,-6.7,30.3,-6.6,32.6C-6.5,34.9,-6.4,37.3,-6.2,39.6C-6.1,41.9,-6,44.3,-5.8,46.6C-5.7,48.9,-5.6,51.3,-5.4,53.6C-5.3,55.9,-5.1,58.3,-5,60.6C-4.8,62.9,-4.6,65.2,-4.4,67.6C-4.2,69.9,-4,72.2,-3.8,74.5C-3.6,76.9,-3.4,79.2,-3.2,81.5C-2.9,83.8,-2.7,86.2,-2.4,88.5C-2.2,90.8,-1.9,93.1,-1.6,95.4C-1.3,97.8,-1,100.1,-0.6,102.4C-0.3,104.7,0.1,107,0.5,109.3C0.9,111.6,1.3,113.9,1.7,116.2C2.2,118.5,2.7,120.8,3.2,123C3.7,125.3,4.3,127.6,4.9,129.8C5.5,132.1,6.2,134.3,6.9,136.6C7.7,138.8,8.5,141,9.4,143.1C10.3,145.3,11.3,147.4,12.4,149.4C13.6,151.5,14.9,153.4,16.3,155.3C17.8,157.1,19.3,158.8,21.4,160.1C23.4,161.5,25.9,162.5,27.7,163C29.5,163.5,30.5,163.4,31.5,163.4C30.5,163.4,29.5,163.4,27.7,162.9C26,162.4,23.4,161.4,21.4,160C19.4,158.7,17.8,157,16.4,155.2C15,153.3,13.8,151.4,12.6,149.3C11.5,147.3,10.5,145.2,9.7,143C8.8,140.9,8,138.7,7.3,136.4C6.5,134.2,5.9,132,5.3,129.7C4.7,127.5,4.1,125.2,3.6,122.9C3.1,120.7,2.7,118.4,2.2,116.1C1.8,113.8,1.4,111.5,1,109.2C0.7,106.9,0.3,104.6,0,102.3C-0.3,100,-0.6,97.7,-0.9,95.4C-1.2,93,-1.4,90.7,-1.7,88.4C-1.9,86.1,-2.1,83.8,-2.4,81.4C-2.6,79.1,-2.8,76.8,-3,74.5C-3.1,72.1,-3.3,69.8,-3.5,67.5C-3.7,65.2,-3.8,62.8,-4,60.5C-4.1,58.2,-4.2,55.9,-4.4,53.5C-4.5,51.2,-4.6,48.9,-4.7,46.5C-4.8,44.2,-4.9,41.9,-5,39.6C-5.1,37.2,-5.2,34.9,-5.3,32.6C-5.4,30.2,-5.5,27.9,-5.6,25.6C-5.7,23.2,-5.7,20.9,-5.8,18.6C-5.9,16.2,-6,13.9,-6,11.6C-6.1,9.3,-6.1,6.9,-6.2,4.6C-6.3,2.3,-6.3,-0.1,-6.4,-2.4C-6.4,-4.7,-6.5,-7.1,-6.5,-9.4C-6.6,-11.7,-6.7,-14.1,-6.7,-16.4C-6.8,-18.7,-6.8,-21.1,-6.9,-23.4C-6.9,-25.7,-7,-28.1,-7,-30.4C-7.1,-32.7,-7.1,-35.1,-7.2,-37.4C-7.2,-39.7,-7.3,-42.1,-7.3,-44.4C-7.4,-46.7,-7.5,-49.1,-7.5,-51.4C-7.6,-53.7,-7.7,-56.1,-7.7,-58.4C-7.8,-60.7,-7.9,-63.1,-8,-65.4C-8,-67.7,-8.1,-70.1,-8.2,-72.4C-8.3,-74.7,-8.4,-77.1,-8.5,-79.4C-8.6,-81.7,-8.7,-84.1,-8.8,-86.4C-9,-88.7,-9.1,-91.1,-9.2,-93.4C-9.4,-95.7,-9.5,-98.1,-9.7,-100.4C-9.8,-102.7,-10,-105.1,-10.2,-107.4C-10.4,-109.7,-10.6,-112.1,-10.9,-114.4C-11.1,-116.7,-11.3,-119,-11.6,-121.4C-11.9,-123.7,-12.2,-126,-12.6,-128.3C-12.9,-130.7,-13.3,-133,-13.7,-135.3C-14.2,-137.6,-14.6,-139.9,-15.2,-142.2C-15.7,-144.5,-16.4,-146.8,-17.1,-149.1C-17.9,-151.3,-18.8,-153.5,-19.9,-155.7C-20.9,-158,-22.2,-160.3,-24.2,-161.8C-26.2,-163.3,-28.8,-164.1,-31.5,-164.9z" transform="matrix(1,0,0,1,171,609)" id="216" ed:tosuperid="215" fill="#4badd0" stroke="#4badd0" ed:parentid="101" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,19.1C1.6,19.1,-4.6,-19.1,13.5,-19.1" transform="matrix(1,0,0,1,462,753)" id="218" ed:tosuperid="217" stroke="#4badd0" fill="none" ed:parentid="215" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,11C-0.2,11,-0.5,-11,13.5,-11" transform="matrix(1,0,0,1,531,723)" id="220" ed:tosuperid="219" stroke="#4badd0" fill="none" ed:parentid="217" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,0C-2.7,0,5.4,0,13.5,0" transform="matrix(1,0,0,1,531,734)" id="222" ed:tosuperid="221" stroke="#4badd0" fill="none" ed:parentid="217" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-11C-0.2,-11,-0.5,11,13.5,11" transform="matrix(1,0,0,1,531,745)" id="224" ed:tosuperid="223" stroke="#4badd0" fill="none" ed:parentid="217" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-2.9C-2,-2.9,3.8,2.9,13.5,2.9" transform="matrix(1,0,0,1,462,775)" id="226" ed:tosuperid="225" stroke="#4badd0" fill="none" ed:parentid="215" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,0C-2.7,0,5.4,0,13.5,0" transform="matrix(1,0,0,1,555,778)" id="228" ed:tosuperid="227" stroke="#4badd0" fill="none" ed:parentid="225" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-13.9C0.5,-13.9,-2,13.9,13.5,13.9" transform="matrix(1,0,0,1,462,786)" id="230" ed:tosuperid="229" stroke="#4badd0" fill="none" ed:parentid="215" stroke-linejoin="round"/>
+    <path stroke-linecap="round" d="M-13.5,-24.9C2.7,-24.9,-7.1,24.9,13.5,24.9" transform="matrix(1,0,0,1,462,797)" id="232" ed:tosuperid="231" stroke="#4badd0" fill="none" ed:parentid="215" stroke-linejoin="round"/>
+    <g ed:width="116" ed:layout="rightmap" transform="matrix(1,0,0,1,23,399)" id="101" ed:topictype="mainidea" ed:height="47">
+        <path d="M0,0L116,0L116,47L0,47L0,0z" fill="#d0e8e9"/>
+        <path d="M0,47L116,47" stroke="#50bec1" fill="none" stroke-width="3" stroke-linejoin="round"/>
+        <text class="st25">
+            <tspan y="28.4" x="20" style="white-space:pre">动态规划</tspan>
+        </text>
+    </g>
+    <g ed:width="66" transform="matrix(1,0,0,1,202,23)" id="102" ed:parentid="101" ed:height="26">
+        <path d="M0,0L66,0L66,26L0,26L0,0z" fill="#f3e1ef"/>
+        <path d="M0,26L66,26" stroke="#e0a7d3" fill="none" stroke-width="3" stroke-linejoin="round"/>
+        <text class="st26">
+            <tspan y="16.9" x="17" style="white-space:pre">概念</tspan>
+        </text>
+    </g>
+    <g ed:width="514" transform="matrix(1,0,0,1,295,22)" id="104" ed:parentid="102" ed:height="27.5">
+        <path d="M0,27.5L514,27.5" stroke="#e0a7d3" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">动态规划是一种用途很广的问题求解方法，它本身并不是一个特定的算法，而是一种思想，一</tspan>
+            <tspan y="22.6" x="8" style="white-space:pre">种手段</tspan>
+        </text>
+    </g>
+    <g ed:width="66" transform="matrix(1,0,0,1,202,161)" id="115" ed:parentid="101" ed:height="26">
+        <path d="M0,0L66,0L66,26L0,26L0,0z" fill="#d5e8fa"/>
+        <path d="M0,26L66,26" stroke="#70bdf2" fill="none" stroke-width="3" stroke-linejoin="round"/>
+        <text class="st26">
+            <tspan y="16.9" x="17" style="white-space:pre">分类</tspan>
+        </text>
+    </g>
+    <g ed:width="66" transform="matrix(1,0,0,1,295,116)" id="119" ed:parentid="115" ed:height="15.5">
+        <path d="M0,15.5L66,15.5" stroke="#70bdf2" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">线性动规</tspan>
+        </text>
+    </g>
+    <g ed:width="66" transform="matrix(1,0,0,1,295,177)" id="121" ed:parentid="115" ed:height="15.5">
+        <path d="M0,15.5L66,15.5" stroke="#70bdf2" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">区域动规</tspan>
+        </text>
+    </g>
+    <g ed:width="66" transform="matrix(1,0,0,1,295,205)" id="123" ed:parentid="115" ed:height="15.5">
+        <path d="M0,15.5L66,15.5" stroke="#70bdf2" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">树形动规</tspan>
+        </text>
+    </g>
+    <g ed:width="66" transform="matrix(1,0,0,1,295,227)" id="125" ed:parentid="115" ed:height="15.5">
+        <path d="M0,15.5L66,15.5" stroke="#70bdf2" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">背包动规</tspan>
+        </text>
+    </g>
+    <g ed:width="166" transform="matrix(1,0,0,1,388,116)" id="137" ed:parentid="119" ed:height="15.5">
+        <path d="M0,15.5L166,15.5" stroke="#70bdf2" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">线性结构上进行状态转移DP</tspan>
+        </text>
+    </g>
+    <g ed:width="78" transform="matrix(1,0,0,1,581,83)" id="139" ed:parentid="137" ed:height="15.5">
+        <path d="M0,15.5L78,15.5" stroke="#70bdf2" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">子集和问题</tspan>
+        </text>
+    </g>
+    <g ed:width="166.844" transform="matrix(1,0,0,1,581,105)" id="145" ed:parentid="137" ed:height="15.5">
+        <path d="M0,15.5L166.8,15.5" stroke="#70bdf2" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">LIS问题（最长上升子序列）</tspan>
+        </text>
+    </g>
+    <g ed:width="170.219" transform="matrix(1,0,0,1,581,127)" id="147" ed:parentid="137" ed:height="15.5">
+        <path d="M0,15.5L170.2,15.5" stroke="#70bdf2" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">LCS问题（最长公共子序列）</tspan>
+        </text>
+    </g>
+    <g ed:width="78" transform="matrix(1,0,0,1,581,149)" id="149" ed:parentid="137" ed:height="15.5">
+        <path d="M0,15.5L78,15.5" stroke="#70bdf2" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">子段和问题</tspan>
+        </text>
+    </g>
+    <g ed:width="514" transform="matrix(1,0,0,1,388,171)" id="163" ed:parentid="121" ed:height="27.5">
+        <path d="M0,27.5L514,27.5" stroke="#70bdf2" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">区间模型的状态表示一般为d[i][j]，表示区间[i, j]上的最优解，然后通过状态转移计算出[i+1, j]或</tspan>
+            <tspan y="22.6" x="8" style="white-space:pre">者[i, j+1]上的最优解，逐步扩大区间的范围，最终求得[1, len]的最优解</tspan>
+        </text>
+    </g>
+    <g ed:width="462" transform="matrix(1,0,0,1,388,205)" id="165" ed:parentid="123" ed:height="15.5">
+        <path d="M0,15.5L462,15.5" stroke="#70bdf2" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">状态图是一棵树，状态转移也发生在树上，父结点的值通过所有子结点计算完毕后得</tspan>
+        </text>
+    </g>
+    <g ed:width="66" transform="matrix(1,0,0,1,388,227)" id="167" ed:parentid="125" ed:height="15.5">
+        <path d="M0,15.5L66,15.5" stroke="#70bdf2" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">背包九讲</tspan>
+        </text>
+    </g>
+    <g ed:width="189.141" transform="matrix(1,0,0,1,481,227)" id="169" ed:parentid="167" ed:height="15.5">
+        <path d="M0,15.5L189.1,15.5" stroke="#70bdf2" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="7" style="white-space:pre">https://github.com/tianyicui/pack</tspan>
+        </text>
+    </g>
+    <g ed:width="90" transform="matrix(1,0,0,1,295,249)" id="171" ed:parentid="115" ed:height="15.5">
+        <path d="M0,15.5L90,15.5" stroke="#70bdf2" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">状态压缩模型</tspan>
+        </text>
+    </g>
+    <g ed:width="442.844" transform="matrix(1,0,0,1,412,249)" id="173" ed:parentid="171" ed:height="15.5">
+        <path d="M0,15.5L442.8,15.5" stroke="#70bdf2" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">一般处理的是数据规模较小的问题，将状态压缩成k进制的整数，k取2时最为常见</tspan>
+        </text>
+    </g>
+    <g ed:width="111" transform="matrix(1,0,0,1,202,314)" id="175" ed:parentid="101" ed:height="26">
+        <path d="M0,0L111,0L111,26L0,26L0,0z" fill="#f4dbd6"/>
+        <path d="M0,26L111,26" stroke="#e38d76" fill="none" stroke-width="3" stroke-linejoin="round"/>
+        <text class="st26">
+            <tspan y="16.9" x="17" style="white-space:pre">算法三要素</tspan>
+        </text>
+    </g>
+    <g ed:width="173.25" transform="matrix(1,0,0,1,340,297)" id="179" ed:parentid="175" ed:height="15.5">
+        <path d="M0,15.5L173.3,15.5" stroke="#e38d76" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">1. 所有不同的子问题组成的表</tspan>
+        </text>
+    </g>
+    <g ed:width="233.25" transform="matrix(1,0,0,1,340,319)" id="181" ed:parentid="175" ed:height="15.5">
+        <path d="M0,15.5L233.3,15.5" stroke="#e38d76" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">2. 解决问题的依赖关系可以看成是一个图</tspan>
+        </text>
+    </g>
+    <g ed:width="418.875" transform="matrix(1,0,0,1,340,341)" id="183" ed:parentid="175" ed:height="15.5">
+        <path d="M0,15.5L418.9,15.5" stroke="#e38d76" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">3. 填充子问题的顺序（即对2的图进行拓扑排序，填充的过程称为状态转移）</tspan>
+        </text>
+    </g>
+    <g ed:width="186" transform="matrix(1,0,0,1,202,457)" id="187" ed:parentid="101" ed:height="26">
+        <path d="M0,0L186,0L186,26L0,26L0,0z" fill="#d7e8db"/>
+        <path d="M0,26L186,26" stroke="#7dbd8d" fill="none" stroke-width="3" stroke-linejoin="round"/>
+        <text class="st26">
+            <tspan y="16.9" x="17" style="white-space:pre">设计一个动态规划算法</tspan>
+        </text>
+    </g>
+    <g ed:width="125.25" transform="matrix(1,0,0,1,415,429)" id="189" ed:parentid="187" ed:height="15.5">
+        <path d="M0,15.5L125.3,15.5" stroke="#7dbd8d" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">1. 描述最优解的结构</tspan>
+        </text>
+    </g>
+    <g ed:width="197.25" transform="matrix(1,0,0,1,567,390)" id="191" ed:parentid="189" ed:height="15.5">
+        <path d="M0,15.5L197.3,15.5" stroke="#7dbd8d" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">1. 问题的一个解可以是做一个选择</tspan>
+        </text>
+    </g>
+    <g ed:width="353.234" transform="matrix(1,0,0,1,567,412)" id="193" ed:parentid="189" ed:height="15.5">
+        <path d="M0,15.5L353.2,15.5" stroke="#7dbd8d" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="7" style="white-space:pre">2. 假设对一个给定的问题，已知的是一个可以导致最优解的选择</tspan>
+        </text>
+    </g>
+    <g ed:width="514" transform="matrix(1,0,0,1,567,434)" id="195" ed:parentid="189" ed:height="27.5">
+        <path d="M0,27.5L514,27.5" stroke="#7dbd8d" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">3. 在已知这个选择后，要确定哪些子问题会随之发生，以及如何最好的描述所得到的子问题空</tspan>
+            <tspan y="22.6" x="8" style="white-space:pre">间</tspan>
+        </text>
+    </g>
+    <g ed:width="509.234" transform="matrix(1,0,0,1,567,468)" id="197" ed:parentid="189" ed:height="15.5">
+        <path d="M0,15.5L509.2,15.5" stroke="#7dbd8d" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="7" style="white-space:pre">4. 利用一种剪贴技术，来证明在问题的一个最优解中，使用的子问题的解本身也必须是最优的</tspan>
+        </text>
+    </g>
+    <g ed:width="137.25" transform="matrix(1,0,0,1,415,490)" id="199" ed:parentid="187" ed:height="15.5">
+        <path d="M0,15.5L137.3,15.5" stroke="#7dbd8d" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">2. 递归定义最优解的值</tspan>
+        </text>
+    </g>
+    <g ed:width="209.25" transform="matrix(1,0,0,1,415,512)" id="201" ed:parentid="187" ed:height="15.5">
+        <path d="M0,15.5L209.3,15.5" stroke="#7dbd8d" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">3. 按自底向上的方式计算最优解的值</tspan>
+        </text>
+    </g>
+    <g ed:width="197.25" transform="matrix(1,0,0,1,415,534)" id="203" ed:parentid="187" ed:height="15.5">
+        <path d="M0,15.5L197.3,15.5" stroke="#7dbd8d" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">4. 由计算出的结果构造一个最优解</tspan>
+        </text>
+    </g>
+    <g ed:width="216" transform="matrix(1,0,0,1,202,610)" id="205" ed:parentid="101" ed:height="26">
+        <path d="M0,0L216,0L216,26L0,26L0,0z" fill="#ffecd1"/>
+        <path d="M0,26L216,26" stroke="#ffcc56" fill="none" stroke-width="3" stroke-linejoin="round"/>
+        <text class="st26">
+            <tspan y="16.9" x="17" style="white-space:pre">什么时候需要用到动态规划</tspan>
+        </text>
+    </g>
+    <g ed:width="198" transform="matrix(1,0,0,1,445,582)" id="207" ed:parentid="205" ed:height="15.5">
+        <path d="M0,15.5L198,15.5" stroke="#ffcc56" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">问题的目标是求一个问题的最优解</tspan>
+        </text>
+    </g>
+    <g ed:width="258" transform="matrix(1,0,0,1,445,604)" id="209" ed:parentid="205" ed:height="15.5">
+        <path d="M0,15.5L258,15.5" stroke="#ffcc56" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">整体问题的最优解依赖于各个子问题的最优解</tspan>
+        </text>
+    </g>
+    <g ed:width="426" transform="matrix(1,0,0,1,445,626)" id="211" ed:parentid="205" ed:height="15.5">
+        <path d="M0,15.5L426,15.5" stroke="#ffcc56" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">把大问题分解成若干个小问题，这些小问题之间还有相互重叠的更小的子问题</tspan>
+        </text>
+    </g>
+    <g ed:width="222" transform="matrix(1,0,0,1,445,648)" id="213" ed:parentid="205" ed:height="15.5">
+        <path d="M0,15.5L222,15.5" stroke="#ffcc56" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">从上往下分析问题，从下往上解决问题</tspan>
+        </text>
+    </g>
+    <g ed:width="246" transform="matrix(1,0,0,1,202,747)" id="215" ed:parentid="101" ed:height="26">
+        <path d="M0,0L246,0L246,26L0,26L0,0z" fill="#d0e3ee"/>
+        <path d="M0,26L246,26" stroke="#4badd0" fill="none" stroke-width="3" stroke-linejoin="round"/>
+        <text class="st26">
+            <tspan y="16.9" x="17" style="white-space:pre">分治方法和动态规划有什么区别</tspan>
+        </text>
+    </g>
+    <g ed:width="42" transform="matrix(1,0,0,1,475,719)" id="217" ed:parentid="215" ed:height="15.5">
+        <path d="M0,15.5L42,15.5" stroke="#4badd0" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">分治</tspan>
+        </text>
+    </g>
+    <g ed:width="186" transform="matrix(1,0,0,1,544,697)" id="219" ed:parentid="217" ed:height="15.5">
+        <path d="M0,15.5L186,15.5" stroke="#4badd0" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">将问题划分为互不相交的子问题</tspan>
+        </text>
+    </g>
+    <g ed:width="114" transform="matrix(1,0,0,1,544,719)" id="221" ed:parentid="217" ed:height="15.5">
+        <path d="M0,15.5L114,15.5" stroke="#4badd0" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">递归的求解子问题</tspan>
+        </text>
+    </g>
+    <g ed:width="138" transform="matrix(1,0,0,1,544,741)" id="223" ed:parentid="217" ed:height="15.5">
+        <path d="M0,15.5L138,15.5" stroke="#4badd0" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">再将它们的解组合起来</tspan>
+        </text>
+    </g>
+    <g ed:width="66" transform="matrix(1,0,0,1,475,763)" id="225" ed:parentid="215" ed:height="15.5">
+        <path d="M0,15.5L66,15.5" stroke="#4badd0" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">动态规划</tspan>
+        </text>
+    </g>
+    <g ed:width="330" transform="matrix(1,0,0,1,568,763)" id="227" ed:parentid="225" ed:height="15.5">
+        <path d="M0,15.5L330,15.5" stroke="#4badd0" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">用于子问题重叠的情况，不同的子问题拥有公共的孙子问题</tspan>
+        </text>
+    </g>
+    <g ed:width="318" transform="matrix(1,0,0,1,475,785)" id="229" ed:parentid="215" ed:height="15.5">
+        <path d="M0,15.5L318,15.5" stroke="#4badd0" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">分治会做许多不必要的工作，会反复求解那些公共子问题</tspan>
+        </text>
+    </g>
+    <g ed:width="330" transform="matrix(1,0,0,1,475,807)" id="231" ed:parentid="215" ed:height="15.5">
+        <path d="M0,15.5L330,15.5" stroke="#4badd0" fill="none" stroke-linejoin="round"/>
+        <text class="st27">
+            <tspan y="10.7" x="8" style="white-space:pre">动态规划每个子问题只会求解一次，避免了重复的计算工作</tspan>
+        </text>
+    </g>
+    <symbol id="plus">
+        <path d="M11,6C11,8.8,8.8,11,6,11C3.2,11,1,8.8,1,6C1,3.2,3.2,1,6,1C8.8,1,11,3.2,11,6z" fill="url(#lg9)"/>
+        <path d="M11,6C11,8.8,8.8,11,6,11C3.2,11,1,8.8,1,6C1,3.2,3.2,1,6,1C8.8,1,11,3.2,11,6zM3,6L9,6M6,3L6,9" fill="none" stroke="#46a000" stroke-width="0.7"/>
+    </symbol>
+    <symbol id="minus">
+        <path d="M11,6C11,8.8,8.8,11,6,11C3.2,11,1,8.8,1,6C1,3.2,3.2,1,6,1C8.8,1,11,3.2,11,6z" fill="url(#lg9)"/>
+        <path d="M11,6C11,8.8,8.8,11,6,11C3.2,11,1,8.8,1,6C1,3.2,3.2,1,6,1C8.8,1,11,3.2,11,6zM3,6L9,6" fill="none" stroke="#46a000" stroke-width="0.7"/>
+    </symbol>
+    <g ed:togtopicid="101" transform="translate(140,416)">
+        <use xlink:href="#minus"/>
+    </g>
+    <g ed:togtopicid="102" transform="translate(269,30)">
+        <use xlink:href="#minus"/>
+    </g>
+    <g ed:togtopicid="115" transform="translate(269,168)">
+        <use xlink:href="#minus"/>
+    </g>
+    <g ed:togtopicid="119" transform="translate(362,118)">
+        <use xlink:href="#minus"/>
+    </g>
+    <g ed:togtopicid="121" transform="translate(362,179)">
+        <use xlink:href="#minus"/>
+    </g>
+    <g ed:togtopicid="123" transform="translate(362,207)">
+        <use xlink:href="#minus"/>
+    </g>
+    <g ed:togtopicid="125" transform="translate(362,229)">
+        <use xlink:href="#minus"/>
+    </g>
+    <g ed:togtopicid="137" transform="translate(555,118)">
+        <use xlink:href="#minus"/>
+    </g>
+    <g ed:togtopicid="167" transform="translate(455,229)">
+        <use xlink:href="#minus"/>
+    </g>
+    <g ed:togtopicid="171" transform="translate(386,251)">
+        <use xlink:href="#minus"/>
+    </g>
+    <g ed:togtopicid="175" transform="translate(314,321)">
+        <use xlink:href="#minus"/>
+    </g>
+    <g ed:togtopicid="187" transform="translate(389,464)">
+        <use xlink:href="#minus"/>
+    </g>
+    <g ed:togtopicid="189" transform="translate(541,431)">
+        <use xlink:href="#minus"/>
+    </g>
+    <g ed:togtopicid="205" transform="translate(419,617)">
+        <use xlink:href="#minus"/>
+    </g>
+    <g ed:togtopicid="215" transform="translate(449,754)">
+        <use xlink:href="#minus"/>
+    </g>
+    <g ed:togtopicid="217" transform="translate(518,721)">
+        <use xlink:href="#minus"/>
+    </g>
+    <g ed:togtopicid="225" transform="translate(542,765)">
+        <use xlink:href="#minus"/>
+    </g>
+</svg>
+</div>
+        <div id="copyright">Created With  <a href="https://www.edrawsoft.com/" target="_blank" title="edrawsoft">MindMaster</a></div>
+      </div>
+    </div>
+    <script>eval(atob('dmFyIG11YT13aW5kb3cubmF2aWdhdG9yLnVzZXJBZ2VudDsNCnZhciB1YT0obXVhLmluZGV4T2YoJ3J2OjExJykrbXVhLmluZGV4T2YoJ01TSUUnKSk+PTA7DQpkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc3ZnLWNvbnRhaW5lcicpLm9uY29udGV4dG1lbnUgPSBmdW5jdGlvbiAoZXZlbnQpIHsNCiAgICBldmVudC5wcmV2ZW50RGVmYXVsdCgpOw0KfQ0KZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3N2Zy1jb250YWluZXInKS5vbm1vdXNlZG93biA9IGZ1bmN0aW9uIChldmVudCkgew0KICAgIGlmKGV2ZW50LndoaWNoID09Myl7DQogICAgICAgIHRoaXMuc3R5bGUuY3Vyc29yID0gJ3BvaW50ZXInOw0KICAgICAgICB0aGlzLm9ubW91c2Vtb3ZlID0gZnVuY3Rpb24gKGV2KSB7DQogICAgICAgICAgICB0aGlzLnNjcm9sbEJ5KC0oZXYubW92ZW1lbnRYKSwgMCk7DQogICAgICAgICAgICB3aW5kb3cuc2Nyb2xsQnkoMCwtKGV2Lm1vdmVtZW50WSkpDQogICAgICAgIH0NCiAgICAgICAgdGhpcy5vbm1vdXNldXAgPSBmdW5jdGlvbiAoKSB7DQogICAgICAgICAgICB0aGlzLnN0eWxlLmN1cnNvciA9ICBudWxsOw0KICAgICAgICAgICAgdGhpcy5vbm1vdXNldXAgPSBudWxsOw0KICAgICAgICAgICAgdGhpcy5vbm1vdXNlbW92ZSA9IG51bGw7DQogICAgICAgIH0NCiAgICB9DQp9DQpOdW1iZXIucHJvdG90eXBlLnRvc3VpdHN2Zz1mdW5jdGlvbiAoKSB7DQogICAgdmFyIG51bT10aGlzLnZhbHVlT2YoKTsNCiAgICBpZihudW0lMT09PTApew0KICAgICAgICByZXR1cm4gbnVtKzAuNQ0KICAgIH1lbHNlIHJldHVybiBudW07DQp9Ow0KTnVtYmVyLnByb3RvdHlwZS5wbHVzej1mdW5jdGlvbigpIHsNCiAgICB2YXIgbnVtPXRoaXMudmFsdWVPZigpOw0KICAgIHJldHVybiBudW08MTA/JzAnK251bTpudW07DQp9Ow0KZnVuY3Rpb24gcGFyc2VEYXRlKG51bSkgew0KICAgIHZhciBkYXRlID0gbmV3IERhdGUobnVtKTsNCiAgICB2YXIgWSA9IGRhdGUuZ2V0RnVsbFllYXIoKSArICctJzsNCiAgICB2YXIgTSA9IChkYXRlLmdldE1vbnRoKCkrMSkucGx1c3ooKSArICctJzsNCiAgICB2YXIgRCA9IGRhdGUuZ2V0RGF0ZSgpLnBsdXN6KCkgKyAnICc7DQogICAgdmFyIGggPSBkYXRlLmdldEhvdXJzKCkucGx1c3ooKSArICc6JzsNCiAgICB2YXIgbW0gPSBkYXRlLmdldE1pbnV0ZXMoKS5wbHVzeigpICsgJzonOw0KICAgIHZhciBzID0gZGF0ZS5nZXRTZWNvbmRzKCkucGx1c3ooKTsNCiAgICByZXR1cm4gWStNK0QraCttbStzOw0KfQ0KLy8tLXByZWRlZmluZWQNCi8vY29tbWVudC0tDQp2YXIgY29tbWVudHM9ZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnZz5nW2VkXFw6Y29tbWVudF0nKTsNCmZ1bmN0aW9uIGdldGN3aChwb3B1cCkgew0KICAgIGRvY3VtZW50LmJvZHkuZ2V0RWxlbWVudHNCeVRhZ05hbWUoJ3N2ZycpWzBdLmFwcGVuZENoaWxkKHBvcHVwKTsNCiAgICB2YXIgdz1wb3B1cC5nZXRCb3VuZGluZ0NsaWVudFJlY3QoKS53aWR0aDsNCiAgICB2YXIgaD1wb3B1cC5nZXRCb3VuZGluZ0NsaWVudFJlY3QoKS5oZWlnaHQ7DQogICAgcmV0dXJuIFt3LGhdDQp9DQpmb3IodmFyIGk9MDtpPGNvbW1lbnRzLmxlbmd0aDtpKyspew0KICAgIHZhciBwb3B1cD1kb2N1bWVudC5jcmVhdGVFbGVtZW50TlMoJ2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJywnZycpOw0KICAgIHZhciBwb3B1cFI9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnROUygnaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLCdyZWN0Jyk7DQogICAgdmFyIGhvdmVyPWRvY3VtZW50LmNyZWF0ZUVsZW1lbnROUygnaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLCdyZWN0Jyk7DQogICAgdmFyIG9saW5lPWRvY3VtZW50LmNyZWF0ZUVsZW1lbnROUygnaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLCdyZWN0Jyk7DQogICAgaG92ZXIuc2V0QXR0cmlidXRlKCdmaWxsJywnI2NkY2RmZicpOw0KICAgIGhvdmVyLnNldEF0dHJpYnV0ZSgneCcsJzAnKTsNCiAgICBob3Zlci5zZXRBdHRyaWJ1dGUoJ3knLCcwJyk7DQogICAgaG92ZXIuc2V0QXR0cmlidXRlKCdoZWlnaHQnLCcxNicpOw0KICAgIGhvdmVyLnNldEF0dHJpYnV0ZSgnd2lkdGgnLCcxNicpOw0KICAgIGhvdmVyLnNldEF0dHJpYnV0ZSgnZmlsbC1vcGFjaXR5JywnMC42Jyk7DQogICAgaG92ZXIuc2V0QXR0cmlidXRlKCd0cmFuc2Zvcm0nLGNvbW1lbnRzW2ldLnF1ZXJ5U2VsZWN0b3IoJ3VzZScpLmdldEF0dHJpYnV0ZSgndHJhbnNmb3JtJykpOw0KICAgIGhvdmVyLnN0eWxlLmRpc3BsYXk9J25vbmUnOw0KICAgIGNvbW1lbnRzW2ldLmFwcGVuZENoaWxkKGhvdmVyKTsNCiAgICB2YXIgYT1KU09OLnBhcnNlKGNvbW1lbnRzW2ldLmdldEF0dHJpYnV0ZSgnZWQ6Y29tbWVudCcpKTsNCiAgICB2YXIgaGVpZ2h0PTA7DQogICAgdmFyIGNhcnI9W107DQogICAgZm9yKHZhciBqPTA7ajxhLmxlbmd0aDtqKyspew0KICAgICAgICB2YXIgc3RhbXA9TnVtYmVyKGFbal0uRGF0ZSkqMTAwMDsNCiAgICAgICAgdmFyIHRpbWU9cGFyc2VEYXRlKHN0YW1wKTsNCiAgICAgICAgdmFyIG5hbWU9YVtqXS5OYW1lOw0KICAgICAgICB2YXIgbWVzc2FnZT1hW2pdLk1lc3NhZ2U7DQogICAgICAgIHZhciBtZXNzYWdlQXJyPW1lc3NhZ2Uuc3BsaXQoL1xuLyk7DQogICAgICAgIHZhciBvPWRvY3VtZW50LmNyZWF0ZUVsZW1lbnROUygnaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLCdnJyk7DQogICAgICAgIHZhciBuPWRvY3VtZW50LmNyZWF0ZUVsZW1lbnROUygnaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLCd0ZXh0Jyk7DQogICAgICAgIHZhciB0PWRvY3VtZW50LmNyZWF0ZUVsZW1lbnROUygnaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLCd0ZXh0Jyk7DQogICAgICAgIHZhciBtPWRvY3VtZW50LmNyZWF0ZUVsZW1lbnROUygnaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLCd0ZXh0Jyk7DQogICAgICAgIG4uc2V0QXR0cmlidXRlKCd4Jyw1KTsNCiAgICAgICAgbi5zZXRBdHRyaWJ1dGUoJ3knLDEyKTsNCiAgICAgICAgbi5zZXRBdHRyaWJ1dGUoJ2ZpbGwnLCcjMDA2ZWZmJyk7DQogICAgICAgIG4udGV4dENvbnRlbnQ9bmFtZSsnOiAnOw0KICAgICAgICBuLnNldEF0dHJpYnV0ZSgnZm9udC1zaXplJywnMTInKTsNCiAgICAgICAgdC5zZXRBdHRyaWJ1dGUoJ3gnLDIwMCk7DQogICAgICAgIHQuc2V0QXR0cmlidXRlKCd5JywxMik7DQogICAgICAgIHQuc2V0QXR0cmlidXRlKCdmaWxsJywnIzk2OTY5NicpOw0KICAgICAgICB0LnRleHRDb250ZW50PXRpbWU7DQogICAgICAgIHQuc2V0QXR0cmlidXRlKCdmb250LXNpemUnLCcxMCcpOw0KICAgICAgICBtLnNldEF0dHJpYnV0ZSgndHJhbnNmb3JtJywndHJhbnNsYXRlKDIwLDI3KScpOw0KICAgICAgICBtLnNldEF0dHJpYnV0ZSgnZm9udC1zaXplJywnMTInKTsNCiAgICAgICAgZm9yKHZhciBrPTA7azxtZXNzYWdlQXJyLmxlbmd0aDtrKyspew0KICAgICAgICAgICAgdmFyIHRzPWRvY3VtZW50LmNyZWF0ZUVsZW1lbnROUygnaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLCd0c3BhbicpOw0KICAgICAgICAgICAgdHMuc2V0QXR0cmlidXRlKCd4JywnMCcpOw0KICAgICAgICAgICAgdHMuc2V0QXR0cmlidXRlKCd5JyxrKjE2KTsNCiAgICAgICAgICAgIHRzLnRleHRDb250ZW50PW1lc3NhZ2VBcnJba107DQogICAgICAgICAgICBtLmFwcGVuZENoaWxkKHRzKTsNCiAgICAgICAgfQ0KICAgICAgICBvLnNldEF0dHJpYnV0ZSgndHJhbnNmb3JtJywndHJhbnNsYXRlKDAsJytoZWlnaHQrJyknKTsNCiAgICAgICAgby5hcHBlbmRDaGlsZChuKTsNCiAgICAgICAgby5hcHBlbmRDaGlsZCh0KTsNCiAgICAgICAgby5hcHBlbmRDaGlsZChtKTsNCiAgICAgICAgY2Fyci5wdXNoKG8pOw0KICAgICAgICBwb3B1cC5hcHBlbmRDaGlsZChvKTsNCiAgICAgICAgaGVpZ2h0PShtZXNzYWdlQXJyLmxlbmd0aCsxKSoxNitoZWlnaHQ7DQogICAgfQ0KICAgIHZhciB3YXJyPWdldGN3aChwb3B1cCk7DQogICAgb2xpbmUuc2V0QXR0cmlidXRlKCd4JywnMCcpOw0KICAgIG9saW5lLnNldEF0dHJpYnV0ZSgneScsJzAnKTsNCiAgICB2YXIgb3c9d2FyclswXSsxMC41Ow0KICAgIHZhciBvaD13YXJyWzFdKzM7DQogICAgb2xpbmUuc2V0QXR0cmlidXRlKCd3aWR0aCcsb3cpOw0KICAgIG9saW5lLnNldEF0dHJpYnV0ZSgnaGVpZ2h0JyxvaCk7DQogICAgb2xpbmUuc2V0QXR0cmlidXRlKCdmaWxsJywnd2hpdGUnKTsNCiAgICBvbGluZS5zZXRBdHRyaWJ1dGUoJ3N0cm9rZScsJyM2NTY1NjUnKTsNCiAgICBwb3B1cC5hcHBlbmRDaGlsZChvbGluZSk7DQogICAgdmFyIGw9Y2Fyci5sZW5ndGg7DQogICAgd2hpbGUobC0tKXsNCiAgICAgICAgcG9wdXAuYXBwZW5kQ2hpbGQoY2FycltsXSk7DQogICAgfQ0KICAgIHBvcHVwLm9ubW91c2VvdmVyPWZ1bmN0aW9uICgpIHsNCiAgICAgICAgdGhpcy5zdHlsZS5kaXNwbGF5PSdibG9jayc7DQogICAgfTsNCiAgICBwb3B1cC5vbm1vdXNlb3V0PWZ1bmN0aW9uICgpIHsNCiAgICAgICAgdGhpcy5zdHlsZS5kaXNwbGF5ID0gJ25vbmUnOw0KICAgIH07DQogICAgdmFyIGNzPWNvbW1lbnRzW2ldLnF1ZXJ5U2VsZWN0b3IoJ3VzZScpLmdldEF0dHJpYnV0ZSgndHJhbnNmb3JtJykubWF0Y2goL1woKFxTKnxcUypcc1xTKilcKS8pWzFdLnNwbGl0KC8gfCwvKTsNCiAgICB2YXIgcHM9Y29tbWVudHNbaV0ucGFyZW50Tm9kZS5nZXRBdHRyaWJ1dGUoJ3RyYW5zZm9ybScpOw0KICAgIGlmKHBzLnN1YnN0cigwLDIpID09ICd0cicpew0KICAgICAgICB2YXIgcHBzID0gcHMubWF0Y2goL1woKFxTKnxcUypcc1xTKilcKS8pWzFdLnNwbGl0KC8gfCwvKTsNCiAgICAgICAgdmFyIHg9cGFyc2VGbG9hdChjc1swXSkrcGFyc2VGbG9hdChwcHNbMF0pOw0KICAgICAgICB2YXIgeT1wYXJzZUZsb2F0KHBwc1sxXSk7DQogICAgICAgIHg9eC50b3N1aXRzdmcoKTsNCiAgICAgICAgeT15LnRvc3VpdHN2ZygpOw0KICAgICAgICB2YXIgdHJzdHIgPSAndHJhbnNsYXRlKCcreCsnLCcreSsnKSc7DQogICAgfQ0KICAgIGVsc2UgaWYocHMuc3Vic3RyKDAsMikgPT0gJ21hJyl7DQogICAgICAgIHZhciBwcHMgPSBwcy5tYXRjaCgvKFwtP1xkKyhcLlxkKyk/KVtcLCBdKFwtP1xkKyhcLlxkKyk/KVtcLCBdKFwtP1xkKyhcLlxkKyk/KVtcLCBdKFwtP1xkKyhcLlxkKyk/KVtcLCBdKFwtP1xkKyhcLlxkKyk/KVtcLCBdKFwtP1xkKyhcLlxkKyk/KVwpJC8pOw0KICAgICAgICB2YXIgbWFBcnIgPSBbcGFyc2VGbG9hdChwcHNbMV0pLHBhcnNlRmxvYXQocHBzWzNdKSxwYXJzZUZsb2F0KHBwc1s1XSkscGFyc2VGbG9hdChwcHNbN10pLHBhcnNlRmxvYXQocHBzWzldKSxwYXJzZUZsb2F0KHBwc1sxMV0pXTsNCiAgICAgICAgaWYobWFBcnJbMV0gPT0gMCl7DQogICAgICAgICAgICB2YXIgeCA9IHBhcnNlRmxvYXQoY3NbMF0pOw0KICAgICAgICAgICAgdmFyIHk9IHBhcnNlRmxvYXQoY3NbMV0pKzE2Ow0KICAgICAgICAgICAgdmFyIHgxID0geCAqIG1hQXJyWzBdICsgeSAqIG1hQXJyWzJdICsgbWFBcnJbNF07DQogICAgICAgICAgICB2YXIgeTEgPSB4ICogbWFBcnJbMV0gKyB5ICogbWFBcnJbM10gKyBtYUFycls1XTsNCiAgICAgICAgICAgIHgxPXgxLnRvc3VpdHN2ZygpOw0KICAgICAgICAgICAgeTE9eTEudG9zdWl0c3ZnKCk7DQogICAgICAgICAgICB2YXIgdHJzdHIgPSAgJ3RyYW5zbGF0ZSgnK3gxKycsJyt5MSsnKSc7DQogICAgICAgIH1lbHNlew0KICAgICAgICAgICAgdmFyIHggPSBwYXJzZUZsb2F0KGNzWzBdKSsxNjsNCiAgICAgICAgICAgIHZhciB5ID0gcGFyc2VGbG9hdChjc1sxXSkrMTY7DQogICAgICAgICAgICB2YXIgeDEgPSB4ICogbWFBcnJbMF0gKyB5ICogbWFBcnJbMl0gKyBtYUFycls0XTsNCiAgICAgICAgICAgIHZhciB5MSA9IHggKiBtYUFyclsxXSArIHkgKiBtYUFyclszXSArIG1hQXJyWzVdOw0KICAgICAgICAgICAgeCA9IHBhcnNlRmxvYXQoY3NbMF0pKzE2Ow0KICAgICAgICAgICAgeSA9IHBhcnNlRmxvYXQoY3NbMV0pOw0KICAgICAgICAgICAgdmFyIHgyID0geCAqIG1hQXJyWzBdICsgeSAqIG1hQXJyWzJdICsgbWFBcnJbNF07DQogICAgICAgICAgICB2YXIgeTIgPSB4ICogbWFBcnJbMV0gKyB5ICogbWFBcnJbM10gKyBtYUFycls1XTsNCiAgICAgICAgICAgIHZhciBmeCA9IHgxPHgyP3gxLnRvc3VpdHN2ZygpOiB4Mi50b3N1aXRzdmcoKTsNCiAgICAgICAgICAgIHZhciBmeSA9IHkxPnkyP3kxLnRvc3VpdHN2ZygpOiB5Mi50b3N1aXRzdmcoKTsNCiAgICAgICAgICAgIHZhciBvZmZ5ID0gTWF0aC5hYnMoeTEteTIpOw0KICAgICAgICAgICAgdmFyIHRyc3RyID0gICd0cmFuc2xhdGUoJytmeCsnLCcrZnkrJyknOw0KICAgICAgICAgICAgcG9wdXBSLnNldEF0dHJpYnV0ZSgnaGVpZ2h0JyxvZmZ5LnRvU3RyaW5nKCkpOw0KICAgICAgICAgICAgcG9wdXBSLnNldEF0dHJpYnV0ZSgnd2lkdGgnLCcxNicpOw0KICAgICAgICAgICAgcG9wdXBSLnNldEF0dHJpYnV0ZSgneScsKC1vZmZ5KS50b1N0cmluZygpKTsNCiAgICAgICAgICAgIHBvcHVwUi5zZXRBdHRyaWJ1dGUoJ2ZpbGwnLCd0cmFuc3BhcmVudCcpOw0KICAgICAgICAgICAgcG9wdXAuYXBwZW5kQ2hpbGQocG9wdXBSKTsNCiAgICAgICAgfQ0KICAgIH0NCiAgICBwb3B1cC5zZXRBdHRyaWJ1dGUoJ3RyYW5zZm9ybScsdHJzdHIpOw0KICAgIHBvcHVwLnNldEF0dHJpYnV0ZSgnY29tbWVudCcsJycpOw0KICAgIHBvcHVwLnN0eWxlLmRpc3BsYXk9J25vbmUnOw0KICAgIHBvcHVwLnNldEF0dHJpYnV0ZSgnZWQ6Y29tbWVudGlkJyxjb21tZW50c1tpXS5wYXJlbnROb2RlLmlkKTsNCiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcjc3ZnLWNvbnRhaW5lciA+IHN2ZycpLmFwcGVuZENoaWxkKHBvcHVwKTsNCiAgICBjb21tZW50c1tpXS5vbm1vdXNlb3Zlcj1mdW5jdGlvbiAoKSB7DQogICAgICAgIHZhciBjb21tZW50aWQ9dGhpcy5wYXJlbnROb2RlLmlkOw0KICAgICAgICB0aGlzLnF1ZXJ5U2VsZWN0b3IoJ3JlY3QnKS5zdHlsZS5kaXNwbGF5PSdibG9jayc7DQogICAgICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoImdbZWRcXDpjb21tZW50aWQ9JyIrY29tbWVudGlkKyInXVtjb21tZW50XSIpLnN0eWxlLmRpc3BsYXk9J2Jsb2NrJzsNCiAgICB9Ow0KICAgIGNvbW1lbnRzW2ldLm9ubW91c2VvdXQ9ZnVuY3Rpb24gKCkgew0KICAgICAgICB2YXIgY29tbWVudGlkPXRoaXMucGFyZW50Tm9kZS5pZDsNCi8vICAgICAgICB3aW5kb3cuZ2V0U2VsZWN0aW9uKCkucmVtb3ZlQWxsUmFuZ2VzKCk7DQogICAgICAgIHRoaXMucXVlcnlTZWxlY3RvcigncmVjdCcpLnN0eWxlLmRpc3BsYXk9J25vbmUnOw0KICAgICAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCJnW2VkXFw6Y29tbWVudGlkPSciK2NvbW1lbnRpZCsiJ11bY29tbWVudF0iKS5zdHlsZS5kaXNwbGF5PSdub25lJzsNCiAgICB9DQp9DQovLy0tY29tbWVudA0KLy9ub3RlLS0NCmlmKCF1YSl7DQogICAgdmFyIG5vdGVzPWRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJ2c+Z1tlZFxcOm5vdGVdJyk7DQogICAgZnVuY3Rpb24gZ2V0d2gocyxwKSB7DQogICAgICAgIHZhciBtYWlucD1kb2N1bWVudC5jcmVhdGVFbGVtZW50KCdkaXYnKTsNCiAgICAgICAgbWFpbnAuc3R5bGUuY3NzVGV4dD1zOw0KICAgICAgICBtYWlucC5zdHlsZS5kaXNwbGF5PSdpbmxpbmUtYmxvY2snOw0KCQltYWlucC5zdHlsZS5tYXhXaWR0aCA9ICc0MDBweCc7DQoJCW1haW5wLnN0eWxlLndvcmRCcmVhayA9ICdicmVhay1hbGwnOw0KICAgICAgICBtYWlucC5pbm5lckhUTUw9cDsNCiAgICAgICAgZG9jdW1lbnQuYm9keS5hcHBlbmRDaGlsZChtYWlucCk7DQogICAgICAgIHZhciB3PW1haW5wLmNsaWVudFdpZHRoOw0KICAgICAgICB2YXIgaD1tYWlucC5jbGllbnRIZWlnaHQ7DQogICAgICAgIGRvY3VtZW50LmJvZHkucmVtb3ZlQ2hpbGQobWFpbnApOw0KICAgICAgICByZXR1cm4gW3csaF0NCiAgICB9DQogICAgZm9yKHZhciBpPTA7aTxub3Rlcy5sZW5ndGg7aSsrKXsNCiAgICAgICAgdmFyIGE9bm90ZXNbaV0uZ2V0QXR0cmlidXRlKCdlZDpub3RlJyk7DQoJCXZhciBub3RlTG9jayA9IG5vdGVzW2ldLmdldEF0dHJpYnV0ZSgnZWQ6bm90ZWxvY2snKTsNCiAgICAgICAgaWYobm90ZUxvY2sgPT0gJ3RydWUnKXsNCiAgICAgICAgICAgIGNvbnRpbnVlOw0KICAgICAgICB9DQogICAgICAgIHZhciBtYWlucD1hLm1hdGNoKC88Ym9keVtePl0qPiguKik8XC9ib2R5Pi8pWzFdOw0KICAgICAgICB2YXIgbWFpbnM9YS5tYXRjaCgvc3R5bGU9IiguKj8pIi8pWzFdOw0KICAgICAgICB2YXIgb3V0PWRvY3VtZW50LmNyZWF0ZUVsZW1lbnROUygnaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLCdnJyk7DQogICAgICAgIHZhciBvbGluZT1kb2N1bWVudC5jcmVhdGVFbGVtZW50TlMoJ2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJywncmVjdCcpOw0KICAgICAgICB2YXIgcG9wdXA9ZG9jdW1lbnQuY3JlYXRlRWxlbWVudE5TKCdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZycsJ2ZvcmVpZ25PYmplY3QnKTsNCiAgICAgICAgdmFyIHBvcHVwUj0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudE5TKCdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZycsJ3JlY3QnKTsNCiAgICAgICAgdmFyIGhvdmVyPWRvY3VtZW50LmNyZWF0ZUVsZW1lbnROUygnaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLCdyZWN0Jyk7DQogICAgICAgIGhvdmVyLnNldEF0dHJpYnV0ZSgnZmlsbCcsJyNjZGNkZmYnKTsNCiAgICAgICAgaG92ZXIuc2V0QXR0cmlidXRlKCd4JywnMCcpOw0KICAgICAgICBob3Zlci5zZXRBdHRyaWJ1dGUoJ3knLCcwJyk7DQogICAgICAgIGhvdmVyLnNldEF0dHJpYnV0ZSgnaGVpZ2h0JywnMTYnKTsNCiAgICAgICAgaG92ZXIuc2V0QXR0cmlidXRlKCd3aWR0aCcsJzE2Jyk7DQogICAgICAgIGhvdmVyLnNldEF0dHJpYnV0ZSgnZmlsbC1vcGFjaXR5JywnMC42Jyk7DQogICAgICAgIGhvdmVyLnNldEF0dHJpYnV0ZSgndHJhbnNmb3JtJyxub3Rlc1tpXS5xdWVyeVNlbGVjdG9yKCd1c2UnKS5nZXRBdHRyaWJ1dGUoJ3RyYW5zZm9ybScpKTsNCiAgICAgICAgaG92ZXIuc3R5bGUuZGlzcGxheT0nbm9uZSc7DQogICAgICAgIG5vdGVzW2ldLmFwcGVuZENoaWxkKGhvdmVyKTsNCiAgICAgICAgcG9wdXAuc3R5bGUuY3NzVGV4dD1tYWluczsNCiAgICAgICAgcG9wdXAuaW5uZXJIVE1MPW1haW5wOw0KICAgICAgICB2YXIgd2g9Z2V0d2gobWFpbnMsbWFpbnApOw0KICAgICAgICBwb3B1cC5zZXRBdHRyaWJ1dGUoJ3dpZHRoJyx3aFswXSk7DQogICAgICAgIHBvcHVwLnNldEF0dHJpYnV0ZSgnaGVpZ2h0Jyx3aFsxXSk7DQogICAgICAgIHBvcHVwLnNldEF0dHJpYnV0ZSgndHJhbnNmb3JtJywndHJhbnNsYXRlKDgsNCknKTsNCgkJcG9wdXAuc3R5bGUud29yZEJyZWFrID0gJ2JyZWFrLWFsbCc7DQogICAgICAgIHBvcHVwLnN0eWxlLnRleHRBbGlnbj0nbGVmdCc7DQogICAgICAgIG9saW5lLnNldEF0dHJpYnV0ZSgneCcsJzAnKTsNCiAgICAgICAgb2xpbmUuc2V0QXR0cmlidXRlKCd5JywnMCcpOw0KICAgICAgICBvbGluZS5zZXRBdHRyaWJ1dGUoJ3dpZHRoJyx3aFswXSsxNik7DQogICAgICAgIG9saW5lLnNldEF0dHJpYnV0ZSgnaGVpZ2h0Jyx3aFsxXSs4KTsNCiAgICAgICAgb2xpbmUuc2V0QXR0cmlidXRlKCdzdHJva2UnLCcjYTI3YTAwJyk7DQogICAgICAgIG9saW5lLnNldEF0dHJpYnV0ZSgnZmlsbCcsJyNmZmU3OWQnKTsNCiAgICAgICAgb3V0LmFwcGVuZENoaWxkKG9saW5lKTsNCiAgICAgICAgb3V0LmFwcGVuZENoaWxkKHBvcHVwKTsNCiAgICAgICAgb3V0LnNldEF0dHJpYnV0ZSgnbm90ZScsJycpOw0KICAgICAgICBvdXQuc3R5bGUuZGlzcGxheT0nbm9uZSc7DQogICAgICAgIG91dC5zZXRBdHRyaWJ1dGUoJ2VkOm5vdGVpZCcsbm90ZXNbaV0ucGFyZW50Tm9kZS5pZCk7DQogICAgICAgIG91dC5vbm1vdXNlb3Zlcj1mdW5jdGlvbiAoKSB7DQogICAgICAgICAgICB0aGlzLnN0eWxlLmRpc3BsYXk9J2Jsb2NrJzsNCiAgICAgICAgfTsNCiAgICAgICAgb3V0Lm9ubW91c2VvdXQ9ZnVuY3Rpb24gKCkgew0KLy8gICAgICAgIHdpbmRvdy5nZXRTZWxlY3Rpb24gPyB3aW5kb3cuZ2V0U2VsZWN0aW9uKCkucmVtb3ZlUmFuZ2Uod2luZG93LmdldFNlbGVjdGlvbigpLnJlKTpkb2N1bWVudC5zZWxlY3Rpb24uZW1wdHkoKTsNCg0KICAgICAgICAgICAgdGhpcy5zdHlsZS5kaXNwbGF5PSdub25lJzsNCiAgICAgICAgfTsNCiAgICAgICAgdmFyIGNzPW5vdGVzW2ldLnF1ZXJ5U2VsZWN0b3IoJ3VzZScpLmdldEF0dHJpYnV0ZSgndHJhbnNmb3JtJykubWF0Y2goL1woKFxTKnxcUypcc1xTKilcKS8pWzFdLnNwbGl0KC8gfCwvKTsNCiAgICAgICAgdmFyIHBzPW5vdGVzW2ldLnBhcmVudE5vZGUuZ2V0QXR0cmlidXRlKCd0cmFuc2Zvcm0nKTsNCiAgICAgICAgaWYocHMuc3Vic3RyKDAsMikgPT0gJ3RyJyl7DQogICAgICAgICAgICB2YXIgcHBzID0gcHMubWF0Y2goL1woKFxTKnxcUypcc1xTKilcKS8pWzFdLnNwbGl0KC8gfCwvKTsNCiAgICAgICAgICAgIHZhciB4PXBhcnNlRmxvYXQoY3NbMF0pK3BhcnNlRmxvYXQocHBzWzBdKTsNCiAgICAgICAgICAgIHZhciB5PXBhcnNlRmxvYXQocHBzWzFdKTsNCiAgICAgICAgICAgIHg9eC50b3N1aXRzdmcoKTsNCiAgICAgICAgICAgIHk9eS50b3N1aXRzdmcoKTsNCiAgICAgICAgICAgIHZhciB0cnN0ciA9ICd0cmFuc2xhdGUoJyt4KycsJyt5KycpJzsNCiAgICAgICAgfWVsc2UgaWYocHMuc3Vic3RyKDAsMikgPT0gJ21hJyl7DQogICAgICAgICAgICB2YXIgcHBzID0gcHMubWF0Y2goLyhcLT9cZCsoXC5cZCspPylbXCwgXShcLT9cZCsoXC5cZCspPylbXCwgXShcLT9cZCsoXC5cZCspPylbXCwgXShcLT9cZCsoXC5cZCspPylbXCwgXShcLT9cZCsoXC5cZCspPylbXCwgXShcLT9cZCsoXC5cZCspPylcKSQvKTsNCiAgICAgICAgICAgIHZhciBtYUFyciA9IFtwYXJzZUZsb2F0KHBwc1sxXSkscGFyc2VGbG9hdChwcHNbM10pLHBhcnNlRmxvYXQocHBzWzVdKSxwYXJzZUZsb2F0KHBwc1s3XSkscGFyc2VGbG9hdChwcHNbOV0pLHBhcnNlRmxvYXQocHBzWzExXSldOw0KICAgICAgICAgICAgaWYobWFBcnJbMV0gPT0gMCl7DQogICAgICAgICAgICAgICAgdmFyIHggPSBwYXJzZUZsb2F0KGNzWzBdKTsNCiAgICAgICAgICAgICAgICB2YXIgeSA9IHBhcnNlRmxvYXQoY3NbMV0pKzE2Ow0KICAgICAgICAgICAgICAgIHZhciB4MSA9IHggKiBtYUFyclswXSArIHkgKiBtYUFyclsyXSArIG1hQXJyWzRdOw0KICAgICAgICAgICAgICAgIHZhciB5MSA9IHggKiBtYUFyclsxXSArIHkgKiBtYUFyclszXSArIG1hQXJyWzVdOw0KICAgICAgICAgICAgICAgIHgxPXgxLnRvc3VpdHN2ZygpOw0KICAgICAgICAgICAgICAgIHkxPXkxLnRvc3VpdHN2ZygpOw0KICAgICAgICAgICAgICAgIHZhciB0cnN0ciA9ICAndHJhbnNsYXRlKCcreDErJywnK3kxKycpJzsNCiAgICAgICAgICAgIH1lbHNlew0KICAgICAgICAgICAgICAgIHZhciB4ID0gcGFyc2VGbG9hdChjc1swXSkrMTY7DQogICAgICAgICAgICAgICAgdmFyIHkgPSBwYXJzZUZsb2F0KGNzWzFdKSsxNjsNCiAgICAgICAgICAgICAgICB2YXIgeDEgPSB4ICogbWFBcnJbMF0gKyB5ICogbWFBcnJbMl0gKyBtYUFycls0XTsNCiAgICAgICAgICAgICAgICB2YXIgeTEgPSB4ICogbWFBcnJbMV0gKyB5ICogbWFBcnJbM10gKyBtYUFycls1XTsNCiAgICAgICAgICAgICAgICB4ID0gcGFyc2VGbG9hdChjc1swXSkrMTY7DQogICAgICAgICAgICAgICAgeSA9IHBhcnNlRmxvYXQoY3NbMV0pOw0KICAgICAgICAgICAgICAgIHZhciB4MiA9IHggKiBtYUFyclswXSArIHkgKiBtYUFyclsyXSArIG1hQXJyWzRdOw0KICAgICAgICAgICAgICAgIHZhciB5MiA9IHggKiBtYUFyclsxXSArIHkgKiBtYUFyclszXSArIG1hQXJyWzVdOw0KICAgICAgICAgICAgICAgIHZhciBmeCA9IHgxPHgyP3gxLnRvc3VpdHN2ZygpOiB4Mi50b3N1aXRzdmcoKTsNCiAgICAgICAgICAgICAgICB2YXIgZnkgPSB5MT55Mj95MS50b3N1aXRzdmcoKTogeTIudG9zdWl0c3ZnKCk7DQoJCQkJdmFyIG9mZnkgPSBNYXRoLmFicyh5MS15Mik7CQkJCQkJCQkJCSAgDQogICAgICAgICAgICAgICAgdmFyIHRyc3RyID0gICd0cmFuc2xhdGUoJytmeCsnLCcrZnkrJyknOw0KICAgICAgICAgICAgICAgIHBvcHVwUi5zZXRBdHRyaWJ1dGUoJ2hlaWdodCcsb2ZmeS50b1N0cmluZygpKTsNCiAgICAgICAgICAgICAgICBwb3B1cFIuc2V0QXR0cmlidXRlKCd3aWR0aCcsJzE2Jyk7DQogICAgICAgICAgICAgICAgcG9wdXBSLnNldEF0dHJpYnV0ZSgneScsKC1vZmZ5KS50b1N0cmluZygpKTsNCiAgICAgICAgICAgICAgICBwb3B1cFIuc2V0QXR0cmlidXRlKCdmaWxsJywndHJhbnNwYXJlbnQnKTsNCiAgICAgICAgICAgICAgICBwb3B1cC5hcHBlbmRDaGlsZChwb3B1cFIpOw0KICAgICAgICAgICAgfQ0KICAgICAgICB9DQogICAgICAgIG91dC5zZXRBdHRyaWJ1dGUoJ3RyYW5zZm9ybScsdHJzdHIpOw0KICAgICAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcjc3ZnLWNvbnRhaW5lciA+IHN2ZycpLmFwcGVuZENoaWxkKG91dCk7DQogICAgICAgIG5vdGVzW2ldLm9ubW91c2VvdmVyPWZ1bmN0aW9uICgpIHsNCiAgICAgICAgICAgIHZhciBub3RlaWQ9dGhpcy5wYXJlbnROb2RlLmlkOw0KICAgICAgICAgICAgdGhpcy5xdWVyeVNlbGVjdG9yKCdyZWN0Jykuc3R5bGUuZGlzcGxheT0nYmxvY2snOw0KICAgICAgICAgICAgZG9jdW1lbnQucXVlcnlTZWxlY3RvcigiZ1tlZFxcOm5vdGVpZD0nIitub3RlaWQrIiddW25vdGVdIikuc3R5bGUuZGlzcGxheT0nYmxvY2snOw0KICAgICAgICB9Ow0KICAgICAgICBub3Rlc1tpXS5vbm1vdXNlb3V0PWZ1bmN0aW9uICgpIHsNCiAgICAgICAgICAgIHZhciBub3RlaWQ9dGhpcy5wYXJlbnROb2RlLmlkOw0KLy8gICAgICAgIHdpbmRvdy5nZXRTZWxlY3Rpb24oKS5yZW1vdmVBbGxSYW5nZXMoKTsNCiAgICAgICAgICAgIHRoaXMucXVlcnlTZWxlY3RvcigncmVjdCcpLnN0eWxlLmRpc3BsYXk9J25vbmUnOw0KICAgICAgICAgICAgZG9jdW1lbnQucXVlcnlTZWxlY3RvcigiZ1tlZFxcOm5vdGVpZD0nIitub3RlaWQrIiddW25vdGVdIikuc3R5bGUuZGlzcGxheT0nbm9uZSc7DQogICAgICAgIH0NCiAgICB9DQp9ZWxzZXsNCiAgICBjb25zb2xlLmxvZygn5oqx5q2J77yMSUXmtY/op4jlmajkuI3mlK/mjIFub3Rl6Kej5p6Q77yM6K+35L2/55So5YW25LuW5YaF5qC45rWP6KeI5Zmo44CC6LCi6LCi77yBJykNCn0NCi8vLS1ub3RlDQovL2h5cGVybGluay0tDQp2YXIgbGlua3M9ZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnZz5nW2VkXFw6aHlwZXJsaW5rXScpOw0KZnVuY3Rpb24gZ2V0bWF4bGVuKGFycixicnIpIHsNCiAgICB2YXIgbD0wOw0KICAgIHZhciBsbD0wOw0KICAgIGZvcih2YXIgaj0wO2o8YXJyLmxlbmd0aDtqKyspew0KICAgICAgICB2YXIgZT1kb2N1bWVudC5jcmVhdGVFbGVtZW50TlMoJ2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJywndGV4dCcpOw0KICAgICAgICBpZighaXNOYU4obGlua2FycltqXSkpew0KICAgICAgICAgICAgZS50ZXh0Q29udGVudD0nUGFnZS0nK2FycltqXTsNCiAgICAgICAgfWVsc2V7DQogICAgICAgICAgICBlLnRleHRDb250ZW50PWFycltqXTsNCiAgICAgICAgfQ0KICAgICAgICBlLnN0eWxlLmZvbnRTaXplPScxMnB4JzsNCiAgICAgICAgZG9jdW1lbnQuYm9keS5nZXRFbGVtZW50c0J5VGFnTmFtZSgnc3ZnJylbMF0uYXBwZW5kQ2hpbGQoZSk7DQogICAgICAgIHZhciBldz1lLmdldEJCb3goKS53aWR0aDsNCiAgICAgICAgZG9jdW1lbnQuYm9keS5nZXRFbGVtZW50c0J5VGFnTmFtZSgnc3ZnJylbMF0ucmVtb3ZlQ2hpbGQoZSk7DQogICAgICAgIHZhciBoPWRvY3VtZW50LmNyZWF0ZUVsZW1lbnROUygnaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLCd0ZXh0Jyk7DQogICAgICAgIGgudGV4dENvbnRlbnQ9YnJyW2pdOw0KICAgICAgICBoLnN0eWxlLmZvbnRTaXplPScxMnB4JzsNCiAgICAgICAgaC5zdHlsZS5mb250V2VpZ2h0PSdib2xkJzsNCiAgICAgICAgZG9jdW1lbnQuYm9keS5nZXRFbGVtZW50c0J5VGFnTmFtZSgnc3ZnJylbMF0uYXBwZW5kQ2hpbGQoaCk7DQogICAgICAgIHZhciBodz1oLmdldEJCb3goKS53aWR0aDsNCiAgICAgICAgZG9jdW1lbnQuYm9keS5nZXRFbGVtZW50c0J5VGFnTmFtZSgnc3ZnJylbMF0ucmVtb3ZlQ2hpbGQoaCk7DQogICAgICAgIGw9ZXc+aHc/ZXc6aHc7DQogICAgICAgIGxsPWw+bGw/bDpsbDsNCiAgICB9DQogICAgcmV0dXJuIGxsOw0KfQ0KZm9yKHZhciBpPTA7aTxsaW5rcy5sZW5ndGg7aSsrKXsNCiAgICB2YXIgcG9wdXA9ZG9jdW1lbnQuY3JlYXRlRWxlbWVudE5TKCdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZycsJ2cnKTsNCiAgICB2YXIgcG9wdXBSPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50TlMoJ2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJywncmVjdCcpOw0KICAgIHZhciBob3Zlcj1kb2N1bWVudC5jcmVhdGVFbGVtZW50TlMoJ2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJywncmVjdCcpOw0KICAgIHZhciBkZXNjYXJyPVtdOw0KICAgIHZhciBsaW5rYXJyPVtdOw0KICAgIGhvdmVyLnNldEF0dHJpYnV0ZSgnZmlsbCcsJyNjZGNkZmYnKTsNCiAgICBob3Zlci5zZXRBdHRyaWJ1dGUoJ3gnLCcwJyk7DQogICAgaG92ZXIuc2V0QXR0cmlidXRlKCd5JywnMCcpOw0KICAgIGhvdmVyLnNldEF0dHJpYnV0ZSgnaGVpZ2h0JywnMTYnKTsNCiAgICBob3Zlci5zZXRBdHRyaWJ1dGUoJ3dpZHRoJywnMTYnKTsNCiAgICBob3Zlci5zZXRBdHRyaWJ1dGUoJ2ZpbGwtb3BhY2l0eScsJzAuNicpOw0KICAgIGhvdmVyLnNldEF0dHJpYnV0ZSgndHJhbnNmb3JtJyxsaW5rc1tpXS5xdWVyeVNlbGVjdG9yKCd1c2UnKS5nZXRBdHRyaWJ1dGUoJ3RyYW5zZm9ybScpKTsNCiAgICBob3Zlci5zdHlsZS5kaXNwbGF5PSdub25lJzsNCiAgICBsaW5rc1tpXS5hcHBlbmRDaGlsZChob3Zlcik7DQogICAgLy8gY29uc29sZS5sb2cobGlua3NbaV0uZ2V0QXR0cmlidXRlKCdlZDpoeXBlcmxpbmsnKSk7DQogICAgdmFyIGE9SlNPTi5wYXJzZShsaW5rc1tpXS5nZXRBdHRyaWJ1dGUoJ2VkOmh5cGVybGluaycpKTsNCiAgICB2YXIgY3M9bGlua3NbaV0ucXVlcnlTZWxlY3RvcigndXNlJykuZ2V0QXR0cmlidXRlKCd0cmFuc2Zvcm0nKS5tYXRjaCgvXCgoXFMqfFxTKlxzXFMqKVwpLylbMV0uc3BsaXQoLyB8LC8pOw0KICAgIHZhciBwcz1saW5rc1tpXS5wYXJlbnROb2RlLmdldEF0dHJpYnV0ZSgndHJhbnNmb3JtJyk7DQogICAgaWYocHMuc3Vic3RyKDAsMikgPT0gJ3RyJyl7DQogICAgICAgIHZhciBwcHMgPSBwcy5tYXRjaCgvXCgoXFMqfFxTKlxzXFMqKVwpLylbMV0uc3BsaXQoLyB8LC8pOw0KICAgICAgICB2YXIgeD1wYXJzZUZsb2F0KGNzWzBdKStwYXJzZUZsb2F0KHBwc1swXSk7DQogICAgICAgIHZhciB5PXBhcnNlRmxvYXQocHBzWzFdKTsNCiAgICAgICAgeD14LnRvc3VpdHN2ZygpOw0KICAgICAgICB5PXkudG9zdWl0c3ZnKCk7DQogICAgICAgIHZhciB0cnN0ciA9ICd0cmFuc2xhdGUoJyt4KycsJyt5KycpJzsNCiAgICB9ZWxzZSBpZihwcy5zdWJzdHIoMCwyKSA9PSAnbWEnKXsNCiAgICAgICAgdmFyIHBwcyA9IHBzLm1hdGNoKC8oXC0/XGQrKFwuXGQrKT8pW1wsIF0oXC0/XGQrKFwuXGQrKT8pW1wsIF0oXC0/XGQrKFwuXGQrKT8pW1wsIF0oXC0/XGQrKFwuXGQrKT8pW1wsIF0oXC0/XGQrKFwuXGQrKT8pW1wsIF0oXC0/XGQrKFwuXGQrKT8pXCkkLyk7DQogICAgICAgIHZhciBtYUFyciA9IFtwYXJzZUZsb2F0KHBwc1sxXSkscGFyc2VGbG9hdChwcHNbM10pLHBhcnNlRmxvYXQocHBzWzVdKSxwYXJzZUZsb2F0KHBwc1s3XSkscGFyc2VGbG9hdChwcHNbOV0pLHBhcnNlRmxvYXQocHBzWzExXSldOw0KICAgICAgICBpZihtYUFyclsxXSA9PSAwKXsNCiAgICAgICAgICAgIHZhciB4ID0gcGFyc2VGbG9hdChjc1swXSk7DQogICAgICAgICAgICB2YXIgeSA9IHBhcnNlRmxvYXQoY3NbMV0pKzE2Ow0KICAgICAgICAgICAgdmFyIHgxID0geCAqIG1hQXJyWzBdICsgeSAqIG1hQXJyWzJdICsgbWFBcnJbNF07DQogICAgICAgICAgICB2YXIgeTEgPSB4ICogbWFBcnJbMV0gKyB5ICogbWFBcnJbM10gKyBtYUFycls1XTsNCiAgICAgICAgICAgIHgxPXgxLnRvc3VpdHN2ZygpOw0KICAgICAgICAgICAgeTE9eTEudG9zdWl0c3ZnKCk7DQogICAgICAgICAgICB2YXIgdHJzdHIgPSAgJ3RyYW5zbGF0ZSgnK3gxKycsJyt5MSsnKSc7DQogICAgICAgIH1lbHNlew0KICAgICAgICAgICAgdmFyIHggPSBwYXJzZUZsb2F0KGNzWzBdKSsxNjsNCiAgICAgICAgICAgIHZhciB5ID0gcGFyc2VGbG9hdChjc1sxXSkrMTY7DQogICAgICAgICAgICB2YXIgeDEgPSB4ICogbWFBcnJbMF0gKyB5ICogbWFBcnJbMl0gKyBtYUFycls0XTsNCiAgICAgICAgICAgIHZhciB5MSA9IHggKiBtYUFyclsxXSArIHkgKiBtYUFyclszXSArIG1hQXJyWzVdOw0KICAgICAgICAgICAgeCA9IHBhcnNlRmxvYXQoY3NbMF0pKzE2Ow0KICAgICAgICAgICAgeSA9IHBhcnNlRmxvYXQoY3NbMV0pOw0KICAgICAgICAgICAgdmFyIHgyID0geCAqIG1hQXJyWzBdICsgeSAqIG1hQXJyWzJdICsgbWFBcnJbNF07DQogICAgICAgICAgICB2YXIgeTIgPSB4ICogbWFBcnJbMV0gKyB5ICogbWFBcnJbM10gKyBtYUFycls1XTsNCiAgICAgICAgICAgIHZhciBmeCA9IHgxPHgyP3gxLnRvc3VpdHN2ZygpOiB4Mi50b3N1aXRzdmcoKTsNCiAgICAgICAgICAgIHZhciBmeSA9IHkxPnkyP3kxLnRvc3VpdHN2ZygpOiB5Mi50b3N1aXRzdmcoKTsNCgkJCXZhciBvZmZ5ID0gTWF0aC5hYnMoeTEteTIpOwkJCQkJCQkJCQkgIA0KICAgICAgICAgICAgdmFyIHRyc3RyID0gICd0cmFuc2xhdGUoJytmeCsnLCcrZnkrJyknOw0KICAgICAgICAgICAgcG9wdXBSLnNldEF0dHJpYnV0ZSgnaGVpZ2h0JyxvZmZ5LnRvU3RyaW5nKCkpOw0KICAgICAgICAgICAgcG9wdXBSLnNldEF0dHJpYnV0ZSgnd2lkdGgnLCcxNicpOw0KICAgICAgICAgICAgcG9wdXBSLnNldEF0dHJpYnV0ZSgneScsKC1vZmZ5KS50b1N0cmluZygpKTsNCiAgICAgICAgICAgIHBvcHVwUi5zZXRBdHRyaWJ1dGUoJ2ZpbGwnLCd0cmFuc3BhcmVudCcpOw0KICAgICAgICAgICAgcG9wdXAuYXBwZW5kQ2hpbGQocG9wdXBSKTsNCiAgICAgICAgfQ0KICAgIH0NCiAgICB2YXIgYWw9YS5sZW5ndGg7DQogICAgZm9yKHZhciBqPTA7ajxhbDtqKyspew0KICAgICAgICBsaW5rYXJyLnB1c2goYVtqXS5saW5rKTsNCiAgICAgICAgZGVzY2Fyci5wdXNoKGFbal0uZGVzYyk7DQogICAgfQ0KICAgIHBvcHVwLnNldEF0dHJpYnV0ZSgndHJhbnNmb3JtJyx0cnN0cik7DQogICAgdmFyIG1heD1nZXRtYXhsZW4obGlua2FycixkZXNjYXJyKTsNCiAgICBmb3IodmFyIGs9MDtrPGFsO2srKyl7DQogICAgICAgIHZhciBjPWRvY3VtZW50LmNyZWF0ZUVsZW1lbnROUygnaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLCdhJyk7DQogICAgICAgIHZhciBkPWRvY3VtZW50LmNyZWF0ZUVsZW1lbnROUygnaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLCdyZWN0Jyk7DQogICAgICAgIHZhciBlPWRvY3VtZW50LmNyZWF0ZUVsZW1lbnROUygnaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLCd0ZXh0Jyk7DQogICAgICAgIHZhciBmPWRvY3VtZW50LmNyZWF0ZUVsZW1lbnROUygnaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLCd0ZXh0Jyk7DQogICAgICAgIGlmKGlzTmFOKGxpbmthcnJba10pKXsNCiAgICAgICAgICAgIGMuc2V0QXR0cmlidXRlTlMoImh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiwgInhsaW5rIiwgImh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiKTsNCiAgICAgICAgICAgIGMuc2V0QXR0cmlidXRlTlMoImh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiLCAiaHJlZiIsIGxpbmthcnJba10pOw0KICAgICAgICAgICAgYy5zZXRBdHRyaWJ1dGUoJ3RhcmdldCcsJ19ibGFuaycpOw0KICAgICAgICAgICAgZS50ZXh0Q29udGVudD1saW5rYXJyW2tdOw0KICAgICAgICB9ZWxzZXsNCiAgICAgICAgICAgIGUudGV4dENvbnRlbnQ9J1BhZ2UtJytsaW5rYXJyW2tdOw0KICAgICAgICAgICAgYy5zZXRBdHRyaWJ1dGVOUygiaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciLCAieGxpbmsiLCAiaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIpOw0KICAgICAgICAgICAgYy5zZXRBdHRyaWJ1dGVOUygiaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIsICJocmVmIiwgIiMiK2xpbmthcnJba10pOw0KICAgICAgICB9DQogICAgICAgIGQuc2V0QXR0cmlidXRlKCd3aWR0aCcsbWF4KzEwKTsNCiAgICAgICAgZC5zZXRBdHRyaWJ1dGUoJ2hlaWdodCcsJzMzJyk7DQogICAgICAgIGQuc2V0QXR0cmlidXRlKCdzdHJva2UnLCcjOTk5OTk5Jyk7DQogICAgICAgIGQuc2V0QXR0cmlidXRlKCdmaWxsJywnd2hpdGUnKTsNCiAgICAgICAgZC5zZXRBdHRyaWJ1dGUoJ3knLDMzKmspOw0KICAgICAgICBmLnRleHRDb250ZW50PWRlc2NhcnJba107DQogICAgICAgIGYuc3R5bGUuZm9udFNpemU9JzEycHgnOw0KICAgICAgICBmLnN0eWxlLmZvbnRXZWlnaHQ9J2JvbGQnOw0KICAgICAgICBmLnNldEF0dHJpYnV0ZSgneCcsNSk7DQogICAgICAgIGYuc2V0QXR0cmlidXRlKCd5JywzMyprKzEyKTsNCiAgICAgICAgZS5zdHlsZS5mb250U2l6ZT0nMTJweCc7DQogICAgICAgIGUuc2V0QXR0cmlidXRlKCd5JywzMyprKzI4KTsNCiAgICAgICAgZS5zZXRBdHRyaWJ1dGUoJ3gnLDUpOw0KICAgICAgICBjLmFwcGVuZENoaWxkKGQpOw0KICAgICAgICBjLmFwcGVuZENoaWxkKGYpOw0KICAgICAgICBjLmFwcGVuZENoaWxkKGUpOw0KICAgICAgICBjLm9ubW91c2VvdmVyPWZ1bmN0aW9uICgpIHsNCiAgICAgICAgICAgIHRoaXMucXVlcnlTZWxlY3RvcigncmVjdCcpLnN0eWxlLmZpbGw9JyNlMWUxZmYnDQogICAgICAgIH07DQogICAgICAgIGMub25tb3VzZW91dD1mdW5jdGlvbiAoKSB7DQogICAgICAgICAgICB0aGlzLnF1ZXJ5U2VsZWN0b3IoJ3JlY3QnKS5zdHlsZS5maWxsPSd3aGl0ZScNCiAgICAgICAgfTsNCiAgICAgICAgcG9wdXAuYXBwZW5kQ2hpbGQoYyk7DQogICAgfQ0KICAgIHBvcHVwLnN0eWxlLmRpc3BsYXk9J25vbmUnOw0KICAgIHBvcHVwLnNldEF0dHJpYnV0ZSgnaHlwZXJsaW5rJywnJyk7DQogICAgcG9wdXAuc2V0QXR0cmlidXRlKCdlZDpsaW5raWQnLGxpbmtzW2ldLnBhcmVudE5vZGUuaWQpOw0KICAgIHBvcHVwLm9ubW91c2VvdmVyPWZ1bmN0aW9uICgpIHsNCiAgICAgICAgdGhpcy5zdHlsZS5kaXNwbGF5PSdibG9jayc7DQogICAgfTsNCiAgICBwb3B1cC5vbmNsaWNrPWZ1bmN0aW9uICgpIHsNCiAgICAgICAgdGhpcy5zdHlsZS5kaXNwbGF5PSdub25lJzsNCiAgICB9Ow0KICAgIHBvcHVwLm9ubW91c2VvdXQ9ZnVuY3Rpb24gKCkgew0KICAgICAgICB0aGlzLnN0eWxlLmRpc3BsYXk9J25vbmUnOw0KICAgIH07DQogICAgZG9jdW1lbnQucXVlcnlTZWxlY3RvcignI3N2Zy1jb250YWluZXIgPiBzdmcnKS5hcHBlbmRDaGlsZChwb3B1cCk7DQogICAgbGlua3NbaV0ub25tb3VzZW92ZXI9ZnVuY3Rpb24gKCkgew0KICAgICAgICB2YXIgbGlua2lkPXRoaXMucGFyZW50Tm9kZS5pZDsNCiAgICAgICAgdGhpcy5xdWVyeVNlbGVjdG9yKCdyZWN0Jykuc3R5bGUuZGlzcGxheT0nYmxvY2snOw0KICAgICAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCJnW2VkXFw6bGlua2lkPSciK2xpbmtpZCsiJ11baHlwZXJsaW5rXSIpLnN0eWxlLmRpc3BsYXk9J2Jsb2NrJzsNCiAgICB9DQogICAgbGlua3NbaV0ub25tb3VzZW91dD1mdW5jdGlvbiAoKSB7DQogICAgICAgIHZhciBsaW5raWQ9dGhpcy5wYXJlbnROb2RlLmlkOw0KICAgICAgICB0aGlzLnF1ZXJ5U2VsZWN0b3IoJ3JlY3QnKS5zdHlsZS5kaXNwbGF5PSdub25lJzsNCiAgICAgICAgZG9jdW1lbnQucXVlcnlTZWxlY3RvcigiZ1tlZFxcOmxpbmtpZD0nIitsaW5raWQrIiddW2h5cGVybGlua10iKS5zdHlsZS5kaXNwbGF5PSdub25lJzsNCiAgICB9DQp9DQovLy0taHlwZXJsaW5rDQovL2luaXRpYWxpemUtLQ0KdmFyIHNoYXBlPWRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJ2dbZWRcXDp0b2d0b3BpY2lkXScpOw0KdmFyIG1JZD1kb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCdnW2VkXFw6dG9waWN0eXBlXScpOw0KdmFyIGRhdGFUcmVlPXt9Ow0KdmFyIGV4dHJhUmVsYT17fTsNCnZhciBjaGVja0lEPScnOw0KZm9yKHZhciBpPTA7aTxtSWQubGVuZ3RoO2krKyl7DQogICAgdmFyIHR5cGU9bUlkW2ldLmdldEF0dHJpYnV0ZSgnZWQ6dG9waWN0eXBlJyk7DQogICAgdmFyIHNpZD1tSWRbaV0uaWQ7DQogICAgaWYodHlwZSE9PSdjYWxsb3V0Jyl7DQogICAgICAgIGluaXQoc2lkLGRhdGFUcmVlKQ0KICAgIH0NCn0NCmZ1bmN0aW9uIGluaXQoaWQsIG9iaikgew0KICAgIHZhciBjaGlsZHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJnW2VkXFw6cGFyZW50aWQ9JyIgKyBpZCArICInXTpub3QoW2VkXFw6dG9waWN0eXBlXSkiKTsNCiAgICB2YXIgY2FsbHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJnW2VkXFw6cGFyZW50aWQ9JyIgKyBpZCArICInXVtlZFxcOnRvcGljdHlwZV0iKTsNCiAgICB2YXIgc3VtbWFyeSA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoInBhdGhbZWRcXDpwYXJlbnRpZCo9JyIgKyBpZCArICInXVtlZFxcOnR5cGU9J3N1bW1hcnknXSIpOw0KICAgIHZhciBib3VuZGFyeT0gZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgicGF0aFtlZFxcOnBhcmVudGlkKj0nIiArIGlkICsgIiddW2VkXFw6dHlwZT0nYm91bmRhcnknXSIpOw0KICAgIHZhciByZWxhZnJvbT1kb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJnW2VkXFw6ZnJvbWlkKj0nIiArIGlkICsgIiddW2VkXFw6dHlwZT0ncmVsYXRpb24nXSIpOw0KICAgIHZhciByZWxhdG89ZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgiZ1tlZFxcOnRvaWQqPSciICsgaWQgKyAiJ11bZWRcXDp0eXBlPSdyZWxhdGlvbiddIik7DQogICAgb2JqWyJtIiArIGlkXSA9IHt9Ow0KICAgIHZhciB0eXBlID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoaWQpLmdldEF0dHJpYnV0ZSgnZWQ6dG9waWN0eXBlJyk7DQogICAgdmFyIGl3PWRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGlkKS5nZXRBdHRyaWJ1dGUoJ2VkOndpZHRoJyk7DQogICAgdmFyIGloPWRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGlkKS5nZXRBdHRyaWJ1dGUoJ2VkOmhlaWdodCcpOw0KICAgIGlmICh0eXBlKSB7DQogICAgICAgIG9ialsibSIgKyBpZF0udHlwZSA9IHR5cGU7DQogICAgfQ0KICAgIGlmKGl3JiZpaCl7DQogICAgICAgIG9ialsibSIgKyBpZF0ud2lkdGggPWl3Ow0KICAgICAgICBvYmpbIm0iICsgaWRdLmhlaWdodCA9aWg7DQogICAgfQ0KICAgIGlmIChyZWxhZnJvbS5sZW5ndGggIT09IDApIHsNCiAgICAgICAgb2JqWyJtIiArIGlkXS5yZWxhZnJvbSA9IHt9Ow0KICAgICAgICBmb3IgKHZhciBpID0gMDsgaSA8IHJlbGFmcm9tLmxlbmd0aDsgaSsrKSB7DQogICAgICAgICAgICB2YXIgaW5kZXhpZCA9IHJlbGFmcm9tW2ldLmlkOw0KICAgICAgICAgICAgdmFyIHRvaWQgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChpbmRleGlkKS5nZXRBdHRyaWJ1dGUoJ2VkOnRvaWQnKTsNCiAgICAgICAgICAgIGlmIChleHRyYVJlbGFbaW5kZXhpZF0gPT09IHVuZGVmaW5lZCkgew0KICAgICAgICAgICAgICAgIGV4dHJhUmVsYVtpbmRleGlkXSA9IHsNCiAgICAgICAgICAgICAgICAgICAgaWQ6IGluZGV4aWQsDQogICAgICAgICAgICAgICAgICAgIGZyb21pZDogaWQsDQogICAgICAgICAgICAgICAgICAgIHRvaWQ6IHRvaWQsDQogICAgICAgICAgICAgICAgICAgIGlzQzogZmFsc2UNCiAgICAgICAgICAgICAgICB9Ow0KICAgICAgICAgICAgfQ0KICAgICAgICAgICAgb2JqWyJtIiArIGlkXS5yZWxhZnJvbVtpbmRleGlkXT17fTsNCiAgICAgICAgICAgIG9ialsibSIgKyBpZF0ucmVsYWZyb20uZGlzcGxheT1kb2N1bWVudC5nZXRFbGVtZW50QnlJZChpZCkuc3R5bGUuZGlzcGxheSAhPT0gJ25vbmUnPydibG9jayc6J25vbmUnOw0KICAgICAgICB9DQogICAgfQ0KICAgIGlmIChyZWxhdG8ubGVuZ3RoICE9PSAwKSB7DQogICAgICAgIG9ialsibSIgKyBpZF0ucmVsYXRvID0ge307DQogICAgICAgIGZvciAodmFyIGkgPSAwOyBpIDwgcmVsYXRvLmxlbmd0aDsgaSsrKSB7DQogICAgICAgICAgICB2YXIgaW5kZXhpZD1yZWxhdG9baV0uaWQ7DQogICAgICAgICAgICB2YXIgZnJvbWlkPWRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGluZGV4aWQpLmdldEF0dHJpYnV0ZSgnZWQ6ZnJvbWlkJyk7DQogICAgICAgICAgICBpZihleHRyYVJlbGFbaW5kZXhpZF0gPT09IHVuZGVmaW5lZCl7DQogICAgICAgICAgICAgICAgZXh0cmFSZWxhW2luZGV4aWRdPXsNCiAgICAgICAgICAgICAgICAgICAgaWQ6aW5kZXhpZCwNCiAgICAgICAgICAgICAgICAgICAgZnJvbWlkOmZyb21pZCwNCiAgICAgICAgICAgICAgICAgICAgdG9pZDppZCwNCiAgICAgICAgICAgICAgICAgICAgaXNDOmZhbHNlDQogICAgICAgICAgICAgICAgfTsNCiAgICAgICAgICAgIH0NCiAgICAgICAgICAgIG9ialsibSIgKyBpZF0ucmVsYXRvW2luZGV4aWRdPXt9Ow0KICAgICAgICAgICAgb2JqWyJtIiArIGlkXS5yZWxhdG8uZGlzcGxheT1kb2N1bWVudC5nZXRFbGVtZW50QnlJZChpZCkuc3R5bGUuZGlzcGxheSAhPT0gJ25vbmUnPydibG9jayc6J25vbmUnOw0KICAgICAgICB9DQogICAgfQ0KICAgIGlmIChjaGlsZHMubGVuZ3RoICE9PSAwKSB7DQogICAgICAgIG9ialsibSIgKyBpZF0uY2hpbGQgPSB7fTsNCiAgICAgICAgaWYgKGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoImdbZWRcXDp0b2d0b3BpY2lkPSciICsgaWQgKyAiJ10iKSkgew0KICAgICAgICAgICAgLy8gY29uc29sZS5sb2coZG9jdW1lbnQucXVlcnlTZWxlY3RvcigiZ1tlZFxcOnRvZ3RvcGljaWQ9JyIgKyBpZCArICInXSIpLmNoaWxkTm9kZXNbMF0uZ2V0QXR0cmlidXRlKCd4bGluazpocmVmJykpOw0KICAgICAgICAgICAgdmFyIHRvZyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoImdbZWRcXDp0b2d0b3BpY2lkPSciICsgaWQgKyAiJ10iKS5nZXRFbGVtZW50c0J5VGFnTmFtZSgndXNlJylbMF0uZ2V0QXR0cmlidXRlKCd4bGluazpocmVmJykuc2xpY2UoMSk7DQogICAgICAgICAgICBvYmpbIm0iICsgaWRdLnRvZ3R5cGUgPSB0b2c7DQogICAgICAgIH0NCiAgICAgICAgZm9yICh2YXIgaSA9IDA7IGkgPCBjaGlsZHMubGVuZ3RoOyBpKyspIHsNCiAgICAgICAgICAgIHZhciBjaWQgPSBjaGlsZHNbaV0uaWQ7DQogICAgICAgICAgICBpbml0KGNpZCwgb2JqWyJtIiArIGlkXS5jaGlsZCk7DQogICAgICAgIH0NCiAgICB9DQogICAgaWYgKGNhbGxzLmxlbmd0aCAhPT0gMCkgew0KICAgICAgICBvYmpbIm0iICsgaWRdLmNhbGwgPSB7fTsNCiAgICAgICAgZm9yICh2YXIgaSA9IDA7IGkgPCBjYWxscy5sZW5ndGg7IGkrKykgew0KICAgICAgICAgICAgdmFyIGNpZCA9IGNhbGxzW2ldLmlkOw0KICAgICAgICAgICAgaW5pdChjaWQsIG9ialsibSIgKyBpZF0uY2FsbCk7DQogICAgICAgIH0NCiAgICB9DQogICAgaWYgKGJvdW5kYXJ5Lmxlbmd0aCAhPT0gMCkgew0KICAgICAgICBvYmpbIm0iICsgaWRdLmJvdW5kYXJ5ID0ge307DQogICAgICAgIGZvciAodmFyIGkgPSAwOyBpIDwgYm91bmRhcnkubGVuZ3RoOyBpKyspIHsNCiAgICAgICAgICAgIHZhciBjaWQgPWJvdW5kYXJ5W2ldLmlkOw0KICAgICAgICAgICAgaW5pdChjaWQsIG9ialsibSIgKyBpZF0uYm91bmRhcnkpOw0KICAgICAgICB9DQogICAgfQ0KICAgIGlmIChzdW1tYXJ5Lmxlbmd0aCAhPT0gMCkgew0KICAgICAgICBvYmpbIm0iICsgaWRdLnN1bW1hcnkgPSB7fTsNCiAgICAgICAgZm9yICh2YXIgaSA9IDA7IGkgPCBzdW1tYXJ5Lmxlbmd0aDsgaSsrKSB7DQogICAgICAgICAgICB2YXIgY2lkID0gc3VtbWFyeVtpXS5pZDsNCiAgICAgICAgICAgIGluaXQoY2lkLCBvYmpbIm0iICsgaWRdLnN1bW1hcnkpOw0KICAgICAgICB9DQogICAgfQ0KfQ0KLy8tLWluaXRpYWxpemUNCi8vdG9nZ2xlZGlzcGxheS0tDQp2YXIgY2hhaW5BcnI9W107DQpmdW5jdGlvbiBnZXRjaGFpbihpZCl7DQogICAgY2hhaW5BcnIudW5zaGlmdCgnbScraWQpOw0KICAgIHZhciBwYXJlbnQ9ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoaWQpLmdldEF0dHJpYnV0ZSgnZWQ6cGFyZW50aWQnKTsNCiAgICBpZighcGFyZW50KXsNCiAgICAgICAgcmV0dXJuOw0KICAgIH0NCglpZihwYXJlbnQubWF0Y2goL1wsLykpew0KICAgICAgICBwYXJlbnQgPSBwYXJlbnQubWF0Y2goL1xkKyg/PVwsKS8pWzBdDQogICAgfQ0KICAgIGdldGNoYWluKHBhcmVudCk7DQp9DQpmdW5jdGlvbiBnZXRvYmooaWQpIHsNCiAgICBjaGFpbkFycj1bXTsNCiAgICBnZXRjaGFpbihpZCk7DQogICAgdmFyIG1haW49Y2hhaW5BcnJbMF07DQogICAgaWYoY2hhaW5BcnIubGVuZ3RoPjEpew0KICAgICAgICB2YXIgb2JqPWRhdGFUcmVlW21haW5dOw0KICAgICAgICAvLyBjb25zb2xlLmxvZyhjaGFpbkFycik7DQogICAgICAgIGZvcih2YXIgaT0xO2k8Y2hhaW5BcnIubGVuZ3RoO2krKykgew0KICAgICAgICAgICAgdmFyIGEgPSBjaGFpbkFycltpXTsNCiAgICAgICAgICAgIGZvcih2YXIgaj0wO2o8T2JqZWN0LmtleXMob2JqKS5sZW5ndGg7aisrKXsNCiAgICAgICAgICAgICAgICB2YXIgY29iaj0gb2JqW09iamVjdC5rZXlzKG9iailbal1dW2FdOw0KICAgICAgICAgICAgICAgIGlmKGNvYmopew0KICAgICAgICAgICAgICAgICAgICBvYmo9Y29iajsNCiAgICAgICAgICAgICAgICAgICAgY29udGludWUNCiAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICB9DQogICAgICAgIH0NCiAgICAgICAgcmV0dXJuIG9iag0KICAgIH1lbHNlew0KICAgICAgICB2YXIgb2JqPWRhdGFUcmVlW21haW5dOw0KICAgICAgICByZXR1cm4gb2JqDQogICAgfQ0KDQp9DQpmb3IodmFyIGk9MDtpPHNoYXBlLmxlbmd0aDtpKyspew0KICAgIHNoYXBlW2ldLm9uY2xpY2s9ZnVuY3Rpb24gKCkgew0KICAgICAgICB2YXIgaWQ9TnVtYmVyKHRoaXMuZ2V0QXR0cmlidXRlKCdlZDp0b2d0b3BpY2lkJykpOw0KICAgICAgICB2YXIgb2JqPWdldG9iaihpZCk7DQoNCiAgICAgICAgdmFyIHR5cGU9b2JqLnRvZ3R5cGU9PT0nbWludXMnPydwbHVzJzonbWludXMnOw0KICAgICAgICB2YXIgZGlzcGxheT1vYmoudG9ndHlwZT09PSdtaW51cyc/J25vbmUnOidibG9jayc7DQogICAgICAgIHRoaXMuZ2V0RWxlbWVudHNCeVRhZ05hbWUoJ3VzZScpWzBdLnNldEF0dHJpYnV0ZSgneGxpbms6aHJlZicsJyMnK3R5cGUpOw0KICAgICAgICBvYmoudG9ndHlwZT10eXBlOw0KICAgICAgICBjaGVja0lEPW9iajsNCg0KICAgICAgICB1dGQob2JqLGlkLGRpc3BsYXkpOw0KICAgICAgICBleHRyYVJlbGFGaW4oKTsNCiAgICB9DQp9DQpmdW5jdGlvbiB1dGQob2JqLGlkLHNob3csb2MpIHsNCg0KICAgIHZhciBwc2hvdz1kb2N1bWVudC5nZXRFbGVtZW50QnlJZChpZCkuc3R5bGUuZGlzcGxheSE9PSAnbm9uZSc/J2Jsb2NrJzonbm9uZSc7DQogICAgaWYgKG9iai5yZWxhZnJvbSl7DQogICAgICAgIGlmKG9iai5yZWxhZnJvbS5kaXNwbGF5IT09IHBzaG93KXsNCiAgICAgICAgICAgIHZhciByZWxhZnJvbXM9T2JqZWN0LmtleXMob2JqLnJlbGFmcm9tKTsNCiAgICAgICAgICAgIHJlbGFmcm9tcy5zcGxpY2UocmVsYWZyb21zLmluZGV4T2YoJ2Rpc3BsYXknKSwxKTsNCiAgICAgICAgICAgIGZvcih2YXIgaz0wO2s8cmVsYWZyb21zLmxlbmd0aDtrKyspew0KICAgICAgICAgICAgICAgIHZhciBkPXJlbGFmcm9tc1trXTsNCiAgICAgICAgICAgICAgICBleHRyYVJlbGFbZF0uaXNDPXRydWU7DQogICAgICAgICAgICB9DQogICAgICAgICAgICBvYmoucmVsYWZyb20uZGlzcGxheSA9IHBzaG93Ow0KICAgICAgICB9DQogICAgfQ0KICAgIGlmIChvYmoucmVsYXRvKXsNCiAgICAgICAgaWYob2JqLnJlbGF0by5kaXNwbGF5IT09IHBzaG93KXsNCiAgICAgICAgICAgIHZhciByZWxhdG9zPU9iamVjdC5rZXlzKG9iai5yZWxhdG8pOw0KICAgICAgICAgICAgcmVsYXRvcy5zcGxpY2UocmVsYXRvcy5pbmRleE9mKCdkaXNwbGF5JyksMSk7DQogICAgICAgICAgICBmb3IodmFyIGs9MDtrPHJlbGF0b3MubGVuZ3RoO2srKyl7DQogICAgICAgICAgICAgICAgdmFyIGQ9cmVsYXRvc1trXTsNCiAgICAgICAgICAgICAgICBleHRyYVJlbGFbZF0uaXNDPXRydWU7DQogICAgICAgICAgICB9DQogICAgICAgICAgICBvYmoucmVsYXRvLmRpc3BsYXkgPSBwc2hvdzsNCiAgICAgICAgfQ0KICAgIH0NCiAgICBpZihvYmouY2FsbCl7DQogICAgICAgIHZhciBjYWxscz1PYmplY3Qua2V5cyhvYmouY2FsbCk7DQogICAgICAgIGlmKGNoZWNrSUQhPT1vYmopew0KICAgICAgICAgICAgZm9yKHZhciBpPTA7aSA8IGNhbGxzLmxlbmd0aDtpKyspew0KICAgICAgICAgICAgICAgIHZhciBhPWNhbGxzW2ldLnNsaWNlKDEpOw0KICAgICAgICAgICAgICAgIHZhciBiPW9iai5jYWxsW2NhbGxzW2ldXTsNCiAgICAgICAgICAgICAgICB2YXIgYz1iLnRvZ3R5cGU7DQogICAgICAgICAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoYSkuc3R5bGUuZGlzcGxheT1zaG93Ow0KICAgICAgICAgICAgICAgIGlmIChiLnJlbGFmcm9tJiYhYyl7DQogICAgICAgICAgICAgICAgICAgIGlmKGIucmVsYWZyb20uZGlzcGxheSE9PSBzaG93KXsNCiAgICAgICAgICAgICAgICAgICAgICAgIHZhciByZWxhZnJvbXM9T2JqZWN0LmtleXMoYi5yZWxhZnJvbSk7DQogICAgICAgICAgICAgICAgICAgICAgICByZWxhZnJvbXMuc3BsaWNlKHJlbGFmcm9tcy5pbmRleE9mKCdkaXNwbGF5JyksMSk7DQogICAgICAgICAgICAgICAgICAgICAgICBmb3IodmFyIGs9MDtrPHJlbGFmcm9tcy5sZW5ndGg7aysrKXsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICB2YXIgZD1yZWxhZnJvbXNba107DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgZXh0cmFSZWxhW2RdLmlzQz10cnVlOw0KICAgICAgICAgICAgICAgICAgICAgICAgfQ0KICAgICAgICAgICAgICAgICAgICAgICAgYi5yZWxhZnJvbS5kaXNwbGF5ID0gc2hvdzsNCiAgICAgICAgICAgICAgICAgICAgfQ0KICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICBpZiAoYi5yZWxhdG8mJiFjKXsNCiAgICAgICAgICAgICAgICAgICAgaWYoYi5yZWxhdG8uZGlzcGxheSE9PSBzaG93KXsNCiAgICAgICAgICAgICAgICAgICAgICAgIHZhciByZWxhdG9zPU9iamVjdC5rZXlzKGIucmVsYXRvKTsNCiAgICAgICAgICAgICAgICAgICAgICAgIHJlbGF0b3Muc3BsaWNlKHJlbGF0b3MuaW5kZXhPZignZGlzcGxheScpLDEpOw0KICAgICAgICAgICAgICAgICAgICAgICAgZm9yKHZhciBrPTA7azxyZWxhdG9zLmxlbmd0aDtrKyspew0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHZhciBkPXJlbGF0b3Nba107DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgZXh0cmFSZWxhW2RdLmlzQz10cnVlOw0KICAgICAgICAgICAgICAgICAgICAgICAgfQ0KICAgICAgICAgICAgICAgICAgICAgICAgYi5yZWxhdG8uZGlzcGxheSA9IHNob3c7DQogICAgICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICAgICAgaWYoYyl7DQogICAgICAgICAgICAgICAgICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoImdbZWRcXDp0b2d0b3BpY2lkPSciK2ErIiddIikuc3R5bGUuZGlzcGxheT1zaG93Ow0KICAgICAgICAgICAgICAgICAgICBpZihjPT09J21pbnVzJyl7DQogICAgICAgICAgICAgICAgICAgICAgICB1dGQoYixhLHNob3cpDQogICAgICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICAgICAgaWYgKChiLmNhbGx8fGIuYm91bmRhcnl8fGIuc3VtbWFyeSkmJmM9PT0ncGx1cycpIHsNCiAgICAgICAgICAgICAgICAgICAgICAgIHV0ZChiLGEsc2hvdyx0cnVlKQ0KICAgICAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICAgICAgfQ0KICAgICAgICAgICAgICAgIGlmKGIuY2FsbCYmIWMpIHsNCiAgICAgICAgICAgICAgICAgICAgdXRkKGIsYSxzaG93LHRydWUpDQogICAgICAgICAgICAgICAgfQ0KICAgICAgICAgICAgICAgIGlmIChiLnN1bW1hcnkmJiFjKSB7DQogICAgICAgICAgICAgICAgICAgIHV0ZChiLGEsc2hvdykNCiAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICAgICAgaWYgKGIuYm91bmRhcnkmJiFjKSB7DQogICAgICAgICAgICAgICAgICAgIHV0ZChiLGEsc2hvdykNCiAgICAgICAgICAgICAgICB9DQoNCiAgICAgICAgICAgIH0NCiAgICAgICAgfQ0KICAgIH0NCiAgICBpZihvYmouc3VtbWFyeSl7DQogICAgICAgIHZhciBzdW1tYXJ5cz1PYmplY3Qua2V5cyhvYmouc3VtbWFyeSk7DQogICAgICAgIGlmKChjaGVja0lEIT09b2JqJiYob2JqLnRvZ3R5cGU9PT0nbWludXMnfHwhb2JqLnRvZ3R5cGUpKXx8Y2hlY2tJRD09PW9iail7DQogICAgICAgICAgICBmb3IodmFyIGk9MDtpPHN1bW1hcnlzLmxlbmd0aDtpKyspew0KICAgICAgICAgICAgICAgIHZhciBhPXN1bW1hcnlzW2ldLnNsaWNlKDEpOw0KCQkJCXZhciBvc3AgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChhKS5nZXRBdHRyaWJ1dGUoJ2VkOnBhcmVudGlkJyk7DQogICAgICAgICAgICAgICAgaWYob3NwLm1hdGNoKC9cLC8pKXsNCiAgICAgICAgICAgICAgICAgICAgdmFyIG9zcGEgPSBvc3Auc3BsaXQoJywnKTsNCiAgICAgICAgICAgICAgICAgICAgdmFyIG9zcEw9MDsNCg0KICAgICAgICAgICAgICAgICAgICBmb3IodmFyIGo9MDtqPG9zcGEubGVuZ3RoO2orKyl7DQogICAgICAgICAgICAgICAgICAgICAgICBpZihzaG93ID09ICdub25lJyl7DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgaWYoZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQob3NwYVtqXSkuc3R5bGUuZGlzcGxheSAhPSAnbm9uZScpew0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBicmVhazsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9ZWxzZXsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgb3NwTCsrOw0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICAgICAgICAgIH1lbHNlew0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpZihkb2N1bWVudC5nZXRFbGVtZW50QnlJZChhKS5zdHlsZS5kaXNwbGF5ICE9ICdub25lJyl7DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBicmVhazsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfWVsc2V7DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBvc3BMKys7DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICAgICAgICAgIH0NCg0KICAgICAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICAgICAgICAgIGlmKG9zcEwgIT09IG9zcGEubGVuZ3RoKXsNCiAgICAgICAgICAgICAgICAgICAgICAgIGNvbnRpbnVlOw0KICAgICAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICAgICAgfQ0KICAgICAgICAgICAgICAgIHZhciBiPW9iai5zdW1tYXJ5W3N1bW1hcnlzW2ldXTsNCiAgICAgICAgICAgICAgICAvLyBjb25zb2xlLmxvZyhhKTsNCiAgICAgICAgICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChhKS5zdHlsZS5kaXNwbGF5PXNob3c7DQovLyAgICAgICAgICAgICAgICBpZihjKXsNCi8vICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCJnW2VkXFw6dG9ndG9waWNpZD0nIithKyInXSIpLnN0eWxlLmRpc3BsYXk9c2hvdzsNCi8vICAgICAgICAgICAgICAgICAgICBpZihjPT09J21pbnVzJyl7DQovLyAgICAgICAgICAgICAgICAgICAgICAgIHV0ZChiLHNob3cpDQovLyAgICAgICAgICAgICAgICAgICAgfQ0KLy8gICAgICAgICAgICAgICAgICAgIGlmIChiLmNhbGwmJmM9PT0ncGx1cycpIHsNCi8vICAgICAgICAgICAgICAgICAgICAgICAgdXRkKGIsc2hvdyx0cnVlKQ0KLy8gICAgICAgICAgICAgICAgICAgIH0NCi8vICAgICAgICAgICAgICAgIH0NCi8vICAgICAgICAgICAgICAgIGlmKGIuY2FsbCYmIWMpIHsNCi8vICAgICAgICAgICAgICAgICAgICB1dGQoYixzaG93LHRydWUpDQovLyAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICAgICAgaWYoT2JqZWN0LmtleXMoYikubGVuZ3RoIT09MCl7DQogICAgICAgICAgICAgICAgICAgIHV0ZChiLGEsc2hvdykNCiAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICB9DQogICAgICAgIH0NCiAgICB9DQogICAgaWYob2JqLmJvdW5kYXJ5KXsNCiAgICAgICAgdmFyIGJvdW5kYXJ5cz1PYmplY3Qua2V5cyhvYmouYm91bmRhcnkpOw0KICAgICAgICBpZihjaGVja0lEIT09b2JqKXsNCiAgICAgICAgICAgIGZvcih2YXIgaT0wO2k8Ym91bmRhcnlzLmxlbmd0aDtpKyspew0KICAgICAgICAgICAgICAgIHZhciBhPWJvdW5kYXJ5c1tpXS5zbGljZSgxKTsNCiAgICAgICAgICAgICAgICB2YXIgYj1vYmouYm91bmRhcnlbYm91bmRhcnlzW2ldXTsNCiAgICAgICAgICAgICAgICAvLyBjb25zb2xlLmxvZyhhKTsNCiAgICAgICAgICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChhKS5zdHlsZS5kaXNwbGF5PXNob3c7DQovLyAgICAgICAgICAgICAgICBpZihjKXsNCi8vICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCJnW2VkXFw6dG9ndG9waWNpZD0nIithKyInXSIpLnN0eWxlLmRpc3BsYXk9c2hvdzsNCi8vICAgICAgICAgICAgICAgICAgICBpZihjPT09J21pbnVzJyl7DQovLyAgICAgICAgICAgICAgICAgICAgICAgIHV0ZChiLHNob3cpDQovLyAgICAgICAgICAgICAgICAgICAgfQ0KLy8gICAgICAgICAgICAgICAgICAgIGlmIChiLmNhbGwmJmM9PT0ncGx1cycpIHsNCi8vICAgICAgICAgICAgICAgICAgICAgICAgdXRkKGIsc2hvdyx0cnVlKQ0KLy8gICAgICAgICAgICAgICAgICAgIH0NCi8vICAgICAgICAgICAgICAgIH0NCi8vICAgICAgICAgICAgICAgIGlmKGIuY2FsbCYmIWMpIHsNCi8vICAgICAgICAgICAgICAgICAgICB1dGQoYixzaG93LHRydWUpDQovLyAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICAgICAgaWYoT2JqZWN0LmtleXMoYikubGVuZ3RoIT09MCl7DQogICAgICAgICAgICAgICAgICAgIHV0ZChiLGEsc2hvdykNCiAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICB9DQogICAgICAgIH0NCiAgICB9DQogICAgaWYoIW9jJiZvYmouY2hpbGQpIHsNCiAgICAgICAgdmFyIGNoaWxkcyA9IE9iamVjdC5rZXlzKG9iai5jaGlsZCk7DQogICAgICAgIGZvciAodmFyIGkgPSAwOyBpIDwgY2hpbGRzLmxlbmd0aDsgaSsrKSB7DQogICAgICAgICAgICB2YXIgYSA9IGNoaWxkc1tpXS5zbGljZSgxKTsNCiAgICAgICAgICAgIHZhciBiID0gb2JqLmNoaWxkW2NoaWxkc1tpXV07DQogICAgICAgICAgICB2YXIgYyA9IGIudG9ndHlwZTsNCiAgICAgICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGEpLnN0eWxlLmRpc3BsYXkgPSBzaG93Ow0KCQkJdmFyIHRTUGF0aCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoInBhdGhbZWRcXDp0b3N1cGVyaWQ9JyIrYSsiJ10iKTsNCiAgICAgICAgICAgIGlmKHRTUGF0aCl7DQogICAgICAgICAgICAgICAgdFNQYXRoLnN0eWxlLmRpc3BsYXkgPSBzaG93Ow0KICAgICAgICAgICAgfQ0KCQkJdmFyIG5vdGVUaXAgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCJnW2VkXFw6bm90ZXRvPSciK2ErIiddIik7DQogICAgICAgICAgICBpZihub3RlVGlwKXsNCiAgICAgICAgICAgICAgICBub3RlVGlwLnN0eWxlLmRpc3BsYXkgPSBzaG93Ow0KICAgICAgICAgICAgfQ0KICAgICAgICAgICAgaWYgKGIucmVsYWZyb20mJiFjKXsNCiAgICAgICAgICAgICAgICBpZihiLnJlbGFmcm9tLmRpc3BsYXkhPT0gc2hvdyl7DQogICAgICAgICAgICAgICAgICAgIHZhciByZWxhZnJvbXM9T2JqZWN0LmtleXMoYi5yZWxhZnJvbSk7DQogICAgICAgICAgICAgICAgICAgIHJlbGFmcm9tcy5zcGxpY2UocmVsYWZyb21zLmluZGV4T2YoJ2Rpc3BsYXknKSwxKTsNCiAgICAgICAgICAgICAgICAgICAgZm9yKHZhciBrPTA7azxyZWxhZnJvbXMubGVuZ3RoO2srKyl7DQogICAgICAgICAgICAgICAgICAgICAgICB2YXIgZD1yZWxhZnJvbXNba107DQogICAgICAgICAgICAgICAgICAgICAgICBleHRyYVJlbGFbZF0uaXNDPXRydWU7DQogICAgICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICAgICAgYi5yZWxhZnJvbS5kaXNwbGF5ID0gc2hvdzsNCiAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICB9DQogICAgICAgICAgICBpZiAoYi5yZWxhdG8mJiFjKXsNCiAgICAgICAgICAgICAgICBpZihiLnJlbGF0by5kaXNwbGF5IT09IHNob3cpew0KICAgICAgICAgICAgICAgICAgICB2YXIgcmVsYXRvcz1PYmplY3Qua2V5cyhiLnJlbGF0byk7DQogICAgICAgICAgICAgICAgICAgIHJlbGF0b3Muc3BsaWNlKHJlbGF0b3MuaW5kZXhPZignZGlzcGxheScpLDEpOw0KICAgICAgICAgICAgICAgICAgICBmb3IodmFyIGs9MDtrPHJlbGF0b3MubGVuZ3RoO2srKyl7DQogICAgICAgICAgICAgICAgICAgICAgICB2YXIgZD1yZWxhdG9zW2tdOw0KICAgICAgICAgICAgICAgICAgICAgICAgZXh0cmFSZWxhW2RdLmlzQz10cnVlOw0KICAgICAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICAgICAgICAgIGIucmVsYXRvLmRpc3BsYXkgPSBzaG93Ow0KICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgIH0NCiAgICAgICAgICAgIGlmIChjKSB7DQogICAgICAgICAgICAgICAgZG9jdW1lbnQucXVlcnlTZWxlY3RvcigiZ1tlZFxcOnRvZ3RvcGljaWQ9JyIgKyBhICsgIiddIikuc3R5bGUuZGlzcGxheSA9IHNob3c7DQogICAgICAgICAgICAgICAgaWYgKGMgPT09ICdtaW51cycpIHsNCiAgICAgICAgICAgICAgICAgICAgdXRkKGIsYSxzaG93KQ0KICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICBpZiAoKGIuY2FsbHx8Yi5ib3VuZGFyeXx8Yi5zdW1tYXJ5KSYmYz09PSdwbHVzJykgew0KICAgICAgICAgICAgICAgICAgICB1dGQoYixhLHNob3csdHJ1ZSkNCiAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICB9DQogICAgICAgICAgICBpZiAoYi5jYWxsJiYhYykgew0KICAgICAgICAgICAgICAgIHV0ZChiLGEsc2hvdyx0cnVlKQ0KICAgICAgICAgICAgfQ0KICAgICAgICAgICAgaWYgKGIuc3VtbWFyeSYmIWMpIHsNCiAgICAgICAgICAgICAgICB1dGQoYixhLHNob3cpDQogICAgICAgICAgICB9DQogICAgICAgICAgICBpZiAoYi5ib3VuZGFyeSYmIWMpIHsNCiAgICAgICAgICAgICAgICB1dGQoYixhLHNob3cpDQogICAgICAgICAgICB9DQogICAgICAgIH0NCiAgICB9DQp9DQoNCmZ1bmN0aW9uIGV4dHJhUmVsYUZpbigpIHsNCiAgICB2YXIgZXh0cmFrZXlzPU9iamVjdC5rZXlzKGV4dHJhUmVsYSk7DQogICAgZm9yKHZhciBpPTA7aTxleHRyYWtleXMubGVuZ3RoO2krKyl7DQogICAgICAgIHZhciBleHRyYU9iaj1leHRyYVJlbGFbZXh0cmFrZXlzW2ldXTsNCiAgICAgICAgaWYoZXh0cmFPYmouaXNDID09PSB0cnVlKXsNCiAgICAgICAgICAgIHZhciBmc2hvdz1kb2N1bWVudC5nZXRFbGVtZW50QnlJZChleHRyYU9iai5mcm9taWQpLnN0eWxlLmRpc3BsYXkgIT09J25vbmUnPyB0cnVlOiBmYWxzZTsNCiAgICAgICAgICAgIHZhciB0c2hvdz1kb2N1bWVudC5nZXRFbGVtZW50QnlJZChleHRyYU9iai50b2lkKS5zdHlsZS5kaXNwbGF5ICE9PSdub25lJz8gdHJ1ZTogZmFsc2U7DQogICAgICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChleHRyYU9iai5pZCkuc3R5bGUuZGlzcGxheT1mc2hvdyAmJiB0c2hvdz8gJ2Jsb2NrJzogJ25vbmUnOw0KICAgICAgICAgICAgZXh0cmFSZWxhW2V4dHJha2V5c1tpXV0uaXNDID0gZmFsc2U7DQogICAgICAgIH0NCiAgICB9DQp9'))</script>
+  </body>
+</html>
