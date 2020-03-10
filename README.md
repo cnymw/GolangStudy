@@ -32,9 +32,9 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 # 算法
 - [排序算法总结](/docs/算法-排序算法.md)
-    - [插入排序](https://cnymw.github.io/GolangStudy/docs/算法-插入排序.md)
-    - [堆排序](https://cnymw.github.io/GolangStudy/docs/算法-堆排序.md)
-    - [归并排序](https://cnymw.github.io/GolangStudy/docs/算法-归并排序.md)
+    - [插入排序](/docs/算法-插入排序.md)
+    - [堆排序](/docs/算法-堆排序.md)
+    - [归并排序](/docs/算法-归并排序.md)
 - [动态规划](/docs/算法-动态规划.md)
 - [前中后缀表达式](/docs/算法-前中后缀表达式.md)
 
