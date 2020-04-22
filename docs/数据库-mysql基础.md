@@ -2,7 +2,7 @@
 
 ## mysql 逻辑架构
 
-![mysql 服务器逻辑架构](https://cnymw.github.io/GolangStudy/docs/img/数据库-mysql基础/数据库-mysql基础-mysql服务器逻辑架构.png)
+![mysql 服务器逻辑架构](https://gitee.com/GolangStudy_1/AliGolangStudy/raw/master/docs/img/数据库-mysql基础/数据库-mysql基础-mysql服务器逻辑架构.png)
 
 - 最上层服务：包含连接处理，授权认证，安全等
 - 第二层架构：大多数 MySQL 核心服务功能在这一层，包括查询解析，分析，优化，缓存以及所有的内置函数，所有跨存储引擎的功能都在这层实现：存储过程，触发器，视图等。

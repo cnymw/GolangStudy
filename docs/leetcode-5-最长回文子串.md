@@ -19,7 +19,7 @@
 
 以输入"babad"为例，画出状态图:
 
-![状态图](https://cnymw.github.io/GolangStudy/docs/img/算法-动态规划/算法-动态规划-leetcode5状态图.png)
+![状态图](https://gitee.com/GolangStudy_1/AliGolangStudy/raw/master/docs/img/算法-动态规划/算法-动态规划-leetcode5状态图.png)
 
 容易看出，当子串长为 1，也就是当 i == j 时，dp[j,i]=1
 
