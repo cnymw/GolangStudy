@@ -24,7 +24,7 @@
 
 以示例输入的值为例，画出状态图:
 
-![状态图](https://cnymw.github.io/GolangStudy/docs/img/算法-动态规划/算法-动态规划-leetcode64状态图.png)
+![状态图](https://golangstudy-1301931916.cos.ap-shanghai.myqcloud.com/img/算法-动态规划-leetcode64状态图.png)
 
 通过观察状态图，可以看出当 j==i==0 时，dp[j][i] = nums[0][0] = 1
 
