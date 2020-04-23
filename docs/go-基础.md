@@ -2,7 +2,7 @@
 
 ## Go 家族树
 
-![Go家族树](https://gitee.com/GolangStudy_1/AliGolangStudy/raw/master/docs/img/go-基础/go-基础-tree.png)
+![Go家族树](https://cnymw.github.io/GolangStudy/docs/img/go-基础/go-基础-tree.png)
 
 # 基本概念
 
@@ -240,13 +240,13 @@ w.Spokes = 20
 
 ## 图片版
 
-![go-基础-思维导图.jpg](https://gitee.com/GolangStudy_1/AliGolangStudy/raw/master/docs/img/go-基础/go-基础-思维导图.jpg)
+![go-基础-思维导图.jpg](https://cnymw.github.io/GolangStudy/docs/img/go-基础/go-基础-思维导图.jpg)
 
 ## pdf
 
-[go-基础-思维导图.pdf](https://gitee.com/GolangStudy_1/AliGolangStudy/raw/master/docs/img/go-基础/go-基础-思维导图.pdf)
+[go-基础-思维导图.pdf](https://cnymw.github.io/GolangStudy/docs/img/go-基础/go-基础-思维导图.pdf)
 
 ## 在线查看
 
-[go-基础-思维导图.html](https://gitee.com/GolangStudy_1/AliGolangStudy/raw/master/docs/img/go-基础/go-基础-思维导图.html)
+[go-基础-思维导图.html](https://cnymw.github.io/GolangStudy/docs/img/go-基础/go-基础-思维导图.html)
 
