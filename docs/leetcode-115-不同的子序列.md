@@ -48,7 +48,7 @@ babgbag
 
 首先根据输入 S = "rabbbit", T = "rabbit"，画出正确结果的状态图来：
 
-![状态图](https://golangstudy-1301931916.cos.ap-shanghai.myqcloud.com/img/算法-动态规划-leetcode115状态图.png)
+![状态图](https://cnymw.github.io/GolangStudy/docs/img/算法-动态规划-leetcode115状态图.png)
 
 ```go
 	j	1
@@ -83,7 +83,7 @@ i	dp	r	a	b	b
 
 再根据输入 S = "babgbag" , T = "bag"，可以得出以下状态图
 
-![状态图](https://golangstudy-1301931916.cos.ap-shanghai.myqcloud.com/img/算法-动态规划-leetcode115状态图2.png)
+![状态图](https://cnymw.github.io/GolangStudy/docs/img/算法-动态规划-leetcode115状态图2.png)
 
 可以发现，当 i==1 时，因为左上方不存在，所以 dp[i][j] = dp[i][j-1] + 1
 
