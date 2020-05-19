@@ -1,6 +1,6 @@
 # GolangStudy
 
-- [首页](README.md)
+- [首页](../README.md)
 
 ## go
 - [Go 基础](/docs/go-基础.md)
