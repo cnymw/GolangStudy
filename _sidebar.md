@@ -13,11 +13,12 @@
     - [顺序表](/docs/数据结构-顺序表.md)
     - [链表](/docs/数据结构-链表.md)
     - [队列](/docs/数据结构-队列.md)
+- 树
+    - [二叉树](/docs/数据结构-二叉树.md)
+    - [二叉搜索树](/docs/数据结构-二叉搜索树.md)
+    - [红黑树](/docs/数据结构-红黑树.md)
+    - [AVL 树](/docs/数据结构-AVL树.md) 
 - [哈希表](/docs/数据结构-哈希表.md)
-- [二叉树](/docs/数据结构-二叉树.md)
-- [二叉搜索树](/docs/数据结构-二叉搜索树.md)
-- [红黑树](/docs/数据结构-红黑树.md)
-- [AVL 树](/docs/数据结构-AVL树.md)
 
 # 算法
 - [排序算法总结](/docs/算法-排序算法.md)
@@ -58,3 +59,29 @@
 - [redis 基础数据结构](/docs/redis-redis基础数据结构.md)
 
 ## 操作系统
+
+## leetcode
+
+- [leetcode-1-两数之和](/docs/leetcode-1-两数之和.md)
+- [leetcode-3-无重复字符的最长子串](/docs/leetcode-3-无重复字符的最长子串.md)
+- [leetcode-5-最长回文子串](/docs/leetcode-5-最长回文子串.md)
+- [leetcode-15-三数之和](/docs/leetcode-15-三数之和.md)
+- [leetcode-21-合并两个有序链表](/docs/leetcode-21-合并两个有序链表.md)
+- [leetcode-27-移除元素](/docs/leetcode-27-移除元素.md)
+- [leetcode-30-串联所有单词的子串](/docs/leetcode-30-串联所有单词的子串.md)
+- [leetcode-53-最大子序和](/docs/leetcode-53-最大子序和.md)
+- [leetcode-56-合并区间](/docs/leetcode-56-合并区间.md)
+- [leetcode-64-最小路径和](/docs/leetcode-64-最小路径和.md)
+- [leetcode-70-爬楼梯](/docs/leetcode-70-爬楼梯.md)
+- [leetcode-100-相同的树](/docs/leetcode-100-相同的树.md)
+- [leetcode-115-不同的子序列](/docs/leetcode-115-不同的子序列.md)
+- [leetcode-150-逆波兰表达式求值](/docs/leetcode-150-逆波兰表达式求值.md)
+- [leetcode-164-最大间距](/docs/leetcode-164-最大间距.md)
+- [leetcode-224-基本计算器](/docs/leetcode-224-基本计算器.md)
+- [leetcode-225-用队列实现栈](/docs/leetcode-225-用队列实现栈.md)
+- [leetcode-242-有效的字母异位词](/docs/leetcode-242-有效的字母异位词.md)
+- [leetcode-349-两个数组的交集.md](/docs/leetcode-349-两个数组的交集.md)
+- [leetcode-350-两个数组的交集2](/docs/leetcode-350-两个数组的交集2.md)
+- [leetcode-922-按奇偶排序数组2](/docs/leetcode-922-按奇偶排序数组2.md)
+- [leetcode-976-三角形的最大周长](/docs/leetcode-976-三角形的最大周长.md)
+- [leetcode-1038-从二叉搜索树到更大和树](/docs/leetcode-1038-从二叉搜索树到更大和树.md)
