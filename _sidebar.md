@@ -7,7 +7,7 @@
 - [Go 并发](/docs/go-并发.md)
 
 
-# 数据结构
+## 数据结构
 - [线性表](/docs/数据结构-线性表.md)
     - [栈](/docs/数据结构-栈.md)
     - [顺序表](/docs/数据结构-顺序表.md)
@@ -20,7 +20,7 @@
     - [AVL 树](/docs/数据结构-AVL树.md) 
 - [哈希表](/docs/数据结构-哈希表.md)
 
-# 算法
+## 算法
 - [排序算法总结](/docs/算法-排序算法.md)
     - [插入排序](/docs/算法-插入排序.md)
     - [堆排序](/docs/算法-堆排序.md)
@@ -46,19 +46,6 @@
 
 ## docker
 - [docker 基础](/docs/docker-docker基础.md)
-
-## git
-- [git 基础](/docs/git-git基础.md)
-
-## 消息队列
-- [RabbitMQ 基础](/docs/mq-RabbitMQ基础.md)
-
-## 网络
-
-## redis
-- [redis 基础数据结构](/docs/redis-redis基础数据结构.md)
-
-## 操作系统
 
 ## leetcode
 
