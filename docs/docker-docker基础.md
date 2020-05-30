@@ -40,6 +40,12 @@ docker 是以 docker 容器为资源分割和调度的基本单位，封装整�
 - 当容器云专注于资源共享与隔离，容器编排与部署时，它接近传统的IaaS
 - 当容器云渗透到应用支撑与运行时环境时，它接近传统的PaaS
 
+### 什么是 docker registry
+
+docker registry 是存储容器镜像的仓库，用户可以通过 docker client 与 docker registry 进行通信，以此来完成镜像的搜索，下载和上传等相关操作。
+
+Docker Hub 是由 docker 公司在互联网上提供的一个镜像仓库，提供镜像的公有与私有存储服务，它是用户最主要的镜像来源。
+
 ## docker 操作参数基本解读
 
 ### docker 命令整体概览
@@ -147,4 +153,110 @@ Run 'docker COMMAND --help' for more information on a command.
 
 ![docker命令结构图](https://cnymw.github.io/GolangStudy/docs/img/docker-docker基础-命令结构图.png)
 
+### docker info 
 
+docker info 命令用于检查 docker 是否正确安装。
+
+```bash
+$ docker info
+
+Client:
+ Debug Mode: false
+ Plugins:
+  app: Docker Application (Docker Inc., v0.8.0)
+  buildx: Build with BuildKit (Docker Inc., v0.3.1-tp-docker)
+  ...
+```
+
+### docker version
+
+docker version 命令用于检查 docker 版本信息
+
+```bash
+$ docker version
+
+Client: Docker Engine - Community
+ Version:           19.03.5
+ API version:       1.40
+ Go version:        go1.12.12
+ Git commit:        633a0ea
+ Built:             Wed Nov 13 07:22:34 2019
+ OS/Arch:           darwin/amd64
+ Experimental:      true
+
+...
+```
+
+### docker run
+
+docker run 命令用于基于特定的镜像创建一个容器，并依据选项来控制该容器。
+
+以下命令从 ubuntu 镜像启动一个容器，并执行 echo 命令打印。执行完命令后，容器将停止运行。
+```bash
+$ sudo docker run ubuntu echo "Hello World"
+
+Hello World
+```
+
+以下命令启动一个容器，并为它分配一个伪终端执行 bash 命令，用户可以在该伪终端与容器进行交互。
+
+- -i 表示使用交互模式，始终保持输入流开放
+- -t 表示分配一个伪终端，即可在容器中利用打开的伪终端进行交互操作
+- -c 用于给运行在容器中的所有进程分配 CPU 的 shares 值，这是一个相对权重，实际的处理速度还与宿主机的 CPU 相关
+- -m 用于限制为容器中所有进程分配的内存信息，以 B，K，M，G 为单位
+- -v 用于挂载一个 volume，可以用多个 -v 参数同时挂载多个 volume
+- -p 用于将容器的端口暴露给宿主机的端口，通过端口的暴露，可以让外部主机通过宿主机暴露的端口来访问容器内的应用。
+
+```bash
+$sudo docker run -it ubuntu bash
+
+root@test:/#
+```
+
+### docker start/stop/restart
+
+docker run 命令可以新建一个容器来运行，对于已经存在的容器，可以通过 docker start/stop/restart 命令来启动，停止和重启。
+
+### docker pull
+
+docker pull 命令用于从 Docker registry 中拉取 image 或 repository。
+
+### docker push
+
+docker push 命令可以将本地的 image 或 repository 推送到 Docker Hub 的公共或私有镜像库，以及私有服务器。
+
+### docker images
+
+docker images 命令可以列出主机上的镜像，默认只列出最顶层的镜像
+
+### docker rmi/rm
+
+docker rmi 用于删除镜像。
+
+docker rm 命令用于删除容器。
+
+需要注意的是，使用 rmi 删除镜像时，如果已有基于该镜像启动的容器存在，则无法直接删除，需要首先删除容器。
+
+### docker attach 
+
+docker attach 用于连接到正在运行的容器，观察该容器的运行情况，或与容器的主进程进行交互。
+
+### docker inspect 
+
+docker inspect 命令可以查看镜像和容器的详细信息，默认会列出全部信息，可以通过 --format 参数来指定输出的模板格式，以便输出特定信息。
+
+### docker ps
+
+docker ps 命令可以查看容器的相关信息，默认只显示正在运行的容器的信息。最常用的功能就是查看容器的 Container ID，以便对特定容器进行操作。
+
+### docker commit
+
+docker commit 命令可以将一个容器固化为一个新的镜像。当需要制作特定的镜像时，会进行修改容器的配置，如在容器中安装特定工具等，通过 commit 命令可以将这些修改保存起来，使其不会因为容器的停止而丢失。
+
+### docker events/history/logs
+
+docker events 用于查看 Docker 系统的日志信息，会打印出实时的系统事件。
+
+docker history 命令会打印出指定镜像的历史版本信息，即构建该镜像的每一层镜像的命令记录。
+
+docker logs 命令会打印出容器中进程的运行日志。
