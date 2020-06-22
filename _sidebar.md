@@ -57,8 +57,10 @@
 
 ## 操作系统
 
+- [Linux 命令大全](https://man.linuxde.net)
 - [Linux 教程](https://www.runoob.com/linux/linux-tutorial.html)
 - [Linux 文件操作](/docs/linux-文件操作.md)
+- [Linux inode详解](https://www.cnblogs.com/llife/p/11470668.html)
 
 ## leetcode
 
