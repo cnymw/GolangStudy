@@ -295,3 +295,178 @@ c
 d
 e
 ``` 
+
+## 处理数据文件
+
+### 排序数据
+
+处理大量数据时的一个常用命令是 sort 命令，用于对数据进行排序。
+
+```bash
+$ cat file2 
+1 
+2 
+100 
+45 
+3 
+10 
+145 
+75 
+$ sort file2 
+1 
+10 
+100 
+145 
+2 
+3 
+45 
+75
+```
+
+默认情况下，sort 命令会把数字当作字符来执行标准的字符排序。可以用 -n 参数来告诉 sort 命令把数字识别成数字。
+
+还有其他一些方便的sort参数可用:
+
+单破折线|双破折线|描述
+---|:--:|--
+-b|--ignore-leading-blanks|排序时忽略起始的空白
+-C|--check=quiet|不排序，如果数据无序也不要报告
+-c|--check|不排序，但检查输入数据是不是已排序；未排序的话，报告
+-d|--dictionary-order|仅考虑空白和字母，不考虑特殊字符
+-f|--ignore-case|默认情况下，会将大写字母排在前面；这个参数会忽略大小写
+-g|--general-number-sort|按通用数值来排序（跟-n不同，把值当浮点数来排序，支持科学计数法表示的值）
+-i|--ignore-nonprinting|在排序时忽略不可打印字符
+-k|--key=POS1[,POS2]|排序从POS1位置开始；如果指定了POS2的话，到POS2位置结束
+-M|--month-sort|用三字符月份名按月份排序
+-m|--merge|将两个已排序数据文件合并
+-n|--numeric-sort|按字符串数值来排序（并不转换为浮点数）
+-o|--output=file|将排序结果写出到指定的文件中
+-r|--reverse|反序排序（升序变成降序）
+-S|--buffer-size=SIZE|指定使用的内存大小
+-s|--stable|禁用最后重排序比较
+-T|--temporary-directory=DIR|指定一个位置来存储临时工作文件
+-t|--field-separator=SEP|指定一个用来区分键位置的字符
+-u|--unique|和-c参数一起使用时，检查严格排序；不和-c参数一起用时，仅输出第一例相似的两行
+-z|--zero-terminated|用NULL字符作为行尾，而不是用换行符
+
+-n 参数在排序数值时非常有用，比如du命令的输出。
+
+```bash
+BenjaminYoungdeMacBook-Pro:Downloads benjamin$ du -s * | sort -nr
+12416	test.docx
+11728	test_new.docx
+6160	yun_officed.stdout
+1672	java_api_client
+1328	index.html
+448	graph完整版.postman_collection.json
+344	打印带批注说明文档.pdf
+304	Ss6UeYyeN_-dY-JKMk95nA==.docx
+296	uC76iqTZCUskcS6Vii-Nog==.docx
+296	puf98p8yvF_RwR3pU4pCeQ==.docx
+24	文字文稿.docx
+```
+
+### 搜索数据
+
+用 grep 命令可以在大文件中找一行数据，grep 命令的格式如下：
+
+```bash
+grep [option] pattern [file]
+```
+
+以下例子演示了使用 grep 命令来对文件进行搜索：
+
+```bash
+BenjaminYoungdeMacBook-Pro:Downloads benjamin$ grep one test.txt 
+one
+BenjaminYoungdeMacBook-Pro:Downloads benjamin$ grep t test.txt 
+two
+three
+```
+
+如果要进行反向搜索（输出不匹配该模式的行），可加 -v 参数：
+```bash
+BenjaminYoungdeMacBook-Pro:Downloads benjamin$ grep -v one test.txt 
+two
+three
+```
+
+如果要显示匹配模式的行所在的行号，加 -n 参数：
+```bash
+BenjaminYoungdeMacBook-Pro:Downloads benjamin$ grep -vn one test.txt 
+2:two
+3:three
+```
+
+如果只要知道有多少行含有匹配的模式，可用 -c 参数：
+```bash
+BenjaminYoungdeMacBook-Pro:Downloads benjamin$ grep -vc one test.txt 
+2
+```
+
+如果要指定多个匹配模式，可用 -e 参数来指定每个模式：
+```bash
+BenjaminYoungdeMacBook-Pro:Downloads benjamin$ grep -e one -e two test.txt 
+one
+two
+```
+
+### 压缩文件
+
+Linux 包含了多种文件压缩工具：
+
+工具|文件扩展名|描述
+---|:--:|--
+bzip2|.bz2|采用Burrows-Wheeler块排序文本压缩算法和霍夫曼编码
+compress|.Z|最初的Unix文件压缩工具
+gzip|.gz|GNU压缩工具，用Lempel-Ziv编码
+zip|.zip|Windows上PKZIP工具的Unix实现
+
+### 归档数据
+
+虽然 zip 命令能够很好的将数据压缩和归档进单个文件，但它不是 Unix 和 Linux 中标准归档工具。目前，Unix 和 Linux 上最广泛使用的归档工具是 tar 命令。
+
+下面是 tar 命令的格式：
+
+```bash
+tar function [options] object1 object2 ...
+```
+
+function 参数定义了 tar 命令应该做什么
+
+功能|长名称|描述
+---|:--:|--
+-A|--concatenate|将一个已有tar归档文件追加到另一个已有tar归档文件
+-c|--create|创建一个新的tar归档文件
+-d|--diff|检查归档文件和文件系统的不同之处
+-r|--append|追加文件到已有tar归档文件末尾
+-t|--list|列出已有tar归档文件的内容
+-u|--update|将比tar归档文件中已有的同名文件新的文件追加到该tar归档文件中
+-x|--extract|从已有tar归档文件中提取文件
+
+每个功能可用选项来针对 tar 归档文件定义一个特定行为，下面列出了这些选项中能和 tar 命令一起使用的常见选项：
+功能|描述
+---|--
+-C dir|切换到指定目录
+-f file|输出结果到文件或设备file
+-j|将输出重定向给bzip2命令来压缩内容
+-p|保留所有文件权限
+-v|在处理文件时显示文件
+-z|将输出重定向给gzip命令来压缩内容
+
+你可以用下列命令来创建一个归档文件：
+```bash
+tar -cvf test.tar test/ test2/
+```
+
+用下列命令列出 tar 文件内容:
+
+```bash
+tar -tf test.tar
+```
+
+最后，用下列命令从 tar 文件中提取内容：
+
+```bash
+tar -xvf test.tar
+```

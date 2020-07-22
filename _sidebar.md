@@ -6,7 +6,7 @@
 
 - [Go 基础](/docs/go-基础.md)
 - [Go 并发](/docs/go-并发.md)
-
+- [Go 性能分析：pprof实战](https://blog.wolfogre.com/posts/go-ppof-practice/)
 
 ## 数据结构
 
@@ -61,6 +61,7 @@
 - [Linux 教程](https://www.runoob.com/linux/linux-tutorial.html)
 - [Linux 文件操作](/docs/linux-文件操作.md)
 - [Linux inode详解](https://www.cnblogs.com/llife/p/11470668.html)
+- [Linux 监测系统](/docs/linux-监测系统.md)
 
 ## leetcode
 
