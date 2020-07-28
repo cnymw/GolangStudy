@@ -34,8 +34,8 @@
 
 ## 数据库
 
-- [mysql 基础](/docs/数据库-mysql基础.md)
-- [mysql 锁](/docs/数据库-mysql锁.md)
+- [mysql 锁](/docs/数据库-mysql-innodb锁机制.md)
+- [mysql 死锁案例](https://github.com/aneasystone/mysql-deadlocks)
 
 ## 设计模式
 

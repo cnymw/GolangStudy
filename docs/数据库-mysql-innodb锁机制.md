@@ -30,7 +30,7 @@ InnoDB 支持多粒度锁，允许行锁和表锁共存。
 - 在事务获取记录共享锁之前，事务必须首先获得一个表的意向共享锁或者意向排他锁
 - 在事务获取记录排他锁之前，事务必须首先获得一个表的意向排他锁
 
-```go
+```sql
 	X	        IX	        S	        IS
 X	Conflict	Conflict	Conflict	Conflict
 IX	Conflict	Compatible	Conflict	Compatible
@@ -60,7 +60,7 @@ TABLE LOCK table `test`.`t` trx id 10080 lock mode IX
 
 记录锁的事务显示如下：
 
-```go
+```sql
 RECORD LOCKS space id 58 page no 3 n bits 72 index `PRIMARY` of table `test`.`t` 
 trx id 10078 lock_mode X locks rec but not gap
 Record lock, heap no 2 PHYSICAL RECORD: n_fields 3; compact format; info bits 0
@@ -103,7 +103,92 @@ SELECT * FROM child WHERE id = 100;
 
 ## Next-Key 锁（Next-Key Locks）
 
+Next-Key 锁是索引记录上的 Record Lock 和在索引记录之前的Gap Lock 的组合。
 
+InnoDb 执行行锁的方式是这样的，当它搜索或扫描表索引时，它会对遇到的索引记录设置共享或独占锁。因此，行级锁实际上是索引记录锁。索引记录上的 Next-Key 锁也会影响该索引记录之前的 gap。
+也就是说，Next-Key 锁是一个索引记录锁加上索引记录前面的间隙上的 Gap Lock。如果一个会话对索引中的记录 R 具有共享或独占锁，那么另一个会话无法在紧靠 R 的索引顺序的间隙中插入新的索引记录。
+
+假设一个索引包含值 10，11，13 和 20，那么这个索引的 Next-Key 锁可能包含以下间隔，其中圆括号表示排除间隔端点，方括号表示包含端点：
+
+```bash
+(negative infinity, 10]
+(10, 11]
+(11, 13]
+(13, 20]
+(20, positive infinity)
+```
+
+对于最后一个间隔，Next-Key 锁锁定索引中最大值上方的间隙，以及值高于索引中任何实际值的"上界"伪记录。上界值不是真正的索引记录，因此，Next-Key 锁只锁定最大索引值后面的间隙。
+
+默认情况下，InnoDB 在 REPEATABLE READ 事务隔离级别运行。在这种情况下，InnoDB 使用 Next-Key 锁进行搜索和索引扫描，这样可以防止幻读。
+
+在输入 *SHOW ENGINE INNODB STATUS* 后，Next-Key 锁的事务数据如下所示：
+
+```sql
+RECORD LOCKS space id 58 page no 3 n bits 72 index `PRIMARY` of table `test`.`t`
+trx id 10080 lock_mode X
+Record lock, heap no 1 PHYSICAL RECORD: n_fields 1; compact format; info bits 0
+ 0: len 8; hex 73757072656d756d; asc supremum;;
+
+Record lock, heap no 2 PHYSICAL RECORD: n_fields 3; compact format; info bits 0
+ 0: len 4; hex 8000000a; asc     ;;
+ 1: len 6; hex 00000000274f; asc     'O;;
+ 2: len 7; hex b60000019d0110; asc        ;;
+```
+
+## 插入意向锁（Insert Intention Locks）
+
+插入意向锁是 INSERT 操作在插入行之前设置的一种间隙锁。这个锁的意图在于，在插入到同一索引间隙中的多个事务如果不是在间隙内的同一位置插入，那么不需要等待彼此。假设有值为 4 和 7 的索引记录，分别插入值 5 和 6 的独立事务。
+在获得插入行的排他锁之前，每个事务都使用插入意向锁锁定 4 和 7 之间的间隙，但不会因为行不冲突而阻塞彼此。
+
+下面的示例演示了一个事务，它在获得插入记录的排他锁之前使用了插入意向锁。这个例子涉及两个客户机，A 和 B。
+
+A 创建一个包含两个索引记录（90 和 102）的表，然后启动一个事务，该事务对 ID 大于 100 的索引记录进行独占锁定。独占锁包含记录 102 之前的间隙锁：
+
+```sql
+mysql> CREATE TABLE child (id int(11) NOT NULL, PRIMARY KEY(id)) ENGINE=InnoDB;
+mysql> INSERT INTO child (id) values (90),(102);
+
+mysql> START TRANSACTION;
+mysql> SELECT * FROM child WHERE id > 100 FOR UPDATE;
++-----+
+| id  |
++-----+
+| 102 |
++-----+
+```
+
+B 开始一个事务，将一个记录插入到间隙中。事务在等待获得排他锁时接受插入意向锁。
+
+```sql
+mysql> START TRANSACTION;
+mysql> INSERT INTO child (id) VALUES (101);
+```
+
+输入*SHOW ENGINE INNODB STATUS*后，插入意向锁的事务数据如下所示：
+
+```sql
+RECORD LOCKS space id 31 page no 3 n bits 72 index `PRIMARY` of table `test`.`child`
+trx id 8731 lock_mode X locks gap before rec insert intention waiting
+Record lock, heap no 3 PHYSICAL RECORD: n_fields 3; compact format; info bits 0
+ 0: len 4; hex 80000066; asc    f;;
+ 1: len 6; hex 000000002215; asc     " ;;
+ 2: len 7; hex 9000000172011c; asc     r  ;;...
+```
+
+## 自增锁(AUTO-INC lock)
+
+自增锁是一种特殊的表级锁，它由事务插入具有*AUTO_INCREMENT*列的表中获得。在最简单的情况下，如果一个事务正在向表中插入值，则任何其他事务都必须等待，以便第一个事务插入的行接收连续的主键值。
+
+*innodb_autoinc_lock_mode*配置控制自增锁定的算法，它允许你选择在可预测的自动递增序列和插入操作的最大并发性之间进行权衡。
+
+## 空间索引谓词锁（Predicate Locks for Spatial Indexes）
+
+InnoDB 支持对包含空间列的列进行空间索引。
+
+要处理涉及空间索引的操作的锁定，Next-Key 锁不能很好的支持*REPEATABLE READ*或*SERIALIZABLE*事务隔离级别，多维数据中没有绝对的排序概念，因此不清楚哪个是下一个键。
+
+为了支持具有空间索引的表的隔离级别，InnoDB 使用谓词锁。空间索引包含最小边界矩形（MBR）值，因此 InnoDB 通过在用于查询的 MBR 值上设置谓词锁来保持制索引的一致性。其他事务无法插入或修改与查询条件匹配的行。
 
 # 参考资料
-- [MySQL 5.6 Reference Manual](https://dev.mysql.com/doc/refman/8.0/en/)
+- [MySQL 5.6 Reference Manual:InnoDB Locking](https://dev.mysql.com/doc/refman/8.0/en/innodb-locking.html)
