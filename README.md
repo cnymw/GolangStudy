@@ -19,6 +19,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [Go 基础](/docs/go-基础.md)
 - [Go 并发](/docs/go-并发.md)
 - [Go 性能分析：pprof实战](https://blog.wolfogre.com/posts/go-ppof-practice/)
+- [Go 高性能日志库 zap 分析](/docs/go-zad.md)
 
 ## 数据结构
 
@@ -46,7 +47,8 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 ## 数据库
 
-- [mysql 锁](/docs/数据库-mysql-innodb锁机制.md)
+- [mysql InnoDB 存储引擎](/docs/数据库-InnoDB存储引擎.md)
+- [mysql InnoDB 锁机制](/docs/数据库-mysql-innodb锁机制.md)
 - [mysql 死锁案例](https://github.com/aneasystone/mysql-deadlocks)
 
 

@@ -31,10 +31,12 @@
     - [快速排序](/docs/算法-快速排序.md)
 - [动态规划](/docs/算法-动态规划.md)
 - [前中后缀表达式](/docs/算法-前中后缀表达式.md)
+- [LRU 最近最久未使用算法](/docs/算法-LRU.md)
 
 ## 数据库
 
-- [mysql 锁](/docs/数据库-mysql-innodb锁机制.md)
+- [mysql InnoDB 存储引擎](/docs/数据库-InnoDB存储引擎.md)
+- [mysql InnoDB 锁机制](/docs/数据库-mysql-innodb锁机制.md)
 - [mysql 死锁案例](https://github.com/aneasystone/mysql-deadlocks)
 
 ## 设计模式
