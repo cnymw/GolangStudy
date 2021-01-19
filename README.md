@@ -77,6 +77,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [Linux 文件操作](/docs/linux-文件操作.md)
 - [Linux inode详解](https://www.cnblogs.com/llife/p/11470668.html)
 - [Linux 监测系统](/docs/linux-监测系统.md)
+- [Linux 抓包工具tcpdump详解](/docs/linux-抓包tcpdump.md)
 
 ## leetcode
 
