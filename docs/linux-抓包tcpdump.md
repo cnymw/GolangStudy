@@ -57,3 +57,80 @@ tcpdump 如果不使用 -c 运行，将持续捕获数据包，直到它被 SIGI
 | -vvv | - | 更详细的输出。例如，telnet SB ... SE 选项全部打印。|
 | -V file | - | 从 file 读取文件名列表。如果文件为"-"，则使用标准输入。|
 | -w file | - | 将原始数据包写入文件，而不是解析并打印出来。以后可以使用 -r 选项打印他们。如果文件为"-"，则使用标准输出。文件扩展名 .pcap 通常与 .cap 和 .dmp 一起使用。tcpdump 在读取捕获文件时不检查扩展名，在写入文件时也不添加扩展名。|
+| -W filecount | - | 与 -C 选项结合使用，将限制创建的文件数为 filecount，并从一开始就覆盖文件，从而创建一个旋转缓冲区。此外，它将使用足够的前置0来命名文件，以支持最大数量的文件，从而允许他们正确排序。|
+| -x | - | 在解析和打印时，除了打印每个数据包的 header 外，还以十六进制打印每个数据包的数据（减去 link 级别的 header）。|
+| -xx | - | 在解析和打印时，除了打印每个数据包的 header 外，还以十六进制打印每个数据包的数据，包括其 link 级别的 header。|
+| -xxx | - | 在解析和打印时，除了打印每个数据包的 header 外，还以十六进制和 ASCII 格式打印每个数据包的数据（减去 link 级别的 header）。这对于分析新协议非常方便。|
+| -XX | - | 在解析和打印时，除了打印每个数据包的 header 外，还以十六进制和 ASCII 格式打印每个数据包的数据，包括其 link 级别的 header。。|
+
+## 例子
+
+> tcpdump host sundown
+
+打印所有到达或离开 sundown 的数据包,(sundown 是一个地址)。
+
+---
+
+> tcpdump host helios and \( hot or ace \)
+
+打印 helios 和 hot 或者 ace 之间的流量。
+
+---
+
+> tcpdump ip host ace and not helios
+
+打印 ace 和任何主机（除 helios 之外）之间的所有 IP 数据包。
+
+---
+
+> tcpdump net ucb-ether
+
+打印本地主机和 ucb-ether 主机之间的所有通信量
+
+---
+
+> tcpdump 'gateway snup and (port ftp or ftp-data)'
+
+打印通过 internet 网关 snup 的所有 ftp 流量（打引号是为了防止 shell 错误地解释括号）。
+
+---
+
+> tcpdump ip and not net localnet
+
+打印即不来自本地主机，也不面向本地主机的流量（如果你是另一个网络的网关，那么这些内容永远不会进入你的本地网络）。
+
+---
+
+> tcpdump 'tcp[tcpflags] & (tcp-syn|tcp-fin) != 0 and not src and dst net localnet'
+
+打印每个涉及非本地主机的 TCP 会话的开始和结束数据包（SYN 和 FIN 数据包）。
+
+---
+
+> tcpdump 'tcp[tcpflags] & (tcp-rst|tcp-ack) == (tcp-rst|tcp-ack)'
+
+打印设置了 RST 和 ACK 标志的 TCP 数据包。（也就是仅在标志字段中选择 RST 和 ACK 标志，如果结果为"RST 和 ACK 同时设置"，则匹配）。
+
+---
+
+> tcpdump 'tcp port 80 and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)'
+
+打印进出端口 80 的所有 IPv4 HTTP 数据包，也就是仅打印包含数据的数据包，而不是例如 SYN 和 FIN 数据包以及仅 ACK 数据包。
+
+---
+
+> tcpdump 'gateway snup and ip[2:2] > 576'
+
+打印通过网关 snup 发送的长度超过 576 字节的 IP 数据包。
+
+---
+
+> tcpdump 'ether[0] & 1 = 0 and ip[16] >= 224'
+
+打印未通过 Ethernet 广播或多播发送的 IP 广播或多播数据包。
+
+---
+
+> tcpdump 'icmp[icmptype] != icmp-echo and icmp[icmptype] != icmp-echoreply'
+
+打印所有不是 echo 请求/回复的 ICMP 数据包（也就是，不是 ping 数据包）。

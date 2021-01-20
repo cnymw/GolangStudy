@@ -7,6 +7,7 @@
 - [Go 基础](/docs/go-基础.md)
 - [Go 并发](/docs/go-并发.md)
 - [Go 性能分析：pprof实战](https://blog.wolfogre.com/posts/go-ppof-practice/)
+- [Go 高性能日志库 zap 分析](/docs/go-zap.md)
 
 ## 数据结构
 
@@ -64,6 +65,8 @@
 - [Linux 文件操作](/docs/linux-文件操作.md)
 - [Linux inode详解](https://www.cnblogs.com/llife/p/11470668.html)
 - [Linux 监测系统](/docs/linux-监测系统.md)
+- [Linux 抓包工具tcpdump详解](/docs/linux-抓包tcpdump.md)
+- [Linux tcpdump命令详解(转)](https://www.cnblogs.com/ggjucheng/archive/2012/01/14/2322659.html)
 
 ## leetcode
 
