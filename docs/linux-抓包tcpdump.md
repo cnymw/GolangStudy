@@ -134,3 +134,6 @@ tcpdump 如果不使用 -c 运行，将持续捕获数据包，直到它被 SIGI
 > tcpdump 'icmp[icmptype] != icmp-echo and icmp[icmptype] != icmp-echoreply'
 
 打印所有不是 echo 请求/回复的 ICMP 数据包（也就是，不是 ping 数据包）。
+
+## 输出格式
+
