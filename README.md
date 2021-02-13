@@ -106,7 +106,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [leetcode-224-基本计算器](/docs/leetcode-224-基本计算器.md)
 - [leetcode-225-用队列实现栈](/docs/leetcode-225-用队列实现栈.md)
 - [leetcode-242-有效的字母异位词](/docs/leetcode-242-有效的字母异位词.md)
-- [leetcode-349-两个数组的交集.md](/docs/leetcode-349-两个数组的交集.md)
+- [leetcode-349-两个数组的交集](/docs/leetcode-349-两个数组的交集.md)
 - [leetcode-350-两个数组的交集2](/docs/leetcode-350-两个数组的交集2.md)
 - [leetcode-922-按奇偶排序数组2](/docs/leetcode-922-按奇偶排序数组2.md)
 - [leetcode-976-三角形的最大周长](/docs/leetcode-976-三角形的最大周长.md)
