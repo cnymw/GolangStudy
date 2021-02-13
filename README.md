@@ -14,6 +14,12 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 本项目更加看重的是对于知识点系统的一个总结，能够通过一句话，一张思维导图来把一类知识进行讲解，这样在面试前把所有的思维导图都过一遍就能更大的提升面试通过的几率了，平时空余的时候拿出思维导图进行复习也能加深理解。
 
+## Golang 小程序在线学习
+
+为了更方便的学习 Golang，特意开发了一款小程序，将学习内容同步到小程序中，希望能够通过手机学习的同学们可以扫一下二维码关注下小程序：
+
+<img src="https://cnymw.github.io/GolangStudy/docs/img/首页-小程序.jpg" width="20%"/>
+
 ## go
 
 - [Go 基础](/docs/go-基础.md)
@@ -117,10 +123,6 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 # 公众号
 
 <img src="https://cnymw.github.io/GolangStudy/docs/img/首页-wechat.jpg" width="20%"/>
-
-# 微信小程序
-
-<img src="https://cnymw.github.io/GolangStudy/docs/img/首页-小程序.jpg" width="20%"/>
 
 # 联系作者
 
