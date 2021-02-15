@@ -48,10 +48,8 @@
 
 ## OAuth 2.0
 
-- [ory 生态](/docs/oauth2-ory生态介绍.md)
 - [OAuth2 规范-rfc6749](/docs/oauth2-rfc6749.md)
 - [OAuth2 规范中文翻译](https://github.com/jeansfish/RFC6749.zh-cn/blob/master/SUMMARY.md)
-- [OAuth2.0 第一节 介绍](/docs/oauth2-1介绍.md)
 
 ## docker
 
