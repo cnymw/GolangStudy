@@ -16,7 +16,7 @@
 - 标识符不能包含空格
 - 不能以系统保留关键字作为标识符，比如 break，if 等等
 
-## Go 预先声明的标识符
+## Go SDK 预先声明的标识符
 
 Go 预先声明的标识符定义在 Go SDK 的 */builtin/builtin.go* 文件中。
 
@@ -611,3 +611,48 @@ type error interface {
 	Error() string
 }
 ```
+
+error 类型是 go 语言的一种内置类型，他本质上是一个接口。
+
+只有实现了 Error() 方法才能使用 error。
+
+在 Go SDK 中，errors 包实现了 error 接口，所以我们通常使用 errors.New() 来声明一个 error 对象：
+
+```go
+package errors
+
+// New returns an error that formats as the given text.
+// Each call to New returns a distinct error value even if the text is identical.
+//
+// New 返回一个格式为给定文本的 error。
+// 每次调用 New 都会返回一个不同的错误值，即使文本是相同的。
+func New(text string) error {
+	return &errorString{text}
+}
+
+// errorString is a trivial implementation of error.
+//
+// errorString 是 error 的一个简单实现。
+type errorString struct {
+	s string
+}
+
+func (e *errorString) Error() string {
+	return e.s
+}
+```
+
+# 思维导图
+
+## 图片版
+
+![go-源码解读-标识符.png](https://cnymw.github.io/GolangStudy/docs/img/go-源码解读-标识符.png)
+
+## pdf
+
+[go-源码解读-标识符.pdf](https://cnymw.github.io/GolangStudy/docs/img/go-源码解读-标识符.pdf)
+
+## 在线查看
+
+[go-源码解读-标识符.html](https://cnymw.github.io/GolangStudy/docs/img/go-源码解读-标识符.html)
+
