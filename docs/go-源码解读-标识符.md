@@ -644,15 +644,4 @@ func (e *errorString) Error() string {
 
 # 思维导图
 
-## 图片版
-
-![go-源码解读-标识符.png](https://cnymw.github.io/GolangStudy/docs/img/go-源码解读-标识符.png)
-
-## pdf
-
-[go-源码解读-标识符.pdf](https://cnymw.github.io/GolangStudy/docs/img/go-源码解读-标识符.pdf)
-
-## 在线查看
-
-[go-源码解读-标识符.html](https://cnymw.github.io/GolangStudy/docs/img/go-源码解读-标识符.html)
-
+![go-源码解读-标识符-思维导图.png](https://cnymw.github.io/GolangStudy/docs/img/go-源码解读-标识符-思维导图.png)
