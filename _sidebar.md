@@ -4,11 +4,13 @@
 
 ## go
 
+- [Go SDK 目录](https://cloud.tencent.com/developer/doc/1101)
 - [Go 基础](/docs/go-基础.md)
 - [Go 并发](/docs/go-并发.md)
 - [Go 性能分析：pprof实战](https://blog.wolfogre.com/posts/go-ppof-practice/)
 - [Go 高性能日志库 zap 分析](/docs/go-zap.md)
 - [Go 源码解析 标识符](/docs/go-源码解读-标识符.md)
+- [Go 源码解读 pprof](/docs/go-源码解读-pprof.md)
 
 ## 数据结构
 

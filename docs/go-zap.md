@@ -37,11 +37,6 @@ logger, _ := zap.NewProduction()
 在这里是构造了一个生产环境 Logger，对应也有 NewDevelopment 方法来构造开发环境 Logger
 
 ```go
-// NewProduction builds a sensible production Logger that writes InfoLevel and
-// above logs to standard error as JSON.
-//
-// It's a shortcut for NewProductionConfig().Build(...Option).
-//
 // NewProduction 构造了一个实用的生产环境 Logger ，它将 InfoLevel 和更高级别的日志用 JSON 字符串写入标准错误。
 // 这是个 NewProductionConfig().Build(...Option) 快速函数。
 func NewProduction(options ...Option) (*Logger, error) {
@@ -54,8 +49,6 @@ Build 函数使用了一系列参数，并返回了一个 Logger 指针。
 从 zapcore.NewCore(enc, sink, cfg.Level) 可以分析出，NewCore 是构造了一个 io 对象，enc 指定字符编码，sink 指定输出地址，cfg.Level 指定日志级别。
 
 ```go
-// Build constructs a logger from the Config and Options.
-//
 // Build 函数通过 Config 和 Options 构造了一个 Logger。
 func (cfg Config) Build(opts ...Option) (*Logger, error) {
 	enc, err := cfg.buildEncoder()
@@ -92,17 +85,6 @@ func (cfg Config) Build(opts ...Option) (*Logger, error) {
 - addStack：指定输出日志的级别，FatalLevel + 1 代表所有级别（包括 FatalLevel）的日志都会输出
 
 ```go
-// New constructs a new Logger from the provided zapcore.Core and Options. If
-// the passed zapcore.Core is nil, it falls back to using a no-op
-// implementation.
-//
-// This is the most flexible way to construct a Logger, but also the most
-// verbose. For typical use cases, the highly-opinionated presets
-// (NewProduction, NewDevelopment, and NewExample) or the Config struct are
-// more convenient.
-//
-// For sample code, see the package-level AdvancedConfiguration example.
-//
 // 通过提供的 zapcore.Core 和 Options，New 方法构造一个新的 Logger。
 // 如果传的 zapcore.Core 是空，则返回一个空实现。
 //
@@ -127,17 +109,6 @@ func New(core zapcore.Core, options ...Option) *Logger {
 
 ```go
 func Example_advancedConfiguration() {
-	// The bundled Config struct only supports the most common configuration
-	// options. More complex needs, like splitting logs between multiple files
-	// or writing to non-file outputs, require use of the zapcore package.
-	//
-	// In this example, imagine we're both sending our logs to Kafka and writing
-	// them to the console. We'd like to encode the console output and the Kafka
-	// topics differently, and we'd also like special treatment for
-	// high-priority logs.
-
-	// First, define our level-handling logic.
-	//
 	// 捆绑好的配置只支持最常见的场景。
 	// 更加复杂的场景时，例如分割日志到多个文件或者向非文件输出日志的时候，需要用到 zapcore 包了。
 	//
@@ -151,37 +122,22 @@ func Example_advancedConfiguration() {
 	lowPriority := zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {
 		return lvl < zapcore.ErrorLevel
 	})
-
-	// Assume that we have clients for two Kafka topics. The clients implement
-	// zapcore.WriteSyncer and are safe for concurrent use. (If they only
-	// implement io.Writer, we can use zapcore.AddSync to add a no-op Sync
-	// method. If they're not safe for concurrent use, we can add a protecting
-	// mutex with zapcore.Lock.)
-	//
+	
 	// 假设我们有针对两个 Kafka topics 有客户端。
 	// 客户端实现了 zapcore.WriteSyncer 接口，并且在并发场景下是安全的。
 	//（如果他们只实现 io.Writer 接口，我们可以使用 zapcore.AddSync 来添加一个空实现的 Sync 方法。） 
 	//（如果他们对于并发场景不是安全的，那么我们可以使用 zapcore.Lock 添加一个受保护的 mutex 互斥锁。）
 	topicDebugging := zapcore.AddSync(ioutil.Discard)
 	topicErrors := zapcore.AddSync(ioutil.Discard)
-
-	// High-priority output should also go to standard error, and low-priority
-	// output should also go to standard out.
-	//
+	
 	// 高优先级的应该输出到 Stdout，低优先级的应该输出到 Stderr。
 	consoleDebugging := zapcore.Lock(os.Stdout)
 	consoleErrors := zapcore.Lock(os.Stderr)
-
-	// Optimize the Kafka output for machine consumption and the console output
-	// for human operators.
-	//
+	
 	// 针对 Kafka 输出优化了机器消耗，同时针对人工操作优化了控制台输出。
 	kafkaEncoder := zapcore.NewJSONEncoder(zap.NewProductionEncoderConfig())
 	consoleEncoder := zapcore.NewConsoleEncoder(zap.NewDevelopmentEncoderConfig())
-
-	// Join the outputs, encoders, and level-handling functions into
-	// zapcore.Cores, then tee the four cores together.
-	//
+	
 	// 将输出，编码和级别控制函数封装到 zapcore.Cores 里，然后将四个 cores 合并在一起。
 	core := zapcore.NewTee(
 		zapcore.NewCore(kafkaEncoder, topicErrors, highPriority),
