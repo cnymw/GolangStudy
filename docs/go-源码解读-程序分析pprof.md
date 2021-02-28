@@ -82,7 +82,7 @@ pprof 命令行提供了许多命令。
 
 对于 CPU 的 profiling 是从调用 `StartCPUProfile` 开始，到 `StopCPUProfile` 结束，下面就详细的介绍下这两个函数逻辑以及实现。
 
-### StartCPUProfile
+### StartCPUProfile / StopCPUProfile
 
 ```go
 // StartCPUProfile 为当前的进程开启 CPU profiling。
@@ -149,6 +149,33 @@ func profileWriter(w io.Writer) {
 	cpu.done <- true
 }
 ```
+
+`readProfile()`函数和`runtime_pprof_readProfile()`函数通过`go:linkname`链接。
+
+> go:linkname 引导编译器将当前(私有)方法或者变量在编译时链接到指定的位置的方法或者变量，第一个参数表示当前方法或变量，第二个参数表示目标方法或变量，因为这关指令会破坏系统和包的模块化，因此在使用时必须导入unsafe。
+
+也就是说，当你使用`go:linkname`链接时，不管你用没用到`unsafe`包，你都必须`import "unsafe"`。
+
+```go
+// pprof.go
+func readProfile() (data []uint64, tags []unsafe.Pointer, eof bool)
+
+// cpuprof.go
+//go:linkname runtime_pprof_readProfile runtime/pprof.readProfile
+func runtime_pprof_readProfile() ([]uint64, []unsafe.Pointer, bool) {
+	lock(&cpuprof.lock)
+	log := cpuprof.log
+	unlock(&cpuprof.lock)
+	data, tags, eof := log.read(profBufBlocking)
+	if len(data) == 0 && eof {
+		lock(&cpuprof.lock)
+		cpuprof.log = nil
+		unlock(&cpuprof.lock)
+	}
+	return data, tags, eof
+}
+```
+
 `b.addCPUData(data, tags)`用于将`data`写入到 profile 文件中。
 
 ```go
@@ -231,3 +258,14 @@ func StopCPUProfile() {
 	<-cpu.done
 }
 ```
+
+### readProfile
+
+`readProfile()`所链接的`runtime_pprof_readProfile()`核心逻辑是从`profBuf`对象中读取数据。
+
+`profBuf`的数据是来自于程序接受了操作系统发来的 SIGPROF 信号之后，进行解析信号之后所读取的数据。
+
+以 Linux 操作系统为例，SIGPROF 是 Linux 的信号机制中的一种信号，是用于 profiling 的定时报警器（profiling time alarm），在这里的 profiling 指的是操作系统提供的 profiling 能力，而不是单纯指的 Go SDK 所提供的 profiling 能力了。
+
+> 在计算机科学中，信号是Unix、类Unix以及其他POSIX兼容的操作系统中进程间通讯的一种有限制的方式。它是一种异步的通知机制，用来提醒进程一个事件已经发生。当一个信号发送给一个进程，操作系统中断了进程正常的控制流程，此时，任何非原子操作都将被中断。如果进程定义了信号的处理函数，那么它将被执行，否则就执行默认的处理函数。
+
