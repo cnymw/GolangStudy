@@ -379,7 +379,7 @@ func panic(v interface{})
 ### recover
 
 ```go
-// 内置函数 recover 允许程序去管理一个发生 panicking 的线程。
+// 内置函数 recover 允许程序去管理一个发生 panicking 的协程。
 // 在 defer 函数（而不是它调用的任何函数）内执行 recover 调用，将恢复正常执行来停止 panicking 链并获取到 panic 调用时所传递的 error 对象。
 // 如果在 defer 函数外部调用 recover，它将不会停止 panicking 链。
 // 在这种情况下，或者当 goroutine 没有 panic 时，或者如果提供给 panic 的参数为 nil，recover 返回 nil。

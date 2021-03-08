@@ -2,7 +2,7 @@
 
 ## sync 包概览
 
-sync 包提供基本的同步原语，如互斥锁。除了 Once 和 WaitGroup 类型之外，大多数类型都是供比较简单的多线程场景。
+sync 包提供基本的同步原语，如互斥锁。除了 Once 和 WaitGroup 类型之外，大多数类型都是供比较简单的多协程场景。
 
 更高级别的同步最好通过 channel 和通信来实现。
 
@@ -35,7 +35,7 @@ type Locker interface {
 
 ```go
 // Lock 方法给 m 加锁。
-// 如果锁已经在使用中，那么调用的线程 goroutine 将会阻塞，直到 mutex 可用。
+// 如果锁已经在使用中，那么调用的协程 goroutine 将会阻塞，直到 mutex 可用。
 func (m *Mutex) Lock() {
 	// Fast path 快速路径：获取解锁的互斥锁。
 	if atomic.CompareAndSwapInt32(&m.state, 0, mutexLocked) {
@@ -73,7 +73,7 @@ CompareAndSwapInt32 原子操作由底层支持，所以执行速度非常快。
 
 ### mutex 解决竞争问题
 
-当 go 的 build 和 run 命令使用选项`-race`也就是启用数据竞争检测时，`race.Enabled=true`，如果多个线程抢占同一个变量，便会引发竞态报警。
+当 go 的 build 和 run 命令使用选项`-race`也就是启用数据竞争检测时，`race.Enabled=true`，如果多个协程抢占同一个变量，便会引发竞态报警。
 
 下面编写测试文件 mutex.go 来模拟`Lock()`方法的竞态检测。
 
@@ -200,45 +200,45 @@ Goroutine 7 (running) created at:
 
 ```
 
-从上可以看出，mutex 加锁是去除竞争的有效手段。
+从上可以看出，mutex 加锁是去除数据竞争的有效手段。
 
 ### Mutex fairness 互斥公平性
 
 在看`lockSlow()`方法之前，需要先了解一下 mutex 里的一些常量以及互斥的两种模式。
 
 ```go
-const (
-    // 表示 mutex 是上锁状态
-	mutexLocked = 1 << iota
-    // 表示 mutex 是唤醒状态
+const ( 
+	// 表示 mutex 是上锁状态
+	mutexLocked = 1 << iota 
+	// 表示 mutex 是唤醒状态
 	mutexWoken 
 	// 表示 mutex 处于饥饿模式
 	mutexStarving
 	// 表示 mutex.state 右移 3 位后即为等待的 goroutine 的数量。 
 	mutexWaiterShift = iota
 	
-    // 互斥公平性。
-    // 
-    // Mutex 可以有 2 种操作模式：正常模式，饥饿模式。
-    // 在正常模式，waiters 是按先进先出的顺序排队，但是一个唤醒状态的 waiters 不拥有互斥锁，
-    // 并与新到达的 goroutines 竞争所有权。
-    // 新到达的 goroutines 有一个优势 -- 他们已经在 CPU 上运行，而且可能有很多这样的 goroutine，
-    // 所以一个唤醒状态的 waiter 很有可能会输。
-    // 在这种情况下，它排在等待队列的前面。
-    // 如果 waiter 在超过 1ms 的时间内无法获取互斥，它会将互斥切换到饥饿模式。
-    //
-    // 在饥饿模式下，mutex 的所有权直接从解锁的 goroutine 传递给队列前面的 waiter。
-    // 新到达的 goroutines 不会尝试获取互斥锁，即使它看起来是解锁的，也不会尝试自旋·。
-    // 相反，他们在等待队列的尾部排队。
-    // 
-    // 如果 waiter 接收到 mutex 的所有权，并看到
-    // （1）它是队列中的最后一个 waiter，
-    // 或者（2）它等待的时间不到 1ms，
-    // 它将会互斥对象切换回到正常操作模式。
-    //
-    // 正常模式具有相当好的性能，因为 goroutine 可以连续多次获取 mutex，即使有阻塞的 waiter。
-    // 饥饿模式是预防高并发系统中尾延迟（tail latency）的重要方法。
-    //
+	// 互斥公平性。 
+	// 
+	// Mutex 可以有 2 种操作模式：正常模式，饥饿模式。 
+	// 在正常模式，waiters 是按先进先出的顺序排队，但是一个唤醒状态的 waiters 不拥有互斥锁， 
+	// 并与新到达的 goroutines 竞争所有权。 
+	// 新到达的 goroutines 有一个优势 -- 他们已经在 CPU 上运行，而且可能有很多这样的 goroutine， 
+	// 所以一个唤醒状态的 waiter 很有可能会输。 
+	// 在这种情况下，它排在等待队列的前面。 
+	// 如果 waiter 在超过 1ms 的时间内无法获取互斥，它会将互斥切换到饥饿模式。 
+	// 
+	// 在饥饿模式下，mutex 的所有权直接从解锁的 goroutine 传递给队列前面的 waiter。 
+	// 新到达的 goroutines 不会尝试获取互斥锁，即使它看起来是解锁的，也不会尝试自旋·。 
+	// 相反，他们在等待队列的尾部排队。 
+	// 
+	// 如果 waiter 接收到 mutex 的所有权，并看到 
+	//（1）它是队列中的最后一个 waiter， 
+	// 或者（2）它等待的时间不到 1ms， 
+	// 它将会互斥对象切换回到正常操作模式。 
+	// 
+	// 正常模式具有相当好的性能，因为 goroutine 可以连续多次获取 mutex，即使有阻塞的 waiter。 
+	// 饥饿模式是预防高并发系统中尾延迟（tail latency）的重要方法。 
+	// 
 	// starvationThresholdNs 值为 1000000 纳秒，即 1ms，表示将 mutex 切换到饥饿模式的等待时间阈值。
 	starvationThresholdNs = 1e6
 )
@@ -258,28 +258,27 @@ func (m *Mutex) lockSlow() {
 	for {
 		// 不要在饥饿模式下自旋，所有权交给 waiters。
 		// 这样我们无论如何都无法获得 mutex。
-		// if m.state = 1，then（old&(mutexLocked|mutexStarving) == mutexLocked） = true
-		// if m.state = 0，then（old&(mutexLocked|mutexStarving) == mutexLocked） = false
+		// old & 0101 == 0001 等于 1 说明已经加过锁，这是未处于饥饿模式，系统也支持自旋，则开始自旋。
 		if old&(mutexLocked|mutexStarving) == mutexLocked && runtime_canSpin(iter) {
 			// 活跃的自旋是有效的。
-			// 也就是说，如果一个线程抢到了 mutex 后，再次抢该 mutex，也是可以的。
 			// 尝试设置 mutexWoken 标志以通知 Unlock 不要唤醒其他被阻塞的 goroutines。
-			// 在这里 old = m.state = 1
 			if !awoke && old&mutexWoken == 0 && old>>mutexWaiterShift != 0 &&
 				atomic.CompareAndSwapInt32(&m.state, old, old|mutexWoken) {
-				// 重入标记
 				awoke = true
 			}
+			// 将当前的协程标记为唤醒状态后，执行自旋操作，计数器 +1，当前状态更新到 old。
 			runtime_doSpin()
 			iter++
 			old = m.state
 			continue
 		}
 		new := old
-		// 不要试图获取饥饿的 mutex，新到达的 goroutines 必须排队。
-		if old&mutexStarving == 0 {
+		// old & 0100 == 0，说明新到的协程是正常模式，需要排除。
+		if old & mutexStarving == 0 {
+			// new |= 0001
 			new |= mutexLocked
 		}
+		// old & 0101 !=0，说明新到的协程是饥饿模式下已加锁，需要去排队。
 		if old&(mutexLocked|mutexStarving) != 0 {
 			new += 1 << mutexWaiterShift
 		}
@@ -287,14 +286,18 @@ func (m *Mutex) lockSlow() {
 		// 当前 goroutine 将 mutex 切换到饥饿模式。
 		// 但是如果 mutex 当前处于解锁状态，则不要进行切换。
 		// Unlock 期望饥饿的 mutex 拥有 waiters，这在这种情形下不能实现。
+		// old & 0001 ！=0，说明协程已经加锁，需要切换到饥饿模式，协程解锁状态下不切换。
 		if starving && old&mutexLocked != 0 {
 			new |= mutexStarving
 		}
+		// 唤醒
 		if awoke {
 			// goroutine 已经从睡眠中唤醒，所以我们需要在任何情况下重置标志。
+			// awoke 标志为唤醒，但是 m.state 不是唤醒，互斥状态不相同就 panic
 			if new&mutexWoken == 0 {
 				throw("sync: inconsistent mutex state")
 			}
+			// 把唤醒状态位去掉，重置标志
 			new &^= mutexWoken
 		}
 		if atomic.CompareAndSwapInt32(&m.state, old, new) {
