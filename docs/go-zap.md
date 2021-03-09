@@ -145,9 +145,7 @@ func Example_advancedConfiguration() {
 		zapcore.NewCore(kafkaEncoder, topicDebugging, lowPriority),
 		zapcore.NewCore(consoleEncoder, consoleDebugging, lowPriority),
 	)
-
-	// From a zapcore.Core, it's easy to construct a Logger.
-	//
+	
 	// 通过 zapcore.Core，可以很轻松地构造一个 Logger。
 	logger := zap.New(core)
 	defer logger.Sync()

@@ -1,4 +1,4 @@
-# Go 源码解读 同步模块 sync
+# Go 源码解读 同步模块 sync mutex
 
 ## sync 包概览
 
@@ -301,39 +301,49 @@ func (m *Mutex) lockSlow() {
 			new &^= mutexWoken
 		}
 		if atomic.CompareAndSwapInt32(&m.state, old, new) {
+			// old 的第一位和第三位不是1，说明协程目前是未锁定且饥饿模式，获取锁成功。
 			if old&(mutexLocked|mutexStarving) == 0 {
 				// 使用 CAS 原子操作给 mutex 加锁
 				break 
 			}
 			// 如果我们之前已经在等了，就在队伍前面排队。
+			// 被唤醒的协程抢锁失败，重新放到队列首部。
 			queueLifo := waitStartTime != 0
 			if waitStartTime == 0 {
 				waitStartTime = runtime_nanotime()
 			}
+			// 进入休眠状态，等待信号唤醒
 			runtime_SemacquireMutex(&m.sema, queueLifo, 1)
+			// 确认当前锁的状态
 			starving = starving || runtime_nanotime()-waitStartTime > starvationThresholdNs
 			old = m.state
 			if old&mutexStarving != 0 {
 				// 如果这个 goroutine 被唤醒并且 mutex 处于饥饿模式，
 				// 那么所有权会被移交给我们，但 mutex 处于某种不一致的状态：
 				// mutexLocked 未设置，并且我们仍被视为 waiter。得修复好它。
+				// 饥饿模式不会出现 mutex 被锁住或唤醒状态，等待队列不能为0。
 				if old&(mutexLocked|mutexWoken) != 0 || old>>mutexWaiterShift == 0 {
 					throw("sync: inconsistent mutex state")
 				}
+				// 拿到锁，等待数 -1
 				delta := int32(mutexLocked - 1<<mutexWaiterShift)
 				if !starving || old>>mutexWaiterShift == 1 {
 					// 退出饥饿模式。
 					// 这个操作很关键，并考虑了等待时间。
 					// 饥饿模式是如此的低效，以至于两个 goroutines 一旦将 mutex 切换到饥饿模式，
 					// 就可以无限地进入锁步（lock-step）。
+					// 非饥饿模式，等待者只有一个时，退出饥饿模式。
 					delta -= mutexStarving
 				}
+				// 更新状态，高位原子计数直接添加。
 				atomic.AddInt32(&m.state, delta)
 				break
 			}
+			// awoke = true，不处于饥饿模式，新到达的协程先获得锁
 			awoke = true
 			iter = 0
 		} else {
+			// 自旋没有成功，更新 new，记录当前状态
 			old = m.state
 		}
 	}

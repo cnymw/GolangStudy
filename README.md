@@ -29,7 +29,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - 源码解读
   - [Go 源码解读 标识符](/docs/go-源码解读-标识符.md)
   - [Go 源码解读 程序分析pprof](/docs/go-源码解读-程序分析pprof.md)
-  - [Go 源码解读 同步模块sync](/docs/go-源码解读-同步sync.md)
+  - [Go 源码解读 同步模块sync](/docs/go-源码解读-同步sync-mutex.md)
   - [Go 源码解读 高性能日志库 zap](/docs/go-zap.md)
   
 
