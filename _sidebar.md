@@ -69,8 +69,9 @@
 - [Linux 文件操作](/docs/linux-文件操作.md)
 - [Linux inode详解](https://www.cnblogs.com/llife/p/11470668.html)
 - [Linux 监测系统](/docs/linux-监测系统.md)
-- [Linux 抓包工具tcpdump详解](/docs/linux-抓包tcpdump.md)
+- [Linux 抓包工具tcpdump详解](/docs/linux-抓包命令tcpdump.md)
 - [Linux tcpdump命令详解(转)](https://www.cnblogs.com/ggjucheng/archive/2012/01/14/2322659.html)
+- [linux tcp分析命令ss详解](/docs/linux-tcp分析命令ss.md)
 
 ## leetcode
 
