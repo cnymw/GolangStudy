@@ -45,6 +45,8 @@
 - [mysql InnoDB 存储引擎](/docs/数据库-InnoDB存储引擎.md)
 - [mysql InnoDB 锁机制](/docs/数据库-mysql-innodb锁机制.md)
 - [mysql 死锁案例](https://github.com/aneasystone/mysql-deadlocks)
+- [mysql 慢查询分析工具 mysqldumpslow](/docs/数据库-mysql-慢查询分析工具mysqldumpslow.md)
+
 
 ## 设计模式
 
