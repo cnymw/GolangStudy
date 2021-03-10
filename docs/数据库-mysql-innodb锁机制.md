@@ -191,4 +191,4 @@ InnoDB 支持对包含空间列的列进行空间索引。
 为了支持具有空间索引的表的隔离级别，InnoDB 使用谓词锁。空间索引包含最小边界矩形（MBR）值，因此 InnoDB 通过在用于查询的 MBR 值上设置谓词锁来保持制索引的一致性。其他事务无法插入或修改与查询条件匹配的行。
 
 # 参考资料
-- [MySQL 5.6 Reference Manual:InnoDB Locking](https://dev.mysql.com/doc/refman/8.0/en/innodb-locking.html)
+- [MySQL 8.0 Reference Manual:InnoDB Locking](https://dev.mysql.com/doc/refman/8.0/en/innodb-locking.html)
