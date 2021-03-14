@@ -24,7 +24,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 - [Go 基础](/docs/go-基础.md)
 - [Go 并发](/docs/go-并发.md)
-- [Go SDK 目录](https://cloud.tencent.com/developer/doc/1101)
+- [Go 源码 SDK 目录](https://cloud.tencent.com/developer/doc/1101)
 - [Go 性能分析：pprof实战](https://blog.wolfogre.com/posts/go-ppof-practice/)
 - 源码解读
   - [Go 源码解读 标识符](/docs/go-源码解读-标识符.md)
@@ -92,6 +92,10 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [Linux tcpdump命令详解(转)](https://www.cnblogs.com/ggjucheng/archive/2012/01/14/2322659.html)
 - [linux tcp分析命令ss详解](/docs/linux-tcp分析命令ss.md)
 
+## 网络
+
+- [TCP-IP 详解：链路层](/docs/网络-TCP-IP详解-链路层.md)
+
 ## leetcode
 
 - [leetcode-1-两数之和](/docs/leetcode-1-两数之和.md)
@@ -121,10 +125,6 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 # 参考资料
 - [麻省理工学院公开课：算法导论](http://open.163.com/special/opencourse/algorithms.html)
 - [LeetCode All in One 题目讲解汇总](https://github.com/grandyang/leetcode)
-
-# 赞助作者
-
-<img src="https://cnymw.github.io/GolangStudy/docs/img/首页-688.png" width="20%"/>
 
 # 公众号
 
