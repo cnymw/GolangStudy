@@ -78,6 +78,7 @@
 ## 网络
 
 - [TCP-IP 详解：链路层](/docs/网络-TCP-IP详解-链路层.md)
+- [TCP-IP 详解：IP 网际协议](/docs/网络-TCP-IP详解-IP.md)
 
 ## leetcode
 
