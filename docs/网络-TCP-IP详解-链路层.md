@@ -23,7 +23,7 @@
 
 图中每个方框下面的数字是它们的字节长度。
 
-![以太网帧格式](https://cnymw.github.io/GolangStudy/docs/img/网络-TCP-IP详解-以太网帧格式.png)
+![以太网帧格式](https://cnymw.github.io/GolangStudy/docs/img/网络-TCP-IP详解-链路层-以太网帧格式.png)
 
 分别介绍一下格式的细节：
 
@@ -37,7 +37,7 @@
 
 SLIP（Serial Line IP）是一种在串行线路上对 IP 数据报进行封装的简单形式。
 
-![SLIP 帧格式](https://cnymw.github.io/GolangStudy/docs/img/网络-TCP-IP详解-SLIP帧格式.png)
+![SLIP 帧格式](https://cnymw.github.io/GolangStudy/docs/img/网络-TCP-IP详解-链路层-SLIP帧格式.png)
 
 下面的规则描述了 SLIP 协议定义的帧格式：
 
@@ -59,7 +59,7 @@ PPP 修复了 SLIP 协议中的所有缺陷，包括以下三个部分：
 2. 建立，配置及测试数据链路的链路控制协议（LCP：Link Control Protocl），它允许通信双方进行协商，以确定不同的选项。
 3. 针对不同网络层协议的网络控制协议（NCP：Network Control Protocol）体系。
 
-![PPP 帧格式](https://cnymw.github.io/GolangStudy/docs/img/网络-TCP-IP详解-PPP帧格式.png)
+![PPP 帧格式](https://cnymw.github.io/GolangStudy/docs/img/网络-TCP-IP详解-链路层-PPP帧格式.png)
 
 下面介绍一下帧的细节：
 
@@ -86,7 +86,7 @@ PPP 修复了 SLIP 协议中的所有缺陷，包括以下三个部分：
 
 下图是环回接口处理 IP 数据报的简单过程：
 
-![环回接口流程](https://cnymw.github.io/GolangStudy/docs/img/网络-TCP-IP详解-环回接口流程.png)
+![环回接口流程](https://cnymw.github.io/GolangStudy/docs/img/网络-TCP-IP详解-链路层-环回接口流程.png)
 
 图中的关键点是：
 
@@ -121,3 +121,7 @@ X.25|576
 
 - 两台主机之间的路径 MTU 不一定是个常数，它取决于当时所选择的路由。
 - 选路不一定是对称的（从 A 到 B 的路由可能与从 B 到 A 的路由不同），因此路径 MTU 在两个方向上不一定是一致的。
+
+# 思维导图
+
+![思维导图](https://cnymw.github.io/GolangStudy/docs/img/网络-TCP-IP详解-链路层-思维导图.png)
