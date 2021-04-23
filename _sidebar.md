@@ -47,6 +47,7 @@
 - [mysql InnoDB 锁机制](/docs/数据库-mysql-innodb锁机制.md)
 - [mysql 死锁案例](https://github.com/aneasystone/mysql-deadlocks)
 - [mysql 慢查询分析工具 mysqldumpslow](/docs/数据库-mysql-慢查询分析工具mysqldumpslow.md)
+- [mysql 压测工具 mysqlslap](/docs/数据库-mysql-压测工具mysqlslap.md)
 
 
 ## 设计模式
