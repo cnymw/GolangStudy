@@ -74,3 +74,7 @@ mysqlslap --concurrency=5
 --port|连接的 TCP/IP 端口号
 --query|包含用于检索数据的 SELECT 语句的文件或字符串
 --user|连接到服务器时使用的 MySQL 用户名
+
+# 参考资料
+
+- [MySQL 8.0 Reference Manual:mysqlslap](https://dev.mysql.com/doc/refman/8.0/en/mysqlslap.html)
