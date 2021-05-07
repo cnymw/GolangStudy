@@ -61,10 +61,10 @@
 - [OAuth2 规范-rfc6749](/docs/oauth2-rfc6749.md)
 - [OAuth2 规范中文翻译](https://github.com/jeansfish/RFC6749.zh-cn/blob/master/SUMMARY.md)
 
-## docker
+## Docker
 
 - [Docker — 从入门到实践](https://vuepress.mirror.docker-practice.com)
-- [docker 基础](/docs/docker-docker基础.md)
+- [Docker 基础](/docs/docker-docker基础.md)
 
 ## 操作系统
 
@@ -88,6 +88,8 @@
 ## 分布式
 
 - [分布式：分布式架构](/docs/分布式-分布式架构.md)
+- [分布式：etcdctl 基本使用](/docs/分布式-etcd-etcdctl基本使用.md)
+- [分布式：理解 etcd](https://zhuanlan.zhihu.com/p/96721097)
 
 
 ## leetcode
