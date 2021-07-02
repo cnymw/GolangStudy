@@ -1,6 +1,7 @@
 # Go 并发机制
 
 ## Goroutines
+
 主函数返回时，所有的goroutine都会被直接打断，程序退出。
 
 ```go
@@ -17,7 +18,9 @@ func main() {
 ```
 
 ## Channels
+
 ### channel
+
 如果说 goroutine 是 Go 语言程序的并发体的话，那么 channels 则是它们之间的通信机制。
 
 两个相同类型的 channel 可以使用==运算符比较。如果两个 channel 引用的是相同的对象，那么比较的结果为真。
@@ -49,6 +52,7 @@ func f2(ch chan int){
 ```
 
 ### 不带缓存的 channel
+
 调用 make 函数创建的是一个无缓存的 channel，但是我们也可以指定第二个整型参数，对应 channel 的容量。如果 channel 的容量大于零，那么该 channel 就是带缓存的 channel。
 
 ```go
@@ -64,6 +68,7 @@ ch = make(chan int, 3) // buffered channel with capacity 3
 基于无缓存 Channels 的发送和接收操作将导致两个 goroutine 做一次同步操作。
 
 ### 带缓存的 Channels
+
 带缓存的 Channel 内部持有一个元素队列。队列的最大容量是在调用 make 函数创建 channel 时通过第二个参数指定的。
 
 ```go
@@ -187,6 +192,7 @@ RWMutex 只有当获得锁的大部分 goroutine 都是读操作，而锁在竞�
 RWMutex 需要更复杂的内部记录，所以会让它比一般的无竞争锁的 mutex 慢一些。
 
 ## WaitGroup
+
 该类型有三个指针方法：Add，Done，Wait。
 
 sync.WaitGroup 是一个结构体类型，其中有一个字段用四个字节表示给定计数，用四个字节表示等待计数。通过 Add 方法增大或减少给定计数：
@@ -227,6 +233,7 @@ go func(){
 ```
 
 2.使用 sync.WaitGroup
+
 ```go
 var wg sync.WaitGroup
 wg.Add(2)

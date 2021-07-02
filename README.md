@@ -26,12 +26,15 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [Go 并发](/docs/go-并发.md)
 - [Go 源码 SDK 目录](https://cloud.tencent.com/developer/doc/1101)
 - [Go 性能分析：pprof实战](https://blog.wolfogre.com/posts/go-ppof-practice/)
-- 源码解读
+- golang sdk
   - [Go 源码解读 标识符](/docs/go-源码解读-标识符.md)
   - [Go 源码解读 程序分析pprof](/docs/go-源码解读-程序分析pprof.md)
   - [Go 源码解读 同步模块sync mutex](/docs/go-源码解读-同步sync-mutex.md)
   - [Go 源码解读 同步模块sync once](/docs/go-源码解读-同步sync-once.md)
+- zap
   - [Go 源码解读 高性能日志库 zap](/docs/go-zap.md)
+- grpool
+  - [Go 源码解读 轻量级线程池 grpool](/docs/go-grpool.md)
   
 
 ## 数据结构
