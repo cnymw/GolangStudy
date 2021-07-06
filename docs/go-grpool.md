@@ -69,7 +69,7 @@ func TestExample(t *testing.T) {
 
 ### 代码分析
 
-#### NewPool
+#### func NewPool()
 
 首先看下 grpool.NewPool 的实现：
 
@@ -94,7 +94,7 @@ func NewPool(numWorkers int, jobQueueLen int) *Pool {
 
 在这个函数里，描述了两个重要的对象：worker 和 job，这两个对象即线程池概念里的工作线程和任务接口。
 
-#### worker
+#### struct worker
 
 其中，worker 的数据结构如下所示：
 
@@ -113,7 +113,7 @@ worker 中有 3 个对象：
 2. jobChannel：任务队列，用于存放未完成的任务列表，该队列的大小决定了能够容纳的任务队列的大小，如果该队列满了的话，那么再往里面添加任务会 block。
 3. stop：信号量，当这个参数接受到信号时，代表着这个 worker 不需要进行工作了，可以销毁线程。
 
-#### Job
+#### func Job()
 
 job 的结构如下所示：
 
@@ -124,7 +124,7 @@ type Job func()
 
 该 Job 即每个任务必须实现的接口，worker 的核心工作便是执行 Job。
 
-#### pool
+#### struct pool
 
 NewPool 里会创建 pool 对象，pool 数据结构如下：
 
@@ -142,7 +142,7 @@ pool 中有 3 个对象：
 2. dispatcher：线程调度器，用于对 worker 和 job 进行分发。
 3. wg：并发控制，能够控制 goroutine 的并发，可以避免 goroutine 还没执行完就退出程序，也能避免创建了过多的 goroutine。
 
-#### dispatcher
+#### struct dispatcher
 
 dispatcher 的数据结构如下：
 
@@ -161,7 +161,7 @@ dispatcher 的数据结构和 worker 类似，只不过 jobQueue 是包内可见
 
 ![go-grpool-grpool流程图.png](https://cnymw.github.io/GolangStudy/docs/img/go-grpool-grpool流程图.png)
 
-#### newDispatcher
+#### func newDispatcher()
 
 dispatcher 由 newDispatcher 负责创建。
 
@@ -182,3 +182,45 @@ func newDispatcher(workerPool chan *worker, jobQueue chan Job) *dispatcher {
 	return d
 }
 ```
+
+首先会创建 dispatcher 对象，具体的参数含义之前已经描述过了。
+
+然后会创建 numWorkers 个 worker 对象，这个数量 numWorkers 由客户端指定。
+
+当`worker.start()`调用完成后，worker 将会持续运行，但这个时候还没有 job 分配过来，所以会有一段时间空闲。
+
+#### func dispatch()
+
+新建完成 dispatcher，会立即开始调用`d.dispatch()`来调度线程。
+
+```go
+func (d *dispatcher) dispatch() {
+	for {
+		select {
+		case job := <-d.jobQueue:
+			worker := <-d.workerPool
+			worker.jobChannel <- job
+		case <-d.stop:
+			for i := 0; i < cap(d.workerPool); i++ {
+				worker := <-d.workerPool
+
+				worker.stop <- struct{}{}
+				<-worker.stop
+			}
+
+			d.stop <- struct{}{}
+			return
+		}
+	}
+}
+```
+
+调度线程分为以下两步步：
+
+1. 从空闲 worker 池 workerPool 里取出一个空闲的 worker。
+2. 从 jobChannel 里取出一个 job，分配给空闲的 worker。
+
+需要注意的是，worker 的 jobChannel 是个不带缓存的 channel，代表着一个 worker 只能处理一个 job，如果继续往 jobChannel 里添加 job 会阻塞。
+
+dispatcher 的结束信号也是在`dispatch()`里处理，当客户端调用`pool.Release()`时，会发送一个信号量`struct{}{}`给 stop，在这里会 select 到该 stop，从而批量的结束 worker 线程，原理和结束 dispatcher 一样的。
+
