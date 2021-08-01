@@ -307,3 +307,7 @@ Final Counter: 4
 
 这一次，我们得到了正确的结果，不存在竞态条件了。Mutex 保护锁和解锁之间的所有代码，确保一次只能有一个线程执行该代码。
 
+
+# 参考资料
+
+- [Detecting Race Conditions With Go](https://www.ardanlabs.com/blog/2013/09/detecting-race-conditions-with-go.html)
