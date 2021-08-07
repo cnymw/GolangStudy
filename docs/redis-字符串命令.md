@@ -6,11 +6,11 @@
 
 > 可用版本：>=1.0.0
 
-将字符串值`value`关联到`key`。
+将字符串值 value 关联到 key 。
 
-如果`key`已经持有其他值，`set`就覆盖旧值，无视类型。
+如果 key 已经持有其他值， set 就覆盖旧值，无视类型。
 
-当`set`命令对一个带有生存时间（TTL）的`key`进行设置之后，该`key`原有的 TTL 将被清除。
+当 set 命令对一个带有生存时间（TTL）的 key 进行设置之后，该 key 原有的 TTL 将被清除。
 
 ### 可选参数
 
@@ -31,7 +31,7 @@ redis> GET key
 "value"
 ```
 
-使用`EX`选项：
+使用 EX 选项：
 
 ```bash
 redis> SET key-with-expire-time "hello" EX 10086
@@ -44,7 +44,7 @@ redis> TTL key-with-expire-time
 (integer) 10069
 ```
 
-使用`NX`选项：
+使用 NX 选项：
 
 ```bash
 redis> SET not-exists-key "value" NX
@@ -66,9 +66,9 @@ redis> GEt not-exists-key
 
 > 可用版本：>=1.0.0
 
-只在键`key`不存在的情况下，将键`key`的值设置为`value`。
+只在键 key 不存在的情况下，将键 key 的值设置为 value 。
 
-若键`key`已经存在，则`SETNX`命令不做任何动作。
+若键 key 已经存在，则 SETNX 命令不做任何动作。
 
 ### 代码示例
 
@@ -92,15 +92,15 @@ redis> GET job                   # 没有被覆盖
 
 > 可用版本：>=2.0.0
 
-将键`key`的值设置为`value`，并将键`key`的生存时间设置为`seconds`秒钟。
+将键 key 的值设置为 value ，并将键 key 的生存时间设置为 seconds 秒钟。
 
-如果键`key`已经存在，那么`SETEX`命令将覆盖已有的值。
+如果键 key 已经存在，那么 SETEX 命令将覆盖已有的值。
 
-`SETEX`和`SET`的不同之处在于`SETEX`是一个原子（atomic）操作， 它可以在同一时间内完成设置值和设置过期时间这两个操作， 因此`SETEX`命令在储存缓存的时候非常实用。
+ SETEX 和 SET 的不同之处在于 SETEX 是一个原子（atomic）操作， 它可以在同一时间内完成设置值和设置过期时间这两个操作， 因此 SETEX 命令在储存缓存的时候非常实用。
 
 ### 代码示例
 
-键`key`已经存在， 使用`SETEX`覆盖旧值：
+键 key 已经存在， 使用 SETEX 覆盖旧值：
 
 ```bash
 redis> SET cd "timeless"
@@ -120,7 +120,7 @@ redis> TTL cd
 
 > 可用版本：>=2.6.0
 
-这个命令和`SETEX`命令相似， 但它以毫秒为单位设置`key`的生存时间， 而不是像`SETEX`命令那样以秒为单位进行设置。
+这个命令和 SETEX 命令相似， 但它以毫秒为单位设置 key 的生存时间， 而不是像 SETEX 命令那样以秒为单位进行设置。
 
 ### 代码示例
 
@@ -141,7 +141,7 @@ redis> GET mykey
 
 > 可用版本：>=1.0.0
 
-返回与键`key`相关联的字符串值。
+返回与键 key 相关联的字符串值。
 
 ### 代码示例
 
@@ -162,7 +162,7 @@ redis> GET db
 
 > 可用版本：>=1.0.0
 
-将键`key`的值设为`value`， 并返回键`key`在被设置之前的旧值。
+将键 key 的值设为 value ， 并返回键 key 在被设置之前的旧值。
 
 ### 代码示例
 
@@ -186,7 +186,7 @@ redis> GET db
 
 > 可用版本：>=2.2.0
 
-返回键`key`储存的字符串值的长度。
+返回键 key 储存的字符串值的长度。
 
 ### 代码示例
 
@@ -206,9 +206,9 @@ redis> STRLEN mykey
 
 > 可用版本：>=2.0.0
 
-如果键`key`已经存在并且它的值是一个字符串，`APPEND`命令将把`value`追加到键`key`现有值的末尾。
+如果键 key 已经存在并且它的值是一个字符串， APPEND 命令将把 value 追加到键 key 现有值的末尾。
 
-如果`key`不存在，`APPEND`就简单地将键`key`的值设为`value`， 就像执行`SET key value`一样。
+如果 key 不存在， APPEND 就简单地将键 key 的值设为 value ， 就像执行 SET key value 一样。
 
 ### 代码示例
 
@@ -229,9 +229,9 @@ redis> GET myphone
 
 > 可用版本：>=2.2.0
 
-从偏移量`offset`开始， 用`value`参数覆写(overwrite)键`key`储存的字符串值。
+从偏移量 offset 开始， 用 value 参数覆写(overwrite)键 key 储存的字符串值。
 
-`SETRANGE`命令会确保字符串足够长以便将`value`设置到指定的偏移量上， 如果键`key`原来储存的字符串长度比偏移量小(比如字符串只有`5`个字符长，但你设置的`offset`是`10`)， 那么原字符和偏移量之间的空白将用零字节(zerobytes, "\x00" )进行填充。
+ SETRANGE 命令会确保字符串足够长以便将 value 设置到指定的偏移量上， 如果键 key 原来储存的字符串长度比偏移量小(比如字符串只有 5 个字符长，但你设置的 offset 是 10 )， 那么原字符和偏移量之间的空白将用零字节(zerobytes, "\x00" )进行填充。
 
 当生成一个很长的字符串时，Redis 需要分配内存空间，该操作有时候可能会造成服务器阻塞(block)。
 
@@ -256,9 +256,9 @@ redis> GET greeting
 
 > 可用版本：>=2.4.0
 
-返回键`key`储存的字符串值的指定部分，字符串的截取范围由`start`和`end`两个偏移量决定 (包括`start`和`end`在内)。
+返回键 key 储存的字符串值的指定部分，字符串的截取范围由 start 和 end 两个偏移量决定 (包括 start 和 end 在内)。
 
-负数偏移量表示从字符串的末尾开始计数，`-1`表示最后一个字符，`-2`表示倒数第二个字符，以此类推。
+负数偏移量表示从字符串的末尾开始计数， -1 表示最后一个字符， -2 表示倒数第二个字符，以此类推。
 
 ### 代码示例
 
@@ -281,3 +281,206 @@ redis> GETRANGE greeting 0 -1         # 从第一个到最后一个
 redis> GETRANGE greeting 0 1008611    # 值域范围不超过实际字符串，超过部分自动被符略
 "hello, my friend"
 ```
+
+## INCR
+
+### INCR key
+
+> 可用版本：>=1.0.0
+
+为键 key 储存的数字值加上一。
+
+如果键 key 不存在， 那么它的值会先被初始化为 0 ， 然后再执行 INCR 命令。
+
+如果键 key 储存的值不能被解释为数字， 那么 INCR 命令将返回一个错误。
+
+### 代码示例
+
+```bash
+redis> SET page_view 20
+OK
+
+redis> INCR page_view
+(integer) 21
+
+redis> GET page_view    # 数字值在 Redis 中以字符串的形式保存
+"21"
+```
+
+## INCRBY
+
+### INCRBY key increment
+
+> 可用版本：>=1.0.0
+
+为键 key 储存的数字值加上增量 increment 。
+
+如果键 key 不存在， 那么键 key 的值会先被初始化为 0 ， 然后再执行 INCRBY 命令。
+
+如果键 key 储存的值不能被解释为数字， 那么 INCRBY 命令将返回一个错误。
+
+### 代码示例
+
+```bash
+redis> SET rank 50
+OK
+
+redis> INCRBY rank 20
+(integer) 70
+
+redis> GET rank
+"70"
+```
+
+## INCRBYFLOAT
+
+### INCRBYFLOAT key increment
+
+> 可用版本：>=2.6.0
+
+为键 key 储存的值加上浮点数增量 increment 。
+
+如果键 key 不存在， 那么 INCRBYFLOAT 会先将键 key 的值设为 0 ， 然后再执行加法操作。
+
+如果命令执行成功， 那么键 key 的值会被更新为执行加法计算之后的新值， 并且新值会以字符串的形式返回给调用者。
+
+### 代码示例
+
+```bash
+redis> GET decimal
+"3.0"
+
+redis> INCRBYFLOAT decimal 2.56
+"5.56"
+
+redis> GET decimal
+"5.56"
+```
+
+## DECR
+
+### DECR key
+
+> 可用版本：>=1.0.0
+
+为键 key 储存的数字值减去一。
+
+如果键 key 不存在， 那么键 key 的值会先被初始化为 0 ， 然后再执行 DECR 操作。
+
+如果键 key 储存的值不能被解释为数字， 那么 DECR 命令将返回一个错误。
+
+### 代码示例
+
+```bash
+redis> SET failure_times 10
+OK
+
+redis> DECR failure_times
+(integer) 9
+```
+
+## DECRBY
+
+### DECRBY key decrement
+
+> 可用版本：>=1.0.0
+
+将键 key 储存的整数值减去减量 decrement 。
+
+如果键 key 不存在， 那么键 key 的值会先被初始化为 0 ， 然后再执行 DECRBY 命令。
+
+如果键 key 储存的值不能被解释为数字， 那么 DECRBY 命令将返回一个错误。
+
+### 代码示例
+
+```bash
+redis> SET count 100
+OK
+
+redis> DECRBY count 20
+(integer) 80
+```
+
+## MSET
+
+### MSET key value [key value …]
+
+> 可用版本：>=1.0.1
+
+同时为多个键设置值。
+
+如果某个给定键已经存在， 那么 MSET 将使用新值去覆盖旧值， 如果这不是你所希望的效果， 请考虑使用 MSETNX 命令， 这个命令只会在所有给定键都不存在的情况下进行设置。
+
+MSET 是一个原子性(atomic)操作， 所有给定键都会在同一时间内被设置， 不会出现某些键被设置了但是另一些键没有被设置的情况。
+
+### 代码示例
+
+```bash
+redis> MSET date "2012.3.30" time "11:00 a.m." weather "sunny"
+OK
+
+redis> MGET date time weather
+1) "2012.3.30"
+2) "11:00 a.m."
+3) "sunny"
+```
+
+## MSETNX
+
+### MSETNX key value [key value …]
+
+> 可用版本：>=1.0.1
+
+当且仅当所有给定键都不存在时， 为所有给定键设置值。
+
+即使只有一个给定键已经存在， MSETNX 命令也会拒绝执行对所有键的设置操作。
+
+MSETNX 是一个原子性(atomic)操作， 所有给定键要么就全部都被设置， 要么就全部都不设置， 不可能出现第三种状态。
+
+### 代码示例
+
+```bash
+redis> MSETNX rmdbs "MySQL" nosql "MongoDB" key-value-store "redis"
+(integer) 1
+
+redis> MGET rmdbs nosql key-value-store
+1) "MySQL"
+2) "MongoDB"
+3) "redis"
+```
+
+## MGET
+
+### MGET key [key …]
+
+> 可用版本：>=1.0.0
+
+返回给定的一个或多个字符串键的值。
+
+如果给定的字符串键里面， 有某个键不存在， 那么这个键的值将以特殊值 nil 表示。
+
+### 代码示例
+
+```bash
+redis> SET redis redis.com
+OK
+
+redis> SET mongodb mongodb.org
+OK
+
+redis> MGET redis mongodb
+1) "redis.com"
+2) "mongodb.org"
+
+redis> MGET redis mongodb mysql     # 不存在的 mysql 返回 nil
+1) "redis.com"
+2) "mongodb.org"
+3) (nil)
+```
+
+# 思维导图
+
+![redis-redis字符串命令.png](https://cnymw.github.io/GolangStudy/docs/img/redis-redis字符串命令.png)
+
+
+

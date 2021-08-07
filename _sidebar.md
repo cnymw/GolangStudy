@@ -102,7 +102,6 @@
 - [分布式：etcdctl 基本使用](/docs/分布式-etcd-etcdctl基本使用.md)
 - [分布式：理解 etcd](https://zhuanlan.zhihu.com/p/96721097)
 - [分布式：service mesh 入门](/docs/分布式-servicemesh-servicemesh入门.md)
-- [分布式：consul 入门](/docs/分布式-consul-consul入门.md)
 
 ## leetcode
 
