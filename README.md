@@ -90,6 +90,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 ## redis
 
 - [redis 字符串命令](/docs/redis-字符串命令.md)
+- [redis 哈希表命令](/docs/redis-哈希表命令.md)
 
 ## 操作系统
 

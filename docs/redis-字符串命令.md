@@ -1,8 +1,6 @@
 # redis 字符串命令
 
-## SET
-
-### SET key value[EX seconds][PX milliseconds][NX|XX]
+## SET key value[EX seconds][PX milliseconds][NX|XX]
 
 > 可用版本：>=1.0.0
 
@@ -60,9 +58,7 @@ redis> GEt not-exists-key
 "value" # 维持原值不变
 ```
 
-## SETNX
-
-### SETNX key value
+## SETNX key value
 
 > 可用版本：>=1.0.0
 
@@ -86,9 +82,7 @@ redis> GET job                   # 没有被覆盖
 "programmer"
 ```
 
-## SETEX
-
-### SETEX keys seconds value
+## SETEX keys seconds value
 
 > 可用版本：>=2.0.0
 
@@ -116,7 +110,7 @@ redis> TTL cd
 (integer) 2997
 ```
 
-## PSETEX
+## PSETEX key milliseconds value
 
 > 可用版本：>=2.6.0
 
@@ -135,9 +129,7 @@ redis> GET mykey
 "Hello"
 ```
 
-## GET
-
-### GET key
+## GET key
 
 > 可用版本：>=1.0.0
 
@@ -156,9 +148,7 @@ redis> GET db
 "redis"
 ```
 
-## GETSET
-
-### GETSET key value
+## GETSET key value
 
 > 可用版本：>=1.0.0
 
@@ -180,9 +170,7 @@ redis> GET db
 "redis"
 ```
 
-## STRLEN
-
-### STRLEN key
+## STRLEN key
 
 > 可用版本：>=2.2.0
 
@@ -200,9 +188,7 @@ redis> STRLEN mykey
 (integer) 11
 ```
 
-## APPEND
-
-### APPEND key value
+## APPEND key value
 
 > 可用版本：>=2.0.0
 
@@ -223,9 +209,7 @@ redis> GET myphone
 "nokia - 1110"
 ```
 
-## SETRANGE
-
-### SETRANGE key offset value
+## SETRANGE key offset value
 
 > 可用版本：>=2.2.0
 
@@ -250,9 +234,7 @@ redis> GET greeting
 "hello Redis"
 ```
 
-## GETRANGE 
-
-### GETRANGE key start end
+## GETRANGE key start end 
 
 > 可用版本：>=2.4.0
 
@@ -282,9 +264,7 @@ redis> GETRANGE greeting 0 1008611    # 值域范围不超过实际字符串，�
 "hello, my friend"
 ```
 
-## INCR
-
-### INCR key
+## INCR key
 
 > 可用版本：>=1.0.0
 
@@ -307,9 +287,7 @@ redis> GET page_view    # 数字值在 Redis 中以字符串的形式保存
 "21"
 ```
 
-## INCRBY
-
-### INCRBY key increment
+## INCRBY key increment
 
 > 可用版本：>=1.0.0
 
@@ -332,9 +310,7 @@ redis> GET rank
 "70"
 ```
 
-## INCRBYFLOAT
-
-### INCRBYFLOAT key increment
+## INCRBYFLOAT key increment
 
 > 可用版本：>=2.6.0
 
@@ -357,9 +333,7 @@ redis> GET decimal
 "5.56"
 ```
 
-## DECR
-
-### DECR key
+## DECR key
 
 > 可用版本：>=1.0.0
 
@@ -379,9 +353,7 @@ redis> DECR failure_times
 (integer) 9
 ```
 
-## DECRBY
-
-### DECRBY key decrement
+## DECRBY key decrement
 
 > 可用版本：>=1.0.0
 
@@ -401,9 +373,7 @@ redis> DECRBY count 20
 (integer) 80
 ```
 
-## MSET
-
-### MSET key value [key value …]
+## MSET key value [key value …]
 
 > 可用版本：>=1.0.1
 
@@ -425,9 +395,7 @@ redis> MGET date time weather
 3) "sunny"
 ```
 
-## MSETNX
-
-### MSETNX key value [key value …]
+## MSETNX key value [key value …]
 
 > 可用版本：>=1.0.1
 
@@ -449,9 +417,7 @@ redis> MGET rmdbs nosql key-value-store
 3) "redis"
 ```
 
-## MGET
-
-### MGET key [key …]
+## MGET key [key …]
 
 > 可用版本：>=1.0.0
 

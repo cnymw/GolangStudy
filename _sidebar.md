@@ -75,6 +75,7 @@
 ## redis
 
 - [redis 字符串命令](/docs/redis-字符串命令.md)
+- [redis 哈希表命令](/docs/redis-哈希表命令.md)
 
 ## 操作系统
 
