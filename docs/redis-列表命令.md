@@ -550,3 +550,8 @@ redis> BRPOPLPUSH msg reciver 1
 (nil)
 (1.34s)
 ```
+
+# 思维导图
+
+![redis-redis列表命令.png](https://cnymw.github.io/GolangStudy/docs/img/redis-redis列表命令.png)
+
