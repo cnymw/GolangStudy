@@ -63,6 +63,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [动态规划](/docs/算法-动态规划.md)
 - [前中后缀表达式](/docs/算法-前中后缀表达式.md)
 - [滑动窗口](/docs/算法-滑动窗口.md)
+- [二分查找](/docs/算法-二分查找.md)
 
 ## 数据库
 
@@ -92,6 +93,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 - [redis 字符串命令](/docs/redis-字符串命令.md)
 - [redis 哈希表命令](/docs/redis-哈希表命令.md)
+- [redis 列表命令](/docs/redis-列表命令.md)
 
 ## 操作系统
 
@@ -123,6 +125,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 ## leetcode
 
 - [leetcode-1-两数之和](/docs/leetcode-1-两数之和.md)
+- [leetcode-2-两数相加](/docs/leetcode-2-两数相加.md)
 - [leetcode-3-无重复字符的最长子串](/docs/leetcode-3-无重复字符的最长子串.md)
 - [leetcode-5-最长回文子串](/docs/leetcode-5-最长回文子串.md)
 - [leetcode-15-三数之和](/docs/leetcode-15-三数之和.md)
