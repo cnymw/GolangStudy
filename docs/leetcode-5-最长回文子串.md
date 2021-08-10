@@ -1,6 +1,7 @@
 # leetcode 5 最长回文子串
 
 ## 题目
+
 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
 
 示例 1：
@@ -49,6 +50,7 @@ if (s[i] == s[j]) && (i-j < 2 || dp[j+1][i-1] == 1) {
 ```
 
 最后 go 实现为:
+
 ```go
 func longestPalindrome(s string) string {
     sLen := len(s)
