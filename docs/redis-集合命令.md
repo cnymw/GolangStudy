@@ -217,3 +217,191 @@ redis> SMEMBERS language
 
 > 参考资料：[redis命令：SCAN](https://redis.io/commands/scan)
 
+## SINTER key [key …]
+
+> 可用版本：>=1.0.0
+
+返回一个集合的全部成员，该集合是所有给定集合的交集。
+
+不存在的 key 被视为空集。
+
+当给定集合当中有一个空集时，结果也为空集(根据集合运算定律)。
+
+### 返回值
+
+交集成员的列表。
+
+### 代码示例
+
+```bash
+redis> SMEMBERS group_1
+1) "LI LEI"
+2) "TOM"
+3) "JACK"
+
+redis> SMEMBERS group_2
+1) "HAN MEIMEI"
+2) "JACK"
+
+redis> SINTER group_1 group_2
+1) "JACK"
+```
+
+## SINTERSTORE destination key [key …]
+
+> 可用版本：>=1.0.0
+
+这个命令类似于 SINTER key [key …] 命令，但它将结果保存到 destination 集合，而不是简单地返回结果集。
+
+如果 destination 集合已经存在，则将其覆盖。
+
+destination 可以是 key 本身。
+
+### 返回值
+
+结果集中的成员数量。
+
+### 代码示例
+
+```bash
+redis> SMEMBERS songs
+1) "good bye joe"
+2) "hello,peter"
+
+redis> SMEMBERS my_songs
+1) "good bye joe"
+2) "falling"
+
+redis> SINTERSTORE song_interset songs my_songs
+(integer) 1
+
+redis> SMEMBERS song_interset
+1) "good bye joe"
+```
+
+## SUNION key [key …]
+
+> 可用版本：>=1.0.0
+
+返回一个集合的全部成员，该集合是所有给定集合的并集。
+
+不存在的 key 被视为空集。
+
+### 返回值
+
+并集成员的列表。
+
+### 代码示例
+
+```bash
+redis> SMEMBERS songs
+1) "Billie Jean"
+
+redis> SMEMBERS my_songs
+1) "Believe Me"
+
+redis> SUNION songs my_songs
+1) "Billie Jean"
+2) "Believe Me"
+```
+
+## SUNIONSTORE destination key [key …]
+
+> 可用版本：>=1.0.0
+
+这个命令类似于 SUNION key [key …] 命令，但它将结果保存到 destination 集合，而不是简单地返回结果集。
+
+如果 destination 已经存在，则将其覆盖。
+
+destination 可以是 key 本身。
+
+### 返回值
+
+结果集中的元素数量。
+
+### 代码示例
+
+```bash
+redis> SMEMBERS NoSQL
+1) "MongoDB"
+2) "Redis"
+
+redis> SMEMBERS SQL
+1) "sqlite"
+2) "MySQL"
+
+redis> SUNIONSTORE db NoSQL SQL
+(integer) 4
+
+redis> SMEMBERS db
+1) "MySQL"
+2) "sqlite"
+3) "MongoDB"
+4) "Redis"
+```
+
+## SDIFF key [key …]
+
+> 可用版本：>=1.0.0
+
+返回一个集合的全部成员，该集合是所有给定集合之间的差集。
+
+不存在的 key 被视为空集。
+
+### 返回值
+
+一个包含差集成员的列表。
+
+### 代码示例
+
+```bash
+redis> SMEMBERS peter's_movies
+1) "bet man"
+2) "start war"
+3) "2012"
+
+redis> SMEMBERS joe's_movies
+1) "hi, lady"
+2) "Fast Five"
+3) "2012"
+
+redis> SDIFF peter's_movies joe's_movies
+1) "bet man"
+2) "start war"
+```
+
+## SDIFFSTORE destination key [key …]
+
+> 可用版本：>=1.0.0
+
+这个命令的作用和 SDIFF key [key …] 类似，但它将结果保存到 destination 集合，而不是简单地返回结果集。
+
+如果 destination 集合已经存在，则将其覆盖。
+
+destination 可以是 key 本身。
+
+### 返回值
+
+结果集中的元素数量。
+
+### 代码示例
+
+```bash
+redis> SMEMBERS joe's_movies
+1) "hi, lady"
+2) "Fast Five"
+3) "2012"
+
+redis> SMEMBERS peter's_movies
+1) "bet man"
+2) "start war"
+3) "2012"
+
+redis> SDIFFSTORE joe_diff_peter joe's_movies peter's_movies
+(integer) 2
+
+redis> SMEMBERS joe_diff_peter
+1) "hi, lady"
+2) "Fast Five"
+```
+
