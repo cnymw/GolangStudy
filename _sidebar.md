@@ -51,7 +51,7 @@
 
 ## 数据库
 
-- [mysql InnoDB 存储引擎](/docs/数据库-InnoDB存储引擎.md)
+- [mysql InnoDB 锁定读](/docs/数据库-mysql-InnoDB锁定读.md)
 - [mysql InnoDB 锁机制](/docs/数据库-mysql-innodb锁机制.md)
 - [mysql 死锁案例](https://github.com/aneasystone/mysql-deadlocks)
 - [mysql 慢查询分析工具 mysqldumpslow](/docs/数据库-mysql-慢查询分析工具mysqldumpslow.md)
@@ -69,10 +69,12 @@
 - [OAuth2 规范-rfc6749](/docs/oauth2-rfc6749.md)
 - [OAuth2 规范中文翻译](https://github.com/jeansfish/RFC6749.zh-cn/blob/master/SUMMARY.md)
 
-## Docker
+## Docker+kubernetes
 
 - [Docker — 从入门到实践](https://vuepress.mirror.docker-practice.com)
 - [Docker 基础](/docs/docker-docker基础.md)
+- [Kubernetes 中文手册](https://www.kubernetes.org.cn/docs)
+- [Kubernetes 设计架构](/docs/k8s-设计架构.md)
 
 ## redis
 
@@ -103,6 +105,7 @@
 
 - [分布式：分布式架构](/docs/分布式-分布式架构.md)
 - [分布式：一致性协议](/docs/分布式-一致性协议.md)
+- [分布式：断路器模式](/docs/分布式-断路器模式.md)
 - [分布式：etcdctl 基本使用](/docs/分布式-etcd-etcdctl基本使用.md)
 - [分布式：理解 etcd](https://zhuanlan.zhihu.com/p/96721097)
 - [分布式：service mesh 入门](/docs/分布式-servicemesh-servicemesh入门.md)

@@ -67,7 +67,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 ## 数据库
 
-- [mysql InnoDB 存储引擎](/docs/数据库-InnoDB存储引擎.md)
+- [mysql InnoDB 锁定读](/docs/数据库-mysql-InnoDB锁定读.md)
 - [mysql InnoDB 锁机制](/docs/数据库-mysql-innodb锁机制.md)
 - [mysql InnoDB 死锁案例](https://github.com/aneasystone/mysql-deadlocks)
 - [mysql 慢查询分析工具 mysqldumpslow](/docs/数据库-mysql-慢查询分析工具mysqldumpslow.md)
@@ -118,6 +118,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 - [分布式：分布式架构](/docs/分布式-分布式架构.md)
 - [分布式：一致性协议](/docs/分布式-一致性协议.md)
+- [分布式：断路器模式](/docs/分布式-断路器模式.md)
 - [分布式：etcdctl 基本使用](/docs/分布式-etcd-etcdctl基本使用.md)
 - [分布式：理解 etcd](https://zhuanlan.zhihu.com/p/96721097)
 - [分布式：service mesh 入门](/docs/分布式-servicemesh-servicemesh入门.md)
