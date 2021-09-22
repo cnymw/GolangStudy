@@ -67,6 +67,8 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 ## 数据库
 
+- [mysql InnoDB 体系结构](/docs/数据库-mysql-InnoDB体系结构.md)
+- [mysql InnoDB 主从复制](/docs/数据库-mysql-InnoDB主从复制.md)
 - [mysql InnoDB 锁定读](/docs/数据库-mysql-InnoDB锁定读.md)
 - [mysql InnoDB 锁机制](/docs/数据库-mysql-innodb锁机制.md)
 - [mysql InnoDB 死锁案例](https://github.com/aneasystone/mysql-deadlocks)
@@ -84,13 +86,16 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [OAuth2 规范-rfc6749](/docs/oauth2-rfc6749.md)
 - [OAuth2 规范中文翻译](https://github.com/jeansfish/RFC6749.zh-cn/blob/master/SUMMARY.md)
 
-## Docker
+## Docker+kubernetes
 
 - [Docker — 从入门到实践](https://vuepress.mirror.docker-practice.com)
 - [Docker 基础](/docs/docker-docker基础.md)
+- [Kubernetes 中文手册](https://www.kubernetes.org.cn/docs)
+- [Kubernetes 设计架构](/docs/k8s-设计架构.md)
 
 ## redis
 
+- [redis 键命令](/docs/redis-键命令.md)
 - [redis 字符串命令](/docs/redis-字符串命令.md)
 - [redis 哈希表命令](/docs/redis-哈希表命令.md)
 - [redis 列表命令](/docs/redis-列表命令.md)

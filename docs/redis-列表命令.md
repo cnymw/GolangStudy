@@ -1,5 +1,9 @@
 # redis 列表命令
 
+Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）。
+
+一个列表最多可以包含 2^32 - 1 个元素 (4294967295, 每个列表超过40亿个元素)。
+
 ## LPUSH key value [value …]
 
 > 可用版本：>=1.0.0
@@ -16,7 +20,7 @@
 
 执行 LPUSH 命令后，列表的长度。
 
-### 代码示例
+### 示例
 
 ```bash
 # 加入多个元素
@@ -42,7 +46,7 @@ redis> LRANGE mylist 0 -1
 
 LPUSHX 命令执行之后，表的长度。
 
-### 代码示例
+### 示例
 
 ```bash
 # 对空列表执行 LPUSHX
@@ -83,7 +87,7 @@ redis> LRANGE greet 0 -1
 
 执行 RPUSH 操作后，表的长度。
 
-### 代码示例
+### 示例
 
 ```bash
 # 添加多个元素
@@ -109,7 +113,7 @@ redis> LRANGE mylist 0 -1
 
 RPUSHX 命令执行之后，表的长度。
 
-### 代码示例
+### 示例
 
 ```bash
 # key不存在
@@ -144,7 +148,7 @@ redis> LRANGE greet 0 -1
 
 列表的头元素。 当 key 不存在时，返回 nil 。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> RPUSH course algorithm001
@@ -167,7 +171,7 @@ redis> LPOP course  # 移除头元素
 
 列表的尾元素。 当 key 不存在时，返回 nil 。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> RPUSH mylist "one"
@@ -200,7 +204,7 @@ redis> LRANGE mylist 0 -1    # 列表剩下的元素
 
 被弹出的元素。
 
-### 代码示例
+### 示例
 
 ```bash
 # source 和 destination 不同
@@ -239,7 +243,7 @@ count 的值可以是以下几种：
 
 被移除元素的数量。 因为不存在的 key 被视作空表(empty list)，所以当 key 不存在时， LREM 命令总是返回 0 。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> LPUSH greet "morning"
@@ -283,7 +287,7 @@ redis> LRANGE greet 0 2
 
 列表 key 的长度。
 
-### 代码示例
+### 示例
 
 ```bash
 # 空列表
@@ -312,7 +316,7 @@ redis> LLEN job
 
 列表中下标为 index 的元素。 如果 index 参数的值不在列表的区间范围内(out of range)，返回 nil 。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> LPUSH mylist "World"
@@ -345,7 +349,7 @@ redis> LINDEX mylist 3        # index不在 mylist 的区间范围内
 
 如果命令执行成功，返回插入操作完成之后，列表的长度。 如果没有找到 pivot ，返回 -1 。 如果 key 不存在或为空列表，返回 0 。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> RPUSH mylist "Hello"
@@ -375,7 +379,7 @@ redis> LRANGE mylist 0 -1
 
 操作成功返回 ok ，否则返回错误信息。
 
-### 代码示例
+### 示例
 
 ```bash
 # 对非空列表进行 LSET
@@ -405,7 +409,7 @@ redis> LRANGE job  0 0
 
 一个列表，包含指定区间内的元素。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> RPUSH fp-language lisp
@@ -432,7 +436,7 @@ redis> LRANGE fp-language 0 1
 
 命令执行成功时，返回 ok 。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> LRANGE alpha 0 -1       # alpha 是一个包含 5 个字符串的列表
@@ -466,7 +470,7 @@ BLPOP 是列表的阻塞式(blocking)弹出原语。
 
 如果列表为空，返回一个 nil 。 否则，返回一个含有两个元素的列表，第一个元素是被弹出元素所属的 key ，第二个元素是被弹出元素的值。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> EXISTS job                # 确保两个 key 都不存在
@@ -498,7 +502,7 @@ BRPOP 是列表的阻塞式(blocking)弹出原语。
 
 假如在指定时间内没有任何元素被弹出，则返回一个 nil 和等待时长。 反之，返回一个含有两个元素的列表，第一个元素是被弹出元素所属的 key ，第二个元素是被弹出元素的值。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> LLEN course
@@ -529,7 +533,7 @@ BRPOPLPUSH 是 RPOPLPUSH source destination 的阻塞版本，当给定列表 so
 
 假如在指定时间内没有任何元素被弹出，则返回一个 nil 和等待时长。 反之，返回一个含有两个元素的列表，第一个元素是被弹出元素的值，第二个元素是等待时长。
 
-### 代码示例
+### 示例
 
 ```bash
 # 非空列表
