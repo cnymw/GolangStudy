@@ -362,5 +362,5 @@ string
 
 # 思维导图
 
-![redis-redis键命令.png](https://cnymw.github.io/GolangStudy/docs/img/redis-redis键命令.png)
+![redis-键命令.png](https://cnymw.github.io/GolangStudy/docs/img/redis-键命令.png)
 

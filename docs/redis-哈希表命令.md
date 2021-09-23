@@ -387,5 +387,5 @@ redis 127.0.0.1:6379> hscan hash 0
 
 # 思维导图
 
-![redis-redis哈希表命令.png](https://cnymw.github.io/GolangStudy/docs/img/redis-redis哈希表命令.png)
+![redis-哈希表命令.png](https://cnymw.github.io/GolangStudy/docs/img/redis-哈希表命令.png)
 

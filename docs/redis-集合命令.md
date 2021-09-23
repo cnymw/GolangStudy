@@ -1,5 +1,13 @@
 # redis 集合命令
 
+Redis 的 Set 是 String 类型的无序集合。集合成员是唯一的，这就意味着集合中不能出现重复的数据。
+
+集合对象的编码可以是 intset 或者 hashtable。
+
+Redis 中集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是 O(1)。
+
+集合中最大的成员数为 2^32 - 1 (4294967295, 每个集合可存储40多亿个成员)。
+
 ## SADD key member [member …]
 
 > 可用版本：>=1.0.0
@@ -14,7 +22,7 @@
 
 被添加到集合中的新元素的数量，不包括被忽略的元素。
 
-### 代码示例
+### 示例
 
 ```bash
 # 添加单个元素
@@ -39,7 +47,7 @@ redis> SADD bbs "discuz.net"
 
 如果 member 元素是集合的成员，返回 1 。 如果 member 元素不是集合的成员，或 key 不存在，返回 0 。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> SMEMBERS joe's_movies
@@ -64,7 +72,7 @@ redis> SISMEMBER joe's_movies "Fast Five"
 
 被移除的随机元素。 当 key 不存在或 key 是空集时，返回 nil 。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> SMEMBERS db
@@ -88,7 +96,7 @@ redis> SPOP db
 
 只提供 key 参数时，返回一个元素；如果集合为空，返回 nil 。 如果提供了 count 参数，那么返回一个数组；如果集合为空，返回空数组。
 
-### 代码示例
+### 示例
 
 ```bash
 # 添加元素
@@ -115,7 +123,7 @@ redis> SRANDMEMBER fruit
 
 被成功移除的元素的数量，不包括被忽略的元素。
 
-### 代码示例
+### 示例
 
 ```bash
 # 测试数据
@@ -143,7 +151,7 @@ redis> SREM languages ruby
 
 如果 member 元素被成功移除，返回 1 。 如果 member 元素不是 source 集合的成员，并且没有任何操作对 destination 集合执行，那么返回 0 。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> SMEMBERS songs
@@ -173,7 +181,7 @@ redis> SMEMBERS my_songs
 
 集合的基数。 当 key 不存在时，返回 0 。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> SADD tool pc printer phone
@@ -199,7 +207,7 @@ redis> SCARD tool   # 空集合
 
 集合中的所有成员。
 
-### 代码示例
+### 示例
 
 ```bash
 # 非空集合
@@ -231,7 +239,7 @@ redis> SMEMBERS language
 
 交集成员的列表。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> SMEMBERS group_1
@@ -261,7 +269,7 @@ destination 可以是 key 本身。
 
 结果集中的成员数量。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> SMEMBERS songs
@@ -291,7 +299,7 @@ redis> SMEMBERS song_interset
 
 并集成员的列表。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> SMEMBERS songs
@@ -319,7 +327,7 @@ destination 可以是 key 本身。
 
 结果集中的元素数量。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> SMEMBERS NoSQL
@@ -352,7 +360,7 @@ redis> SMEMBERS db
 
 一个包含差集成员的列表。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> SMEMBERS peter's_movies
@@ -384,7 +392,7 @@ destination 可以是 key 本身。
 
 结果集中的元素数量。
 
-### 代码示例
+### 示例
 
 ```bash
 redis> SMEMBERS joe's_movies
@@ -404,4 +412,8 @@ redis> SMEMBERS joe_diff_peter
 1) "hi, lady"
 2) "Fast Five"
 ```
+
+# 思维导图
+
+![redis-集合命令.png](https://cnymw.github.io/GolangStudy/docs/img/redis-集合命令.png)
 

@@ -557,5 +557,5 @@ redis> BRPOPLPUSH msg reciver 1
 
 # 思维导图
 
-![redis-redis列表命令.png](https://cnymw.github.io/GolangStudy/docs/img/redis-redis列表命令.png)
+![redis-列表命令.png](https://cnymw.github.io/GolangStudy/docs/img/redis-列表命令.png)
 
