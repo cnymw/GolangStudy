@@ -68,6 +68,8 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 ## 数据库
 
 - [mysql InnoDB 体系结构](/docs/数据库-mysql-InnoDB体系结构.md)
+  - [mysql InnoDB 内存结构](/docs/数据库-mysql-InnoDB内存结构.md)
+  - [mysql InnoDB 磁盘结构](/docs/数据库-mysql-InnoDB磁盘结构.md)
 - [mysql InnoDB 主从复制](/docs/数据库-mysql-InnoDB主从复制.md)
 - [mysql InnoDB 锁定读](/docs/数据库-mysql-InnoDB锁定读.md)
 - [mysql InnoDB 锁机制](/docs/数据库-mysql-innodb锁机制.md)
