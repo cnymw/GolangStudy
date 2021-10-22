@@ -114,6 +114,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [Linux 抓包工具tcpdump详解](/docs/linux-抓包命令tcpdump.md)
 - [Linux tcpdump命令详解(转)](https://www.cnblogs.com/ggjucheng/archive/2012/01/14/2322659.html)
 - [linux tcp分析命令ss详解](/docs/linux-tcp分析命令ss.md)
+- [linux curl命令详解](/docs/linux-curl命令.md)
 
 ## 网络
 
