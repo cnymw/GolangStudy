@@ -23,21 +23,21 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 ## go
 
 - [Go 基础](/docs/go-基础.md)
-- [Go 并发](/docs/go-并发.md)
-- [Go 接口](/docs/go-接口.md)
+- [Go 并发(TODO)](/docs/go-并发.md)
+- [Go 接口(TODO)](/docs/go-接口.md)
 - [Go 检测竞态条件](/docs/go-检测竞态条件.md)
-- [Go 调度：章节1 - 操作系统调度](/docs/go-go调度-章节1.md)
+- [Go 调度：章节1 - 操作系统调度(TODO)](/docs/go-go调度-章节1.md)
 - [Go 源码 SDK 目录](https://cloud.tencent.com/developer/doc/1101)
 - [Go 性能分析：pprof实战](https://blog.wolfogre.com/posts/go-ppof-practice/)
 - golang sdk
   - [Go 源码解读 标识符](/docs/go-源码解读-标识符.md)
-  - [Go 源码解读 程序分析pprof](/docs/go-源码解读-程序分析pprof.md)
-  - [Go 源码解读 同步模块sync mutex](/docs/go-源码解读-同步sync-mutex.md)
-  - [Go 源码解读 同步模块sync once](/docs/go-源码解读-同步sync-once.md)
+  - [Go 源码解读 程序分析pprof(TODO)](/docs/go-源码解读-程序分析pprof.md)
+  - [Go 源码解读 同步模块sync mutex(TODO)](/docs/go-源码解读-同步sync-mutex.md)
+  - [Go 源码解读 同步模块sync once(TODO)](/docs/go-源码解读-同步sync-once.md)
 - zap
-  - [Go 源码解读 高性能日志库 zap](/docs/go-zap.md)
+  - [Go 源码解读 高性能日志库 zap(TODO)](/docs/go-zap.md)
 - grpool
-  - [Go 源码解读 轻量级线程池 grpool](/docs/go-grpool.md)
+  - [Go 源码解读 轻量级线程池 grpool(TODO)](/docs/go-grpool.md)
   
 
 ## 数据结构
@@ -49,9 +49,9 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
     - [队列](/docs/数据结构-队列.md)
 - 树
     - [二叉树](/docs/数据结构-二叉树.md)
-    - [二叉搜索树](/docs/数据结构-二叉搜索树.md)
-    - [红黑树](/docs/数据结构-红黑树.md)
-    - [AVL 树](/docs/数据结构-AVL树.md) 
+    - [二叉搜索树(TODO)](/docs/数据结构-二叉搜索树.md)
+    - [红黑树(TODO)](/docs/数据结构-红黑树.md)
+    - [AVL 树(TODO)](/docs/数据结构-AVL树.md) 
 - [哈希表](/docs/数据结构-哈希表.md)
 
 ## 算法
@@ -63,17 +63,17 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
     - [快速排序](/docs/算法-快速排序.md)
 - [动态规划](/docs/算法-动态规划.md)
 - [前中后缀表达式](/docs/算法-前中后缀表达式.md)
-- [滑动窗口](/docs/算法-滑动窗口.md)
-- [二分查找](/docs/算法-二分查找.md)
+- [滑动窗口(TODO)](/docs/算法-滑动窗口.md)
+- [二分查找(TODO)](/docs/算法-二分查找.md)
 
 ## 数据库
 
 - [mysql InnoDB 体系结构](/docs/数据库-mysql-InnoDB体系结构.md)
-  - [mysql InnoDB 内存结构](/docs/数据库-mysql-InnoDB内存结构.md)
-  - [mysql InnoDB 磁盘结构](/docs/数据库-mysql-InnoDB磁盘结构.md)
-- [mysql InnoDB 主从复制](/docs/数据库-mysql-InnoDB主从复制.md)
-- [mysql InnoDB 锁定读](/docs/数据库-mysql-InnoDB锁定读.md)
-- [mysql InnoDB 锁机制](/docs/数据库-mysql-innodb锁机制.md)
+  - [mysql InnoDB 内存结构(TODO)](/docs/数据库-mysql-InnoDB内存结构.md)
+  - [mysql InnoDB 磁盘结构(TODO)](/docs/数据库-mysql-InnoDB磁盘结构.md)
+- [mysql InnoDB 主从复制(TODO)](/docs/数据库-mysql-InnoDB主从复制.md)
+- [mysql InnoDB 锁定读(TODO)](/docs/数据库-mysql-InnoDB锁定读.md)
+- [mysql InnoDB 锁机制(TODO)](/docs/数据库-mysql-innodb锁机制.md)
 - [mysql InnoDB 死锁案例](https://github.com/aneasystone/mysql-deadlocks)
 - [mysql 慢查询分析工具 mysqldumpslow](/docs/数据库-mysql-慢查询分析工具mysqldumpslow.md)
 - [mysql 压测工具 mysqlslap](/docs/数据库-mysql-压测工具mysqlslap.md)
@@ -92,9 +92,9 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 ## Docker+kubernetes
 
 - [Docker — 从入门到实践](https://vuepress.mirror.docker-practice.com)
-- [Docker 基础](/docs/docker-docker基础.md)
+- [Docker 基础(TODO)](/docs/docker-docker基础.md)
 - [Kubernetes 中文手册](https://www.kubernetes.org.cn/docs)
-- [Kubernetes 设计架构](/docs/k8s-设计架构.md)
+- [Kubernetes 设计架构(TODO)](/docs/k8s-设计架构.md)
 
 ## redis
 
@@ -106,6 +106,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [redis 有序集合命令](/docs/redis-有序集合命令.md)
 - [redis Hyperloglog命令](/docs/redis-Hyperloglog命令.md)
 - [redis 发布订阅](/docs/redis-发布订阅.md)
+- [redis 复制](/docs/redis-复制.md)
 
 ## 操作系统
 
@@ -130,11 +131,11 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 ## 分布式
 
 - [分布式：分布式架构](/docs/分布式-分布式架构.md)
-- [分布式：一致性协议](/docs/分布式-一致性协议.md)
-- [分布式：断路器模式](/docs/分布式-断路器模式.md)
+- [分布式：一致性协议(TODO)](/docs/分布式-一致性协议.md)
+- [分布式：断路器模式(TODO)](/docs/分布式-断路器模式.md)
 - [分布式：etcdctl 基本使用](/docs/分布式-etcd-etcdctl基本使用.md)
 - [分布式：理解 etcd](https://zhuanlan.zhihu.com/p/96721097)
-- [分布式：service mesh 入门](/docs/分布式-servicemesh-servicemesh入门.md)
+- [分布式：service mesh 入门(TODO)](/docs/分布式-servicemesh-servicemesh入门.md)
 
 ## leetcode
 
