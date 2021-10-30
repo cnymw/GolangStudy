@@ -39,6 +39,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - grpool
   - [Go 源码解读 轻量级线程池 grpool(TODO)](/docs/go-grpool.md)
   
+---
 
 ## 数据结构
 
@@ -50,9 +51,9 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - 树
     - [二叉树](/docs/数据结构-二叉树.md)
     - [二叉搜索树(TODO)](/docs/数据结构-二叉搜索树.md)
-    - [红黑树(TODO)](/docs/数据结构-红黑树.md)
-    - [AVL 树(TODO)](/docs/数据结构-AVL树.md) 
 - [哈希表](/docs/数据结构-哈希表.md)
+
+---
 
 ## 算法
 
@@ -66,6 +67,8 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [滑动窗口(TODO)](/docs/算法-滑动窗口.md)
 - [二分查找(TODO)](/docs/算法-二分查找.md)
 
+---
+
 ## 数据库
 
 - [mysql InnoDB 体系结构](/docs/数据库-mysql-InnoDB体系结构.md)
@@ -78,16 +81,22 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [mysql 慢查询分析工具 mysqldumpslow](/docs/数据库-mysql-慢查询分析工具mysqldumpslow.md)
 - [mysql 压测工具 mysqlslap](/docs/数据库-mysql-压测工具mysqlslap.md)
 
+---
+
 ## 设计模式
 
 - [策略模式](/docs/设计模式-策略模式.md)
 - [观察者模式](/docs/设计模式-观察者模式.md)
 - [装饰器模式](/docs/设计模式-装饰器模式.md)
 
+---
+
 ## OAuth 2.0
 
 - [OAuth2 规范-rfc6749](/docs/oauth2-rfc6749.md)
 - [OAuth2 规范中文翻译](https://github.com/jeansfish/RFC6749.zh-cn/blob/master/SUMMARY.md)
+
+---
 
 ## Docker+kubernetes
 
@@ -95,6 +104,8 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [Docker 基础(TODO)](/docs/docker-docker基础.md)
 - [Kubernetes 中文手册](https://www.kubernetes.org.cn/docs)
 - [Kubernetes 设计架构(TODO)](/docs/k8s-设计架构.md)
+
+---
 
 ## redis
 
@@ -108,6 +119,12 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [redis 发布订阅命令](/docs/redis-发布订阅命令.md)
 - [redis 复制命令](/docs/redis-复制命令.md)
 - [redis 数据库命令](/docs/redis-数据库命令.md)
+- [redis 事务命令](/docs/redis-事务命令.md)
+- 面试题汇总
+  - [redis 面试题：redis 有什么用](/docs/redis-面试题-redis有什么作用.md)
+  
+
+---
 
 ## 操作系统
 
@@ -121,6 +138,8 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [linux tcp分析命令ss详解](/docs/linux-tcp分析命令ss.md)
 - [linux curl命令详解](/docs/linux-curl命令.md)
 
+---
+
 ## 网络
 
 - [TCP-IP 详解：链路层](/docs/网络-TCP-IP详解-链路层.md)
@@ -128,6 +147,8 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [TCP-IP 详解：ARP 地址解析协议](/docs/网络-TCP-IP详解-ARP.md)
 - [TCP-IP 详解：RARP 逆地址解析协议](/docs/网络-TCP-IP详解-RARP.md)
 - [TCP-IP 详解：ICMP Internet控制报文协议](/docs/网络-TCP-IP详解-ICMP.md)
+
+---
 
 ## 分布式
 
@@ -137,6 +158,8 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [分布式：etcdctl 基本使用](/docs/分布式-etcd-etcdctl基本使用.md)
 - [分布式：理解 etcd](https://zhuanlan.zhihu.com/p/96721097)
 - [分布式：service mesh 入门(TODO)](/docs/分布式-servicemesh-servicemesh入门.md)
+
+---
 
 ## leetcode
 
@@ -164,6 +187,8 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [leetcode-922-按奇偶排序数组2](/docs/leetcode-922-按奇偶排序数组2.md)
 - [leetcode-976-三角形的最大周长](/docs/leetcode-976-三角形的最大周长.md)
 - [leetcode-1038-从二叉搜索树到更大和树](/docs/leetcode-1038-从二叉搜索树到更大和树.md)
+
+---
 
 # 参考资料
 - [麻省理工学院公开课：算法导论](http://open.163.com/special/opencourse/algorithms.html)
