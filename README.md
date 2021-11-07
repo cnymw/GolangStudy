@@ -31,6 +31,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [Go 性能分析：pprof实战](https://blog.wolfogre.com/posts/go-ppof-practice/)
 - golang sdk
   - [Go 源码解读 标识符](/docs/go-源码解读-标识符.md)
+  - [Go 源码解读 双向链表list](/docs/go-源码解读-双向链表list.md)
   - [Go 源码解读 程序分析pprof(TODO)](/docs/go-源码解读-程序分析pprof.md)
   - [Go 源码解读 同步模块sync mutex(TODO)](/docs/go-源码解读-同步sync-mutex.md)
   - [Go 源码解读 同步模块sync once(TODO)](/docs/go-源码解读-同步sync-once.md)
