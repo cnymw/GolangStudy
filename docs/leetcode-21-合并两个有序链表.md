@@ -16,7 +16,7 @@
 
 这里需要注意的是需要定义一个指针用于遍历新的链表，最终返回的是伪造的 head 的 next 指针。
 
-![p21](https://cnymw.github.io/GolangStudy/docs/img/数据结构-链表/数据结构-链表-leetcode21.png)
+![数据结构-链表-leetcode21.png](https://cnymw.github.io/GolangStudy/docs/img/数据结构-链表-leetcode21.png)
 
 实现如下：
 

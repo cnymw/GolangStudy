@@ -44,3 +44,28 @@ InnoDB 使用不同的锁策略来支持不同的事务隔离级别。
 
 - 对于 UPDATE 语句，如果一条记录已经被锁定，InnoDB 将执行半一致性读`semi-consistent read`，将最新提交的版本返回给 Mysql，以便 Mysql 可以确定该行是否匹配更新的 WHERE 条件。如果记录匹配（已经被更新），Mysql 将再次读取该记录，这次 InnoDB 将锁定该行或等待锁定该行。
 
+考虑下面的例子：
+
+```mysql
+CREATE TABLE t (a INT NOT NULL, b INT) ENGINE = InnoDB;
+INSERT INTO t VALUES (1,2),(2,3),(3,2),(4,3),(5,2);
+COMMIT;
+```
+
+在这种情况下，表没有索引，因此搜索和索引扫描使用隐藏的聚集索引进行记录锁定，而不是索引列。
+
+假设一个会话使用以下语句执行更新：
+
+```mysql
+# Session A
+START TRANSACTION;
+UPDATE t SET b = 5 WHERE b = 3;
+```
+
+也假设，执行完第一个会话的语句之后，第二个语句执行以下语句来执行更新：
+
+```mysql
+# Session B
+UPDATE t SET b = 4 WHERE b = 2;
+```
+
