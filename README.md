@@ -132,6 +132,9 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [redis 配置选项命令](/docs/redis-配置选项命令.md)
 - [redis 调试命令](/docs/redis-调试命令.md)
 - [redis 内部命令](/docs/redis-内部命令.md)
+- [redis 持久化（TODO）](/docs/redis-持久化.md)
+- [redis sentinel（TODO）](/docs/redis-sentinel.md)
+- [redis 集群（TODO）](/docs/redis-集群.md)
 - 面试题汇总
   - [redis 面试题：redis 有什么用](/docs/redis-面试题-redis有什么作用.md)
   
