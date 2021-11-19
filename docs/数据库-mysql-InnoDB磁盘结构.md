@@ -1,4 +1,3 @@
-
 ## InnoDB 磁盘结构 On-Disk Structures
 
 本节介绍 InnoDB 磁盘结构和相关主题。

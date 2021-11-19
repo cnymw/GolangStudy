@@ -12,7 +12,6 @@
   
 - 事务二不会立即获得排他锁，需要等事务一释放共享锁之后，事务二才能获得排他锁
 
-
 ## 排他锁（Exclusive locks）
 
 排他锁是 InnoDB 实现的一种行锁。
@@ -27,17 +26,17 @@ InnoDB 支持多粒度锁，允许行锁和表锁共存。例如，`LOCK TABLES 
 
 为了支持多粒度级别锁，InnoDB 使用了意向锁，意向锁是表级锁，指示事务需要对表中的记录使用哪种类型的锁（共享或排他），有两种类型的意向锁：
 
-- 意向共享锁表示事务打算在表上的每个记录设置共享锁
+- 意向共享锁表示事务打算在表上的每个行设置共享锁
   
-- 意向排他锁表示事务打算在表上的每个记录设置排他锁
+- 意向排他锁表示事务打算在表上的每个行设置排他锁
 
 例如，`SELECT ... FOR SHARE` 会设置意向共享锁， `SELECT ... FOR UPDATE` 会设置意向排他锁。
 
 意向锁的原则如下所示：
 
-- 在事务获取记录共享锁之前，事务必须首先获得一个表的意向共享锁或者更高级别的锁。
+- 在事务获取行共享锁之前，事务必须首先获得一个表的意向共享锁或者更高级别的锁。
   
-- 在事务获取记录排他锁之前，事务必须首先获得一个表的意向排他锁。
+- 在事务获取行排他锁之前，事务必须首先获得一个表的意向排他锁。
 
 下表总结了表级锁类型兼容性：
 
@@ -61,15 +60,15 @@ IS	Conflict	Compatible	Compatible	Compatible
 TABLE LOCK table `test`.`t` trx id 10080 lock mode IX
 ```
 
-## 记录锁(Record Locks)
+## 行锁(Record Locks)
 
-记录锁是用于锁一个索引记录。
+行锁是用于锁一个索引记录。
 
 例如，`SELECT c1 FROM t WHERE c1 = 10 FOR UPDATE;` 语句会阻止其他事务对 `t.c1=10` 记录做增删改操作。
 
-即使表没有索引，记录锁也会锁定索引记录，针对于这种情况，InnoDB 创建一个隐藏的聚集索引，并将这个索引用于记录锁。
+即使表没有索引，行锁也会锁定索引记录，针对于这种情况，InnoDB 创建一个隐藏的聚集索引，并将这个索引用于行锁。
 
-记录锁的事务在`SHOW ENGINE INNODB STATUS`和`InnoDB monitor`输出显示如下：
+行锁的事务在`SHOW ENGINE INNODB STATUS`和`InnoDB monitor`输出显示如下：
 
 ```sql
 RECORD LOCKS space id 58 page no 3 n bits 72 index `PRIMARY` of table `test`.`t` 

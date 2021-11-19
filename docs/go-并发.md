@@ -93,6 +93,7 @@ fmt.Println(<-ch) // blocked
 ```
 
 ## select
+
 如果多个 case 同时就绪时，select 会随机地选择一个执行，这样来保证每一个 channel 都有平等的被 select 的机会。
 
 select 会有一个 default 来设置当其它的操作都不能够马上被处理时程序需要执行哪些逻辑。
