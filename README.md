@@ -26,8 +26,10 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [Go 并发(TODO)](/docs/go-并发.md)
 - [Go 接口(TODO)](/docs/go-接口.md)
 - [Go 检测竞态条件](/docs/go-检测竞态条件.md)
-- [Go 调度：章节1 - 操作系统调度(TODO)](/docs/go-go调度-章节1.md)
 - [Go 性能分析：pprof实战](https://blog.wolfogre.com/posts/go-ppof-practice/)
+- golang机制
+  - [Go 调度](/docs/go-调度.md)
+  - [Go 垃圾回收](/docs/go-垃圾回收.md)
 - golang sdk
   - [Go 源码 SDK 目录](https://cloud.tencent.com/developer/doc/1101)
   - [Go 源码解读 标识符](/docs/go-源码解读-标识符.md)
@@ -55,7 +57,8 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
     - [二叉树](/docs/数据结构-二叉树.md)
     - [二叉搜索树(TODO)](/docs/数据结构-二叉搜索树.md)
 - [哈希表](/docs/数据结构-哈希表.md)
-
+- 面试题
+  - [数据结构面试题：B树和B+树之间的区别](/docs/数据结构-面试题-B树和B+树的区别.md)
 ---
 
 ## 算法
@@ -137,11 +140,17 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [redis 持久化（TODO）](/docs/redis-持久化.md)
 - [redis sentinel（TODO）](/docs/redis-sentinel.md)
 - [redis 集群（TODO）](/docs/redis-集群.md)
-- 面试题汇总
+- 面试题
   - [redis 面试题：redis 有什么用](/docs/redis-面试题-redis有什么作用.md)
-  
+  - [redis 面试题：redis 是单线程但为什么执行速度这么快](/docs/redis-面试题-redis为什么这么快.md)
 
 ---
+
+## 消息中间件
+
+- [kafka 介绍](/docs/消息中间件-kafka-介绍.md)
+
+--- 
 
 ## 操作系统
 
@@ -212,6 +221,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 # 参考资料
 - [麻省理工学院公开课：算法导论](http://open.163.com/special/opencourse/algorithms.html)
 - [LeetCode All in One 题目讲解汇总](https://github.com/grandyang/leetcode)
+- [kafka教程](https://www.orchome.com/kafka/index)
 
 # 公众号
 
