@@ -37,25 +37,34 @@ service mesh 通常由控制面板和数据面板组成。
 #### 流量管理
 
 - 协议——7层协议（http，grpc）
+  
 - 动态路由——条件，加权，镜像
+  
 - 弹性——超时，重试，熔断器
+  
 - 策略——访问控制，速率限制，配额
+  
 - 测试——故障注入
 
 #### 安全
 
 - 加密——mTLS，证书管理，外部 CA
+  
 - 强认证——SPIFFE 或类似的认证
+  
 - 权限——认证，授权
 
 #### 可视化
 
 - Metrics——metrics,prometheus,grafana
+  
 - Tracing——跨工作负载的跟踪
+  
 - 流量——集群，入口/出口
 
 #### Mesh
 
 - Supported Compute——Kubernetes, 虚拟机
+  
 - 多集群——网关，联合
 
