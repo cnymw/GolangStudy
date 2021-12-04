@@ -7,7 +7,7 @@
 注意子串要与 words 中的单词完全匹配，中间不能有其他字符，但不需要考虑 words 中单词串联的顺序。
 
 示例 1
-```go
+```text
 输入:
   s = "barfoothefoobarman",
   words = ["foo","bar"]
@@ -18,7 +18,7 @@
 ```
 
 示例 2：
-```go
+```text
 输入:
   s = "wordgoodgoodgoodbestword",
   words = ["word","good","best","word"]
@@ -26,6 +26,8 @@
 ```
 
 ## 题解：
+
+### 哈希表
 
 该题目实际意思是将输入 s 划分为长度一定的连续字符组，例如输入 s = "barfoothefoobarman"，实际含义是将 s 转换为 s1 = [bar foo the foo bar man]，s2 = [arf oot hef oob arm]...
 

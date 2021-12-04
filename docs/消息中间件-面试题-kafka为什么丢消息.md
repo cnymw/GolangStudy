@@ -58,4 +58,4 @@ Kafka 通过多分区多副本机制中已经能最大限度保证数据不会�
 
 # 思维导图
 
-![消息中间件-面试题-kafka为什么会丢消息.png](https://cnymw.github.io/GolangStudy/docs/img/消息中间件-面试题-kafka为什么会丢消息.png)
+![消息中间件-面试题-kafka为什么会丢消息-思维导图.png](https://cnymw.github.io/GolangStudy/docs/img/消息中间件-面试题-kafka为什么会丢消息-思维导图.png)

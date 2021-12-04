@@ -56,7 +56,7 @@ IS	Conflict	Compatible	Compatible	Compatible
 
 意向锁的事务在`SHOW ENGINE INNODB STATUS`和`InnoDB monitor`输出显示如下所示：
 
-```go
+```mysql
 TABLE LOCK table `test`.`t` trx id 10080 lock mode IX
 ```
 
@@ -89,7 +89,7 @@ Record lock, heap no 2 PHYSICAL RECORD: n_fields 3; compact format; info bits 0
 
 使用唯一索引搜索单个记录不会使用间隙锁（不包括搜索条件包含多列唯一索引的情况，在这种情况下，会使用到间隙索引）。例如，如果 `id` 列具有唯一索引，下面的语句只会在 `id=100` 记录上使用一个索引记录锁（index-record lock）， 而不会在 `id<100` 这个范围内加间隙锁。
 
-```go
+```mysql
 SELECT * FROM child WHERE id = 100;
 ```
 

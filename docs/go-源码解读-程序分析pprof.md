@@ -14,7 +14,7 @@ profiling Go 程序的第一步是启用 profiling。
 
 例如，以下命令是在当前目录中运行基准测试（benchmark），并将 CPU 和内存配置文件写入 cpu.prof 和 mem.prof。
 
-```go
+```bash
 go test -cpuprofile cpu.prof -memprofile mem.prof -bench .
 ```
 
@@ -64,7 +64,7 @@ import _ "net/http/pprof"
 
 然后可以使用 pprof 工具来可视化分析数据。
 
-```go
+```bash
 go tool pprof cpu.prof
 ```
 

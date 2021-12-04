@@ -12,7 +12,7 @@
 
 ![示例](https://cnymw.github.io/GolangStudy/docs/img/数据结构-二叉树-示例1.png)
 
-```go
+```text
 输入:[4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]
 输出:[30,36,21,36,35,26,15,null,null,null,33,null,null,null,8]
 ```
@@ -20,14 +20,14 @@
 提示：
 
 1. 树中的节点数介于 1 和 100 之间。
-2. 每个节点的值介于 0 和 100 之间。
+2. 每个节点的值介于 0 和 100 之间。
 3. 给定的树为二叉搜索树。
 
 题解：
 
 根据示例不难发现，该题目的核心是遍历树，但是不是常见的前中后序遍历，而是一种改造过后的遍历方式，伪代码表示如下：
 
-```go
+```text
 INORDER-TREE-WALK(x,sum)
     if x!=nil{
     	INORDER-TREE-WALK(x.right,sum)

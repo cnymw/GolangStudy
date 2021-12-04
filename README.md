@@ -33,7 +33,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - golang sdk
   - [Go 源码 SDK 目录](https://cloud.tencent.com/developer/doc/1101)
   - [Go 源码解读 标识符](/docs/go-源码解读-标识符.md)
-  - [Go 源码解读 双向链表list](/docs/go-源码解读-双向链表list.md)
+  - [Go 源码解读 双向链表 list](/docs/go-源码解读-双向链表list.md)
   - [Go 源码解读 程序分析pprof(TODO)](/docs/go-源码解读-程序分析pprof.md)
   - [Go 源码解读 同步模块sync mutex(TODO)](/docs/go-源码解读-同步sync-mutex.md)
   - [Go 源码解读 同步模块sync once(TODO)](/docs/go-源码解读-同步sync-once.md)
@@ -105,7 +105,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 ---
 
-## OAuth 2.0
+## JWT+OAuth 2.0
 
 - [OAuth2 规范-rfc6749](/docs/oauth2-rfc6749.md)
 - [OAuth2 规范中文翻译](https://github.com/jeansfish/RFC6749.zh-cn/blob/master/SUMMARY.md)
@@ -118,7 +118,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
   - [Docker — 从入门到实践](https://vuepress.mirror.docker-practice.com)
   - [Docker 基础(TODO)](/docs/docker-docker基础.md)
 - Kubernetes
-  - [Kubernetes 基本概念和术语(TODO)](/docs/Kubernetes-基本概念和术语.md)
+  - [Kubernetes 基本概念和术语](/docs/Kubernetes-基本概念和术语.md)
   - [Kubernetes 中文手册](https://www.kubernetes.org.cn/docs)
 
 ---
@@ -182,9 +182,10 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [TCP-IP 详解：RARP 逆地址解析协议](/docs/网络-TCP-IP详解-RARP.md)
 - [TCP-IP 详解：ICMP Internet控制报文协议](/docs/网络-TCP-IP详解-ICMP.md)
 - [TCP-IP 详解：TCP 传输控制协议（TODO）](/docs/网络-TCP-IP详解-TCP传输控制协议.md)
-- [grpc:grpc简介(TODO)](/docs/网络-grpc简介.md)
+- [grpc：grpc简介(TODO)](/docs/网络-grpc简介.md)
 - 面试题
   - [HTTP 1.0、1.1、2.0、3.0 区别(TODO)](/docs/网络-http-http版本区别.md)
+  
 ---
 
 ## 分布式
@@ -200,30 +201,36 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 ## leetcode
 
-- [leetcode-1-两数之和](/docs/leetcode-1-两数之和.md)
-- [leetcode-2-两数相加](/docs/leetcode-2-两数相加.md)
-- [leetcode-3-无重复字符的最长子串](/docs/leetcode-3-无重复字符的最长子串.md)
-- [leetcode-5-最长回文子串](/docs/leetcode-5-最长回文子串.md)
+- 链表
+  - [leetcode-2-两数相加](/docs/leetcode-2-两数相加.md)
+  - [leetcode-21-合并两个有序链表](/docs/leetcode-21-合并两个有序链表.md)
+  - [leetcode-61-旋转链表](/docs/leetcode-61-旋转链表.md)
+- 哈希表
+  - [leetcode-1-两数之和](/docs/leetcode-1-两数之和.md)
+  - [leetcode-3-无重复字符的最长子串](/docs/leetcode-3-无重复字符的最长子串.md)
+  - [leetcode-30-串联所有单词的子串](/docs/leetcode-30-串联所有单词的子串.md)
+  - [leetcode-242-有效的字母异位词](/docs/leetcode-242-有效的字母异位词.md)
+  - [leetcode-349-两个数组的交集](/docs/leetcode-349-两个数组的交集.md)
+  - [leetcode-350-两个数组的交集2](/docs/leetcode-350-两个数组的交集2.md)
+- 动态规划
+  - [leetcode-5-最长回文子串](/docs/leetcode-5-最长回文子串.md)
+  - [leetcode-53-最大子序和](/docs/leetcode-53-最大子序和.md)
+  - [leetcode-64-最小路径和](/docs/leetcode-64-最小路径和.md)
+  - [leetcode-70-爬楼梯](/docs/leetcode-70-爬楼梯.md)
+  - [leetcode-115-不同的子序列](/docs/leetcode-115-不同的子序列.md)
+- 树
+  - [leetcode-100-相同的树](/docs/leetcode-100-相同的树.md)
+  - [leetcode-1038-从二叉搜索树到更大和树](/docs/leetcode-1038-从二叉搜索树到更大和树.md)
+- 栈
+  - [leetcode-150-逆波兰表达式求值](/docs/leetcode-150-逆波兰表达式求值.md)
+  - [leetcode-224-基本计算器](/docs/leetcode-224-基本计算器.md)
+  - [leetcode-225-用队列实现栈](/docs/leetcode-225-用队列实现栈.md)
 - [leetcode-15-三数之和](/docs/leetcode-15-三数之和.md)
-- [leetcode-21-合并两个有序链表](/docs/leetcode-21-合并两个有序链表.md)
 - [leetcode-27-移除元素](/docs/leetcode-27-移除元素.md)
-- [leetcode-30-串联所有单词的子串](/docs/leetcode-30-串联所有单词的子串.md)
-- [leetcode-53-最大子序和](/docs/leetcode-53-最大子序和.md)
 - [leetcode-56-合并区间](/docs/leetcode-56-合并区间.md)
-- [leetcode-64-最小路径和](/docs/leetcode-64-最小路径和.md)
-- [leetcode-70-爬楼梯](/docs/leetcode-70-爬楼梯.md)
-- [leetcode-100-相同的树](/docs/leetcode-100-相同的树.md)
-- [leetcode-115-不同的子序列](/docs/leetcode-115-不同的子序列.md)
-- [leetcode-150-逆波兰表达式求值](/docs/leetcode-150-逆波兰表达式求值.md)
 - [leetcode-164-最大间距](/docs/leetcode-164-最大间距.md)
-- [leetcode-224-基本计算器](/docs/leetcode-224-基本计算器.md)
-- [leetcode-225-用队列实现栈](/docs/leetcode-225-用队列实现栈.md)
-- [leetcode-242-有效的字母异位词](/docs/leetcode-242-有效的字母异位词.md)
-- [leetcode-349-两个数组的交集](/docs/leetcode-349-两个数组的交集.md)
-- [leetcode-350-两个数组的交集2](/docs/leetcode-350-两个数组的交集2.md)
 - [leetcode-922-按奇偶排序数组2](/docs/leetcode-922-按奇偶排序数组2.md)
 - [leetcode-976-三角形的最大周长](/docs/leetcode-976-三角形的最大周长.md)
-- [leetcode-1038-从二叉搜索树到更大和树](/docs/leetcode-1038-从二叉搜索树到更大和树.md)
 
 ---
 

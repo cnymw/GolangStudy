@@ -138,4 +138,4 @@ redis> PFCOUNT  github
 
 # 思维导图
 
-![redis-面试题-redis有什么作用.png](https://cnymw.github.io/GolangStudy/docs/img/redis-面试题-redis有什么作用.png)
+![redis-面试题-redis有什么作用-思维导图.png](https://cnymw.github.io/GolangStudy/docs/img/redis-面试题-redis有什么作用-思维导图.png)
