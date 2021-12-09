@@ -80,7 +80,7 @@ func (cfg Config) Build(opts ...Option) (*Logger, error) {
 
 在 New 构造器中:
 
-- core：指定底层输出日志的 io 对象 
+- core：指定底层输出日志的 io 对象
 - errorOutput：指定如果 zap 内部报错的时候，输出错误信息的地址
 - addStack：指定输出日志的级别，FatalLevel + 1 代表所有级别（包括 FatalLevel）的日志都会输出
 

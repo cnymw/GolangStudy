@@ -332,7 +332,7 @@ redis> RENAMENX player best_player
 (integer) 1
 ```
 
-## TYPE KEY_NAME 
+## TYPE KEY_NAME
 
 Redis Type 命令用于返回 key 所储存的值的类型。
 

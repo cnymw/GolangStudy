@@ -12,7 +12,8 @@
 CREATE TABLE t1 (a INT, b CHAR (20), PRIMARY KEY (a)) ENGINE=InnoDB;
 ```
 
-当默认存储引擎指定为 InnoDB 时，`ENGINE=InnoDB`不是必须的。但是，如果 InnoDB 不是默认引擎或未知的其他 Mysql 服务器实例上执行`CREATE TABLE`语句，`ENGINE`语句非常有用。可以通过以下语句来确定 Mysql 服务器实例上的默认存储引擎：
+当默认存储引擎指定为 InnoDB 时，`ENGINE=InnoDB`不是必须的。但是，如果 InnoDB 不是默认引擎或未知的其他 Mysql 服务器实例上执行`CREATE TABLE`语句，`ENGINE`
+语句非常有用。可以通过以下语句来确定 Mysql 服务器实例上的默认存储引擎：
 
 ```mysql
 mysql> SELECT @@default_storage_engine;
@@ -23,11 +24,13 @@ mysql> SELECT @@default_storage_engine;
 +--------------------------+
 ```
 
-默认情况下，InnoDB 表是在每个表的文件表空间中创建的。要在 InnoDB 系统表空间中创建 InnoDB 表，请在创建表之前禁用 innodb_file_per_table 变量。要在常规表空间中创建表，请使用`CREATE TABLE ... TABLESPACE`语法。
+默认情况下，InnoDB 表是在每个表的文件表空间中创建的。要在 InnoDB 系统表空间中创建 InnoDB 表，请在创建表之前禁用 innodb_file_per_table
+变量。要在常规表空间中创建表，请使用`CREATE TABLE ... TABLESPACE`语法。
 
 ##### 行格式 Row Formats
 
-InnoDB 表的行格式决定该行在磁盘上的物理存储方式。InnoDB 支持四种行格式，每种格式具有不同的存储特性。支持的行格式包括：`REDUNDANT`，`COMPACT`，`DYNAMIC`，`COMPRESSED`。默认为 `DYNAMIC`。
+InnoDB 表的行格式决定该行在磁盘上的物理存储方式。InnoDB 支持四种行格式，每种格式具有不同的存储特性。支持的行格式包括：`REDUNDANT`，`COMPACT`，`DYNAMIC`，`COMPRESSED`
+。默认为 `DYNAMIC`。
 
 `innodb_default_row_format`定义默认的行格式，也可以使用`CREATE TABLE`或`ALTER TABLE`语句中的`ROW_FORMAT`显式定义表的行格式。
 
@@ -50,7 +53,8 @@ CREATE TABLE t5 (id INT AUTO_INCREMENT, b CHAR (20), PRIMARY KEY (id));
 CREATE TABLE t6 (id INT AUTO_INCREMENT, a INT, b CHAR (20), PRIMARY KEY (id,a));
 ```
 
-虽然表在没有定义主键的情况下可以正常工作，但主键涉及性能的许多方面，对于任何大型或常用表来说，它都是一个至关重要的设计。建议在`CREATE TABLE`语句中指定主键。如果创建表，加载数据之后，再来执行`ALTER TABLE`来添加主键，那么这个速度比创建表的时候定义要慢得多。
+虽然表在没有定义主键的情况下可以正常工作，但主键涉及性能的许多方面，对于任何大型或常用表来说，它都是一个至关重要的设计。建议在`CREATE TABLE`语句中指定主键。如果创建表，加载数据之后，再来执行`ALTER TABLE`
+来添加主键，那么这个速度比创建表的时候定义要慢得多。
 
 ##### 查看 InnoDB 表属性
 
@@ -150,8 +154,6 @@ t1.ibd
 mysql> CREATE TABLE t2 (c1 INT PRIMARY KEY) TABLESPACE = innodb_file_per_table
        DATA DIRECTORY = '/external/directory';
 ```
-
-
 
 # 参考资料
 

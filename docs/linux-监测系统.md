@@ -18,6 +18,7 @@
 关于 ps 命令的详细参数可以查看 [ps命令](https://man.linuxde.net/ps)
 
 常用的命令为:
+
 ```bash
 BenjaminYoungdeMacBook-Pro:~ benjamin$ ps -ef | grep bash
   UID  PID    PPID  C   STIME    TTY        TIME   CMD
@@ -202,6 +203,7 @@ BenjaminYoungdeMacBook-Pro:Downloads benjamin$ du
 每行输出左边的数值是每个文件或目录占用的磁盘块数。这个列表是从目录层级的最底部开始，然后按文件，子目录，目录逐级向上。
 
 下面是 du 命令常用的几个命令行参数：
+
 - c：显示所列出文件总的大小
 - h：按用户易读的格式输出大小
 

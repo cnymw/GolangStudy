@@ -192,7 +192,7 @@ func (l *List) remove(e *Element) *Element {
 - 移动结点 e 的当前位置的 prev 和 next 的赋值，需要分别赋值为当前位置的前驱和后继，避免链表断裂
 
 - 移动结点 e 的 prev 和 next 的赋值
-  
+
 - 移动结点 e 的前驱结点 e.prev（实际上是 at）的后继的赋值
 
 - 移动结点 e 的后继结点 e.next 的前驱的赋值

@@ -22,7 +22,9 @@ var oranges int16 = 2
 var compote int = apples + oranges // compile error , invalid operation: apples + oranges (mismatched types int32 and int16)
 var compote = int(apples) + int(oranges) // compote=3
 ```
+
 apples 和 oranges 不是 int 类型，所以赋值给 int 类型变量会编译报错。
+
 ```go
 i := 123
 j := int32(i)
@@ -139,7 +141,6 @@ const (
 - 无类型的字符串
 
 通过延迟明确常量的具体类型，无类型的常量不仅可以提供更高的运算精度，而且可以直接用于更多的表达式而不需要显式的类型转换。
-
 
 ## 复合数据类型
 

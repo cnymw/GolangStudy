@@ -2,7 +2,8 @@
 
 ## Master
 
-Kubernetes 里的 Master 指的是集群控制节点，每个 Kubernetes 集群里需要有一个 Master 节点来负责整个集群的管理和控制，基本上 Kubernetes 所有的控制命令都发送给它，如果 Master 宕机或不可用，那么对集群内容器应用的管理都将失效。
+Kubernetes 里的 Master 指的是集群控制节点，每个 Kubernetes 集群里需要有一个 Master 节点来负责整个集群的管理和控制，基本上 Kubernetes 所有的控制命令都发送给它，如果 Master
+宕机或不可用，那么对集群内容器应用的管理都将失效。
 
 Master 节点上运行着以下关键进程：
 
@@ -16,7 +17,8 @@ Master 节点上运行着以下关键进程：
 
 ## Node
 
-Kubernetes 集群中的其他机器被称为 Node 节点，是集群中的工作负载节点，每个 Node 都会被 Master 分配一些工作负载（Docker 容器），当某个 Node 宕机时，其上的工作负载会被 Master 自动转移到其他节点上去。
+Kubernetes 集群中的其他机器被称为 Node 节点，是集群中的工作负载节点，每个 Node 都会被 Master 分配一些工作负载（Docker 容器），当某个 Node 宕机时，其上的工作负载会被 Master
+自动转移到其他节点上去。
 
 每个 Node 节点上都运行以下一组关键进程：
 
@@ -58,7 +60,8 @@ Pod 由如下组成：
 
 Label 是一个 key=value 的键值对，其中 key 与 value 由用户自己指定。
 
-Label 可以附加到各种资源对象上，例如 Node，Pod，Service，RC 等，一个资源对象可以定义任意数量的 Label，同一个 Label 也可以被添加到任意数量的资源对象上去，Label 通常在资源对象定义时确定，也可以在对象创建后动态添加或删除。
+Label 可以附加到各种资源对象上，例如 Node，Pod，Service，RC 等，一个资源对象可以定义任意数量的 Label，同一个 Label 也可以被添加到任意数量的资源对象上去，Label
+通常在资源对象定义时确定，也可以在对象创建后动态添加或删除。
 
 打了 Label（标签）后，可以通过 Label Selector（标签选择器）查询和筛选拥有某些 Label 的资源对象，Kubernetes 通过这种方式实现了类似 SQL 的简单又通用的对象查询机制。
 
@@ -82,7 +85,8 @@ RC 是 Kubernetes 系统中的核心概念之一，它定义了一个期望的�
 
 - 当 Pod 的副本数量小于预期数量时，用于创建新 Pod 的 Pod 模板（template）
 
-在 Kubernetes v1.2 时，它升级成了另外一个新的概念：Replica Set，它与当前 RC 存在的唯一区别是，Replica Set 支持基于集合的 Label Selector，而 RC 只支持基于等式的 Label Selector，这使得 Replica Set 的功能更强。
+在 Kubernetes v1.2 时，它升级成了另外一个新的概念：Replica Set，它与当前 RC 存在的唯一区别是，Replica Set 支持基于集合的 Label Selector，而 RC 只支持基于等式的 Label
+Selector，这使得 Replica Set 的功能更强。
 
 总结 RC（Replica Set）的特性与作用：
 
@@ -160,17 +164,21 @@ Service 也是 Kubernetes 里最核心的资源对象之一，Kubernetes 里的�
 
 ![Kubernetes-基本概念和术语-Service.png](https://cnymw.github.io/GolangStudy/docs/img/Kubernetes-基本概念和术语-Service.png)
 
-Kubernetes 的 Service 定义了一个服务的访问入口地址，通过这个入口地址访问其背后的一组由 Pod 副本组成的集群实例，Service 与其后端 Pod 副本集群之间是通过 Label Selector 来实现对接的。RC 的作用是保证 Service 的服务能力和服务质量始终处于预期的标准。
+Kubernetes 的 Service 定义了一个服务的访问入口地址，通过这个入口地址访问其背后的一组由 Pod 副本组成的集群实例，Service 与其后端 Pod 副本集群之间是通过 Label Selector 来实现对接的。RC
+的作用是保证 Service 的服务能力和服务质量始终处于预期的标准。
 
 运行在每个 Node 上的 kube-proxy 进程是一个智能的软件负载均衡器，它负责把对 Service 的请求转发到后端的某个 Pod 实例上，并在内部实现服务的负载均衡与会话保持机制。
 
-但 Service 不是共用一个负载均衡的 IP 地址，而是每个 Service 分配了一个全局唯一的虚拟 IP 地址，这个虚拟 IP 被称为 ClusterIP。这样每个服务就变成了具备唯一 IP 地址的节点，服务调用就变成了最基础的 TCP 网络通信问题。
+但 Service 不是共用一个负载均衡的 IP 地址，而是每个 Service 分配了一个全局唯一的虚拟 IP 地址，这个虚拟 IP 被称为 ClusterIP。这样每个服务就变成了具备唯一 IP 地址的节点，服务调用就变成了最基础的
+TCP 网络通信问题。
 
-Service 一旦被创建，Kubernetes 就会自动为它分配一个可用的 Cluster IP，在 Service 的整个生命周期内，它的 Cluster IP 不会发生改变，于是服务发现问题可以解决：只要用 Service 的 Name 与 Service 的 Cluster IP 地址做一个 DNS 域名映射即可解决。
+Service 一旦被创建，Kubernetes 就会自动为它分配一个可用的 Cluster IP，在 Service 的整个生命周期内，它的 Cluster IP 不会发生改变，于是服务发现问题可以解决：只要用 Service 的
+Name 与 Service 的 Cluster IP 地址做一个 DNS 域名映射即可解决。
 
 ### Kubernetes 的服务发现机制
 
-Kubernetes 最早采用了 Linux 环境变量的方式来通过 Service 的名字找到对应的 Cluster IP，即每个 Service 生成一些对应的 Linux 环境变量（Env），并在每个 Pod 容器在启动时，自动注入这些环境变量。
+Kubernetes 最早采用了 Linux 环境变量的方式来通过 Service 的名字找到对应的 Cluster IP，即每个 Service 生成一些对应的 Linux 环境变量（Env），并在每个 Pod
+容器在启动时，自动注入这些环境变量。
 
 考虑到环境变量的方式获取 Service 的 IP 与端口的方式仍然不方便，后来 Kubernetes 通过 Add-On 增值包的方式引入了 DNS 系统，把服务名作为 DNS 域名。
 
@@ -178,16 +186,18 @@ Kubernetes 最早采用了 Linux 环境变量的方式来通过 Service 的名�
 
 Kubernetes 里存在三种 IP：
 
-- Node IP：Node 节点的 IP 地址，是 Kubernetes 集群中每个节点的物理网卡的 IP 地址，所有属于这个网络的服务器之间都能通过这个网络直接通信。Kubernetes 集群之外的节点访问 Kubernetes 集群之内的某个节点或者 TCP/IP 服务时，必须要通过 Node IP 进行通信。
+- Node IP：Node 节点的 IP 地址，是 Kubernetes 集群中每个节点的物理网卡的 IP 地址，所有属于这个网络的服务器之间都能通过这个网络直接通信。Kubernetes 集群之外的节点访问 Kubernetes
+  集群之内的某个节点或者 TCP/IP 服务时，必须要通过 Node IP 进行通信。
 
-- Pod IP：Pod 的 IP 地址，它是 Docker Engine 根据 docker0 网桥的 IP 地址段进行分配的，通常是一个虚拟的二层网络。Kubernetes 要求位于不同的 Node 上的 Pod 能够彼此直接通信，所以 Pod 里的容器访问另外一个 Pod 里的容器，就是通过 Pod IP 所在的虚拟二层网络进行通信的，而真实的 TCP/IP 流量是通过 Node IP 所在的物理网卡流出的。
+- Pod IP：Pod 的 IP 地址，它是 Docker Engine 根据 docker0 网桥的 IP 地址段进行分配的，通常是一个虚拟的二层网络。Kubernetes 要求位于不同的 Node 上的 Pod 能够彼此直接通信，所以
+  Pod 里的容器访问另外一个 Pod 里的容器，就是通过 Pod IP 所在的虚拟二层网络进行通信的，而真实的 TCP/IP 流量是通过 Node IP 所在的物理网卡流出的。
 
-- Cluster IP：Service 的 IP 地址，它是一个虚拟的 IP，原因有如下几点： 
-    - Cluster IP 仅仅作用于 Kubernetes Service 这个对象，并由 Kubernetes 管理和分配 IP 地址（来源于 Cluster IP 地址池） 
+- Cluster IP：Service 的 IP 地址，它是一个虚拟的 IP，原因有如下几点：
+    - Cluster IP 仅仅作用于 Kubernetes Service 这个对象，并由 Kubernetes 管理和分配 IP 地址（来源于 Cluster IP 地址池）
     - Cluster IP 无法被 Ping，因为没有一个实体网络对象来响应
-    - Cluster IP 只能结合 Service Port 组成一个具体的通信端口，单独的 Cluster IP 不具备 TCP/IP 通信的基础，并且它们属于 Kubernetes 集群封闭空间，集群之外的节点如果要访问这个通信端口，需要做一些额外的工作
+    - Cluster IP 只能结合 Service Port 组成一个具体的通信端口，单独的 Cluster IP 不具备 TCP/IP 通信的基础，并且它们属于 Kubernetes
+      集群封闭空间，集群之外的节点如果要访问这个通信端口，需要做一些额外的工作
     - 在 Kubernetes 集群之内，Node IP 网与 Cluster IP 网之间的通信，采用的是 Kubernetes 自己设计的一种编程方式的特殊的路由规则，与我们熟悉的 IP 路由有很大的不同
-  
 
 ## Volume（存储卷）
 
@@ -206,14 +216,14 @@ Kubernetes 的 Volume 概念，用途和目的与 Docker 的 Volume 比较类似
 ### Volume 类型
 
 - emptyDir：它的初始内容为空，并且无需指定宿主机上对应的目录文件，因为这是 Kubernetes 自动分配的一个目录，当 Pod 从 Node 上移除时，emptyDir 中的数据也会被永久删除。用途如下：
-  - 临时空间，例如用于某些应用程序运行时所需的临时目录，且无须永久保留
-  - 长时间任务的中间过程 CheckPoint 的临时保存目录
-  - 一个容器需要从另一个容器中获取数据的目录（多容器共享目录）
+    - 临时空间，例如用于某些应用程序运行时所需的临时目录，且无须永久保留
+    - 长时间任务的中间过程 CheckPoint 的临时保存目录
+    - 一个容器需要从另一个容器中获取数据的目录（多容器共享目录）
 
 - hostPath：Pod 上挂载宿主机上的文件或目录，可以用于以下几方面：
-  - 容器应用程序生成的日志文件需要永久保存时，可以使用宿主机的高速文件系统进行存储
-  - 需要访问宿主机上 Docker 引擎内部数据结构的容器应用时，可以通过定义 hostPath 为宿主机 /var/lib/docker 目录，使容器内部应用可以直接访问 Docker 的文件系统
-  
+    - 容器应用程序生成的日志文件需要永久保存时，可以使用宿主机的高速文件系统进行存储
+    - 需要访问宿主机上 Docker 引擎内部数据结构的容器应用时，可以通过定义 hostPath 为宿主机 /var/lib/docker 目录，使容器内部应用可以直接访问 Docker 的文件系统
+
 - gcePersistentDisk：表示使用谷歌公有云提供的永久磁盘（Persistent Disk，PD）存放 Volume 的数据，PD 上的内容会永久保存，当 Pod 被删除时，PD 只是被卸载（Unmount），但不会被删除。
 
 - awsElasticBlockStore：使用亚马逊公有云提供的 EBS Volume 存储数据。

@@ -38,7 +38,8 @@ Kafka 通过配置 request.required.acks 属性来确认 Producer 的消息：
 
 操作系统本身有一层缓存，叫做 Page Cache，当往磁盘文件写入的时候，系统会先将数据流写入缓存中，至于什么时候将缓存的数据写入文件中是由操作系统自行决定。
 
-Kafka 提供了一个参数 producer.type 来控制是不是主动 flush，如果 Kafka 写入到 mmap 之后就立即 flush 然后再返回 Producer 叫同步 (sync)；写入 mmap 之后立即返回 Producer 不调用 flush 叫异步 (async)。
+Kafka 提供了一个参数 producer.type 来控制是不是主动 flush，如果 Kafka 写入到 mmap 之后就立即 flush 然后再返回 Producer 叫同步 (sync)；写入 mmap 之后立即返回
+Producer 不调用 flush 叫异步 (async)。
 
 Kafka 通过多分区多副本机制中已经能最大限度保证数据不会丢失，如果数据已经写入系统 cache 中但是还没来得及刷入磁盘，此时突然机器宕机或者掉电那就丢了，当然这种情况很极端。
 

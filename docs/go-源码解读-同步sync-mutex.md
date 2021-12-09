@@ -62,6 +62,7 @@ func (m *Mutex) Lock() {
 而 Slow path 则把实现封装到了`m.lockSlow()`里，这样在编译的时候会把子方法的代码加载到`Lock()`方法里，速度也会受到影响。
 
 ### CompareAndSwapInt32
+
 ```go
 // CompareAndSwapInt32 对 int32 值执行比较和交换操作。
 func CompareAndSwapInt32(addr *int32, old, new int32) (swapped bool)

@@ -265,7 +265,8 @@ func StopCPUProfile() {
 
 `profBuf`的数据是来自于程序接受了操作系统发来的 SIGPROF 信号之后，进行解析信号之后所读取的数据。
 
-以 Linux 操作系统为例，SIGPROF 是 Linux 的信号机制中的一种信号，是用于 profiling 的定时报警器（profiling time alarm），在这里的 profiling 指的是操作系统提供的 profiling 能力，而不是单纯指的 Go SDK 所提供的 profiling 能力了。
+以 Linux 操作系统为例，SIGPROF 是 Linux 的信号机制中的一种信号，是用于 profiling 的定时报警器（profiling time alarm），在这里的 profiling 指的是操作系统提供的
+profiling 能力，而不是单纯指的 Go SDK 所提供的 profiling 能力了。
 
 > 在计算机科学中，信号是Unix、类Unix以及其他POSIX兼容的操作系统中进程间通讯的一种有限制的方式。它是一种异步的通知机制，用来提醒进程一个事件已经发生。当一个信号发送给一个进程，操作系统中断了进程正常的控制流程，此时，任何非原子操作都将被中断。如果进程定义了信号的处理函数，那么它将被执行，否则就执行默认的处理函数。
 

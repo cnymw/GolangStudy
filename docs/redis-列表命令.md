@@ -10,7 +10,8 @@ Redis 列表是简单的字符串列表，按照插入顺序排序。你可以�
 
 将一个或多个值 value 插入到列表 key 的表头。
 
-如果有多个 value 值，那么各个 value 值按从左到右的顺序依次插入到表头： 比如说，对空列表 mylist 执行命令 LPUSH mylist a b c ，列表的值将是 c b a ，这等同于原子性地执行 LPUSH mylist a 、 LPUSH mylist b 和 LPUSH mylist c 三个命令。
+如果有多个 value 值，那么各个 value 值按从左到右的顺序依次插入到表头： 比如说，对空列表 mylist 执行命令 LPUSH mylist a b c ，列表的值将是 c b a ，这等同于原子性地执行 LPUSH
+mylist a 、 LPUSH mylist b 和 LPUSH mylist c 三个命令。
 
 如果 key 不存在，一个空列表会被创建并执行 LPUSH 操作。
 
@@ -77,7 +78,8 @@ redis> LRANGE greet 0 -1
 
 将一个或多个值 value 插入到列表 key 的表尾(最右边)。
 
-如果有多个 value 值，那么各个 value 值按从左到右的顺序依次插入到表尾：比如对一个空列表 mylist 执行 RPUSH mylist a b c ，得出的结果列表为 a b c ，等同于执行命令 RPUSH mylist a 、 RPUSH mylist b 、 RPUSH mylist c 。
+如果有多个 value 值，那么各个 value 值按从左到右的顺序依次插入到表尾：比如对一个空列表 mylist 执行 RPUSH mylist a b c ，得出的结果列表为 a b c ，等同于执行命令 RPUSH mylist a
+、 RPUSH mylist b 、 RPUSH mylist c 。
 
 如果 key 不存在，一个空列表会被创建并执行 RPUSH 操作。
 
@@ -525,7 +527,8 @@ redis> BRPOP course 30
 
 BRPOPLPUSH 是 RPOPLPUSH source destination 的阻塞版本，当给定列表 source 不为空时， BRPOPLPUSH 的表现和 RPOPLPUSH source destination 一样。
 
-当列表 source 为空时， BRPOPLPUSH 命令将阻塞连接，直到等待超时，或有另一个客户端对 source 执行 LPUSH key value [value …] 或 RPUSH key value [value …] 命令为止。
+当列表 source 为空时， BRPOPLPUSH 命令将阻塞连接，直到等待超时，或有另一个客户端对 source 执行 LPUSH key value [value …] 或 RPUSH key value [value …]
+命令为止。
 
 超时参数 timeout 接受一个以秒为单位的数字作为值。超时参数设为 0 表示阻塞时间可以无限期延长(block indefinitely) 。
 

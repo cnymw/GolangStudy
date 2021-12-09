@@ -33,7 +33,8 @@ redis> CONFIG GET slowlog-max-len
 
 > 可用版本： >= 2.0.0
 
-CONFIG GET 命令用于取得运行中的 Redis 服务器的配置参数(configuration parameters)，在 Redis 2.4 版本中， 有部分参数没有办法用 CONFIG GET 访问，但是在最新的 Redis 2.6 版本中，所有配置参数都已经可以用 CONFIG GET 访问了。
+CONFIG GET 命令用于取得运行中的 Redis 服务器的配置参数(configuration parameters)，在 Redis 2.4 版本中， 有部分参数没有办法用 CONFIG GET 访问，但是在最新的 Redis
+2.6 版本中，所有配置参数都已经可以用 CONFIG GET 访问了。
 
 CONFIG GET 接受单个参数 parameter 作为搜索关键字，查找所有匹配的配置参数，其中参数和值以“键-值对”(key-value pairs)的方式排列。
 
@@ -56,7 +57,6 @@ save 900 1
 save 300 10
 save 60 10000
 ```
-
 
 但是 CONFIG GET 命令的输出只有一行：
 
@@ -102,7 +102,8 @@ redis> CONFIG GET save
 
 > 可用版本： >= 2.8.0
 
-CONFIG REWRITE 命令对启动 Redis 服务器时所指定的 redis.conf 文件进行改写： 因为 CONFIG_SET 命令可以对服务器的当前配置进行修改， 而修改后的配置可能和 redis.conf 文件中所描述的配置不一样， CONFIG REWRITE 的作用就是通过尽可能少的修改， 将服务器当前所使用的配置记录到 redis.conf 文件中。
+CONFIG REWRITE 命令对启动 Redis 服务器时所指定的 redis.conf 文件进行改写： 因为 CONFIG_SET 命令可以对服务器的当前配置进行修改， 而修改后的配置可能和 redis.conf
+文件中所描述的配置不一样， CONFIG REWRITE 的作用就是通过尽可能少的修改， 将服务器当前所使用的配置记录到 redis.conf 文件中。
 
 重写会以非常保守的方式进行：
 

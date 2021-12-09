@@ -6,7 +6,7 @@ ICMP 报文通常被 IP 层或更高层协议（TCP 或 UDP）使用，它传递
 
 ![ICMP 报文](https://cnymw.github.io/GolangStudy/docs/img/网络-TCP-IP详解-ICMP-报文.png)
 
-- 8位类型字段：类型字段可以有 15 个不同的值，以描述特定类型的 ICMP 报文。 
+- 8位类型字段：类型字段可以有 15 个不同的值，以描述特定类型的 ICMP 报文。
 - 8位代码：某些 ICMP 报文使用代码字段的值来进一步描述不同的条件。
 - 16位校验和字段：校验和计算整个 ICMP 报文，使用的算法和 IP 首部校验和算法相同。
 
@@ -15,7 +15,6 @@ ICMP 报文通常被 IP 层或更高层协议（TCP 或 UDP）使用，它传递
 ICMP 报文类型由报文中的类型字段和代码字段共同决定。
 
 ![ICMP 报文类型](https://cnymw.github.io/GolangStudy/docs/img/网络-TCP-IP详解-ICMP-报文类型.png)
-
 
 为了防止 ICMP 差错报文对广播分组响应所带来的广播风暴，下面几种情况都不会产生 ICMP 差错报文：
 

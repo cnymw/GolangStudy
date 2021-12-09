@@ -84,7 +84,8 @@ Reading messages... (press Ctrl-C to quit)
 
 Redis Psubscribe 命令订阅一个或多个符合给定模式的频道。
 
-每个模式以 * 作为匹配符，比如 it* 匹配所有以 it 开头的频道( it.news 、 it.blog 、 it.tweets 等等)。 news.* 匹配所有以 news. 开头的频道( news.it 、 news.global.today 等等)，诸如此类。
+每个模式以 * 作为匹配符，比如 it* 匹配所有以 it 开头的频道( it.news 、 it.blog 、 it.tweets 等等)。 news.* 匹配所有以 news. 开头的频道( news.it 、
+news.global.today 等等)，诸如此类。
 
 ### 返回值
 
@@ -149,7 +150,8 @@ Reading messages... (press Ctrl-C to quit)
 
 指示客户端退订所有给定模式。
 
-如果没有模式被指定，也即是，一个无参数的 PUNSUBSCRIBE 调用被执行，那么客户端使用 PSUBSCRIBE pattern [pattern …] 命令订阅的所有模式都会被退订。在这种情况下，命令会返回一个信息，告知客户端所有被退订的模式。
+如果没有模式被指定，也即是，一个无参数的 PUNSUBSCRIBE 调用被执行，那么客户端使用 PSUBSCRIBE pattern [pattern …]
+命令订阅的所有模式都会被退订。在这种情况下，命令会返回一个信息，告知客户端所有被退订的模式。
 
 ### 返回值
 
@@ -171,7 +173,7 @@ pattern 参数是可选的：
 
 - 如果不给出 pattern 参数，那么列出订阅与发布系统中的所有活跃频道。
 - 如果给出 pattern 参数，那么只列出和给定模式 pattern 相匹配的那些活跃频道。
-  
+
 #### 返回值
 
 一个由活跃频道组成的列表。
@@ -223,7 +225,8 @@ redis> PUBSUB CHANNELS news.i*
 
 #### 返回值
 
-一个多条批量回复（Multi-bulk reply），回复中包含给定的频道，以及频道的订阅者数量。 格式为：频道 channel-1 ， channel-1 的订阅者数量，频道 channel-2 ， channel-2 的订阅者数量，诸如此类。 回复中频道的排列顺序和执行命令时给定频道的排列顺序一致。 不给定任何频道而直接调用这个命令也是可以的， 在这种情况下， 命令只返回一个空列表。
+一个多条批量回复（Multi-bulk reply），回复中包含给定的频道，以及频道的订阅者数量。 格式为：频道 channel-1 ， channel-1 的订阅者数量，频道 channel-2 ， channel-2
+的订阅者数量，诸如此类。 回复中频道的排列顺序和执行命令时给定频道的排列顺序一致。 不给定任何频道而直接调用这个命令也是可以的， 在这种情况下， 命令只返回一个空列表。
 
 #### 示例
 

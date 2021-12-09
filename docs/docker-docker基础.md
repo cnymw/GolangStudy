@@ -153,7 +153,7 @@ Run 'docker COMMAND --help' for more information on a command.
 
 ![docker命令结构图](https://cnymw.github.io/GolangStudy/docs/img/docker-docker基础-命令结构图.png)
 
-### docker info 
+### docker info
 
 docker info 命令用于检查 docker 是否正确安装。
 
@@ -192,6 +192,7 @@ Client: Docker Engine - Community
 docker run 命令用于基于特定的镜像创建一个容器，并依据选项来控制该容器。
 
 以下命令从 ubuntu 镜像启动一个容器，并执行 echo 命令打印。执行完命令后，容器将停止运行。
+
 ```bash
 $ sudo docker run ubuntu echo "Hello World"
 
@@ -237,11 +238,11 @@ docker rm 命令用于删除容器。
 
 需要注意的是，使用 rmi 删除镜像时，如果已有基于该镜像启动的容器存在，则无法直接删除，需要首先删除容器。
 
-### docker attach 
+### docker attach
 
 docker attach 用于连接到正在运行的容器，观察该容器的运行情况，或与容器的主进程进行交互。
 
-### docker inspect 
+### docker inspect
 
 docker inspect 命令可以查看镜像和容器的详细信息，默认会列出全部信息，可以通过 --format 参数来指定输出的模板格式，以便输出特定信息。
 

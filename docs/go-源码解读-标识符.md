@@ -28,6 +28,7 @@ type bool bool
 ```
 
 一个布尔类型的值只有两种：
+
 - true
 - false
 
@@ -110,6 +111,7 @@ type float64 float64
 ```
 
 浮点数的类型有如下几种类型：
+
 - float32
 - float64
 
@@ -139,6 +141,7 @@ type complex128 complex128
 ```
 
 复数的类型有如下几种类型：
+
 - complex64
 - complex128
 
@@ -152,6 +155,7 @@ type string string
 ```
 
 字符串的类型有如下一种类型：
+
 - string
 
 ### 指针
@@ -167,7 +171,6 @@ uintptr 和 unsafe.Pointer的区别：
 - uintptr 是用于指针运算的，GC 不把 uintptr 当指针，也就是说 uintptr 无法持有对象， uintptr 类型的目标会被回收
 - unsafe.Pointer 可以和 普通指针 进行相互转换
 - unsafe.Pointer 可以和 uintptr 进行相互转换
-
 
 ```go
 var ptr uintptr
@@ -189,7 +192,6 @@ type byte = uint8
 ```
 
 byte 代表了 ASCII 码的一个字符。
-
 
 ### rune
 

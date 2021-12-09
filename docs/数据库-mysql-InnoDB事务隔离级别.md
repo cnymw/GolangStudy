@@ -32,7 +32,8 @@ InnoDB 使用不同的锁策略来支持不同的事务隔离级别。
 
 即使在同一事务中，每一个一致性读都会写入并读取自己的最新版本。
 
-对于锁定读语句`SELECT ... FOR SHARE`和`SELECT ... FOR UPDATE`，UPDATE 语句，DELETE 语句，InnoDB 只锁定索引记录，而不锁定它们之间的间隙，因此允许在锁定记录旁边自由插入新纪录。间隙锁定仅用于外键约束检查和重复键检查。
+对于锁定读语句`SELECT ... FOR SHARE`和`SELECT ... FOR UPDATE`，UPDATE 语句，DELETE 语句，InnoDB
+只锁定索引记录，而不锁定它们之间的间隙，因此允许在锁定记录旁边自由插入新纪录。间隙锁定仅用于外键约束检查和重复键检查。
 
 由于禁用了间隙锁`Gap Locks`，可能会出现幻读问题，因为其他会话可能会在间隙中插入新行。
 
@@ -42,7 +43,8 @@ InnoDB 使用不同的锁策略来支持不同的事务隔离级别。
 
 - 对于 UPDATE 或 DELETE 语句，InnoDB 仅为更新或删除的行持有锁。Mysql 评估 WHERE 条件后，将释放不匹配行的行锁`Record Locks`。这大大降低了死锁的概率，但死锁仍然可能发生。
 
-- 对于 UPDATE 语句，如果一条记录已经被锁定，InnoDB 将执行半一致性读`semi-consistent read`，将最新提交的版本返回给 Mysql，以便 Mysql 可以确定该行是否匹配更新的 WHERE 条件。如果记录匹配（已经被更新），Mysql 将再次读取该记录，这次 InnoDB 将锁定该行或等待锁定该行。
+- 对于 UPDATE 语句，如果一条记录已经被锁定，InnoDB 将执行半一致性读`semi-consistent read`，将最新提交的版本返回给 Mysql，以便 Mysql 可以确定该行是否匹配更新的 WHERE
+  条件。如果记录匹配（已经被更新），Mysql 将再次读取该记录，这次 InnoDB 将锁定该行或等待锁定该行。
 
 考虑下面的例子：
 

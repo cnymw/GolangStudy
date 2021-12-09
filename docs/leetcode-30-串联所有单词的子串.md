@@ -7,6 +7,7 @@
 注意子串要与 words 中的单词完全匹配，中间不能有其他字符，但不需要考虑 words 中单词串联的顺序。
 
 示例 1
+
 ```text
 输入:
   s = "barfoothefoobarman",
@@ -18,6 +19,7 @@
 ```
 
 示例 2：
+
 ```text
 输入:
   s = "wordgoodgoodgoodbestword",
@@ -29,11 +31,13 @@
 
 ### 哈希表
 
-该题目实际意思是将输入 s 划分为长度一定的连续字符组，例如输入 s = "barfoothefoobarman"，实际含义是将 s 转换为 s1 = [bar foo the foo bar man]，s2 = [arf oot hef oob arm]...
+该题目实际意思是将输入 s 划分为长度一定的连续字符组，例如输入 s = "barfoothefoobarman"，实际含义是将 s 转换为 s1 = [bar foo the foo bar man]，s2
+= [arf oot hef oob arm]...
 
 然后将 words 转换为记录单词出现次数的哈希表， words_map = [foo:1 bar:1]
 
-最后将转换后的 s(s1,s2,s3...) 序列按顺序放入到 words 构成的哈希表中去进行对比，例如将 s1 与 words_map 进行对比，可以发现 s1 满足 words_map 单词出现的次数(s1 中包含 [bar foo])，于是获得 s1 对应的单词起始位置 0
+最后将转换后的 s(s1,s2,s3...) 序列按顺序放入到 words 构成的哈希表中去进行对比，例如将 s1 与 words_map 进行对比，可以发现 s1 满足 words_map 单词出现的次数(s1
+中包含 [bar foo])，于是获得 s1 对应的单词起始位置 0
 
 代码实现：
 

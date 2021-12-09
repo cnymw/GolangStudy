@@ -34,6 +34,7 @@ pwd 命令可以显示出 shell 会话的当前目录，这个目录被称为当
 BenjaminYoungdeMacBook-Pro:~ benjamin$ pwd
 /Users/benjamin
 ```
+
 ### 进入目录
 
 1. 进入绝对文件路径：
@@ -385,6 +386,7 @@ three
 ```
 
 如果要进行反向搜索（输出不匹配该模式的行），可加 -v 参数：
+
 ```bash
 BenjaminYoungdeMacBook-Pro:Downloads benjamin$ grep -v one test.txt 
 two
@@ -392,6 +394,7 @@ three
 ```
 
 如果要显示匹配模式的行所在的行号，加 -n 参数：
+
 ```bash
 BenjaminYoungdeMacBook-Pro:Downloads benjamin$ grep -vn one test.txt 
 2:two
@@ -399,12 +402,14 @@ BenjaminYoungdeMacBook-Pro:Downloads benjamin$ grep -vn one test.txt
 ```
 
 如果只要知道有多少行含有匹配的模式，可用 -c 参数：
+
 ```bash
 BenjaminYoungdeMacBook-Pro:Downloads benjamin$ grep -vc one test.txt 
 2
 ```
 
 如果要指定多个匹配模式，可用 -e 参数来指定每个模式：
+
 ```bash
 BenjaminYoungdeMacBook-Pro:Downloads benjamin$ grep -e one -e two test.txt 
 one
@@ -456,6 +461,7 @@ function 参数定义了 tar 命令应该做什么
 -z|将输出重定向给gzip命令来压缩内容
 
 你可以用下列命令来创建一个归档文件：
+
 ```bash
 tar -cvf test.tar test/ test2/
 ```

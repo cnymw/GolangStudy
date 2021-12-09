@@ -50,7 +50,8 @@ redis> ECHO "Goodbye Moto"
 
 > 可用版本： >= 2.2.3
 
-OBJECT 命令允许从内部察看给定 key 的 Redis 对象， 它通常用在除错(debugging)或者了解为了节省空间而对 key 使用特殊编码的情况。 当将 Redis 用作缓存程序时，你也可以通过 OBJECT 命令中的信息，决定 key 的驱逐策略(eviction policies)。
+OBJECT 命令允许从内部察看给定 key 的 Redis 对象， 它通常用在除错(debugging)或者了解为了节省空间而对 key 使用特殊编码的情况。 当将 Redis 用作缓存程序时，你也可以通过 OBJECT
+命令中的信息，决定 key 的驱逐策略(eviction policies)。
 
 OBJECT 命令有多个子命令：
 
@@ -72,7 +73,8 @@ OBJECT 命令有多个子命令：
 
 - 有序集合可以被编码为 ziplist 或者 skiplist 格式。 ziplist 用于表示小的有序集合，而 skiplist 则用于表示任何大小的有序集合。
 
-假如你做了什么让 Redis 没办法再使用节省空间的编码时(比如将一个只有 1 个元素的集合扩展为一个有 100 万个元素的集合)，特殊编码类型(specially encoded types)会自动转换成通用类型(general type)。
+假如你做了什么让 Redis 没办法再使用节省空间的编码时(比如将一个只有 1 个元素的集合扩展为一个有 100 万个元素的集合)，特殊编码类型(specially encoded types)会自动转换成通用类型(general
+type)。
 
 ### 返回值
 
@@ -138,7 +140,8 @@ CONFIG SET slowlog-log-slower-than 100
 
 CONFIG SET slowlog-log-slower-than 1000
 
-另一个选项是 slowlog-max-len ，它决定 slow log 最多能保存多少条日志， slow log 本身是一个 FIFO 队列，当队列大小超过 slowlog-max-len 时，最旧的一条日志将被删除，而最新的一条日志加入到 slow log ，以此类推。
+另一个选项是 slowlog-max-len ，它决定 slow log 最多能保存多少条日志， slow log 本身是一个 FIFO 队列，当队列大小超过 slowlog-max-len
+时，最旧的一条日志将被删除，而最新的一条日志加入到 slow log ，以此类推。
 
 以下命令让 slow log 最多保存 1000 条日志：
 
@@ -158,7 +161,8 @@ redis> CONFIG GET slowlog-max-len
 
 ### 查看 slow log
 
-要查看 slow log ，可以使用 SLOWLOG GET 或者 SLOWLOG GET number 命令，前者打印所有 slow log ，最大长度取决于 slowlog-max-len 选项的值，而 SLOWLOG GET number 则只打印指定数量的日志。
+要查看 slow log ，可以使用 SLOWLOG GET 或者 SLOWLOG GET number 命令，前者打印所有 slow log ，最大长度取决于 slowlog-max-len 选项的值，而 SLOWLOG GET
+number 则只打印指定数量的日志。
 
 最新的日志会最先被打印：
 

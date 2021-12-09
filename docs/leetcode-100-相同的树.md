@@ -54,6 +54,7 @@
 3. 结束遍历栈后，如果还有一个栈不为空的话，那么返回 false
 
 go 实现如下：
+
 ```go
 func isSameTree(p *TreeNode, q *TreeNode) bool {
     if p == nil && q == nil {

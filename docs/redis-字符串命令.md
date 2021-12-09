@@ -102,7 +102,7 @@ redis> GET job                   # 没有被覆盖
 
 如果键 key 已经存在，那么 SETEX 命令将覆盖已有的值。
 
- SETEX 和 SET 的不同之处在于 SETEX 是一个原子（atomic）操作， 它可以在同一时间内完成设置值和设置过期时间这两个操作， 因此 SETEX 命令在储存缓存的时候非常实用。
+SETEX 和 SET 的不同之处在于 SETEX 是一个原子（atomic）操作， 它可以在同一时间内完成设置值和设置过期时间这两个操作， 因此 SETEX 命令在储存缓存的时候非常实用。
 
 ### 返回值
 
@@ -246,7 +246,6 @@ redis> STRLEN mykey
 
 对已存在的字符串进行`APPEND`：
 
-
 ```bash
 redis> APPEND myphone " - 1110"     # 长度从 5 个字符增加到 12 个字符
 (integer) 12
@@ -261,7 +260,8 @@ redis> GET myphone
 
 从偏移量 offset 开始， 用 value 参数覆写(overwrite)键 key 储存的字符串值。
 
- SETRANGE 命令会确保字符串足够长以便将 value 设置到指定的偏移量上， 如果键 key 原来储存的字符串长度比偏移量小(比如字符串只有 5 个字符长，但你设置的 offset 是 10 )， 那么原字符和偏移量之间的空白将用零字节(zerobytes, "\x00" )进行填充。
+SETRANGE 命令会确保字符串足够长以便将 value 设置到指定的偏移量上， 如果键 key 原来储存的字符串长度比偏移量小(比如字符串只有 5 个字符长，但你设置的 offset 是 10 )，
+那么原字符和偏移量之间的空白将用零字节(zerobytes, "\x00" )进行填充。
 
 当生成一个很长的字符串时，Redis 需要分配内存空间，该操作有时候可能会造成服务器阻塞(block)。
 
@@ -284,7 +284,7 @@ redis> GET greeting
 "hello Redis"
 ```
 
-## GETRANGE key start end 
+## GETRANGE key start end
 
 > 可用版本：>=2.4.0
 

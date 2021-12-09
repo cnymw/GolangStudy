@@ -36,7 +36,8 @@ IO Thread 的工作主要是负责这些 IO 请求的回调（call back）处理
 
 对于数据库中页的修改操作，首页修改在缓冲池中的页，然后以一定的频率刷新到磁盘上。这里通过一种称为 *Checkpoint* 的机制刷新回磁盘。
 
-缓冲池中缓存的数据页类型有：索引页，数据页，undo 页，插入缓冲页（insert buffer），自适应哈希索引（adaptive hash index），InnoDB 存储的锁信息（lock info），数据字典信息（data dictionary）
+缓冲池中缓存的数据页类型有：索引页，数据页，undo 页，插入缓冲页（insert buffer），自适应哈希索引（adaptive hash index），InnoDB 存储的锁信息（lock info），数据字典信息（data
+dictionary）
 
 ### 2. LRU List，Free List 和 Flush List
 

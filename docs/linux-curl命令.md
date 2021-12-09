@@ -1,6 +1,7 @@
 # linux curl 命令详解
 
-curl命令使用支持的协议之一（HTTP、HTTPS、FTP、FTPS、SCP、SFTP、TFTP、DICT、TELNET、LDAP 或 FILE）向网络服务器传输数据或从网络服务器获取数据。它被设计为在没有 UI 的情况下工作，因此非常适合在 shell 脚本中使用。
+curl命令使用支持的协议之一（HTTP、HTTPS、FTP、FTPS、SCP、SFTP、TFTP、DICT、TELNET、LDAP 或 FILE）向网络服务器传输数据或从网络服务器获取数据。它被设计为在没有 UI
+的情况下工作，因此非常适合在 shell 脚本中使用。
 
 该命令提供代理支持，用户身份验证，FTP 上传，HTTP post，SSL 连接，Cookie，文件传输恢复，metalink 等功能。
 
@@ -14,9 +15,10 @@ curl [options] [URL...]
 
 #### -b, --cookie <name=data>
 
-(HTTP)将数据作为 cookie 传输到 HTTP 服务器。 
+(HTTP)将数据作为 cookie 传输到 HTTP 服务器。
 
-它应该是之前在`Set-Cookie`行为中从服务器接受的数据。 数据的格式为"NAME1=VALUE1;NAME2=VALUE2"。如果行中未使用"="字符，则该操作被视为用于读取存储 cookie 数据的文件名，如果能够匹配上文件，那么会在这个会话中使用该文件。 
+它应该是之前在`Set-Cookie`行为中从服务器接受的数据。 数据的格式为"NAME1=VALUE1;NAME2=VALUE2"。如果行中未使用"="字符，则该操作被视为用于读取存储 cookie
+数据的文件名，如果能够匹配上文件，那么会在这个会话中使用该文件。
 
 使用该方法还可以激活"cookie parser"，使得 curl 也可以记录传入的 cookie，将此方法和 --location 选项结合使用，会比较方便。
 
@@ -40,7 +42,9 @@ Curl 将之前从指定文件读取的以及从远程服务器接受的所有 co
 
 请注意，数据完全按照指定方式发送，无需额外处理（所有换行符都被截断）。数据应为`url-encoded`。这会导致 curl 使用类型`application/x-www-form-urlencoded`将数据传递给服务器。
 
-与`-F/--form`相比较，如果在同一命令行上多次使用此选项，则指定的数据将与分割符`&`合并在一起。例如，使用`-d name=daniel-d -d skill=loosy`将生成类似于`name=daniel-d&skill=loosy`的数据块。如果以`@`字符开始，则其余字符应为读取数据的文件名。如果要从`stdin`读取数据，则应为`-`。文件的内容必须是`url-encoded`编码的。还可以指定多个文件。
+与`-F/--form`相比较，如果在同一命令行上多次使用此选项，则指定的数据将与分割符`&`合并在一起。例如，使用`-d name=daniel-d -d skill=loosy`
+将生成类似于`name=daniel-d&skill=loosy`的数据块。如果以`@`字符开始，则其余字符应为读取数据的文件名。如果要从`stdin`读取数据，则应为`-`。文件的内容必须是`url-encoded`
+编码的。还可以指定多个文件。
 
 #### --data-binary <data>
 
@@ -50,7 +54,8 @@ Curl 将之前从指定文件读取的以及从远程服务器接受的所有 co
 
 （HTTP）将`Referer Page`信息发送到 HTTP 服务器。
 
-这也可以通过`-H/--header`选项进行设置。当与`-L/--location`一起使用时，可以在`--referer URL`后面添加`auto`,使得 curl 在`Location:header`之后自动设置上一个 URL。`auto`字符串可以单独使用，即使你没有设置初始`--referer`
+这也可以通过`-H/--header`选项进行设置。当与`-L/--location`一起使用时，可以在`--referer URL`后面添加`auto`,使得 curl 在`Location:header`之后自动设置上一个
+URL。`auto`字符串可以单独使用，即使你没有设置初始`--referer`
 
 #### -E, --cert <certificate[:password]>
 
@@ -84,7 +89,8 @@ Windows 版本的 curl 会自动查找名为`curl-ca-bundle.crt`的 CA 证书文
 
 （HTTP）这个选项会让 curl 模拟用户按下提交表单的按钮。
 
-curl 会根据 RFC1867 标准使用 Content-type 为 `multipart/formdata` 提交数据。这个选项也允许上传二进制文件等。要强制让`content`部分成为文件，请在文件名前加`@`字符。要获取文件的内容部分，请在文件名前面加上字符`<`。`@`和`<`之间的区别在于，`@`使指定的文件作为上传的一部分内容，而`<`使文件内容作为文本字段提交。
+curl 会根据 RFC1867 标准使用 Content-type 为 `multipart/formdata` 提交数据。这个选项也允许上传二进制文件等。要强制让`content`部分成为文件，请在文件名前加`@`
+字符。要获取文件的内容部分，请在文件名前面加上字符`<`。`@`和`<`之间的区别在于，`@`使指定的文件作为上传的一部分内容，而`<`使文件内容作为文本字段提交。
 
 例如，要将密码文件发送到服务器，其中"password"是输入"/etc/passwd"文件的表单字段名称：
 
@@ -130,15 +136,16 @@ curl -F 'file=@"localfile";filename="nameinpost"' url.com
 
 你可以指定任意数量的额外 header。请注意，如果添加与 curl 将使用的 header 同名的自定义 header，则将使用你外部设置的 header，而不是内置的 header。这使得你可以实现更复杂的场景。
 
-你应该知道在什么时候该替换内置的 header，通过在冒号右侧提供不包含内容的值，来删除内置 header，例如，-H "Host:"。如果发送没有值的自定义 header，则 header 必须以分号终止，例如 -H "X-Custom-Header;"
+你应该知道在什么时候该替换内置的 header，通过在冒号右侧提供不包含内容的值，来删除内置 header，例如，-H "Host:"。如果发送没有值的自定义 header，则 header 必须以分号终止，例如 -H "
+X-Custom-Header;"
 
-#### -i, --include	
+#### -i, --include
 
 (HTTP)在输出中包含 HTTP header。
 
 HTTP header包括服务器名称，文档日志，HTTP 版本等内容。
 
-#### --interface <name>	
+#### --interface <name>
 
 使用指定的接口执行操作。
 
@@ -148,7 +155,7 @@ HTTP header包括服务器名称，文档日志，HTTP 版本等内容。
 curl --interface eth0:1 http://www.netscape.com/
 ```
 
-#### -I, --head	
+#### -I, --head
 
 (HTTP/FTP/FILE) 仅获取 HTTP header。
 
@@ -166,13 +173,13 @@ HTTP 服务器的特点是 HEAD 命令只获取文档的 header。在 FTP 或文
 
 允许你在此单独文件中提供私钥。
 
-#### --key-type <type>	
+#### --key-type <type>
 
 （SSL）私钥文件类型。
 
 指定你的`--key`提供的私钥类型。支持 DER，PEM 和 ENG，如果未指定，默认为 PEM。
 
-#### --limit-rate <speed>	
+#### --limit-rate <speed>
 
 指定要使用的最大传输速率。
 
@@ -182,23 +189,23 @@ HTTP 服务器的特点是 HEAD 命令只获取文档的 header。在 FTP 或文
 
 给定的速度是整个传输过程中计算的平均速度，意思是 curl 可能在短时间内使用更高的传输速度，但随着时间的推移，它使用的传输速度不会超过给定的速度。
 
-#### -L, --location	
+#### -L, --location
 
 （HTTP/HTTPS）如果服务器返回请求的页面已移动到其他位置（用 Location：header 和 3XX 响应代码表示），此选项将使 curl 在新位置上重定向请求。
 
 如果与`-i/--include`和`-I/--head`一起使用，则会显示所有请求的页面。 使用身份验证时，curl 只将其凭据发送到初始主机。如果重定向到其他主机，它将无法截获用户名+密码。
 
-#### --location-trusted	
+#### --location-trusted
 
 （HTTP/HTTPS）类似于`-L/--location`，但允许向所有重定向站点发送用户名+密码。
 
 如果站点重定向到你的站点来发送你的身份验证信息（在 HTTP 基本身份验证的情况下为明文），则这可能会导致安全漏洞。
 
-#### --no-keepalive	
+#### --no-keepalive
 
 在 TCP 连接上禁用 keepalive 的使用，因为默认情况下 curl 会启用他们。
 
-#### --no-sessionid	
+#### --no-sessionid
 
 （SSL）禁用 curl 对 SSL session-ID 缓存的使用。
 
@@ -208,9 +215,10 @@ HTTP 服务器的特点是 HEAD 命令只获取文档的 header。在 FTP 或文
 
 不使用指定列表里的代理。
 
-唯一的通配符是`*`字符，它匹配所有主机，并有效地禁用代理。该列表中的每个名称都匹配为包含主机名的域或主机名本身。例如，`local.com` 将匹配 `local.com`,`local.com:80` 和 `www.local.com`，但不匹配 `www.notlocal.com`。
+唯一的通配符是`*`字符，它匹配所有主机，并有效地禁用代理。该列表中的每个名称都匹配为包含主机名的域或主机名本身。例如，`local.com` 将匹配 `local.com`,`local.com:80` 和 `www.local.com`
+，但不匹配 `www.notlocal.com`。
 
-#### -N, --no-buffer	
+#### -N, --no-buffer
 
 禁用输出流的缓冲。
 
@@ -234,13 +242,13 @@ curl http://{site,host}.host[1-5].com -o "#1_#2"
 
 你可以根据 URL 的数量多次使用该选项。
 
-#### -O, --remote-name	
+#### -O, --remote-name
 
 将输出写入本地文件，文件名和我们获取的远程文件一样（仅使用远程文件的文件名部分，路径被忽略）。
 
 用于保存的远程文件名是从给定的 URL 提取的。该文件将保存在当前工作目录中，如果要将文件保存在其他目录中，请确保在使用该命令之前更改当前工作目录。
 
-#### --pass <phrase>	
+#### --pass <phrase>
 
 （SSL/SSH）私钥的密码短语。
 
@@ -254,13 +262,14 @@ curl http://{site,host}.host[1-5].com -o "#1_#2"
 
 （HTTP）使用该选项时，会禁用所有内部 HTTP 编码内容或传输编码内容，而是将内容原封不动地传递给用户。
 
-#### --resolve < host : port : address >	
+#### --resolve < host : port : address >
 
 为特定主机和端口提供自定义地址。
 
-使用此选项，可以使 curl 请求指定的地址，并防止使用正常解析的地址。可以认为这是 curl 提供的`/etc/hosts`的替代方案。端口号应为主机将要用的特定协议的端口号。这意味着，如果要为同一主机但不同端口提供地址，则需要配置多个条目。
+使用此选项，可以使 curl 请求指定的地址，并防止使用正常解析的地址。可以认为这是 curl 提供的`/etc/hosts`
+的替代方案。端口号应为主机将要用的特定协议的端口号。这意味着，如果要为同一主机但不同端口提供地址，则需要配置多个条目。
 
-#### --trace <file>	
+#### --trace <file>
 
 启用后会对将所有传入和传出数据（包括描述性信息）的完整信息输出到指定文件。
 
@@ -282,7 +291,7 @@ curl http://{site,host}.host[1-5].com -o "#1_#2"
 
 发起的请求将会使用指定的方法，而不是其他的方法，默认的方法为 GET。通常你不需要这个选项，GET，HEAD，POST 和 PUT 请求都是使用专用的选项来调用的。
 
-#### --max-redirs <num>	
+#### --max-redirs <num>
 
 设置可跳转的最大重定向数。
 

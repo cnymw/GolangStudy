@@ -6,7 +6,8 @@
 
 > `SELECT ... FOR SHARE` 是 `SELECT ... LOCK IN SHARE MODE` 的替代方案，但 `LOCK IN SHARE MODE` 仍支持向后兼容，这些语句都是等价的。
 
-- SELECT ... FOR UPDATE：就好像对这些行执行了 `UPDATE` 操作一样，该 sql 会锁定行和任何关联的索引项。其他事务被阻止更新这些行，无法执行 `SELECT ... FOR SHARE`，或从某个事务隔离级别读取数据。隔离级别一致性读会忽略在读视图中存在的记录上设置的任何锁。
+- SELECT ... FOR UPDATE：就好像对这些行执行了 `UPDATE` 操作一样，该 sql 会锁定行和任何关联的索引项。其他事务被阻止更新这些行，无法执行 `SELECT ... FOR SHARE`
+  ，或从某个事务隔离级别读取数据。隔离级别一致性读会忽略在读视图中存在的记录上设置的任何锁。
 
 提交或回滚事务的时候，将释放`FOR SHARE`和`FOR UPDATE`查询设置的所有锁。
 
@@ -28,7 +29,8 @@ SELECT * FROM t1 WHERE c1 = (SELECT c1 FROM t2 FOR UPDATE) FOR UPDATE;
 
 假设要将一条数据插入到表 CHILD，并确保 child 数据在表 PARENT 中有一个父 parent 数据。应用程序代码可以在整个操作中确保引用完整性。
 
-首先，使用一致性读查询表 PARENT 并验证数据 parent 是否存在。确认你能安全地将数据 child 插入表 CHILD 吗？答案是不可以的，因为其他会话可能会在 SELECT 和 INSERT 之间删除数据 parent，而你不会意识到这一点。
+首先，使用一致性读查询表 PARENT 并验证数据 parent 是否存在。确认你能安全地将数据 child 插入表 CHILD 吗？答案是不可以的，因为其他会话可能会在 SELECT 和 INSERT 之间删除数据
+parent，而你不会意识到这一点。
 
 如果要避免这个潜在的问题，可以执行`SELECT FOR SHARE`:
 
@@ -36,9 +38,11 @@ SELECT * FROM t1 WHERE c1 = (SELECT c1 FROM t2 FOR UPDATE) FOR UPDATE;
 SELECT * FROM parent WHERE NAME = 'Jones' FOR SHARE;
 ```
 
-`SELECT FOR SHARE`查询返回 parent `Jones`后，你可以安全地将数据 child 添加到表 CHILD 并提交事务。任何试图对表 PARENT 中该行数据获取独占锁的事务都会等待，直到完成插入到表 CHILD 完成，也就是说，直到所有表中的数据处于一致性状态为止。
+`SELECT FOR SHARE`查询返回 parent `Jones`后，你可以安全地将数据 child 添加到表 CHILD 并提交事务。任何试图对表 PARENT 中该行数据获取独占锁的事务都会等待，直到完成插入到表 CHILD
+完成，也就是说，直到所有表中的数据处于一致性状态为止。
 
-另一个例子为，表 CHILD_CODES 有一个整数计数器字段，给每一个添加到表 CHILD 的对象分配唯一标识符。这个整数计数器的当前值不能使用一致性读或共享模式读取，因为数据库的两个用户可以看到计数器相同的值，如果两个事务试图向表 CHILD 添加具有相同标识符的行，则会发生重复主键（duplicate-key）错误。
+另一个例子为，表 CHILD_CODES 有一个整数计数器字段，给每一个添加到表 CHILD 的对象分配唯一标识符。这个整数计数器的当前值不能使用一致性读或共享模式读取，因为数据库的两个用户可以看到计数器相同的值，如果两个事务试图向表
+CHILD 添加具有相同标识符的行，则会发生重复主键（duplicate-key）错误。
 
 在这里，`FOR SHARE`不是一个好的解决方案，因为如果两个用户同时读取计数器，那么当它尝试更新计数器时，其中至少有一个用户会陷入死锁。
 

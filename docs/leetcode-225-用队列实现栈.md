@@ -33,6 +33,7 @@ empty() -- 返回栈是否为空
 ![queueB](https://cnymw.github.io/GolangStudy/docs/img/数据结构-栈-临时栈2.png)
 
 go 实现如下：
+
 ```go
 type Element interface{}
 

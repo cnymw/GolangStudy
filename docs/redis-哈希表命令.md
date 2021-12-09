@@ -4,7 +4,7 @@ Redis hash 是一个 string 类型的 field（字段） 和 value（值） 的�
 
 Redis 中每个 hash 可以存储 2^32 - 1 键值对（40多亿）。
 
-## HSET hash field value 
+## HSET hash field value
 
 > 可用版本：>= 2.0.0
 
