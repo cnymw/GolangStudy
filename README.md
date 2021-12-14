@@ -73,6 +73,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [前中后缀表达式](/docs/算法-前中后缀表达式.md)
 - [滑动窗口(TODO)](/docs/算法-滑动窗口.md)
 - [二分查找(TODO)](/docs/算法-二分查找.md)
+- [分布式id生成算法：雪花算法](/docs/算法-雪花算法.md)
 
 ---
 
@@ -153,10 +154,8 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 ## elasticsearch
 
-- [Elasticsearch 基础知识](/docs/Elasticsearch-基础知识.md)
-- [Elasticsearch 倒排索引](/docs/Elasticsearch-倒排索引.md)
-- [Elasticsearch 集群](/docs/Elasticsearch-集群.md)
-
+- [Elasticsearch](/docs/Elasticsearch-概览.md)
+- [Elasticsearch: 权威指南](https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html)
 
 ---
 
