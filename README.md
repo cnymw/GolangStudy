@@ -14,6 +14,16 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 本项目更加看重的是对于知识点系统的一个总结，能够通过一句话，一张思维导图来把一类知识进行讲解，这样在面试前把所有的思维导图都过一遍就能更大的提升面试通过的几率了，平时空余的时候拿出思维导图进行复习也能加深理解。
 
+## 项目成果
+
+目前头条，腾讯等大厂有大量 golang 开发岗。
+
+笔者通过该项目，拿到了腾讯云 offer。
+
+## Golang 学习路线图（TODO）
+
+<img src="https://cnymw.github.io/GolangStudy/docs/img/首页-Golang路线图.png" width="50%"/>
+
 ## Golang 小程序在线学习
 
 为了更方便的学习 Golang，特意开发了一款小程序，将学习内容同步到小程序中，希望能够通过手机学习的同学们可以扫一下二维码关注下小程序：
@@ -113,12 +123,13 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 ---
 
-## Docker+kubernetes
-
-- docker
+## Docker
   - [Docker — 从入门到实践](https://vuepress.mirror.docker-practice.com)
   - [Docker 基础(TODO)](/docs/docker-docker基础.md)
-- Kubernetes
+
+---
+
+## Kubernetes
   - [Kubernetes 基本概念和术语](/docs/Kubernetes-基本概念和术语.md)
   - [Kubernetes kubectl命令(TODO)](/docs/Kubernetes-kubectl命令.md)
   - [Kubernetes 中文手册](https://www.kubernetes.org.cn/docs)
