@@ -22,13 +22,13 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 ## Golang 学习路线图（TODO）
 
-<img src="https://cnymw.github.io/GolangStudy/docs/img/首页-Golang路线图.png" width="50%"/>
+<img src="https://cnymw.github.io/GolangStudy/docs/img/首页-Golang路线图.png" width="50%" alt="nil"/>
 
 ## Golang 小程序在线学习
 
 为了更方便的学习 Golang，特意开发了一款小程序，将学习内容同步到小程序中，希望能够通过手机学习的同学们可以扫一下二维码关注下小程序：
 
-<img src="https://cnymw.github.io/GolangStudy/docs/img/首页-小程序.jpg" width="20%"/>
+<img src="https://cnymw.github.io/GolangStudy/docs/img/首页-小程序.jpg" width="20%" alt="nil"/>
 
 ## go
 
@@ -54,7 +54,6 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - 面试题
   - [Go 有几种连接字符串的方法?](/docs/go-面试题-连接字符串方法.md)
   
-
 ---
 
 ## 数据结构
@@ -70,6 +69,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [哈希表](/docs/数据结构-哈希表.md)
 - 面试题
   - [B树和B+树之间的区别](/docs/数据结构-面试题-B树和B+树的区别.md)
+
 ---
 
 ## 算法
@@ -113,13 +113,6 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [策略模式](/docs/设计模式-策略模式.md)
 - [观察者模式](/docs/设计模式-观察者模式.md)
 - [装饰器模式](/docs/设计模式-装饰器模式.md)
-
----
-
-## JWT+OAuth 2.0
-
-- [OAuth2 规范-rfc6749](/docs/oauth2-rfc6749.md)
-- [OAuth2 规范中文翻译](https://github.com/jeansfish/RFC6749.zh-cn/blob/master/SUMMARY.md)
 
 ---
 
@@ -188,10 +181,13 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [Linux 监测系统](/docs/linux-监测系统.md)
 - [Linux 抓包工具tcpdump详解](/docs/linux-抓包命令tcpdump.md)
 - [Linux tcpdump命令详解(转)](https://www.cnblogs.com/ggjucheng/archive/2012/01/14/2322659.html)
-- [linux tcp分析命令ss详解](/docs/linux-tcp分析命令ss.md)
-- [linux curl命令详解](/docs/linux-curl命令.md)
+- [Linux tcp分析命令ss详解](/docs/linux-tcp分析命令ss.md)
+- [Linux curl命令详解](/docs/linux-curl命令.md)
+- [Linux namespaces 命名空间](/docs/linux-namespaces.md)
 - 面试题
   - [进程和线程，协程的区别(TODO)](/docs/操作系统-面试题-进程线程协程的区别.md)
+- 专业博客
+  - [redhat sysadmin](https://www.redhat.com/sysadmin/)
 
 ---
 
@@ -262,7 +258,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 # 公众号
 
-<img src="https://cnymw.github.io/GolangStudy/docs/img/首页-wechat.jpg" width="20%"/>
+<img src="https://cnymw.github.io/GolangStudy/docs/img/首页-wechat.jpg" width="20%" alt="nil"/>
 
 # 联系作者
 
