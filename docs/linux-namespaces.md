@@ -44,3 +44,7 @@ IPC 通过使用共享内存区域，消息队列和信号量来处理进程之�
 ## 思维导图
 
 ![linux-namespaces-思维导图.png](https://cnymw.github.io/GolangStudy/docs/img/linux-namespaces-思维导图.png)
+
+## 参考资料
+
+- [The 7 most used Linux namespaces](https://www.redhat.com/sysadmin/7-linux-namespaces)

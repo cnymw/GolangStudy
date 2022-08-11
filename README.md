@@ -24,12 +24,6 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 <img src="https://cnymw.github.io/GolangStudy/docs/img/首页-Golang路线图.png" width="50%" alt="nil"/>
 
-## Golang 小程序在线学习
-
-为了更方便的学习 Golang，特意开发了一款小程序，将学习内容同步到小程序中，希望能够通过手机学习的同学们可以扫一下二维码关注下小程序：
-
-<img src="https://cnymw.github.io/GolangStudy/docs/img/首页-小程序.jpg" width="20%" alt="nil"/>
-
 ## go
 
 - [Go 基础](/docs/go-基础.md)
@@ -255,11 +249,3 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 - [麻省理工学院公开课：算法导论](http://open.163.com/special/opencourse/algorithms.html)
 - [LeetCode All in One 题目讲解汇总](https://github.com/grandyang/leetcode)
 - [kafka教程](https://www.orchome.com/kafka/index)
-
-# 公众号
-
-<img src="https://cnymw.github.io/GolangStudy/docs/img/首页-wechat.jpg" width="20%" alt="nil"/>
-
-# 联系作者
-
-欢迎大家指出不足，如有任何疑问，请邮件联系 benjaminymw at foxmail dot com 或者直接修复并提交 Pull Request。
