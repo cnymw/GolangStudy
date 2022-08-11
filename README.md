@@ -1,8 +1,6 @@
 # GolangStudy: Golang 面试学习
 
-[![在线阅读](https://badgen.net/badge/page/%E5%9C%A8%E7%BA%BF%E9%98%85%E8%AF%BB?icon=github&label)](https://cnymw.github.io/GolangStudy)
-[![相关代码](https://badgen.net/badge/icon/%E7%9B%B8%E5%85%B3%E4%BB%A3%E7%A0%81?icon=github&label)](https://github.com/cnymw/learnGo)
-[![贡献者](https://badgen.net/github/contributors/cnymw/GolangStudy)](https://github.com/cnymw/GolangStudy/graphs/contributors)
+[在线阅读](https://cnymw.github.io/GolangStudy)
 
 本项目旨在指导程序员们如何从基础开始系统的学习 Go 语言，并学习面试所需知识点。
 
@@ -26,7 +24,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 ## go
 
-- [Go 基础](/docs/go-基础.md)
+- [Go 基础](/docs/go-基础/go-基础.md)
 - [Go 并发(TODO)](/docs/go-并发.md)
 - [Go 接口(TODO)](/docs/go-接口.md)
 - [Go 检测竞态条件](/docs/go-检测竞态条件.md)

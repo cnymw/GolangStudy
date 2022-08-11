@@ -2,7 +2,7 @@
 
 ## Go 家族树
 
-![Go家族树](https://cnymw.github.io/GolangStudy/docs/img/go-基础-tree.png)
+![Go家族树](https://cnymw.github.io/GolangStudy/docs/go-基础/go-基础-tree.png)
 
 # 基本概念
 
@@ -262,5 +262,5 @@ w.Spokes = 20
 
 # 思维导图
 
-![go-基础-思维导图.png](https://cnymw.github.io/GolangStudy/docs/img/go-基础-思维导图.png)
+![go-基础-思维导图.png](https://cnymw.github.io/GolangStudy/docs/go-基础/go-基础-思维导图.png)
 
