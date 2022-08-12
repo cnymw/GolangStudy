@@ -8,7 +8,7 @@ Kubernetes 拥有一个庞大且快速增长的生态系统，其服务、支持
 
 ## 部署方式历史
 
-![Kubernetes-概述-部署方式历史.png](https://cnymw.github.io/GolangStudy/docs/img/Kubernetes-概述-部署方式历史.png)
+![Kubernetes-概述-部署方式历史.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-概述/Kubernetes-概述-部署方式历史.png)
 
 - 传统部署时代：各个组织机构在物理服务器上运行应用程序
 - 虚拟化部署时代：虚拟化技术能够更好地利用物理服务器上的资源，并且因为可轻松地添加或更新应用程序 而可以实现更好的可伸缩性，降低硬件成本等等。
@@ -42,4 +42,4 @@ Kubernetes 允许你存储和管理敏感信息，例如密码、OAuth 令牌和
 
 # 思维导图
 
-![Kubernetes-概述-思维导图.png](https://cnymw.github.io/GolangStudy/docs/img/Kubernetes-概述-思维导图.png)
+![Kubernetes-概述-思维导图.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-概述/Kubernetes-概述-思维导图.png)
