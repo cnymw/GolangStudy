@@ -52,3 +52,4 @@ Kubernetes 允许你存储和管理敏感信息，例如密码、OAuth 令牌和
 
 ## 抖音学习
 
+![Kubernetes-概述-抖音.jpeg](https://cnymw.github.io/GolangStudy/docs/Kubernetes-概述/Kubernetes-概述-抖音.jpeg)
