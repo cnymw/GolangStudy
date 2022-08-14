@@ -16,9 +16,9 @@ k8s组件主要分为3块。
 第五个控制平面组件是cloud-controller-manager，用于将集群嵌入特定云（例如亚马逊的 aws，微软的 azure 等），允许你将你的集群连接到云提供商的 API 之上，并将与该云平台交互的组件同与你的集群交互的组件分离开来。
 接着，我们学习下 Node 组件。
 Node 组件会在每个节点上运行，负责维护运行的 Pod 并提供 Kubernetes 运行环境。可以理解是k8s集群的打工人，用于实际运行客户的服务。
-第一个k8s打工人是kubelet，kubelet 会在集群中每个节点上运行。它保证容器都运行在 Pod 中。
-第二个k8s打工人是kube-proxy，它是集群中每个节点上运行的网络代理，是实现 k8s 服务 Service 概念的一部分。在后面的学习中，会学习到有关Service的概念。
-第三个k8s打工人是容器运行时 Container Runtime，它是负责运行容器的软件。可以支持许多容器运行环境，例如 Docker、containerd、容器运行环境接口 Kubernetes CRI 的其他任何实现。
+第一个 k8s 打工人是 kubelet，kubelet 会在集群中每个节点上运行。它保证容器都运行在 Pod 中。
+第二个 k8s 打工人是 kube-proxy，它是集群中每个节点上运行的网络代理，是实现 k8s 服务 Service 概念的一部分。在后面的学习中，会学习到有关 Service 的概念。
+第三个 k8s 打工人是容器运行时 Container Runtime，它是负责运行容器的软件。可以支持许多容器运行环境，例如 Docker、containerd、容器运行环境接口 Kubernetes CRI 的其他任何实现。
 最后，我们来了解下插件。
 插件使用 Kubernetes 资源 DaemonSet、 Deployment 等，来实现集群功能。因为这些插件提供集群级别的功能，插件中命名空间域的资源属于 kube-system 命名空间。
 有几种常用的插件，例如 DNS，仪表盘，容器资源监控，集群层面日志等。这些插件都可以按需部署，也可以根据需求自行开发k8s插件。
