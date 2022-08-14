@@ -82,7 +82,7 @@ Kubernetes 支持许多容器运行环境，例如 Docker、containerd、CRI-O �
 
 # 参考资料
 
-- [kubernetes.io官方文档：Kubernetes 组件](https://kubernetes.io/zh-cn/docs/concepts/overview/components/)
+- [kubernetes.io 官方文档：Kubernetes 组件](https://kubernetes.io/zh-cn/docs/concepts/overview/components/)
 
 # 思维导图
 
