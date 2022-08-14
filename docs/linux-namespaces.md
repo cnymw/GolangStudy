@@ -41,7 +41,7 @@ IPC 通过使用共享内存区域，消息队列和信号量来处理进程之�
 - [cgroups namespace:part 3](https://www.redhat.com/sysadmin/cgroups-part-three)
 - [cgroups namespace:part 4](https://www.redhat.com/sysadmin/cgroups-part-four)
 
-## 思维导图
+# 思维导图
 
 ![linux-namespaces-思维导图.png](https://cnymw.github.io/GolangStudy/docs/img/linux-namespaces-思维导图.png)
 
