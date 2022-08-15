@@ -52,6 +52,8 @@ Kubernetes 允许你存储和管理敏感信息，例如密码、OAuth 令牌和
 
 ## B站学习
 
+[从零开始学习k8s：k8s概述](https://www.bilibili.com/video/BV1bV4y147o9/)
+
 ![Kubernetes-概述-B站.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-概述/Kubernetes-概述-B站.png)
 
 ## 抖音学习

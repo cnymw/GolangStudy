@@ -87,3 +87,13 @@ Kubernetes 支持许多容器运行环境，例如 Docker、containerd、CRI-O �
 # 思维导图
 
 ![Kubernetes-组件-思维导图.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-组件/Kubernetes-组件-思维导图.png)
+
+# B站学习
+
+[从零开始学习k8s：k8s组件](https://www.bilibili.com/video/BV13G4y1a7oq/)
+
+![Kubernetes-组件-B站.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-组件/Kubernetes-组件-B站.png)
+
+# 抖音学习
+
+![Kubernetes-组件-抖音.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-组件/Kubernetes-组件-抖音.png)
