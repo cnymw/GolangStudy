@@ -1,0 +1,28 @@
+要学习 k8s namespace，需要从以下几个方面来学习。
+首先，我们来学习下什么是 k8s namespace。
+在 k8s 中，namespace 提供一种机制，将同一集群中的资源划分为相互隔离的组。
+在使用 namespace 时，需要注意以下特性。
+1、同一 namespace 内的资源名称要唯一，但跨 namespace 时没有这个要求。
+2、namespace 作用域仅针对带有 namespace 的对象，例如 Service 等，这种作用域对集群访问的对象不适用，例如 Node 等。
+然后，我们学习下什么时候使用 k8s namespace。
+namespace 适用于存在很多跨多个团队或项目的用户的场景。对于只有几到几十个用户的集群，根本不需要考虑 namespace。
+在多个用户之间划分集群资源的时候，也可以使用 namespace。
+同时，我们还得知道什么时候不必使用 k8s namespace。
+在分隔仅仅轻微不同的资源的时候，不必使用多个 namespace，例如同一软件的不同版本，应该使用标签（label）来区分同一 namespace 中的不同资源。
+接着，我们简单了解下如何使用 namespace。
+首先是查看 namespace。
+你可以使用以下命令列出集群中现存的 namespace。
+并且，k8s 会创建四个初始的 namespace：
+1、default：默认的 namespace。
+2、kube-system：k8s 系统创建对象所使用的 namespace。
+3、kube-public：这个 namespace 是自动创建的，所有用户（包括未经过身份验证的用户）都可以读取它。这个 namespace 主要用于集群使用，以防某些资源在整个集群中应该是可见和可读的。
+4、kube-node-lease：此 namespace 用于与各个节点相关的租约（Lease）对象。
+然后是为请求设置 namespace。
+要为当前请求设置 namespace，请使用 --namespace 参数。
+然后是设置 namespace 偏好。
+你可以永久保存 namespace，以用于对应上下文中所有后续 kubectl 命令。
+然后，我们来学习下 namespace 和 DNS 相关的知识点。
+当你创建一个 service 时， k8s 会创建一个相应的 DNS 条目。
+该条目的形式如图所示，这意味着如果容器只使用 service 名称，它将被解析到本地 namespace 的 service。这对于跨多个 namespace（如开发、测试和生产）使用相同的配置非常有用。
+最后，我们需要了解到并非所有对象都在 namespace 中。
+大多数 k8s 资源（例如 Pod、Service、副本控制器等）都位于某些 namespace 中。但是 namespace 资源本身并不在 namespace 中。而且底层资源，例如节点和持久化卷不属于任何 namespace。
