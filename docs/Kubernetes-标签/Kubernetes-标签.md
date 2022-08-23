@@ -124,3 +124,23 @@ kubectl get pods -l environment=production,tier=frontend
 ```shell
 kubectl get pods -l 'environment in (production),tier in (frontend)'
 ```
+
+# 参考资料
+
+- [kubernetes.io官方文档：标签和选择算符](https://kubernetes.io/zh-cn/docs/concepts/overview/working-with-objects/labels/)
+
+# 思维导图
+
+![Kubernetes-标签-思维导图.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-标签/Kubernetes-标签-思维导图.png)
+
+# 视频学习
+
+## B站学习
+
+[从零开始学习k8s：k8s标签](https://www.bilibili.com/video/BV1wa411o7wm/)
+
+![Kubernetes-标签-B站.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-标签/Kubernetes-标签-B站.png)
+
+## 抖音学习
+
+![Kubernetes-标签-抖音.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-标签/Kubernetes-标签-抖音.png)
