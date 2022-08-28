@@ -50,6 +50,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
   - [Kubernetes 理解对象｜视频学习｜完整版](/docs/Kubernetes-理解对象/Kubernetes-理解对象.md)
   - [Kubernetes namespace｜视频学习｜完整版](/docs/Kubernetes-namespace/Kubernetes-namespace.md)
   - [Kubernetes 标签｜视频学习｜完整版](/docs/Kubernetes-标签/Kubernetes-标签.md)
+  - [Kubernetes 节点｜视频学习｜完整版](/docs/Kubernetes-节点/Kubernetes-节点.md)
 - [Kubernetes 基本概念和术语](/docs/Kubernetes-基本概念和术语.md)
 - [Kubernetes kubectl命令(TODO)](/docs/Kubernetes-kubectl命令.md)
 - [Kubernetes 中文手册](https://www.kubernetes.org.cn/docs)
