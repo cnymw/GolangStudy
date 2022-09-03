@@ -7,9 +7,9 @@ Kubernetes 通过将容器放入在节点（Node）上运行的 Pod 中来执行
 ## 节点上的组件
 
 节点上的组件包括：
-- kubelet
-- 容器运行时
-- kube-proxy
+- kubelet：kubelet 接收一组通过各类机制提供给它的 PodSpecs，确保这些 PodSpecs 中描述的容器处于运行状态且健康。
+- 容器运行时：容器运行环境是负责运行容器的软件。
+- kube-proxy：kube-proxy 是集群中每个节点（node）所上运行的网络代理，实现 Kubernetes 服务（Service）概念的一部分。
 
 ## 如何管理节点
 
@@ -116,3 +116,13 @@ kubelet 负责创建和更新节点的 .status，以及更新它们对应的 Lea
 # 思维导图
 
 ![Kubernetes-节点-思维导图.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-节点/Kubernetes-节点-思维导图.png)
+
+# B站学习
+
+[从零开始学习k8s：k8s节点](https://www.bilibili.com/video/BV1Ad4y1X7tW/)
+
+![Kubernetes-节点-B站.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-节点/Kubernetes-节点-B站.png)
+
+# 抖音学习
+
+![Kubernetes-节点-抖音.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-节点/Kubernetes-节点-抖音.png)
