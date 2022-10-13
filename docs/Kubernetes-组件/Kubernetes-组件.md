@@ -86,6 +86,21 @@ Kubernetes 支持许多容器运行环境，例如 Docker、containerd、CRI-O �
 
 # 思维导图
 
+```markmap
+- Kubernetes 组件
+  - 控制平面组件（Control Plane Components）
+    - kube-apiserver
+    - etcd
+    - kube-scheduler
+    - kube-controller-manager
+    - cloud-controller-manager
+  - Node 组件
+    - kubelet
+    - kube-proxy
+    - 容器运行时（Container Runtime）
+  - 插件（Addons）
+```
+
 ![Kubernetes-组件-思维导图.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-组件/Kubernetes-组件-思维导图.png)
 
 # B站学习

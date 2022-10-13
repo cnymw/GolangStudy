@@ -42,7 +42,7 @@ Kubernetes 允许你存储和管理敏感信息，例如密码、OAuth 令牌和
 
 # 参考资料
 
-- [kubernetes.io官方文档：Kubernetes 是什么？](https://kubernetes.io/zh-cn/docs/concepts/overview/what-is-kubernetes/)
+- [kubernetes.io官方文档：Kubernetes 概述](https://kubernetes.io/zh-cn/docs/concepts/overview/)
 
 # 思维导图
 
