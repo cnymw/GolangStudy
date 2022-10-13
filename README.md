@@ -1,6 +1,6 @@
 # GolangStudy: Golang 面试学习
 
-[在线阅读](https://cnymw.github.io/GolangStudy)
+[在线阅读](https://golang-study.netlify.app/)
 
 本项目旨在指导程序员们如何从基础开始系统的学习 Go 语言，并学习面试所需知识点。
 
@@ -12,11 +12,26 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 本项目更加看重的是对于知识点系统的一个总结，能够通过一句话，一张思维导图来把一类知识进行讲解，这样在面试前把所有的思维导图都过一遍就能更大的提升面试通过的几率了，平时空余的时候拿出思维导图进行复习也能加深理解。
 
-## Golang 学习路线图（TODO）
+## Golang 学习路线
 
-<img src="https://cnymw.github.io/GolangStudy/docs/img/首页-Golang路线图.png" width="50%" alt="nil"/>
+```markmap
+- Golang 学习路线
+  - 学习 Golang
+    - 基础
+    - 高级机制
+    - 源码解读
+    - 常用框架
+  - Kubernetes
+```
 
 ## go
+
+Golang 语言的学 习可以分为以下方向：
+
+- 基础：开发核心能力
+- 高级机制：线程调度，垃圾回收等，进阶的面试经常会考
+- 源码解读：对 Golang 加深理解，进阶开发有帮助，面试不常考
+- 常用框架学习：对生产开发有帮助，可以简单了解下，在技术选型的时候可以快速做出判断
 
 - [Go 基础](/docs/go-基础/go-基础.md)
 - [Go 并发(TODO)](/docs/go-并发.md)
@@ -43,6 +58,12 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 ---
 
 ## Kubernetes
+
+Golang 常用在微服务，分布式场景，不经常用于较大的业务场景中。
+
+常见的如开发一个微服务，部署到阿里/腾讯/华为云中，或者云原生自建的 Kubernetes 里，这个时候就需要学习并精通 Kubernetes 相关的知识。
+
+很多企业在自建云，或者做云原生的转型，部署服务会逐渐的使用 Kubernetes，而放弃之前的物理机，虚拟机部署模式。所以面试的时候问到 Kubernetes 是比较常见的。
 
 - [kubernetes.io 官方文档](https://kubernetes.io/zh-cn/)
   - [Kubernetes 概述｜视频学习｜完整版](/docs/Kubernetes-概述/Kubernetes-概述.md)
