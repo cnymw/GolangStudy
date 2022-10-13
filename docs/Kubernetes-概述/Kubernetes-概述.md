@@ -46,6 +46,22 @@ Kubernetes 允许你存储和管理敏感信息，例如密码、OAuth 令牌和
 
 # 思维导图
 
+```markmap
+- Kubernetes 概述
+  - Kubernetes 是一个可移植、可扩展的开源平台，用于管理容器化的工作负载和服务，可促进声明式配置和自动化。
+  - 部署方式历史
+    - 传统部署时代
+    - 虚拟化部署时代
+    - 容器部署时代
+  - 能力
+    - 服务发现和负载均衡
+    - 存储编排
+    - 自动部署和回滚
+    - 自动完成装箱计算
+    - 自我修复
+    - 密钥与配置管理
+```
+
 ![Kubernetes-概述-思维导图.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-概述/Kubernetes-概述-思维导图.png)
 
 # 视频学习
