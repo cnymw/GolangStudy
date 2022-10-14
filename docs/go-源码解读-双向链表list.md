@@ -342,4 +342,43 @@ func (l *List) PushFrontList(other *List) {
 
 # 思维导图
 
+```markmap
+- 双向链表 list
+  - 结点 Element
+    - 结构体
+      - next *Element
+      - prev *Element
+      - list *List
+      - Value interface{}
+    - 方法
+      - Next() *Element
+      - Prev() *Element
+  - 链表 List
+    - 结构体
+      - root Element
+      - len int
+    - 内部方法
+      - lazyinit()
+      - insert(e, at *Element) *Element
+      - insertValue(v interface{}, at *Element) *Element
+      - remove(e *Element) *Element
+      - move(e, at *Element) *Element
+    - 外部方法
+      - Init() *List
+      - New() *List
+      - Front() *Element
+      - Back() *Element
+      - Remove(e *Element) interface{}
+      - PushFront(v interface{}) *Element
+      - PushBack(v interface{}) *Element
+      - InsertBefore(v interface{}, mark *Element) *Element
+      - InsertAfter(v interface{}, mark *Element) *Element
+      - MoveToFront(e *Element)
+      - MoveToBack(e *Element)
+      - MoveBefore(e, mark *Element)
+      - MoveAfter(e, mark *Element)
+      - PushBackList(other *List)
+      - PushFrontList(other *List)
+```
+
 ![go-源码解读-双向链表list.png](https://cnymw.github.io/GolangStudy/docs/img/go-源码解读-双向链表list.png)
