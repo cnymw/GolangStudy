@@ -33,7 +33,7 @@ Golang 语言的学 习可以分为以下方向：
 - 源码解读：对 Golang 加深理解，进阶开发有帮助，面试不常考
 - 常用框架学习：对生产开发有帮助，可以简单了解下，在技术选型的时候可以快速做出判断
 
-详情如下：
+学习目录如下：
 
 - [Go 基础](/docs/go-基础/go-基础.md)
 - [Go 并发(TODO)](/docs/go-并发.md)
@@ -67,7 +67,7 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 
 很多企业在自建云，或者做云原生的转型，部署服务会逐渐的使用 Kubernetes，而放弃之前的物理机，虚拟机部署模式。所以面试的时候问到 Kubernetes 是比较常见的。
 
-详情如下：
+学习目录如下：
 
 - [kubernetes.io 官方文档](https://kubernetes.io/zh-cn/)
   - [Kubernetes 概述｜视频学习｜完整版](/docs/Kubernetes-概述/Kubernetes-概述.md)

@@ -78,6 +78,15 @@ kubectl api-resources --namespaced=false
 
 # 思维导图
 
+```markmap
+- 什么是 Kubernetes namespace
+- 什么时候使用 Kubernetes namespace
+- 什么时候不必使用 Kubernetes namespace
+- 如何使用 namespace
+- namespace 和 DNS
+- 并非所有对象都在 namespace 中
+```
+
 ![Kubernetes-namespace-思维导图.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-namespace/Kubernetes-namespace-思维导图.png)
 
 # 视频学习
