@@ -47,7 +47,7 @@ Golang 语言的学 习可以分为以下方向：
   - [Go 垃圾回收](/docs/go-垃圾回收.md)
 - golang sdk
   - [Go 源码 SDK 目录](https://cloud.tencent.com/developer/doc/1101)
-  - [Go 源码解读 标识符](/docs/go-源码解读-标识符.md)
+  - [Go 源码解读 标识符](/docs/go-源码解读-标识符/go-源码解读-标识符.md)
   - [Go 源码解读 双向链表 list](/docs/go-源码解读-双向链表list/go-源码解读-双向链表list.md)
   - [Go 源码解读 程序分析pprof(TODO)](/docs/go-源码解读-程序分析pprof.md)
   - [Go 源码解读 同步模块sync mutex(TODO)](/docs/go-源码解读-同步sync-mutex.md)
