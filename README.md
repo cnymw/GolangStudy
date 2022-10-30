@@ -12,7 +12,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 本项目更加看重的是对于知识点系统的一个总结，能够通过一句话，一张思维导图来把一类知识进行讲解，这样在面试前把所有的思维导图都过一遍就能更大的提升面试通过的几率了，平时空余的时候拿出思维导图进行复习也能加深理解。
 
-作者通过该学习笔记，拿到过腾讯云，青藤云，神州数码等云相关企业 offer，工作岗位是 Golang 服务端开发。
+作者通过该学习笔记，拿到过腾讯云，金山办公，青藤云，神州数码等云相关企业 offer，工作岗位是 Golang 服务端开发。
 
 ## Golang 学习路线
 
@@ -80,7 +80,6 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
   - [Kubernetes 节点｜视频学习｜完整版](/docs/Kubernetes-节点/Kubernetes-节点.md)
 - [Kubernetes 基本概念和术语](/docs/Kubernetes-基本概念和术语.md)
 - [Kubernetes kubectl命令(TODO)](/docs/Kubernetes-kubectl命令.md)
-- [Kubernetes 中文手册](https://www.kubernetes.org.cn/docs)
 
 ---
 
