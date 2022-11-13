@@ -36,7 +36,19 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
     - 高级机制
     - 源码解读
     - 常用框架
+    - 面试题目
   - Kubernetes
+  - docker
+  - linux
+  - 网络
+  - 设计模式
+  - redis
+  - etcd
+  - kafka
+  - Elasticsearch
+  - 数据结构
+  - 算法
+  - 面试题
 ```
 
 ## 学习 Golang 语言
@@ -65,6 +77,7 @@ Golang 语言的学习可以分为以下方向：
   - [Go 源码解读 程序分析pprof(TODO)](/docs/go-源码解读-程序分析pprof.md)
   - [Go 源码解读 同步模块sync mutex(TODO)](/docs/go-源码解读-同步sync-mutex.md)
   - [Go 源码解读 同步模块sync once(TODO)](/docs/go-源码解读-同步sync-once.md)
+  - [Go 源码解读 垃圾回收(TODO)](/docs/go-源码解读-垃圾回收/go-源码解读-垃圾回收.md)
 - zap
   - [Go 源码解读 高性能日志库 zap(TODO)](/docs/go-zap.md)
 - grpool
@@ -280,6 +293,10 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 - [leetcode-164-最大间距](/docs/leetcode-164-最大间距.md)
 - [leetcode-922-按奇偶排序数组2](/docs/leetcode-922-按奇偶排序数组2.md)
 - [leetcode-976-三角形的最大周长](/docs/leetcode-976-三角形的最大周长.md)
+
+## 面试题库
+
+- [面试题库](/docs/面试题库/面试题库.md)
 
 ---
 
