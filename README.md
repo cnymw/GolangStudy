@@ -70,6 +70,7 @@ Golang 语言的学习可以分为以下方向：
 - golang机制
   - [Go 调度](/docs/go-调度.md)
   - [Go 垃圾回收](/docs/go-垃圾回收.md)
+  - [Go channel](/docs/go-channel/go-channel.md)
 - golang sdk
   - [Go 源码 SDK 目录](https://cloud.tencent.com/developer/doc/1101)
   - [Go 源码解读 标识符](/docs/go-源码解读-标识符/go-源码解读-标识符.md)
