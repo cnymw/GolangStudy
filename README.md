@@ -1,6 +1,6 @@
 # GolangStudy: Golang 面试学习
 
-[在线阅读](https://golang-study.netlify.app/)
+[在线课程](https://golangstudy.netlify.app/)
 
 本项目旨在指导程序员们如何从基础开始系统的学习 Go 语言，并学习面试所需知识点。
 
@@ -63,8 +63,8 @@ Golang 语言的学习可以分为以下方向：
 学习目录如下：
 
 - [Go 基础](/docs/go-基础/go-基础.md)
-- [Go 并发(TODO)](/docs/go-并发.md)
-- [Go 接口(TODO)](/docs/go-接口.md)
+- [Go 并发](/docs/go-并发.md)
+- [Go 接口](/docs/go-接口.md)
 - [Go 检测竞态条件](/docs/go-检测竞态条件.md)
 - [Go 性能分析：pprof实战](https://blog.wolfogre.com/posts/go-ppof-practice/)
 - golang机制
@@ -75,14 +75,15 @@ Golang 语言的学习可以分为以下方向：
   - [Go 源码 SDK 目录](https://cloud.tencent.com/developer/doc/1101)
   - [Go 源码解读 标识符](/docs/go-源码解读-标识符/go-源码解读-标识符.md)
   - [Go 源码解读 双向链表 list](/docs/go-源码解读-双向链表list/go-源码解读-双向链表list.md)
-  - [Go 源码解读 程序分析pprof(TODO)](/docs/go-源码解读-程序分析pprof.md)
-  - [Go 源码解读 同步模块sync mutex(TODO)](/docs/go-源码解读-同步sync-mutex.md)
-  - [Go 源码解读 同步模块sync once(TODO)](/docs/go-源码解读-同步sync-once.md)
-  - [Go 源码解读 垃圾回收(TODO)](/docs/go-源码解读-垃圾回收/go-源码解读-垃圾回收.md)
+  - [Go 源码解读 程序分析pprof](/docs/go-源码解读-程序分析pprof.md)
+  - [Go 源码解读 同步模块sync mutex](/docs/go-源码解读-同步sync-mutex.md)
+  - [Go 源码解读 同步模块sync once](/docs/go-源码解读-同步sync-once.md)
+  - [Go 源码解读 垃圾回收](/docs/go-源码解读-垃圾回收/go-源码解读-垃圾回收.md)
+  - [Go 源码解读 channel](/docs/go-源码解读-channel/go-源码解读-channel.md)
 - zap
-  - [Go 源码解读 高性能日志库 zap(TODO)](/docs/go-zap.md)
+  - [Go 源码解读 高性能日志库 zap](/docs/go-zap.md)
 - grpool
-  - [Go 源码解读 轻量级线程池 grpool(TODO)](/docs/go-grpool.md)
+  - [Go 源码解读 轻量级线程池 grpool](/docs/go-grpool.md)
 - 面试题
   - [Go 有几种连接字符串的方法?](/docs/go-面试题-连接字符串方法.md)
   
@@ -106,7 +107,7 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
   - [Kubernetes 标签｜视频学习｜完整版](/docs/Kubernetes-标签/Kubernetes-标签.md)
   - [Kubernetes 节点｜视频学习｜完整版](/docs/Kubernetes-节点/Kubernetes-节点.md)
 - [Kubernetes 基本概念和术语](/docs/Kubernetes-基本概念和术语.md)
-- [Kubernetes kubectl命令(TODO)](/docs/Kubernetes-kubectl命令.md)
+- [Kubernetes kubectl命令](/docs/Kubernetes-kubectl命令.md)
 
 ---
 
@@ -135,8 +136,8 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
     - [快速排序](/docs/算法-快速排序.md)
 - [动态规划](/docs/算法-动态规划.md)
 - [前中后缀表达式](/docs/算法-前中后缀表达式.md)
-- [滑动窗口(TODO)](/docs/算法-滑动窗口.md)
-- [二分查找(TODO)](/docs/算法-二分查找.md)
+- [滑动窗口](/docs/算法-滑动窗口.md)
+- [二分查找](/docs/算法-二分查找.md)
 - [分布式id生成算法：雪花算法](/docs/算法-雪花算法.md)
 
 ---
@@ -144,16 +145,16 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 ## 数据库
 
 - [mysql InnoDB 体系结构](/docs/数据库-mysql-InnoDB体系结构.md)
-  - [mysql InnoDB 内存结构(TODO)](/docs/数据库-mysql-InnoDB内存结构.md)
-  - [mysql InnoDB 磁盘结构(TODO)](/docs/数据库-mysql-InnoDB磁盘结构.md)
-- [mysql InnoDB 主从复制(TODO)](/docs/数据库-mysql-InnoDB主从复制.md)
+  - [mysql InnoDB 内存结构](/docs/数据库-mysql-InnoDB内存结构.md)
+  - [mysql InnoDB 磁盘结构](/docs/数据库-mysql-InnoDB磁盘结构.md)
+- [mysql InnoDB 主从复制](/docs/数据库-mysql-InnoDB主从复制.md)
 - mysql InnoDB 索引
   - [mysql InnoDB 聚集索引和辅助索引](/docs/数据库-mysql-InnoDB聚集索引和辅助索引.md)
 - InnoDB 锁和事务模型
-  - [mysql InnoDB 多版本控制（TODO）](/docs/数据库-mysql-InnoDB多版本控制.md)
+  - [mysql InnoDB 多版本控制](/docs/数据库-mysql-InnoDB多版本控制.md)
   - [mysql InnoDB 锁机制](/docs/数据库-mysql-Innodb锁机制.md)
-  - [mysql InnoDB 事务隔离级别(TODO)](/docs/数据库-mysql-InnoDB事务隔离级别.md)
-  - [mysql InnoDB 锁定读(TODO)](/docs/数据库-mysql-InnoDB锁定读.md)
+  - [mysql InnoDB 事务隔离级别](/docs/数据库-mysql-InnoDB事务隔离级别.md)
+  - [mysql InnoDB 锁定读](/docs/数据库-mysql-InnoDB锁定读.md)
   - [mysql InnoDB 死锁](/docs/数据库-mysql-死锁.md)  
   - [mysql InnoDB 死锁案例](https://github.com/aneasystone/mysql-deadlocks)
 - Mysql常用工具
@@ -172,7 +173,7 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 
 ## Docker
   - [Docker — 从入门到实践](https://vuepress.mirror.docker-practice.com)
-  - [Docker 基础(TODO)](/docs/docker-docker基础.md)
+  - [Docker 基础](/docs/docker-docker基础.md)
 
 ---
 
@@ -193,9 +194,9 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 - [redis 配置选项命令](/docs/redis-配置选项命令.md)
 - [redis 调试命令](/docs/redis-调试命令.md)
 - [redis 内部命令](/docs/redis-内部命令.md)
-- [redis 持久化（TODO）](/docs/redis-持久化.md)
-- [redis sentinel（TODO）](/docs/redis-sentinel.md)
-- [redis 集群（TODO）](/docs/redis-集群.md)
+- [redis 持久化](/docs/redis-持久化.md)
+- [redis sentinel](/docs/redis-sentinel.md)
+- [redis 集群](/docs/redis-集群.md)
 - [redis 实现分布式锁](/docs/redis-实现分布式锁.md)
 - 面试题
   - [redis 有什么作用](/docs/redis-面试题-redis有什么作用.md)
@@ -212,7 +213,7 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 
 ## 消息中间件
 
-- [kafka 介绍(TODO)](/docs/消息中间件-kafka-介绍.md)
+- [kafka 介绍](/docs/消息中间件-kafka-介绍.md)
 - 面试题
   - [kafka 为什么会丢消息?](/docs/消息中间件-面试题-kafka为什么丢消息.md)
 
@@ -231,7 +232,7 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 - [Linux curl命令详解](/docs/linux-curl命令.md)
 - [Linux namespaces 命名空间](/docs/linux-namespaces.md)
 - 面试题
-  - [进程和线程，协程的区别(TODO)](/docs/操作系统-面试题-进程线程协程的区别.md)
+  - [进程和线程，协程的区别](/docs/操作系统-面试题-进程线程协程的区别.md)
 - 专业博客
   - [redhat sysadmin](https://www.redhat.com/sysadmin/)
 
@@ -244,21 +245,21 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 - [TCP-IP 详解：ARP 地址解析协议](/docs/网络-TCP-IP详解-ARP.md)
 - [TCP-IP 详解：RARP 逆地址解析协议](/docs/网络-TCP-IP详解-RARP.md)
 - [TCP-IP 详解：ICMP Internet控制报文协议](/docs/网络-TCP-IP详解-ICMP.md)
-- [TCP-IP 详解：TCP 传输控制协议（TODO）](/docs/网络-TCP-IP详解-TCP传输控制协议.md)
-- [grpc：grpc简介(TODO)](/docs/网络-grpc简介.md)
+- [TCP-IP 详解：TCP 传输控制协议](/docs/网络-TCP-IP详解-TCP传输控制协议.md)
+- [grpc：grpc简介](/docs/网络-grpc简介.md)
 - 面试题
-  - [HTTP 1.0、1.1、2.0、3.0 区别(TODO)](/docs/网络-http-http版本区别.md)
+  - [HTTP 1.0、1.1、2.0、3.0 区别](/docs/网络-http-http版本区别.md)
   
 ---
 
 ## 分布式
 
 - [分布式：分布式架构](/docs/分布式-分布式架构.md)
-- [分布式：一致性协议(TODO)](/docs/分布式-一致性协议.md)
-- [分布式：断路器模式(TODO)](/docs/分布式-断路器模式.md)
+- [分布式：一致性协议](/docs/分布式-一致性协议.md)
+- [分布式：断路器模式](/docs/分布式-断路器模式.md)
 - [分布式：etcdctl 基本使用](/docs/分布式-etcd-etcdctl基本使用.md)
 - [分布式：理解 etcd](https://zhuanlan.zhihu.com/p/96721097)
-- [分布式：service mesh 入门(TODO)](/docs/分布式-servicemesh-servicemesh入门.md)
+- [分布式：service mesh 入门](/docs/分布式-servicemesh-servicemesh入门.md)
 
 ---
 
