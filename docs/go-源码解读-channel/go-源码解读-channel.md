@@ -1,5 +1,7 @@
 # Go 源码解读-channel
 
+> 源码地址：runtime/chan.go
+> 
 > 源码版本：1.17.6
 
 ## 数据结构 hchan
@@ -43,6 +45,8 @@ recvq 和 sendq 是等待队列，waitq 是一个双向链表。
 sudog 是链表结构，所以 waitq 只需要记录 first 和 last 指针，即可获取 sudog 整个链表。
 
 ## 数据结构 sudog
+
+> 源码地址：runtime/runtime2.go
 
 ```go
 // sudog 表示等待列表中的 g，例如用于在 channel 上发送/接收的 g。
@@ -89,7 +93,143 @@ type sudog struct {
 
 semaRoot 是用于 sync.Mutex 的异步信号量，拥有一个具有不同地址的 sudog 平衡树，semaRoot 实现在：go/src/runtime/sema.go
 
+## 数据结构 chantype
+
+> 源码地址：runtime/type.go
+
+在初始化函数中，有一个核心参数 chantype 记录了 channel 里的元素类型 ，该参数定义如下：
+
+```go
+type chantype struct {
+	typ  _type // chantype 也是一种类型，所以需要 _type 来记录 chantype 的类型（经典套娃）
+	elem *_type // elem 记录了 channel 里的元素类型
+	dir  uintptr // dir 记录了 channel 的方向 direction
+}
+```
+
+channel 是具有传输方向的，如果不指定传输方向的话，channel 是双向的。
+
+有两种定义传输方向的语法：
+
+```go
+out chan<- int
+in <-chan int
+```
+
+类型 chan<- int 表示一个只发送 int 的 channel，只能发送不能接收。
+
+类型 <-chan int 表示一个只接收 int 的 channel，只能接收不能发送。
+
+## 初始化函数 makechan
+
+当使用 make 函数创建 channel 时，会调用 makechan 来实现初始化逻辑，例如执行以下代码，底层会调用 makechan：
+
+```go
+// 初始化无 buffer 的 channel
+c := make(chan int)
+// 初始化有 buffer 的 channel
+c := make(chan int , 10)
+```
+
+makechan 的实现如下：
+
+```go
+// chantype 是 channel 传递的元素类型，可以是基础类型，也可以是对象
+func makechan(t *chantype, size int) *hchan {
+	elem := t.elem
+
+	// elem.size 是类型 type 占用的空间大小
+	// 类型的大小不会超过 16 位
+	if elem.size >= 1<<16 {
+		throw("makechan: invalid channel element type")
+	}
+	// 内存对齐
+	if hchanSize%maxAlign != 0 || elem.align > maxAlign {
+		throw("makechan: bad alignment")
+	}
+
+	mem, overflow := math.MulUintptr(elem.size, uintptr(size))
+	if overflow || mem > maxAlloc-hchanSize || size < 0 {
+		panic(plainError("makechan: size out of range"))
+	}
+
+	// 当 buf 中存储的元素不包含指针时，hchan 不包含 GC 感兴趣的指针。
+	// buf 指向相同的内存分配，elemtype 是永久的。
+	// sudog 被它们所属的线程所引用，因此它们无法被 GC。
+	var c *hchan
+	switch {
+	case mem == 0:
+		// 如果队列或者元素大小是 0
+		c = (*hchan)(mallocgc(hchanSize, nil, true))
+		// 竞态检测使用这个内存地址来进行同步
+		c.buf = c.raceaddr()
+	case elem.ptrdata == 0:
+		// 如果 channel 元素中不包含指针
+		// 在一个调用中分配 hchan 和 buf
+		c = (*hchan)(mallocgc(hchanSize+mem, nil, true))
+		c.buf = add(unsafe.Pointer(c), hchanSize)
+	default:
+		// 如果元素包含指针
+		c = new(hchan)
+		c.buf = mallocgc(mem, elem, true)
+	}
+    // 赋值元素大小
+	c.elemsize = uint16(elem.size)
+    // 赋值元素类型
+	c.elemtype = elem
+    // 赋值元素队列大小 size
+	c.dataqsiz = uint(size)
+	lockInit(&c.lock, lockRankHchan)
+	
+	......
+	return c
+}
+```
+
+## 数据发送函数 send
+
+先看下 channel send 的几种场景，以及对应的底层实现。
+
+首先是 c <- x 场景：
+
+```go
+// 编译代码中 c<-x 的入口点
+//go:nosplit
+func chansend1(c *hchan, elem unsafe.Pointer) {
+	chansend(c, elem, true, getcallerpc())
+}
+```
+
+> go:nosplit 指令是用于指定文件中声明的下一个函数不得包含堆栈溢出检查（简单来讲，就是这个函数跳过堆栈溢出的检查。）。在不安全地抢占调用 goroutine 的时间调用的低级运行时源最常使用此方法。
+
+接下来是 select 场景：
+
+```go
+// 编译期实现如下：
+//
+//	select {
+//	case c <- v:
+//		... foo
+//	default:
+//		... bar
+//	}
+//
+// 编译期编译为：
+//
+//	if selectnbsend(c, v) {
+//		... foo
+//	} else {
+//		... bar
+//	}
+//
+func selectnbsend(c *hchan, elem unsafe.Pointer) (selected bool) {
+	return chansend(c, elem, false, getcallerpc())
+}
+```
 
 ## 参考
 
 - [深入 Go 并发原语 — Channel 底层实现](https://halfrost.com/go_channel/)
+- [深入理解Go语言(01): interface源码分析](https://www.cnblogs.com/jiujuan/p/12653806.html)
+- [在 Go 中恰到好处的内存对齐](https://eddycjy.gitbook.io/golang/di-1-ke-za-tan/go-memory-align)
+- [golang chan 最详细原理剖析](https://zhuanlan.zhihu.com/p/299592156)
