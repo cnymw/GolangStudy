@@ -91,7 +91,7 @@ type sudog struct {
 }
 ```
 
-semaRoot 是用于 sync.Mutex 的异步信号量，拥有一个具有不同地址的 sudog 平衡树，semaRoot 实现在：go/src/runtime/sema.go
+semaRoot 是用于 `sync.Mutex` 的异步信号量，拥有一个具有不同地址的 sudog 平衡树，semaRoot 实现在：go/src/runtime/sema.go
 
 ## 数据结构 chantype
 
@@ -116,13 +116,13 @@ out chan<- int
 in <-chan int
 ```
 
-类型 chan<- int 表示一个只发送 int 的 channel，只能发送不能接收。
+类型 `chan<- int` 表示一个只发送 int 的 channel，只能发送不能接收。
 
-类型 <-chan int 表示一个只接收 int 的 channel，只能接收不能发送。
+类型 `<-chan int` 表示一个只接收 int 的 channel，只能接收不能发送。
 
 ## 初始化函数 makechan
 
-当使用 make 函数创建 channel 时，会调用 makechan 来实现初始化逻辑，例如执行以下代码，底层会调用 makechan：
+当使用 `make` 函数创建 channel 时，会调用 `makechan` 来实现初始化逻辑，例如执行以下代码，底层会调用 `makechan`：
 
 ```go
 // 初始化无 buffer 的 channel
@@ -131,7 +131,7 @@ c := make(chan int)
 c := make(chan int , 10)
 ```
 
-makechan 的实现如下：
+`makechan` 的实现如下：
 
 ```go
 // chantype 是 channel 传递的元素类型，可以是基础类型，也可以是对象
@@ -190,7 +190,9 @@ func makechan(t *chantype, size int) *hchan {
 
 先看下 channel send 的几种场景，以及对应的底层实现。
 
-首先是 c <- x 场景：
+首先是 `c <- x` 场景，当编译器遇到这种场景，会将代码编译成如下代码：
+
+### 场景 c<-x 实现：chansend1
 
 ```go
 // 编译代码中 c<-x 的入口点
@@ -202,10 +204,12 @@ func chansend1(c *hchan, elem unsafe.Pointer) {
 
 > go:nosplit 指令是用于指定文件中声明的下一个函数不得包含堆栈溢出检查（简单来讲，就是这个函数跳过堆栈溢出的检查。）。在不安全地抢占调用 goroutine 的时间调用的低级运行时源最常使用此方法。
 
-接下来是 select 场景：
+### 场景 select 实现：selectnbsend
+
+接下来是 `select` 场景：
 
 ```go
-// 编译期实现如下：
+// 实现如下：
 //
 //	select {
 //	case c <- v:
@@ -214,7 +218,7 @@ func chansend1(c *hchan, elem unsafe.Pointer) {
 //		... bar
 //	}
 //
-// 编译期编译为：
+// 以上代码编译器会编译为：
 //
 //	if selectnbsend(c, v) {
 //		... foo
@@ -226,6 +230,147 @@ func selectnbsend(c *hchan, elem unsafe.Pointer) (selected bool) {
 	return chansend(c, elem, false, getcallerpc())
 }
 ```
+
+### 底层实现：chansend
+
+接下来，我们来看下 `chansend` 的实现：
+
+```go
+func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
+	// 当 channel 还未初始化或为 nil 时，向其中发送数据将会永久阻塞
+	if c == nil {
+		// 如果此时未阻塞，那么直接返回 false
+		if !block {
+			return false
+		}
+        // gopark 会使当前 goroutine 休眠，并通过 unlockf 唤醒，但是此时传入的 unlockf 为 nil, 因此，goroutine 会一直休眠
+		gopark(nil, nil, waitReasonChanSendNilChan, traceEvGoStop, 2)
+		throw("unreachable")
+	}
+
+	......
+
+	if raceenabled {
+		racereadpc(c.raceaddr(), callerpc, funcPC(chansend))
+	}
+
+	// Fast path: check for failed non-blocking operation without acquiring the lock.
+	//
+	// After observing that the channel is not closed, we observe that the channel is
+	// not ready for sending. Each of these observations is a single word-sized read
+	// (first c.closed and second full()).
+	// Because a closed channel cannot transition from 'ready for sending' to
+	// 'not ready for sending', even if the channel is closed between the two observations,
+	// they imply a moment between the two when the channel was both not yet closed
+	// and not ready for sending. We behave as if we observed the channel at that moment,
+	// and report that the send cannot proceed.
+	//
+	// It is okay if the reads are reordered here: if we observe that the channel is not
+	// ready for sending and then observe that it is not closed, that implies that the
+	// channel wasn't closed during the first observation. However, nothing here
+	// guarantees forward progress. We rely on the side effects of lock release in
+	// chanrecv() and closechan() to update this thread's view of c.closed and full().
+	if !block && c.closed == 0 && full(c) {
+		return false
+	}
+
+	var t0 int64
+	if blockprofilerate > 0 {
+		t0 = cputicks()
+	}
+
+	lock(&c.lock)
+
+	if c.closed != 0 {
+		unlock(&c.lock)
+		panic(plainError("send on closed channel"))
+	}
+
+	if sg := c.recvq.dequeue(); sg != nil {
+		// Found a waiting receiver. We pass the value we want to send
+		// directly to the receiver, bypassing the channel buffer (if any).
+		send(c, sg, ep, func() { unlock(&c.lock) }, 3)
+		return true
+	}
+
+	if c.qcount < c.dataqsiz {
+		// Space is available in the channel buffer. Enqueue the element to send.
+		qp := chanbuf(c, c.sendx)
+		if raceenabled {
+			racenotify(c, c.sendx, nil)
+		}
+		typedmemmove(c.elemtype, qp, ep)
+		c.sendx++
+		if c.sendx == c.dataqsiz {
+			c.sendx = 0
+		}
+		c.qcount++
+		unlock(&c.lock)
+		return true
+	}
+
+	if !block {
+		unlock(&c.lock)
+		return false
+	}
+
+	// Block on the channel. Some receiver will complete our operation for us.
+	gp := getg()
+	mysg := acquireSudog()
+	mysg.releasetime = 0
+	if t0 != 0 {
+		mysg.releasetime = -1
+	}
+	// No stack splits between assigning elem and enqueuing mysg
+	// on gp.waiting where copystack can find it.
+	mysg.elem = ep
+	mysg.waitlink = nil
+	mysg.g = gp
+	mysg.isSelect = false
+	mysg.c = c
+	gp.waiting = mysg
+	gp.param = nil
+	c.sendq.enqueue(mysg)
+	// Signal to anyone trying to shrink our stack that we're about
+	// to park on a channel. The window between when this G's status
+	// changes and when we set gp.activeStackChans is not safe for
+	// stack shrinking.
+	atomic.Store8(&gp.parkingOnChan, 1)
+	gopark(chanparkcommit, unsafe.Pointer(&c.lock), waitReasonChanSend, traceEvGoBlockSend, 2)
+	// Ensure the value being sent is kept alive until the
+	// receiver copies it out. The sudog has a pointer to the
+	// stack object, but sudogs aren't considered as roots of the
+	// stack tracer.
+	KeepAlive(ep)
+
+	// someone woke us up.
+	if mysg != gp.waiting {
+		throw("G waiting list is corrupted")
+	}
+	gp.waiting = nil
+	gp.activeStackChans = false
+	closed := !mysg.success
+	gp.param = nil
+	if mysg.releasetime > 0 {
+		blockevent(mysg.releasetime-t0, 2)
+	}
+	mysg.c = nil
+	releaseSudog(mysg)
+	if closed {
+		if c.closed == 0 {
+			throw("chansend: spurious wakeup")
+		}
+		panic(plainError("send on closed channel"))
+	}
+	return true
+}
+```
+
+> gopark 函数做的主要事情分为两点：
+>
+> 1、解除当前 goroutine 的 m 的绑定关系，将当前 goroutine 状态机切换为等待状态；
+> 
+> 2、调用一次 schedule() 函数，在局部调度器P发起一轮新的调度。
 
 ## 参考
 
