@@ -252,12 +252,13 @@ func selectnbsend(c *hchan, elem unsafe.Pointer) (selected bool) {
 }
 ```
 
-### 底层实现：chansend
+### 底层实现 chansend 步骤 1：异常检查
 
-接下来，我们来看下 `chansend` 的实现：
+接下来，我们来分步骤来看下 `chansend` 的实现，首先是前置的异常检查：
 
 ```go
 func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
+	// 步骤 1：异常检查
 	// 当 channel 还未初始化或为 nil 时，向其中发送数据将会永久阻塞
 	if c == nil {
 		// 如果此时未阻塞，那么直接返回 false
@@ -292,7 +293,45 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 	if !block && c.closed == 0 && full(c) {
 		return false
 	}
+    
+	......
+	// 步骤 2：同步发送
+	// 步骤 3：异步发送
+	// 步骤 4：阻塞发送
+}
+```
 
+> gopark 函数做的主要事情分为两点：
+>
+> 1、解除当前 goroutine 的 m 的绑定关系，将当前 goroutine 状态机切换为等待状态；
+>
+> 2、调用一次 schedule() 函数，在局部调度器P发起一轮新的调度。
+
+---
+
+> 竞态检测
+>
+> go 的 build 和 run 命令支持选项 -race。如果启用该选项，发现存在数据竞态就会报警。
+>
+> -race 在源码中对应的变量是 raceenabled，当启用 -race， raceenabled 就是 true。
+
+---
+
+> Fast path 快速路径
+>
+> 在程序设计中，快速路径是指在一个程序中比起一般路径有更短指令路径长的路径。
+>
+> 有效的快速路径会在处理最常出现的的情形上比一般路径更有效率，让一般路径处理特殊情形、边角情形、错误处理与其它反常状况。快速路径是程序优化的一种形式。
+
+---
+### 底层实现 chansend 步骤 2：同步发送
+
+```go
+func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
+    // 步骤 1：异常检查
+	......
+	
+	// 步骤 2：同步发送
 	var t0 int64
 	if blockprofilerate > 0 {
 		t0 = cputicks()
@@ -311,7 +350,22 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 		send(c, sg, ep, func() { unlock(&c.lock) }, 3)
 		return true
 	}
+    
+	......
+	// 步骤 3：异步发送
+	// 步骤 4：阻塞发送
+}
+```
 
+### 底层实现 chansend 步骤 3：异步发送
+
+```go
+func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
+    // 步骤 1：异常检查
+	// 步骤 2：同步发送
+	......
+	
+	// 步骤 3：异步发送
 	if c.qcount < c.dataqsiz {
 		// channel buffer 中有可用空间。对要发送的元素进行排队。
 		qp := chanbuf(c, c.sendx)
@@ -327,7 +381,22 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 		unlock(&c.lock)
 		return true
 	}
+    
+	......
+	// 步骤 4：阻塞发送
+}
+```
 
+### 底层实现 chansend 步骤 4：阻塞发送
+
+```go
+func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
+    // 步骤 1：异常检查
+	// 步骤 2：同步发送
+	// 步骤 3：异步发送
+	......
+	
+	// 步骤 4：阻塞发送
 	if !block {
 		unlock(&c.lock)
 		return false
@@ -380,30 +449,6 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 	return true
 }
 ```
-
-> gopark 函数做的主要事情分为两点：
->
-> 1、解除当前 goroutine 的 m 的绑定关系，将当前 goroutine 状态机切换为等待状态；
-> 
-> 2、调用一次 schedule() 函数，在局部调度器P发起一轮新的调度。
-
----
-
-> 竞态检测
-> 
-> go 的 build 和 run 命令支持选项 -race。如果启用该选项，发现存在数据竞态就会报警。
-> 
-> -race 在源码中对应的变量是 raceenabled，当启用 -race， raceenabled 就是 true。
-
----
-
-> Fast path 快速路径
-> 
-> 在程序设计中，快速路径是指在一个程序中比起一般路径有更短指令路径长的路径。
-> 
-> 有效的快速路径会在处理最常出现的的情形上比一般路径更有效率，让一般路径处理特殊情形、边角情形、错误处理与其它反常状况。快速路径是程序优化的一种形式。
-
----
 
 > stack shrink 栈收缩
 > 
