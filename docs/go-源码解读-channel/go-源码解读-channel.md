@@ -18,8 +18,8 @@ type hchan struct {
 	elemtype *_type // 元素类型
 	sendx    uint   // 发送索引 index
 	recvx    uint   // 接收索引 index
-	recvq    waitq  // 接收 waiters 列表
-	sendq    waitq  // 发送 waiters 列表
+	recvq    waitq  // 接收 waiters 队列
+	sendq    waitq  // 发送 waiters 队列
 
 	// lock 保护了 hchan 中的所有字段，
 	// 以及在这个 channel 里面阻塞的几个 sudog 中的字段。
@@ -31,7 +31,7 @@ type hchan struct {
 }
 ```
 
-`waiters` 列表指代的是等待该 `channel` 的 `goroutine` 列表，可以是等待发送/接收 `channel`。
+`waiters` 队列指代的是等待该 `channel` 的 `goroutine` 队列，可以是等待发送/接收 `channel`。
 
 ## 数据结构 waitq
 
@@ -50,11 +50,13 @@ type waitq struct {
 
 > 源码地址：runtime/runtime2.go
 
+channel 最核心的数据结构是 sudog。
+
 ```go
-// sudog 表示等待列表中的 g，例如用于在 channel 上发送/接收的 g。
+// sudog 表示等待队列中的 g，例如用于在 channel 上发送/接收的 g。
 //
-// sudog 对象是有必要的，因为 g 和同步对象关系是多对多的。
-// 一个 g 可以在许多 wait 列表上面，因此一个 g 可能有很多 sudog；
+// sudog 对象是非常重要的，因为 g 和同步对象关系是多对多的。
+// 一个 g 可以在许多 wait 队列上面，因此一个 g 可能有很多 sudog；
 // 并且许多 g 可能正在等待同一个同步对象，因此一个对象可能有许多 sudog。
 //
 // sudog 是从一个特殊的池 pool 中分配的。
@@ -87,7 +89,7 @@ type sudog struct {
 	success bool
 
 	parent   *sudog // semaRoot 二叉树
-	waitlink *sudog // g.waiting 列表或者 semaRoot
+	waitlink *sudog // g.waiting 队列或者 semaRoot
 	waittail *sudog // semaRoot
 	c        *hchan // channel
 }
@@ -149,15 +151,18 @@ func makechan(t *chantype, size int) *hchan {
 	if hchanSize%maxAlign != 0 || elem.align > maxAlign {
 		throw("makechan: bad alignment")
 	}
-
+    // 缓冲区大小检查，判断是否溢出
 	mem, overflow := math.MulUintptr(elem.size, uintptr(size))
 	if overflow || mem > maxAlloc-hchanSize || size < 0 {
 		panic(plainError("makechan: size out of range"))
 	}
 
-	// 当 buf 中存储的元素不包含指针时，hchan 不包含 GC 感兴趣的指针。
-	// buf 指向相同的内存分配，elemtype 是永久的。
+	// 当 buf 中存储的元素不包含指针时，hchan 不包含 GC 感兴趣的指针（也就是说 GC 不会回收此时的 hchan）。
+	// buf 指向相同的元素类型的内存，elemtype 是固定不变的。
 	// sudog 被它们所属的线程所引用，因此它们无法被 GC。
+	// 受到垃圾回收器的限制，指针类型的缓冲 buf 需要单独分配内存。
+	// 所以官方在这里加了一个 TODO，垃圾回收的时候这段代码逻辑需要重新考虑。
+	// TODO(dvyukov,rlh): Rethink when collector can move allocated objects.
 	var c *hchan
 	switch {
 	case mem == 0:
@@ -188,13 +193,23 @@ func makechan(t *chantype, size int) *hchan {
 }
 ```
 
-## 数据发送函数 send
+上面这段 makechan() 代码主要目的是生成 *hchan 对象。重点关注 switch-case 中的 3 种情况：
 
-`channel` `send` 的会有以下几种场景，每种场景有不同的实现，但是底层实现都是 `chansend`。
+1. 当队列或者元素大小为 0 时，调用 mallocgc() 在堆上为 channel 开辟一段大小为 hchanSize 的内存空间。
+2. 当元素类型不是指针类型时，调用 mallocgc() 在堆上开辟为 channel 和底层 buf 缓冲区数组开辟一段大小为 hchanSize + mem 连续的内存空间。
+3. 默认情况元素类型中有指针类型，调用 mallocgc() 在堆上分别为 channel 和 buf 缓冲区分配内存。
 
-首先是向 `channel` 发送数据时 `c <- x` 场景，当编译器遇到这种场景，会将代码编译成如下代码：
+> 就是因为 channel 的创建全部调用的 mallocgc()，在堆上开辟的内存空间，channel 本身会被 GC 自动回收。
+> 
+> 正是有了这一性质，所以才有了下文关闭 channel 中优雅关闭的方法。
+
+## 数据发送
+
+`channel` `send` 会有以下几种场景，每种场景有不同的实现，但是底层实现都是 `chansend`。
 
 ### 发送数据 c<-x 场景实现：chansend1
+
+首先是向 `channel` 发送数据时 `c <- x` 场景，当编译器遇到这种场景，会将代码编译成如下代码：
 
 ```go
 // 编写代码：
@@ -372,11 +387,15 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 > 
 > 2、调用一次 schedule() 函数，在局部调度器P发起一轮新的调度。
 
+---
+
 > 竞态检测
 > 
 > go 的 build 和 run 命令支持选项 -race。如果启用该选项，发现存在数据竞态就会报警。
 > 
 > -race 在源码中对应的变量是 raceenabled，当启用 -race， raceenabled 就是 true。
+
+---
 
 > Fast path 快速路径
 > 
@@ -384,13 +403,15 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 > 
 > 有效的快速路径会在处理最常出现的的情形上比一般路径更有效率，让一般路径处理特殊情形、边角情形、错误处理与其它反常状况。快速路径是程序优化的一种形式。
 
+---
+
 > stack shrink 栈收缩
 > 
 > 收缩栈是在 mgcmark.go 中触发的，主要是在 scanstack 和 markrootFreeGStacks 函数中，也就是垃圾回收的时候会根据情况收缩栈。
 
 ### chansend 调用函数：full
 
-`chansend` 用到一个很重要的函数 `full`：
+`chansend` fast path 用到函数 `full`：
 
 ```go
 // full 函数返回 channel 上的 send 是否会阻塞（即 channel 是否已满）。
