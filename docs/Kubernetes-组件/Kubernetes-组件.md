@@ -24,8 +24,6 @@ etcd 是兼顾一致性与高可用性的键值数据库，可以作为保存 Ku
 
 kube-scheduler 是控制平面的组件，负责监视新创建的、未指定运行节点（node）的 Pods，并选择节点来让 Pod 在上面运行。
 
-调度决策考虑的因素包括单个 Pod 及 Pods 集合的资源需求、软硬件及策略约束、亲和性及反亲和性规范、数据位置、工作负载间的干扰及最后时限。
-
 ### kube-controller-manager
 
 kube-controller-manager 是控制平面的组件，负责运行控制器进程。
@@ -85,21 +83,6 @@ Kubernetes 支持许多容器运行环境，例如 Docker、containerd、CRI-O �
 - [kubernetes.io 官方文档：Kubernetes 组件](https://kubernetes.io/zh-cn/docs/concepts/overview/components/)
 
 # 思维导图
-
-```markmap
-- Kubernetes 组件
-  - 控制平面组件（Control Plane Components）
-    - kube-apiserver
-    - etcd
-    - kube-scheduler
-    - kube-controller-manager
-    - cloud-controller-manager
-  - Node 组件
-    - kubelet
-    - kube-proxy
-    - 容器运行时（Container Runtime）
-  - 插件（Addons）
-```
 
 ![Kubernetes-组件-思维导图.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-组件/Kubernetes-组件-思维导图.png)
 

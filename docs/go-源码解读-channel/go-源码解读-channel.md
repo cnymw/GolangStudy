@@ -6,6 +6,8 @@
 
 ## 数据结构 hchan
 
+![go-源码解读-channel-hchan.png](https://cnymw.github.io/GolangStudy/docs/go-源码解读-channel/go-源码解读-channel-hchan.png)
+
 ```go
 type hchan struct {
 	qcount   uint           // 队列中总共的数据量
@@ -20,7 +22,7 @@ type hchan struct {
 	sendq    waitq  // 发送 waiters 列表
 
 	// lock 保护了 hchan 中的所有字段，
-	// 以及在这个 channel 里面阻塞的几个 sudog 中的字段
+	// 以及在这个 channel 里面阻塞的几个 sudog 中的字段。
 	//
 	// 不要在持有这个锁的时候改变另一个 G 的状态
 	// （特别是不要使 G 状态变成 ready）
@@ -29,7 +31,7 @@ type hchan struct {
 }
 ```
 
-waiters 列表指代的是等待该 channel 的 goroutine 列表，可以是等待发送/接收 channel。
+`waiters` 列表指代的是等待该 `channel` 的 `goroutine` 列表，可以是等待发送/接收 `channel`。
 
 ## 数据结构 waitq
 
@@ -40,9 +42,9 @@ type waitq struct {
 }
 ```
 
-recvq 和 sendq 是等待队列，waitq 是一个双向链表。
+`recvq` 和 `sendq` 是等待队列，`waitq` 是一个双向链表。
 
-sudog 是链表结构，所以 waitq 只需要记录 first 和 last 指针，即可获取 sudog 整个链表。
+`sudog` 是链表结构，所以 `waitq` 只需要记录 `first` 和 `last` 指针，即可获取 `sudog` 整个链表。
 
 ## 数据结构 sudog
 
@@ -91,13 +93,13 @@ type sudog struct {
 }
 ```
 
-semaRoot 是用于 `sync.Mutex` 的异步信号量，拥有一个具有不同地址的 sudog 平衡树，semaRoot 实现在：go/src/runtime/sema.go
+`semaRoot` 是用于 `sync.Mutex` 的异步信号量，拥有一个具有不同地址的 `sudog` 平衡树，`semaRoot` 实现在：go/src/runtime/sema.go
 
 ## 数据结构 chantype
 
 > 源码地址：runtime/type.go
 
-在初始化函数中，有一个核心参数 chantype 记录了 channel 里的元素类型 ，该参数定义如下：
+在初始化函数中，有一个核心参数 `chantype` 记录了 `channel` 里的元素类型 ，该参数定义如下：
 
 ```go
 type chantype struct {
@@ -107,7 +109,7 @@ type chantype struct {
 }
 ```
 
-channel 是具有传输方向的，如果不指定传输方向的话，channel 是双向的。
+`channel` 是具有传输方向的，如果不指定传输方向的话，`channel` 是双向的。
 
 有两种定义传输方向的语法：
 
@@ -122,7 +124,7 @@ in <-chan int
 
 ## 初始化函数 makechan
 
-当使用 `make` 函数创建 channel 时，会调用 `makechan` 来实现初始化逻辑，例如执行以下代码，底层会调用 `makechan`：
+当使用 `make` 函数创建 `channel` 时，会调用 `makechan` 来实现初始化逻辑，例如执行以下代码，底层会调用 `makechan`：
 
 ```go
 // 初始化无 buffer 的 channel
@@ -188,14 +190,18 @@ func makechan(t *chantype, size int) *hchan {
 
 ## 数据发送函数 send
 
-先看下 channel send 的几种场景，以及对应的底层实现。
+`channel` `send` 的会有以下几种场景，每种场景有不同的实现，但是底层实现都是 `chansend`。
 
-首先是 `c <- x` 场景，当编译器遇到这种场景，会将代码编译成如下代码：
+首先是向 `channel` 发送数据时 `c <- x` 场景，当编译器遇到这种场景，会将代码编译成如下代码：
 
-### 场景 c<-x 实现：chansend1
+### 发送数据 c<-x 场景实现：chansend1
 
 ```go
-// 编译代码中 c<-x 的入口点
+// 编写代码：
+// c <- x
+// 
+// 编译器编译为：
+// chansend1(c,x)
 //go:nosplit
 func chansend1(c *hchan, elem unsafe.Pointer) {
 	chansend(c, elem, true, getcallerpc())
@@ -204,12 +210,12 @@ func chansend1(c *hchan, elem unsafe.Pointer) {
 
 > go:nosplit 指令是用于指定文件中声明的下一个函数不得包含堆栈溢出检查（简单来讲，就是这个函数跳过堆栈溢出的检查。）。在不安全地抢占调用 goroutine 的时间调用的低级运行时源最常使用此方法。
 
-### 场景 select 实现：selectnbsend
+### 多路复用 select 场景实现：selectnbsend
 
-接下来是 `select` 场景：
+接下来是多路复用 `select` 场景实现：
 
 ```go
-// 实现如下：
+// 编写代码如下：
 //
 //	select {
 //	case c <- v:
@@ -218,7 +224,7 @@ func chansend1(c *hchan, elem unsafe.Pointer) {
 //		... bar
 //	}
 //
-// 以上代码编译器会编译为：
+// 编译器会编译为：
 //
 //	if selectnbsend(c, v) {
 //		... foo
@@ -250,26 +256,24 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 
 	......
 
+	// 竞态检测
 	if raceenabled {
 		racereadpc(c.raceaddr(), callerpc, funcPC(chansend))
 	}
 
-	// Fast path: check for failed non-blocking operation without acquiring the lock.
+	// Fast path 快速路径: 在未获取锁的情况下检查失败的非阻塞操作。
 	//
-	// After observing that the channel is not closed, we observe that the channel is
-	// not ready for sending. Each of these observations is a single word-sized read
-	// (first c.closed and second full()).
-	// Because a closed channel cannot transition from 'ready for sending' to
-	// 'not ready for sending', even if the channel is closed between the two observations,
-	// they imply a moment between the two when the channel was both not yet closed
-	// and not ready for sending. We behave as if we observed the channel at that moment,
-	// and report that the send cannot proceed.
+	// 在 observe 到 channel 未关闭（c.closed == 0）后，我们 observe 到 channel 尚未准备好 send（于是 return false）。
+	// 在每一个 observe 中，都是对单个变量的读取（第一个 c.closed 和第二个 full()）。
+	// 即使两次 observe 之间 channel 是关闭的，一个关闭的 channel 也不能从"准备好 send"转换为"未准备好 send"，
+	// 也就意味着，在两次 observe 之间的某个时刻，channel 尚未关闭，也未准备 send。
+	// 我们表现的行为就像，我们在那个时刻，observe 到了 channel，并报告无法继续 send。
 	//
-	// It is okay if the reads are reordered here: if we observe that the channel is not
-	// ready for sending and then observe that it is not closed, that implies that the
-	// channel wasn't closed during the first observation. However, nothing here
-	// guarantees forward progress. We rely on the side effects of lock release in
-	// chanrecv() and closechan() to update this thread's view of c.closed and full().
+	// 如果读取数据可以指令重排的话，那这一切就很合理了：
+	// 如果我们 observe 到 channel 没有准备好 send，然后 observe 到 channel 没有关闭，
+	// 这意味着在第一次 observe 期间 channel 没有关闭。
+	// 于是，没有任何理由可以让逻辑往后面继续执行。
+	// 我们依赖 chanrecv() 和 closechan() 中锁的释放所带来的副作用来更新这个线程的 c.closed 和 full()。
 	if !block && c.closed == 0 && full(c) {
 		return false
 	}
@@ -287,14 +291,14 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 	}
 
 	if sg := c.recvq.dequeue(); sg != nil {
-		// Found a waiting receiver. We pass the value we want to send
-		// directly to the receiver, bypassing the channel buffer (if any).
+		// 获取到一个等待的 receiver。
+		// 我们将需要发送的值直接传递给 receiver，绕过 channel 缓冲区（如果有的话）。
 		send(c, sg, ep, func() { unlock(&c.lock) }, 3)
 		return true
 	}
 
 	if c.qcount < c.dataqsiz {
-		// Space is available in the channel buffer. Enqueue the element to send.
+		// channel buffer 中有可用空间。对要发送的元素进行排队。
 		qp := chanbuf(c, c.sendx)
 		if raceenabled {
 			racenotify(c, c.sendx, nil)
@@ -314,15 +318,15 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 		return false
 	}
 
-	// Block on the channel. Some receiver will complete our operation for us.
+	// channel 阻塞。某个 receiver 未来会继续完成后续操作。
 	gp := getg()
 	mysg := acquireSudog()
 	mysg.releasetime = 0
 	if t0 != 0 {
 		mysg.releasetime = -1
 	}
-	// No stack splits between assigning elem and enqueuing mysg
-	// on gp.waiting where copystack can find it.
+    // No stack splits between assigning elem and enqueuing mysg
+    // on gp.waiting where copystack can find it.
 	mysg.elem = ep
 	mysg.waitlink = nil
 	mysg.g = gp
@@ -331,19 +335,15 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 	gp.waiting = mysg
 	gp.param = nil
 	c.sendq.enqueue(mysg)
-	// Signal to anyone trying to shrink our stack that we're about
-	// to park on a channel. The window between when this G's status
-	// changes and when we set gp.activeStackChans is not safe for
-	// stack shrinking.
+	// 向任何试图 shrink 堆栈的线程发出信号，我们将要在 channel 上 gopark。
+	// G 的状态改变和我们设置 gp.activeStackChans 之间的窗口期，对于堆栈 shrink 不安全。
 	atomic.Store8(&gp.parkingOnChan, 1)
 	gopark(chanparkcommit, unsafe.Pointer(&c.lock), waitReasonChanSend, traceEvGoBlockSend, 2)
-	// Ensure the value being sent is kept alive until the
-	// receiver copies it out. The sudog has a pointer to the
-	// stack object, but sudogs aren't considered as roots of the
-	// stack tracer.
+	// 确保发送的值保持 alive，直到 receiver 将其复制出来。
+	// sudog 有一个指向堆栈对象的指针，但 sudog 不被视为堆栈的 root。
 	KeepAlive(ep)
 
-	// someone woke us up.
+	// 某个线程唤醒了我们。
 	if mysg != gp.waiting {
 		throw("G waiting list is corrupted")
 	}
@@ -371,6 +371,46 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 > 1、解除当前 goroutine 的 m 的绑定关系，将当前 goroutine 状态机切换为等待状态；
 > 
 > 2、调用一次 schedule() 函数，在局部调度器P发起一轮新的调度。
+
+> 竞态检测
+> 
+> go 的 build 和 run 命令支持选项 -race。如果启用该选项，发现存在数据竞态就会报警。
+> 
+> -race 在源码中对应的变量是 raceenabled，当启用 -race， raceenabled 就是 true。
+
+> Fast path 快速路径
+> 
+> 在程序设计中，快速路径是指在一个程序中比起一般路径有更短指令路径长的路径。
+> 
+> 有效的快速路径会在处理最常出现的的情形上比一般路径更有效率，让一般路径处理特殊情形、边角情形、错误处理与其它反常状况。快速路径是程序优化的一种形式。
+
+> stack shrink 栈收缩
+> 
+> 收缩栈是在 mgcmark.go 中触发的，主要是在 scanstack 和 markrootFreeGStacks 函数中，也就是垃圾回收的时候会根据情况收缩栈。
+
+### chansend 调用函数：full
+
+`chansend` 用到一个很重要的函数 `full`：
+
+```go
+// full 函数返回 channel 上的 send 是否会阻塞（即 channel 是否已满）。
+// full 通过读取可变状态的单个变量的值，来判断 channel 是否已满。
+// 所以尽管返回的那个时刻为正确的返回，但在上层函数接收到返回值时，可能正确的答案已经改变。
+func full(c *hchan) bool {
+	// c.dataqsiz 是不可变的 (在 channel 被创建后，永久不会被写入新的值)
+	// 因此在 channel 操作期间，任何时刻读取值都是安全的。
+	if c.dataqsiz == 0 {
+		// 假设读取指针的操作是 relaxed-atomic 操作的（可以理解为原子操作的一种）
+		return c.recvq.first == nil
+	}
+	// 假设 uint 的读取是 relaxed-atomic 操作的（可以理解为原子操作的一种）
+	return c.qcount == c.dataqsiz
+}
+```
+
+> relaxed-atomic
+> 
+> 我们可以对单个变量进行具有屏障或者不具有屏障的原子操作。当屏障没有使用，只有原子性保证时，我们称之为"relaxed atomic"。
 
 ## 参考
 

@@ -4,6 +4,26 @@
 
 一个 channel 是一个通信机制，它可以让一个 goroutine 通过它给另一个 goroutine 发送值信息。
 
+## 什么时候用到 channel
+
+不要通过共享内存进行通信。相反，应该通过通信来共享内存。
+
+Do not communicate by sharing memory; instead, share memory by communicating 
+
+这是 Go 语言并发的哲学座右铭。
+
+## golang 的并发原语
+
+Go 中的并发原语主要分为 2 大类：
+
+- sync 包：主要是 WaitGroup，互斥锁和读写锁，cond，once，sync.Pool
+- channel
+
+在 2 种情况下推荐使用 sync 包：
+
+1. 对性能要求极高的临界区
+2. 保护某个结构内部状态和完整性
+
 ## 创建 channels
 
 使用内置的make函数，我们可以创建一个channel：
