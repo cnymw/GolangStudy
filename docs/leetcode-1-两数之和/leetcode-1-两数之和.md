@@ -49,19 +49,20 @@ func twoSum(nums []int, target int) []int {
 在这里需要注意，当 target = 2 * num[i] 时，会出现 [i,i] 这样子的结果，例如 target=6,nums[0]=3, 会返回结果 [0,0]，所以需要排除这种情况。
 
 ```go
-// 方法2：哈希表
-func twoSumByHashMap(nums []int, target int) []int {
-	numsMap := make(map[int]int, len(nums))
-
-	for index, n := range nums {
-		numsMap[n] = index
-	}
-
-	for index, n := range nums {
-		m, ok := numsMap[target-n]
-		if ok && m != index {
-			return []int{index, m}
+func twoSum(nums []int, target int) []int {
+	// hashTable 通过 map 结构记录结果
+	hashTable := map[int]int{}
+	
+	for i, x := range nums {
+		// 从 hashTable 里直接取对应的结果。
+		// 例如当前为 x=2，target 为 9，那么取 hashTable[7]
+		// 如果取的到话，直接返回结果
+		if p, ok := hashTable[target-x]; ok {
+			return []int{p, i}
 		}
+		// 取不到的话，存入hashTable
+		// 例如当前 x=2，存入 hashTable[2]
+		hashTable[x] = i
 	}
 	return []int{0, 0}
 }

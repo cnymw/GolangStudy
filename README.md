@@ -271,11 +271,11 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 ## leetcode
 
 - 链表
-  - [leetcode-2-两数相加](/docs/leetcode-2-两数相加.md)
+  - [leetcode-2-两数相加](/docs/leetcode-2-两数相加/leetcode-2-两数相加.md)
   - [leetcode-21-合并两个有序链表](/docs/leetcode-21-合并两个有序链表.md)
   - [leetcode-61-旋转链表](/docs/leetcode-61-旋转链表.md)
 - 哈希表
-  - [leetcode-1-两数之和](/docs/leetcode-1-两数之和.md)
+  - [leetcode-1-两数之和](/docs/leetcode-1-两数之和/leetcode-1-两数之和.md)
   - [leetcode-3-无重复字符的最长子串](/docs/leetcode-3-无重复字符的最长子串.md)
   - [leetcode-30-串联所有单词的子串](/docs/leetcode-30-串联所有单词的子串.md)
   - [leetcode-242-有效的字母异位词](/docs/leetcode-242-有效的字母异位词.md)
