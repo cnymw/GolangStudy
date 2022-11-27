@@ -45,10 +45,15 @@
 此外，遍历结束后，如果 carry>0，还需要在结果后面添加个值，值为 carry。
 
 ```go
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) (head *ListNode) {
-	var tail *ListNode
-	carry := 0
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	// head 链表首节点
+	// tail 链表尾节点
+	var head, tail *ListNode
 
+	// 记录进位值
+	var carry int
+
+	// 持续遍历链表 l1,l2，直到两个链表都遍历完毕
 	for l1 != nil || l2 != nil {
 		n1, n2 := 0, 0
 		if l1 != nil {
@@ -63,6 +68,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) (head *ListNode) {
 		sum := n1 + n2 + carry
 		sum, carry = sum%10, sum/10
 
+		// 如果结果链表为空，那么创建链表首节点
 		if head == nil {
 			head = &ListNode{Val: sum}
 			tail = head
@@ -71,9 +77,12 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) (head *ListNode) {
 			tail = tail.Next
 		}
 	}
+
+	// 如果进位值不为 0，那么在链表尾节点新增一个节点，用于记录进位值
 	if carry != 0 {
 		tail.Next = &ListNode{Val: carry}
 	}
-	return
+	// 返回链表首节点
+	return head
 }
 ```
