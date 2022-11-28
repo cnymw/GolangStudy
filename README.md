@@ -272,6 +272,7 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 
 - 链表
   - [leetcode-2-两数相加](/docs/leetcode-2-两数相加/leetcode-2-两数相加.md)
+  - [leetcode-19-删除链表的倒数第 N 个结点](/docs/leetcode-19-删除链表的倒数第N个结点/leetcode-19-删除链表的倒数第N个结点.md)
   - [leetcode-21-合并两个有序链表](/docs/leetcode-21-合并两个有序链表.md)
   - [leetcode-61-旋转链表](/docs/leetcode-61-旋转链表.md)
 - 哈希表
