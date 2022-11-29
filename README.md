@@ -275,6 +275,7 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
   - [leetcode-19-删除链表的倒数第 N 个结点](/docs/leetcode-19-删除链表的倒数第N个结点/leetcode-19-删除链表的倒数第N个结点.md)
   - [leetcode-21-合并两个有序链表](/docs/leetcode-21-合并两个有序链表.md)
   - [leetcode-61-旋转链表](/docs/leetcode-61-旋转链表.md)
+  - [leetcode-92-反转链表II](/docs/leetcode-92-反转链表II/leetcode-92-反转链表II.md)
 - 哈希表
   - [leetcode-1-两数之和](/docs/leetcode-1-两数之和/leetcode-1-两数之和.md)
   - [leetcode-3-无重复字符的最长子串](/docs/leetcode-3-无重复字符的最长子串.md)
