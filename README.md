@@ -16,7 +16,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 本项目准备将学习内容转化为在线学习的方式，利用视频+文字+思维导图的方式提高大家的学习效率，具体的效果可以看以下链接：
 
-[在线课程](https://golangstudy.netlify.app/)
+[在线课程](https://golangstudy.tech/)
 
 ![在线课程](https://cnymw.github.io/GolangStudy/docs/img/在线课程.png)
 
