@@ -138,4 +138,4 @@ func main() {
 
 # 思维导图
 
-![go-面试题-连接字符串有几种方法.png](https://cnymw.github.io/GolangStudy/docs/img/go-面试题-连接字符串有几种方法.png)
+![go-面试题-连接字符串有几种方法.png](https://cnymw.github.io/GolangStudy/docs/go-面试题-连接字符串方法/go-面试题-连接字符串有几种方法.png)
