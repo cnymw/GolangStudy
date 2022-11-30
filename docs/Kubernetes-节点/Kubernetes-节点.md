@@ -1,15 +1,24 @@
 # Kubernetes 节点
 
-## 什么是 Kubernetes 节点
+## 节点作用
 
 Kubernetes 通过将容器放入在节点（Node）上运行的 Pod 中来执行你的工作负载。
+
+节点可以是一个虚拟机或者物理机器，取决于所在的集群配置。 
+
+每个节点包含运行 Pod 所需的服务，这些节点由控制平面（Control Plane）负责管理。
+
+---
 
 ## 节点上的组件
 
 节点上的组件包括：
-- kubelet：kubelet 接收一组通过各类机制提供给它的 PodSpecs，确保这些 PodSpecs 中描述的容器处于运行状态且健康。
-- 容器运行时：容器运行环境是负责运行容器的软件。
-- kube-proxy：kube-proxy 是集群中每个节点（node）所上运行的网络代理，实现 Kubernetes 服务（Service）概念的一部分。
+
+- kubelet：一个在集群中每个节点上运行的代理。它保证容器都运行在 Pod 中。
+- 容器运行时：容器运行时是负责运行容器的软件。
+- kube-proxy：kube-proxy 是集群中每个节点（node）所上运行的网络代理，是实现 Kubernetes 服务（Service）概念的一部分。
+
+---
 
 ## 如何管理节点
 
@@ -24,17 +33,7 @@ Kubernetes 通过将容器放入在节点（Node）上运行的 Pod 中来执行
 
 节点的名称用来标识 Node 对象。没有两个 Node 可以同时使用相同的名称。Kubernetes 还假定名字相同的资源是同一个对象。
 
-### 手动节点管理
-
-你可以使用 kubectl 来创建和修改 Node 对象。
-
-如果标记节点为不可调度（unschedulable），将阻止新 Pod 调度到该 Node 之上，但不会影响任何已经在其上的 Pod。这是重启节点或者执行其他维护操作之前的一个有用的准备步骤。
-
-要标记一个 Node 为不可调度，执行以下命令：
-
-```shell
-kubectl cordon $NODENAME
-```
+---
 
 ## 节点状态
 
@@ -47,7 +46,7 @@ kubectl cordon $NODENAME
 
 ### 地址 
 
-这些字段的用法取决于你的云服务商或者物理机配置。
+以下这些字段的用法取决于你的云服务商或者物理机配置。
 
 - HostName：由节点的内核报告。可以通过 kubelet 的 --hostname-override 参数覆盖。
 - ExternalIP：通常是节点的可外部路由（从集群外可访问）的 IP 地址。
@@ -65,10 +64,6 @@ MemoryPressure|True 表示节点存在内存压力，即节点内存可用量低
 PIDPressure|True 表示节点存在进程压力，即节点上进程过多；否则为 False
 NetworkUnavailable|True 表示节点网络配置不正确；否则为 False
 
-如果 Ready 状况的 status 处于 Unknown 或者 False 状态的时间超过了 pod-eviction-timeout 值（一个传递给 kube-controller-manager 的参数），节点控制器会对节点上的所有 Pod 触发 API 发起的驱逐。默认的逐出超时时长为 5 分钟。
-
-当节点上出现问题时，Kubernetes 控制面会自动创建与影响节点的状况对应的污点。调度器在将 Pod 指派到某 Node 时会考虑 Node 上的污点设置。Pod 也可以设置容忍度，以便能够在设置了特定污点的 Node 上运行。
-
 ### 容量（Capacity）与可分配（Allocatable）
 
 这两个值描述节点上的可用资源：
@@ -81,7 +76,16 @@ capacity 块中的字段标示节点拥有的资源总量。allocatable 块指�
 
 ### 信息（Info） 
 
-Info 指的是节点的一般信息，如内核版本、Kubernetes 版本（kubelet 和 kube-proxy 版本）、容器运行时详细信息，以及节点使用的操作系统。kubelet 从节点收集这些信息并将其发布到 Kubernetes API。
+Info 指的是节点的一般信息:
+
+- 内核版本
+- Kubernetes 版本（kubelet 和 kube-proxy 版本）
+- 容器运行时详细信息
+- 节点使用的操作系统
+
+kubelet 从节点收集这些信息并将其发布到 Kubernetes API。
+
+---
 
 ## 心跳 
 
@@ -98,6 +102,8 @@ kubelet 负责创建和更新节点的 .status，以及更新它们对应的 Lea
 
 - 当节点状态发生变化时，或者在配置的时间间隔内没有更新事件时，kubelet 会更新 .status。.status 更新的默认间隔为 5 分钟（比节点不可达事件的 40 秒默认超时时间长很多）。
 - kubelet 会创建并每 10 秒（默认更新间隔时间）更新 Lease 对象。Lease 的更新独立于 Node 的 .status 更新而发生。如果 Lease 的更新操作失败，kubelet 会采用指数回退机制，从 200 毫秒开始重试，最长重试间隔为 7 秒钟。
+
+---
 
 ## 节点控制器
 
