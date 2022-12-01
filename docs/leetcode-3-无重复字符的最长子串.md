@@ -96,6 +96,8 @@ func lengthOfLongestSubstring(s string) int {
 
 ### 方法2：滑动窗口
 
+> 参考资料：
+> 
 > 算法-滑动窗口介绍：[滑动窗口](/docs/算法-滑动窗口.md)
 
 这个问题可以使用滑动窗口技术：

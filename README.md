@@ -67,7 +67,8 @@ Golang 语言的学习可以分为以下方向：
 
 学习目录如下：
 
-- [Go 基础](/docs/go-基础/go-基础.md)
+- [Go 基础语法](/docs/go-基础语法/go-基础语法.md)
+- [Go 数据类型](/docs/go-数据类型/go-数据类型.md)
 - [Go 并发](/docs/go-并发.md)
 - [Go 接口](/docs/go-接口.md)
 - [Go 检测竞态条件](/docs/go-检测竞态条件.md)

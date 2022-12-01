@@ -27,6 +27,8 @@
 
 ### 解法 1：使用 Golang SDK 链表
 
+> 参考资料：
+>
 > [GolangStudy Online Courses：Go 源码解读-双向链表 list](https://golangstudy.tech/course/golang/go-源码解读-双向链表list)
 > 
 > [GolangStudy Online Courses：数据结构-链表](https://golangstudy.tech/course/golang/数据结构-链表)
