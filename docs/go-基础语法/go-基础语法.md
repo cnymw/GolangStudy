@@ -158,5 +158,3 @@ func init() { /* ... */ }
 # 思维导图
 
 ![go-基础语法-思维导图.png](https://cnymw.github.io/GolangStudy/docs/go-基础语法/go-基础语法-思维导图.png)
-
-<iframe src="/go-基础语法-思维导图.html" frameborder="0" scrolling="no"></iframe>
