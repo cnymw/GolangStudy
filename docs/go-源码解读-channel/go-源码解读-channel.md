@@ -254,18 +254,26 @@ func selectnbsend(c *hchan, elem unsafe.Pointer) (selected bool) {
 
 ### 底层实现 chansend 步骤 1：异常检查
 
-接下来，我们来分步骤来看下 `chansend` 的实现，首先是前置的异常检查：
+接下来，我们来分步骤来看下 `chansend` 的实现，首先是前置的异常检查。
+
+chansend() 一上来对 channel 进行检查，首先判断 channel 是否为 nil，channel 为 nil 的可能性有如下两种：
+
+1. channel 还未初始化
+2. channel 被 GC 回收了
+
+当 channel 为 nil 时，会发生如下情况：
+
+1. 非 select 语句执行 c <- x 情况下，block = true，是阻塞场景，朝一个为 nil 的 channel 发送数据会发生阻塞，gopark 会引发以 waitReasonChanSendNilChan 为原因的休眠。
+2. 在 select 语句执行 select case c <- v 情况下，block = false，是非阻塞场景，send 结果会返回 false。
 
 ```go
 func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 	// 步骤 1：异常检查
-	// 当 channel 还未初始化或为 nil 时，向其中发送数据将会永久阻塞
+	// 当 channel 还未初始化或为 nil 时
 	if c == nil {
-		// 如果此时未阻塞，那么直接返回 false
 		if !block {
 			return false
 		}
-        // gopark 会使当前 goroutine 休眠，并通过 unlockf 唤醒，但是此时传入的 unlockf 为 nil, 因此，goroutine 会一直休眠
 		gopark(nil, nil, waitReasonChanSendNilChan, traceEvGoStop, 2)
 		throw("unreachable")
 	}
@@ -323,7 +331,10 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 >
 > 有效的快速路径会在处理最常出现的的情形上比一般路径更有效率，让一般路径处理特殊情形、边角情形、错误处理与其它反常状况。快速路径是程序优化的一种形式。
 
+
+
 ---
+
 ### 底层实现 chansend 步骤 2：同步发送
 
 ```go
@@ -356,6 +367,8 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 	// 步骤 4：阻塞发送
 }
 ```
+
+---
 
 ### 底层实现 chansend 步骤 3：异步发送
 
