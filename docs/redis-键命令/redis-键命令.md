@@ -354,7 +354,7 @@ redis> TYPE weather
 string
 ```
 
-# 思维导图
+## 思维导图
 
 ![redis-键命令-思维导图.png](https://cnymw.github.io/GolangStudy/docs/redis-键命令/redis-键命令-思维导图.png)
 
