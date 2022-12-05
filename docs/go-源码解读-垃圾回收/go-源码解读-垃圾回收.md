@@ -1,5 +1,7 @@
 # Go 源码解读-垃圾回收
 
+> 源码地址：runtime/mgc.go
+>
 > 源码版本：1.17.6
 
 ## Golang 的垃圾回收 GC 介绍
@@ -122,3 +124,77 @@ finalizer goroutine 仅在清理所有的 span 时才启动。当下一次 GC �
 
 ## GC 源码解读
 
+```go
+// GC 运行一个垃圾回收线程并阻塞调用者，直到垃圾回收完成。
+// GC 也有可能阻塞整个程序。
+func GC() {
+	// GC 的一个周期是：
+	// 1、清理终止
+	// 2、标记
+	// 3、标记终止
+	// 4、清理
+	// 从开始到结束，在完成整个 GC 周期之前，该 GC 函数都不应返回。
+	// 因此，程序总是想结束当前的 GC 周期，并开始新的 GC 周期。
+	// 这意味着：
+	//
+	// 1. 在 GC 周期 N 的清理终止，标记或标记终止操作中，会持续等待直到标记终止 N 完成并转换到清理 N。
+	//
+	// 2. 在清理 N 中，GC 会协助清理 N。此时，我们又可以开始一个完整的 GC 周期 N+1。
+	//
+	// 3. 通过启动清理终止 N+1 来触发周期 N+1。
+	//
+	// 4. 等待标记终止 N+1 来完成整个 GC 周期 N+1。
+	//
+	// 5. GC 会协助清理 N+1 直到清理结束。
+	//
+	// 上述这些逻辑都必须实现，来解决 GC 可能会自行向前推进的逻辑。
+	// 例如，当我们阻塞在标记终止 N 时，我们可能会在 GC 周期 N+2 中醒来（结束阻塞）。
+
+	// 等待当前清理终止，标记和标记终止完成。
+	n := atomic.Load(&work.cycles)
+	gcWaitOnMark(n)
+
+	// GC 目前处于清理 N 或者后续操作。
+	// 将要触发 GC 周期 N+1，如果有必要的话，它将首先完成清理 N，然后进入扫描终止 N+1。
+	gcStart(gcTrigger{kind: gcTriggerCycle, n: n + 1})
+
+	// 等待标记终止 N+1 完成。
+	gcWaitOnMark(n + 1)
+
+	// 在返回结果之前先完成清理 N+1。
+	// 这样做既是为了完成循环周期，也是因为 runtime.GC() 经常用作测试和 benchmarks 测试的一部分，
+	// 所以这样做是为了让系统进入相对稳定和独立的状态。
+	for atomic.Load(&work.cycles) == n+1 && sweepone() != ^uintptr(0) {
+		sweep.nbgsweep++
+		Gosched()
+	}
+
+	// 调用方可能会假设堆配置文件显示当前刚刚完成了一次 GC 周期，
+	// （发生这种情况的原因是这是一个 STG GC）
+	// 但是现在配置文件仍然显示当前是标记终止 N，而不是标记终止 N+1。
+	//
+	// As soon as all of the sweep frees from cycle N+1 are done,
+	// we can go ahead and publish the heap profile.
+	//
+	// First, wait for sweeping to finish. (We know there are no
+	// more spans on the sweep queue, but we may be concurrently
+	// sweeping spans, so we have to wait.)
+	for atomic.Load(&work.cycles) == n+1 && !isSweepDone() {
+		Gosched()
+	}
+
+	// Now we're really done with sweeping, so we can publish the
+	// stable heap profile. Only do this if we haven't already hit
+	// another mark termination.
+	mp := acquirem()
+	cycle := atomic.Load(&work.cycles)
+	if cycle == n+1 || (gcphase == _GCmark && cycle == n+2) {
+		mProf_PostSweep()
+	}
+	releasem(mp)
+}
+```
+
+## 参考
+
+- [Go 语言设计与实现 — 垃圾收集器](https://draveness.me/golang/docs/part3-runtime/ch07-memory/golang-garbage-collector/)
