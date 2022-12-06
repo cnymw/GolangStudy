@@ -1,6 +1,6 @@
 # redis 字符串命令
 
-Redis 字符串数据类型的相关命令用于管理 redis 字符串值。
+Redis 字符串命令用于管理 redis 字符串值。
 
 ## SET key value[EX seconds][PX milliseconds][NX|XX]
 
