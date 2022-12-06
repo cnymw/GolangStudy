@@ -208,7 +208,7 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 - [redis 实现分布式锁](/docs/redis-实现分布式锁.md)
 - 面试题
   - [redis 有什么作用](/docs/redis-面试题-redis有什么作用.md)
-  - [redis 是单线程但为什么执行速度这么快](/docs/redis-面试题-redis为什么这么快.md)
+  - [redis 是单线程但为什么执行速度这么快](/docs/redis-面试题-redis为什么这么快/redis-面试题-redis为什么这么快.md)
 
 ---
 
