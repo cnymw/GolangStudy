@@ -19,6 +19,8 @@ redis 127.0.0.1:6379> DEL rediskey
 (integer) 1
 ```
 
+---
+
 ## DUMP KEY_NAME
 
 用于序列化给定 key ，并返回被序列化的值。
@@ -38,6 +40,8 @@ OK
 redis> DUMP greeting
 "\x00\x15hello, dumping world!\x06\x00E\xa0Z\x82\xd8r\xc1\xde"
 ```
+
+---
 
 ## EXISTS KEY_NAME
 
@@ -59,6 +63,8 @@ redis 127.0.0.1:6379> EXISTS rediskey
 (integer) 1
 ```
 
+---
+
 ## Expire KEY_NAME TIME_IN_SECONDS
 
 用于设置 key 的过期时间，key 过期后将不再可用。单位以秒计。
@@ -76,6 +82,8 @@ redis 127.0.0.1:6379> EXPIRE rediskey 60
 (integer) 1
 ```
 
+---
+
 ## Expireat KEY_NAME TIME_IN_UNIX_TIMESTAMP
 
 用于以 UNIX 时间戳(unix timestamp)格式设置 key 的过期时间。key 过期后将不再可用。
@@ -92,6 +100,8 @@ redis 127.0.0.1:6379> EXPIRE rediskey 60
 redis 127.0.0.1:6379> EXPIREAT rediskey 1293840000
 (integer) 1
 ```
+
+---
 
 ## PEXPIRE key milliseconds
 
@@ -113,6 +123,8 @@ redis> PEXPIRE mykey 1500
 (integer) 1
 ```
 
+---
+
 ## PEXPIREAT KEY_NAME TIME_IN_MILLISECONDS_IN_UNIX_TIMESTAMP
 
 用于设置 key 的过期时间，以毫秒计。key 过期后将不再可用。
@@ -133,6 +145,8 @@ redis 127.0.0.1:6379> PEXPIREAT rediskey 1555555555005
 (integer) 1
 ```
 
+---
+
 ## KEYS PATTERN
 
 用于查找所有符合给定模式 pattern 的 key。
@@ -151,6 +165,8 @@ redis 127.0.0.1:6379> KEYS rediskey*
 2) "rediskey1"
 3) "rediskey2"
 ```
+
+---
 
 ## MOVE KEY_NAME DESTINATION_DATABASE
 
@@ -175,6 +191,8 @@ redis> MOVE song 1                          # 将 song 移动到数据库 1
 (integer) 1
 ```
 
+---
+
 ## PERSIST KEY_NAME
 
 用于移除给定 key 的过期时间，使得 key 永不过期。
@@ -194,6 +212,8 @@ redis> PERSIST mykey    # 移除 key 的生存时间
 redis> TTL mykey
 (integer) -1
 ```
+
+---
 
 ## PTTL KEY_NAME
 
@@ -222,6 +242,8 @@ redis> PEXPIRE key 10086
 redis> PTTL key
 (integer) 6179
 ```
+
+---
 
 ## TTL KEY_NAME
 
@@ -252,6 +274,8 @@ redis> TTL key
 (integer) 10084
 ```
 
+---
+
 ## RANDOMKEY
 
 从当前数据库中随机返回一个 key 。
@@ -274,6 +298,8 @@ redis> RANDOMKEY
 redis> RANDOMKEY
 "food"
 ```
+
+---
 
 ## RENAME OLD_KEY_NAME NEW_KEY_NAME
 
@@ -302,6 +328,8 @@ redis> EXISTS greeting              # greeting 取而代之
 (integer) 1
 ```
 
+---
+
 ## RENAMENX OLD_KEY_NAME NEW_KEY_NAME
 
 用于在新的 key 不存在时修改 key 的名称 。
@@ -325,6 +353,8 @@ redis> EXISTS best_player
 redis> RENAMENX player best_player
 (integer) 1
 ```
+
+---
 
 ## TYPE KEY_NAME
 
@@ -353,6 +383,8 @@ OK
 redis> TYPE weather
 string
 ```
+
+---
 
 ## 思维导图
 
