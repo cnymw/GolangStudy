@@ -190,7 +190,7 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 - [redis 键命令](/docs/redis-键命令/redis-键命令.md)
 - [redis 字符串命令](/docs/redis-字符串命令/redis-字符串命令.md)
 - [redis 哈希表命令](/docs/redis-哈希表命令/redis-哈希表命令.md)
-- [redis 列表命令](/docs/redis-列表命令.md)
+- [redis 列表命令](/docs/redis-列表命令/redis-列表命令.md)
 - [redis 集合命令](/docs/redis-集合命令.md)
 - [redis 有序集合命令](/docs/redis-有序集合命令.md)
 - [redis Hyperloglog命令](/docs/redis-Hyperloglog命令.md)
