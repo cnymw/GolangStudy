@@ -323,6 +323,11 @@ redis> HGETALL people
 ## HSCAN key cursor [MATCH pattern] [COUNT count]
 
 > 可用版本：>=2.8.0
+> 
+> 参考资料：
+>
+> [redis命令：SCAN](https://redis.io/commands/scan)
+
 
 HSCAN 迭代散列类型的字段及其关联值。
 
@@ -344,12 +349,7 @@ redis 127.0.0.1:6379> hscan hash 0
    3) "age"
    4) "33"
 ```
-
-> 参考资料：
-> 
-> [redis命令：SCAN](https://redis.io/commands/scan)
-
 ## 思维导图
 
-![redis-哈希表命令.png](https://cnymw.github.io/GolangStudy/docs/img/redis-哈希表命令.png)
+![redis-哈希表命令-思维导图.png](https://cnymw.github.io/GolangStudy/docs/redis-哈希表命令/redis-哈希表命令-思维导图.png)
 
