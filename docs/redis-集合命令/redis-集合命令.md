@@ -447,5 +447,5 @@ redis> SMEMBERS joe_diff_peter
 
 ## 思维导图
 
-![redis-集合命令.png](https://cnymw.github.io/GolangStudy/docs/img/redis-集合命令.png)
+![redis-集合命令-思维导图.png](https://cnymw.github.io/GolangStudy/docs/redis-集合命令/redis-集合命令-思维导图.png)
 
