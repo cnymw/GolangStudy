@@ -356,6 +356,47 @@ redis> RENAMENX player best_player
 
 ---
 
+## SCAN cursor [MATCH pattern] [COUNT count]
+
+Scan 命令用于迭代数据库中的数据库键。
+
+> 可用版本：>= 2.8.0
+
+### 返回值
+
+数组列表。
+
+### 示例
+
+```bash
+redis 127.0.0.1:6379> scan 0   # 使用 0 作为游标，开始新的迭代
+1) "17"                        # 第一次迭代时返回的游标
+2)  1) "key:12"
+    2) "key:8"
+    3) "key:4"
+    4) "key:14"
+    5) "key:16"
+    6) "key:17"
+    7) "key:15"
+    8) "key:10"
+    9) "key:3"
+   10) "key:7"
+   11) "key:1"
+redis 127.0.0.1:6379> scan 17  # 使用的是第一次迭代时返回的游标 17 开始新的迭代
+1) "0"
+2) 1) "key:5"
+   2) "key:18"
+   3) "key:0"
+   4) "key:2"
+   5) "key:19"
+   6) "key:13"
+   7) "key:6"
+   8) "key:9"
+   9) "key:11"
+```
+
+---
+
 ## TYPE KEY_NAME
 
 用于返回 key 所储存的值的类型。
