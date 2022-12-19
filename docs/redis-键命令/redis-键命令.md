@@ -2,7 +2,7 @@
 
 Redis 键命令用于管理 redis 的键。
 
-## DEL KEY_NAME
+## 1. DEL KEY_NAME
 
 > 可用版本：>= 1.0.0
 
@@ -21,7 +21,7 @@ redis 127.0.0.1:6379> DEL rediskey
 
 ---
 
-## DUMP KEY_NAME
+## 2. DUMP KEY_NAME
 
 用于序列化给定 key ，并返回被序列化的值。
 
@@ -43,7 +43,7 @@ redis> DUMP greeting
 
 ---
 
-## EXISTS KEY_NAME
+## 3. EXISTS KEY_NAME
 
 用于检查给定 key 是否存在。
 
@@ -65,7 +65,7 @@ redis 127.0.0.1:6379> EXISTS rediskey
 
 ---
 
-## Expire KEY_NAME TIME_IN_SECONDS
+## 4. Expire KEY_NAME TIME_IN_SECONDS
 
 用于设置 key 的过期时间，key 过期后将不再可用。单位以秒计。
 
@@ -84,7 +84,7 @@ redis 127.0.0.1:6379> EXPIRE rediskey 60
 
 ---
 
-## Expireat KEY_NAME TIME_IN_UNIX_TIMESTAMP
+## 5. Expireat KEY_NAME TIME_IN_UNIX_TIMESTAMP
 
 用于以 UNIX 时间戳(unix timestamp)格式设置 key 的过期时间。key 过期后将不再可用。
 
@@ -103,7 +103,7 @@ redis 127.0.0.1:6379> EXPIREAT rediskey 1293840000
 
 ---
 
-## PEXPIRE key milliseconds
+## 6. PEXPIRE key milliseconds
 
 和 EXPIRE 命令的作用类似，但是它以毫秒为单位设置 key 的生存时间，而不像 EXPIRE 命令那样，以秒为单位。
 
@@ -125,7 +125,7 @@ redis> PEXPIRE mykey 1500
 
 ---
 
-## PEXPIREAT KEY_NAME TIME_IN_MILLISECONDS_IN_UNIX_TIMESTAMP
+## 7. PEXPIREAT KEY_NAME TIME_IN_MILLISECONDS_IN_UNIX_TIMESTAMP
 
 用于设置 key 的过期时间，以毫秒计。key 过期后将不再可用。
 
@@ -147,7 +147,7 @@ redis 127.0.0.1:6379> PEXPIREAT rediskey 1555555555005
 
 ---
 
-## KEYS PATTERN
+## 8. KEYS PATTERN
 
 用于查找所有符合给定模式 pattern 的 key。
 
@@ -168,7 +168,7 @@ redis 127.0.0.1:6379> KEYS rediskey*
 
 ---
 
-## MOVE KEY_NAME DESTINATION_DATABASE
+## 9. MOVE KEY_NAME DESTINATION_DATABASE
 
 用于将当前数据库的 key 移动到给定的数据库 db 当中。
 
@@ -193,7 +193,7 @@ redis> MOVE song 1                          # 将 song 移动到数据库 1
 
 ---
 
-## PERSIST KEY_NAME
+## 10. PERSIST KEY_NAME
 
 用于移除给定 key 的过期时间，使得 key 永不过期。
 
@@ -215,7 +215,7 @@ redis> TTL mykey
 
 ---
 
-## PTTL KEY_NAME
+## 11. PTTL KEY_NAME
 
 以毫秒为单位返回 key 的剩余过期时间。
 
@@ -245,7 +245,7 @@ redis> PTTL key
 
 ---
 
-## TTL KEY_NAME
+## 12. TTL KEY_NAME
 
 以秒为单位返回 key 的剩余过期时间。
 
@@ -276,7 +276,7 @@ redis> TTL key
 
 ---
 
-## RANDOMKEY
+## 13. RANDOMKEY
 
 从当前数据库中随机返回一个 key 。
 
@@ -301,7 +301,7 @@ redis> RANDOMKEY
 
 ---
 
-## RENAME OLD_KEY_NAME NEW_KEY_NAME
+## 14. RENAME OLD_KEY_NAME NEW_KEY_NAME
 
 用于修改 key 的名称 。
 
@@ -330,7 +330,7 @@ redis> EXISTS greeting              # greeting 取而代之
 
 ---
 
-## RENAMENX OLD_KEY_NAME NEW_KEY_NAME
+## 15. RENAMENX OLD_KEY_NAME NEW_KEY_NAME
 
 用于在新的 key 不存在时修改 key 的名称 。
 
@@ -356,7 +356,7 @@ redis> RENAMENX player best_player
 
 ---
 
-## SCAN cursor [MATCH pattern] [COUNT count]
+## 16. SCAN cursor [MATCH pattern] [COUNT count]
 
 Scan 命令用于迭代数据库中的数据库键。
 
@@ -397,7 +397,7 @@ redis 127.0.0.1:6379> scan 17  # 使用的是第一次迭代时返回的游标 1
 
 ---
 
-## TYPE KEY_NAME
+## 17. TYPE KEY_NAME
 
 用于返回 key 所储存的值的类型。
 
