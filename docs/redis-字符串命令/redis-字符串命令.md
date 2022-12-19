@@ -1,5 +1,7 @@
 # redis 字符串命令
 
+Redis 字符串数据类型的相关命令用于管理 redis 字符串值。
+
 ## SET key value[EX seconds][PX milliseconds][NX|XX]
 
 > 可用版本：>=1.0.0
@@ -202,6 +204,64 @@ redis> GETSET db redis      # 返回旧值 mongodb
 
 redis> GET db
 "redis"
+```
+
+---
+
+## SETBIT key offset value
+
+> 可用版本：>= 2.2.0
+
+Redis Setbit 命令用于对 key 所储存的字符串值，设置或清除指定偏移量上的位(bit)。
+
+### 返回值
+
+指定偏移量原来储存的位。
+
+### 示例
+
+```bash
+redis> SETBIT bit 10086 1
+(integer) 0
+
+redis> GETBIT bit 10086
+(integer) 1
+
+redis> GETBIT bit 100   # bit 默认被初始化为 0
+(integer) 0
+```
+
+---
+
+## GETBIT KEY_NAME OFFSET
+
+> 可用版本：>= 2.2.0
+
+Getbit 命令用于对 key 所储存的字符串值，获取指定偏移量上的位(bit)。
+
+### 返回值
+
+字符串值指定偏移量上的位(bit)。
+
+### 示例
+
+```bash
+# 对不存在的 key 或者不存在的 offset 进行 GETBIT， 返回 0
+
+redis> EXISTS bit
+(integer) 0
+
+redis> GETBIT bit 10086
+(integer) 0
+
+
+# 对已存在的 offset 进行 GETBIT
+
+redis> SETBIT bit 10086 1
+(integer) 0
+
+redis> GETBIT bit 10086
+(integer) 1
 ```
 
 ---
