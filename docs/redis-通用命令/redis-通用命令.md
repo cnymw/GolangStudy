@@ -1,8 +1,25 @@
-# redis 键命令
+# redis 通用命令
 
-Redis 键命令用于管理 redis 的键。
+Redis 通用命令用于管理 redis 的键。
 
-## 1. DEL KEY_NAME
+## 1. COPY source destination [DB destination-db] [REPLACE]
+
+> 可用版本：>= 6.2.0
+
+用于将存储在源 key 中的值复制到目标 key。
+
+### 返回值
+
+如果复制成功，则返回 1，否则返回 0。
+
+### 示例
+
+```bash
+SET dolly "sheep"
+COPY dolly clone
+```
+
+## 2. DEL KEY_NAME
 
 > 可用版本：>= 1.0.0
 
@@ -21,11 +38,11 @@ redis 127.0.0.1:6379> DEL rediskey
 
 ---
 
-## 2. DUMP KEY_NAME
-
-用于序列化给定 key ，并返回被序列化的值。
+## 3. DUMP KEY_NAME
 
 > 可用版本：>= 2.6.0
+
+用于序列化给定 key ，并返回被序列化的值。
 
 ### 返回值
 
@@ -43,11 +60,11 @@ redis> DUMP greeting
 
 ---
 
-## 3. EXISTS KEY_NAME
-
-用于检查给定 key 是否存在。
+## 4. EXISTS KEY_NAME
 
 > 可用版本：>= 1.0.0
+
+用于检查给定 key 是否存在。
 
 ### 返回值
 
@@ -65,11 +82,11 @@ redis 127.0.0.1:6379> EXISTS rediskey
 
 ---
 
-## 4. Expire KEY_NAME TIME_IN_SECONDS
-
-用于设置 key 的过期时间，key 过期后将不再可用。单位以秒计。
+## 5. Expire KEY_NAME TIME_IN_SECONDS
 
 > 可用版本：>= 1.0.0
+
+用于设置 key 的过期时间，key 过期后将不再可用。单位以秒计。
 
 ### 返回值
 
@@ -84,11 +101,11 @@ redis 127.0.0.1:6379> EXPIRE rediskey 60
 
 ---
 
-## 5. Expireat KEY_NAME TIME_IN_UNIX_TIMESTAMP
-
-用于以 UNIX 时间戳(unix timestamp)格式设置 key 的过期时间。key 过期后将不再可用。
+## 6. Expireat KEY_NAME TIME_IN_UNIX_TIMESTAMP
 
 > 可用版本：>= 1.0.0
+
+用于以 UNIX 时间戳(unix timestamp)格式设置 key 的过期时间。key 过期后将不再可用。
 
 ### 返回值
 
@@ -103,11 +120,53 @@ redis 127.0.0.1:6379> EXPIREAT rediskey 1293840000
 
 ---
 
+## 7. EXPIRETIME key
+
+> 可用版本：>= 7.0.0
+
+返回给定 key 将过期的 Unix timestamp（自 1970 年 1 月 1 日起）。
+
+### 返回值
+
+返回过期 Unix timestamp。
+
+### 示例
+
+```bash
+redis> EXPIREAT mykey 33177117420
+(integer) 1
+redis> EXPIRETIME mykey
+(integer) 33177117420
+```
+
+---
+
+## 8. KEYS PATTERN
+
+> 可用版本：>= 1.0.0
+
+用于查找所有符合给定模式 pattern 的 key。
+
+### 返回值
+
+符合给定模式的 key 列表。
+
+### 示例
+
+```bash
+redis 127.0.0.1:6379> KEYS rediskey*
+1) "rediskey3"
+2) "rediskey1"
+3) "rediskey2"
+```
+
+---
+
 ## 6. PEXPIRE key milliseconds
 
-和 EXPIRE 命令的作用类似，但是它以毫秒为单位设置 key 的生存时间，而不像 EXPIRE 命令那样，以秒为单位。
-
 > 可用版本：>= 2.6.0
+
+和 EXPIRE 命令的作用类似，但是它以毫秒为单位设置 key 的生存时间，而不像 EXPIRE 命令那样，以秒为单位。
 
 ### 返回值
 
@@ -143,27 +202,6 @@ OK
 
 redis 127.0.0.1:6379> PEXPIREAT rediskey 1555555555005
 (integer) 1
-```
-
----
-
-## 8. KEYS PATTERN
-
-用于查找所有符合给定模式 pattern 的 key。
-
-> 可用版本：>= 1.0.0
-
-### 返回值
-
-符合给定模式的 key 列表。
-
-### 示例
-
-```bash
-redis 127.0.0.1:6379> KEYS rediskey*
-1) "rediskey3"
-2) "rediskey1"
-3) "rediskey2"
 ```
 
 ---
@@ -429,5 +467,5 @@ string
 
 ## 思维导图
 
-![redis-键命令-思维导图.png](https://cnymw.github.io/GolangStudy/docs/redis-键命令/redis-键命令-思维导图.png)
+![redis-通用命令-思维导图.png](https://cnymw.github.io/GolangStudy/docs/redis-通用命令/redis-通用命令-思维导图.png)
 

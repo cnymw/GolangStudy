@@ -1,6 +1,10 @@
 # Go 源码解读-双向链表 list
 
-双向链表也叫双链表，是链表的一种，它的每个数据结点中都有两个指针，分别指向直接后继和直接前驱。
+> 源码地址：container/list/list.go
+>
+> 源码版本：1.17.6
+
+双向链表是链表的一种，它的每个数据结点中都有两个指针，分别指向直接后继和直接前驱。
 
 所以，从双向链表中的任意一个结点开始，都可以很方便地访问它的前驱结点和后继结点。
 
@@ -18,6 +22,8 @@ Golang sdk 中实现了双向链表，路径为`container/list/list.go`，我们
 //
 package list
 ```
+
+---
 
 ## 结点 Element
 
@@ -61,6 +67,8 @@ func (e *Element) Prev() *Element {
 	return nil
 }
 ```
+
+---
 
 ## 双向链表 List
 
@@ -340,45 +348,8 @@ func (l *List) PushFrontList(other *List) {
 }
 ```
 
-# 思维导图
+---
 
-```markmap
-- 双向链表 list
-  - 结点 Element
-    - 结构体
-      - next *Element
-      - prev *Element
-      - list *List
-      - Value interface{}
-    - 方法
-      - Next() *Element
-      - Prev() *Element
-  - 链表 List
-    - 结构体
-      - root Element
-      - len int
-    - 内部方法
-      - lazyinit()
-      - insert(e, at *Element) *Element
-      - insertValue(v interface{}, at *Element) *Element
-      - remove(e *Element) *Element
-      - move(e, at *Element) *Element
-    - 外部方法
-      - Init() *List
-      - New() *List
-      - Front() *Element
-      - Back() *Element
-      - Remove(e *Element) interface{}
-      - PushFront(v interface{}) *Element
-      - PushBack(v interface{}) *Element
-      - InsertBefore(v interface{}, mark *Element) *Element
-      - InsertAfter(v interface{}, mark *Element) *Element
-      - MoveToFront(e *Element)
-      - MoveToBack(e *Element)
-      - MoveBefore(e, mark *Element)
-      - MoveAfter(e, mark *Element)
-      - PushBackList(other *List)
-      - PushFrontList(other *List)
-```
+## 思维导图
 
 ![go-源码解读-双向链表list.png](https://cnymw.github.io/GolangStudy/docs/go-源码解读-双向链表list/go-源码解读-双向链表list.png)
