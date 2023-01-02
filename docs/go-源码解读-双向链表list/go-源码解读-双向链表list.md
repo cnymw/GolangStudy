@@ -12,6 +12,12 @@ Golang sdk 中实现了双向链表，路径为`container/list/list.go`，我们
 
 ---
 
+## 思维导图预习
+
+![go-源码解读-双向链表list.png](https://cnymw.github.io/GolangStudy/docs/go-源码解读-双向链表list/go-源码解读-双向链表list.png)
+
+---
+
 ## 包 package
 
 ```go
@@ -352,6 +358,6 @@ func (l *List) PushFrontList(other *List) {
 
 ---
 
-## 思维导图
+## 思维导图复习
 
 ![go-源码解读-双向链表list.png](https://cnymw.github.io/GolangStudy/docs/go-源码解读-双向链表list/go-源码解读-双向链表list.png)

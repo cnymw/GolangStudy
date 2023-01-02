@@ -1,5 +1,11 @@
 # Golang 基础语法
 
+## 思维导图预习
+
+![go-基础语法-思维导图.png](https://cnymw.github.io/GolangStudy/docs/go-基础语法/go-基础语法-思维导图.png)
+
+---
+
 ## 命名
 
 ### 命名规则
@@ -157,6 +163,6 @@ func init() { /* ... */ }
 
 ---
 
-## 思维导图
+## 思维导图复习
 
 ![go-基础语法-思维导图.png](https://cnymw.github.io/GolangStudy/docs/go-基础语法/go-基础语法-思维导图.png)
