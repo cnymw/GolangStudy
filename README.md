@@ -37,12 +37,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 ## Golang 学习路线
 
 - Golang 学习路线
-  1. 学习 Golang 语言
-    - 基础
-    - 高级机制
-    - 源码解读
-    - 常用框架
-    - 面试题目
+  1. Golang 语言
   2. Kubernetes 
   3. docker
   4. linux
