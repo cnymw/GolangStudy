@@ -288,7 +288,12 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 
 ## 面试题库
 
-- [面试题库](/docs/面试题库/面试题库.md)
+- [Golang面试题](https://kdocs.cn/l/ckJHEO8q0oSh)
+- [Kubernetes面试题](https://kdocs.cn/l/cgIwelr0RVaj)
+- [操作系统面试题](https://kdocs.cn/l/ciLsKpZYE4fC)
+- [算法面试题](https://kdocs.cn/l/cpOknBhkxqLx)
+- [网络面试题](https://kdocs.cn/l/crwWVLgkX1zC)
+- [数据库面试题](https://kdocs.cn/l/chPMUMaPoxgj)
 
 ---
 
