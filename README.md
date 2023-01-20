@@ -113,6 +113,7 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
   - [Kubernetes namespace｜视频学习｜完整版](/docs/Kubernetes-namespace/Kubernetes-namespace.md)
   - [Kubernetes 节点｜视频学习｜完整版](/docs/Kubernetes-节点/Kubernetes-节点.md)
   - [Kubernetes 工作负载｜视频学习｜完整版](/docs/Kubernetes-工作负载/Kubernetes-工作负载.md)
+  - [Kubernetes 网络模型｜视频学习｜完整版](/docs/Kubernetes-网络模型/Kubernetes-网络模型.md)
 - [Kubernetes 基本概念和术语](/docs/Kubernetes-基本概念和术语.md)
 - [Kubernetes kubectl命令](/docs/Kubernetes-kubectl命令.md)
 
