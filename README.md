@@ -182,21 +182,6 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 
 ## redis
 
-- [redis 键命令](/docs/redis-键命令/redis-键命令.md)
-- [redis 字符串命令](/docs/redis-字符串命令/redis-字符串命令.md)
-- [redis 哈希表命令](/docs/redis-哈希表命令/redis-哈希表命令.md)
-- [redis 列表命令](/docs/redis-列表命令/redis-列表命令.md)
-- [redis 集合命令](/docs/redis-集合命令/redis-集合命令.md)
-- [redis 有序集合命令](/docs/redis-有序集合命令/redis-有序集合命令.md)
-- [redis Hyperloglog命令](/docs/redis-Hyperloglog命令/redis-Hyperloglog命令.md)
-- [redis 发布订阅命令](/docs/redis-发布订阅命令/redis-发布订阅命令.md)
-- [redis 复制命令](/docs/redis-复制命令/redis-复制命令.md)
-- [redis 数据库命令](/docs/redis-数据库命令/redis-数据库命令.md)
-- [redis 事务命令](/docs/redis-事务命令/redis-事务命令.md)
-- [redis 持久化命令](/docs/redis-持久化命令/redis-持久化命令.md)
-- [redis 配置选项命令](/docs/redis-配置选项命令/redis-配置选项命令.md)
-- [redis 调试命令](/docs/redis-调试命令/redis-调试命令.md)
-- [redis 内部命令](/docs/redis-内部命令/redis-内部命令.md)
 - [redis 持久化](/docs/redis-持久化/redis-持久化.md)
 - [redis sentinel](/docs/redis-sentinel/redis-sentinel.md)
 - [redis 集群](/docs/redis-集群/redis-集群.md)
