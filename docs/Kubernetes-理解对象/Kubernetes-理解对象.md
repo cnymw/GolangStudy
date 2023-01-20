@@ -1,4 +1,10 @@
-# Kubernetes 理解 Kubernetes 对象
+# Kubernetes 理解对象
+
+## 思维导图预习
+
+![Kubernetes-理解对象-思维导图.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-对象/Kubernetes-理解对象-思维导图.png)
+
+---
 
 ## 什么是 Kubernetes 对象
 
@@ -20,7 +26,10 @@ Kubernetes 对象是"目标性记录"，一旦创建该对象，Kubernetes 系�
 
 ### 如何操作 Kubernetes 对象
 
-无论是创建、修改或者删除，都需要使用 Kubernetes API。比如，当使用 kubectl 命令行接口（CLI）时，CLI 会调用必要的 Kubernetes API；也可以在程序中使用客户端库，来直接调用 Kubernetes API。
+无论是创建、修改或者删除，都需要使用 Kubernetes API。
+
+- 当使用 kubectl 命令行接口（CLI）时，CLI 会调用必要的 Kubernetes API。
+- 可以在程序中使用客户端库，来直接调用 Kubernetes API。
 
 ### 对象规约（Spec）与状态（Status）
 
@@ -73,20 +82,24 @@ kubectl apply -f https://k8s.io/examples/application/deployment.yaml
 - metadata：帮助唯一标识对象的一些数据，包括一个 name 字符串、UID 和可选的 namespace
 - spec：你所期望的该对象的状态
 
-# 参考资料
+---
+
+## 参考资料
 
 - [kubernetes.io 官方文档：理解 Kubernetes 对象](https://kubernetes.io/zh-cn/docs/concepts/overview/working-with-objects/kubernetes-objects/)
 
-# 思维导图
+---
 
-![Kubernetes-理解对象-思维导图.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-理解对象/Kubernetes-理解对象-思维导图.png)
+## 思维导图
 
-# B站学习
+![Kubernetes-理解对象-思维导图.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-理解对象/Kubernetes-对象-思维导图.png)
+
+## B站学习
 
 [从零开始学习k8s：理解k8s对象](https://www.bilibili.com/video/BV1614y147KG/)
 
 ![Kubernetes-理解对象-B站.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-理解对象/Kubernetes-理解对象-B站.png)
 
-# 抖音学习
+## 抖音学习
 
 ![Kubernetes-理解对象-抖音.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-理解对象/Kubernetes-理解对象-抖音.png)
