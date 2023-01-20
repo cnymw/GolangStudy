@@ -1,5 +1,11 @@
 # Kubernetes 标签
 
+## 思维导图预习
+
+![Kubernetes-标签-思维导图.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-标签/Kubernetes-标签-思维导图.png)
+
+---
+
 ## 什么是 Kubernetes 标签
 
 标签（Labels）是附加到 Kubernetes 对象（比如 Pods）上的键值对。
@@ -26,6 +32,8 @@
 - 每个键对于给定对象必须是唯一的。
 - 标签能够支持高效的查询和监听操作，对于用户界面和命令行是很理想的。
 
+---
+
 ## 设计标签的目的
 
 标签使用户能够以松散耦合的方式将他们自己的组织结构映射到系统对象，而无需客户端存储这些映射。
@@ -36,6 +44,8 @@
 
 - 发行版本 "release" : "stable", "release" : "canary"
 - 运行环境 "environment" : "dev", "environment" : "qa", "environment" : "production"
+
+---
 
 ## 标签语法
 
@@ -73,6 +83,8 @@ spec:
     - containerPort: 80
 ```
 
+---
+
 ## 标签选择运算符
 
 与名称和 UID 不同，标签不支持唯一性。通常，我们希望许多对象携带相同的标签。
@@ -105,6 +117,8 @@ partition
 !partition
 ```
 
+---
+
 ## API
 
 两种标签选择算符都可以通过 REST 客户端用于 list 或者 watch 资源。 
@@ -125,21 +139,27 @@ kubectl get pods -l environment=production,tier=frontend
 kubectl get pods -l 'environment in (production),tier in (frontend)'
 ```
 
-# 参考资料
+---
+
+## 参考资料
 
 - [kubernetes.io官方文档：标签和选择算符](https://kubernetes.io/zh-cn/docs/concepts/overview/working-with-objects/labels/)
 
-# 思维导图
+---
+
+## 思维导图
 
 ![Kubernetes-标签-思维导图.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-标签/Kubernetes-标签-思维导图.png)
 
-# 视频学习
+---
 
 ## B站学习
 
 [从零开始学习k8s：k8s标签](https://www.bilibili.com/video/BV1wa411o7wm/)
 
 ![Kubernetes-标签-B站.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-标签/Kubernetes-标签-B站.png)
+
+---
 
 ## 抖音学习
 

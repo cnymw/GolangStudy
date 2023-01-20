@@ -94,11 +94,15 @@ kubectl apply -f https://k8s.io/examples/application/deployment.yaml
 
 ![Kubernetes-理解对象-思维导图.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-理解对象/Kubernetes-对象-思维导图.png)
 
+---
+
 ## B站学习
 
 [从零开始学习k8s：理解k8s对象](https://www.bilibili.com/video/BV1614y147KG/)
 
 ![Kubernetes-理解对象-B站.png](https://cnymw.github.io/GolangStudy/docs/Kubernetes-理解对象/Kubernetes-理解对象-B站.png)
+
+---
 
 ## 抖音学习
 
