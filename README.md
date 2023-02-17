@@ -1,4 +1,4 @@
-# GolangStudy: 系统学习 Golang
+# GolangStudy: 从零学习 Golang
 
 本项目旨在指导程序员们如何从基础开始系统的学习 Go 语言，并学习开发时所需知识点。
 
@@ -61,17 +61,18 @@ Golang 语言的学习可以分为以下方向：
 
 学习目录如下：
 
-- [Go 基础语法](/docs/go-基础语法/go-基础语法.md)
-- [Go 数据类型](/docs/go-数据类型/go-数据类型.md)
-- [Go 并发](/docs/go-并发.md)
-- [Go 接口](/docs/go-接口.md)
-- [Go 检测竞态条件](/docs/go-检测竞态条件.md)
-- [Go 性能分析：pprof实战](https://blog.wolfogre.com/posts/go-ppof-practice/)
-- golang机制
+- 基础
+  - [Go 基础语法](/docs/go-基础语法/go-基础语法.md)
+  - [Go 数据类型](/docs/go-数据类型/go-数据类型.md)
+  - [Go 并发](/docs/go-并发.md)
+  - [Go 接口](/docs/go-接口.md)
+  - [Go 检测竞态条件](/docs/go-检测竞态条件.md)
+- 进阶
   - [Go 调度](/docs/go-调度.md)
   - [Go 垃圾回收](/docs/go-垃圾回收.md)
   - [Go channel](/docs/go-channel/go-channel.md)
-- golang sdk
+  - [Go 性能分析：pprof实战](https://blog.wolfogre.com/posts/go-ppof-practice/)
+- 深入 golang sdk 源码
   - [Go 源码解读 标识符](/docs/go-源码解读-标识符/go-源码解读-标识符.md)
   - [Go 源码解读 双向链表 list](/docs/go-源码解读-双向链表list/go-源码解读-双向链表list.md)
   - [Go 源码解读 程序分析pprof](/docs/go-源码解读-程序分析pprof.md)
@@ -79,9 +80,9 @@ Golang 语言的学习可以分为以下方向：
   - [Go 源码解读 同步模块sync once](/docs/go-源码解读-同步sync-once.md)
   - [Go 源码解读 垃圾回收](/docs/go-源码解读-垃圾回收/go-源码解读-垃圾回收.md)
   - [Go 源码解读 channel](/docs/go-源码解读-channel/go-源码解读-channel.md)
-- zap
+- 拓展 zap
   - [Go 源码解读 高性能日志库 zap](/docs/go-zap.md)
-- grpool
+- 拓展 grpool
   - [Go 源码解读 轻量级线程池 grpool](/docs/go-grpool.md)
 - 面试题
   - [Go 有几种连接字符串的方法?](/docs/go-面试题-连接字符串方法/go-面试题-连接字符串方法.md)
