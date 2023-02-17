@@ -1,20 +1,18 @@
-# GolangStudy: Golang 面试学习
+# GolangStudy: 系统学习 Golang
 
-本项目旨在指导程序员们如何从基础开始系统的学习 Go 语言，并学习面试所需知识点。
+本项目旨在指导程序员们如何从基础开始系统的学习 Go 语言，并学习开发时所需知识点。
 
 Go 是一门非常容易上手的语言，语法简洁，代码易读，如果你有常用语言的基础，那看一本[Go 语言圣经](https://docs.hacknode.org/gopl-zh/index.html)后便可上手开发业务代码。
 
-但是，想通过 Go 语言的面试可能需要更加系统，全面的知识，本项目通过知识点的总结来提升面试通过的几率。
-
 本项目不是博客，一个问题不会讲的特别细致，如果想要更加深入的了解某个知识点的话，建议使用搜索引擎去搜索经典博客加深理解，项目中也会推荐一些好的文章供参考。
 
-本项目更加看重的是对于知识点系统的一个总结，能够通过一句话，一张思维导图来把一类知识进行讲解，这样在面试前把所有的思维导图都过一遍就能更大的提升面试通过的几率了，平时空余的时候拿出思维导图进行复习也能加深理解。
+本项目更加看重的是对于知识点系统的一个总结，能够通过一句话，一张思维导图来把一类知识进行讲解，这样在面试前把所有的思维导图都过一遍就快的吸收知识点，平时空余的时候拿出思维导图进行复习也能加深理解。
 
 作者通过该学习笔记，拿到过腾讯云，金山办公，青藤云，神州数码等云相关企业 offer，工作岗位是 Golang 服务端开发。
 
 ## 在线课程
 
-本项目准备将学习内容转化为在线学习的方式，利用视频+文字+思维导图的方式提高大家的学习效率，具体的效果可以看以下链接：
+本项目准备将学习内容转化为在线学习的方式，利用视频&&文字&&思维导图的方式提高大家的学习效率，具体的效果可以看以下链接：
 
 [在线课程](https://golangstudy.tech/)
 
@@ -34,13 +32,13 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 7. 用持续进步的角度审视所记录的思维导图，思维导图不是标准答案，只是你对一个知识点的总结，不一定是绝对正确的，可以持续优化，持续总结出更好的内容。
 8. 思维是抽象的，网状的，不是线性的，很多较难的知识点如果用一句线性的语句来描述会非常的难以理解，所以要将重难点内容解析成思维导图，要习惯这种思维模式，这样才算真正的理解了思维导图的作用。
 
-## Golang 学习路线
+## Golang 学习目录
 
 - Golang 学习路线
-  1. Golang 语言
-  2. Kubernetes 
-  3. docker
-  4. linux
+  1. [Golang 语言](https://github.com/cnymw/GolangStudy#golang语言)
+  2. [Kubernetes](https://github.com/cnymw/GolangStudy#kubernetes)
+  3. [docker](https://github.com/cnymw/GolangStudy#docker)
+  4. [linux](https://github.com/cnymw/GolangStudy#linux)
   5. 网络
   6. 设计模式
   7. redis
@@ -52,7 +50,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
   13. mysql
   14. 面试题
 
-## 学习 Golang 语言
+## Golang语言
 
 Golang 语言的学习可以分为以下方向：
 
@@ -111,6 +109,31 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
   - [Kubernetes 网络模型](/docs/Kubernetes-网络模型/Kubernetes-网络模型.md)
 - [Kubernetes 基本概念和术语](/docs/Kubernetes-基本概念和术语.md)
 - [Kubernetes kubectl命令](/docs/Kubernetes-kubectl命令.md)
+
+---
+
+## Docker
+- [Docker — 从入门到实践](https://vuepress.mirror.docker-practice.com)
+- [Docker 基础](/docs/docker-docker基础.md)
+
+---
+
+## linux
+
+- [Linux 命令大全](https://man.linuxde.net)
+- [Linux 教程](https://www.runoob.com/linux/linux-tutorial.html)
+- [Linux 文件操作](/docs/linux-文件操作.md)
+- [Linux inode详解](https://www.cnblogs.com/llife/p/11470668.html)
+- [Linux 监测系统](/docs/linux-监测系统.md)
+- [Linux 抓包工具tcpdump详解](/docs/linux-抓包命令tcpdump.md)
+- [Linux tcpdump命令详解(转)](https://www.cnblogs.com/ggjucheng/archive/2012/01/14/2322659.html)
+- [Linux tcp分析命令ss详解](/docs/linux-tcp分析命令ss.md)
+- [Linux curl命令详解](/docs/linux-curl命令.md)
+- [Linux namespaces 命名空间](/docs/linux-namespaces.md)
+- 面试题
+  - [进程和线程，协程的区别](/docs/操作系统-面试题-进程线程协程的区别.md)
+- 专业博客
+  - [redhat sysadmin](https://www.redhat.com/sysadmin/)
 
 ---
 
@@ -174,12 +197,6 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 
 ---
 
-## Docker
-  - [Docker — 从入门到实践](https://vuepress.mirror.docker-practice.com)
-  - [Docker 基础](/docs/docker-docker基础.md)
-
----
-
 ## redis
 
 - [redis 持久化](/docs/redis-持久化/redis-持久化.md)
@@ -206,25 +223,6 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
   - [kafka 为什么会丢消息?](/docs/消息中间件-面试题-kafka为什么丢消息.md)
 
 --- 
-
-## 操作系统
-
-- [Linux 命令大全](https://man.linuxde.net)
-- [Linux 教程](https://www.runoob.com/linux/linux-tutorial.html)
-- [Linux 文件操作](/docs/linux-文件操作.md)
-- [Linux inode详解](https://www.cnblogs.com/llife/p/11470668.html)
-- [Linux 监测系统](/docs/linux-监测系统.md)
-- [Linux 抓包工具tcpdump详解](/docs/linux-抓包命令tcpdump.md)
-- [Linux tcpdump命令详解(转)](https://www.cnblogs.com/ggjucheng/archive/2012/01/14/2322659.html)
-- [Linux tcp分析命令ss详解](/docs/linux-tcp分析命令ss.md)
-- [Linux curl命令详解](/docs/linux-curl命令.md)
-- [Linux namespaces 命名空间](/docs/linux-namespaces.md)
-- 面试题
-  - [进程和线程，协程的区别](/docs/操作系统-面试题-进程线程协程的区别.md)
-- 专业博客
-  - [redhat sysadmin](https://www.redhat.com/sysadmin/)
-
----
 
 ## 网络
 
