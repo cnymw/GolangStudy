@@ -34,21 +34,28 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 ## Golang 学习目录
 
-- Golang 学习路线
-  1. [Golang 语言](https://github.com/cnymw/GolangStudy#golang语言)
-  2. [Kubernetes](https://github.com/cnymw/GolangStudy#kubernetes)
-  3. [docker](https://github.com/cnymw/GolangStudy#docker)
-  4. [linux](https://github.com/cnymw/GolangStudy#linux)
-  5. 网络
-  6. 设计模式
-  7. redis
-  8. etcd
-  9. kafka
-  10. Elasticsearch
-  11. 算法/数据结构
-  12. Leetcode
-  13. mysql
-  14. 面试题
+<!-- ALL-TOPICS-LIST:START -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<center>
+<table>
+  <tr>
+    <td align="center"><a href="#Golang语言"><img src="img/Go.png" width="75px;" height="75px;" alt="go"/><br /><b>Go</b></a></td>
+    <td align="center"><a href="#Kubernetes"><img src="img/kubernetes.png" width="75px;" height="75px;" alt="kubernetes"/><br /><b>Kubernetes</b></a></td>
+    <td align="center"><a href="#linux"><img src="img/linux.png" width="75px;" height="75px;" alt="Linux"/><br /><b>Linux</b></a></td>
+    <td align="center"><a href="#network"><img src="img/network.png" width="75px;" height="75px;" alt="Network"/><br /><b>Network</b></a></td>
+    <td align="center"><a href="#kafka"><img src="img/kafka.png" width="85px;" height="80px;" alt="Kafka"/><br /><b>Kafka</b></a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="#elasticsearch"><img src="img/elastic.png" width="75px;" height="75px;" alt="Elastic"/><br /><b>Elastic</b></a></td>
+    <td align="center"><a href="#mysql"><img src="images/databases.png" width="75px;" height="75px;" alt="Databases"/><br /><b>Databases</b></a></td>
+  </tr>
+
+</table>
+</center>
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-TOPICS-LIST:END -->
 
 ## Golang语言
 
@@ -169,7 +176,7 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 
 ---
 
-## 数据库
+## mysql
 
 - [mysql InnoDB 体系结构](/docs/数据库-mysql-InnoDB体系结构.md)
   - [mysql InnoDB 内存结构](/docs/数据库-mysql-InnoDB内存结构.md)
@@ -217,7 +224,7 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 
 ---
 
-## 消息中间件
+## kafka
 
 - [kafka 介绍](/docs/消息中间件-kafka-介绍.md)
 - 面试题
@@ -225,7 +232,7 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 
 --- 
 
-## 网络
+## network
 
 - [TCP-IP 详解：链路层](/docs/网络-TCP-IP详解-链路层.md)
 - [TCP-IP 详解：IP 网际协议](/docs/网络-TCP-IP详解-IP.md)
