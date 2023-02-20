@@ -40,15 +40,15 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 <center>
 <table>
   <tr>
-    <td align="center"><a href="#Golang语言"><img src="img/Go.png" width="75px;" height="75px;" alt="go"/><br /><b>Go</b></a></td>
-    <td align="center"><a href="#Kubernetes"><img src="img/kubernetes.png" width="75px;" height="75px;" alt="kubernetes"/><br /><b>Kubernetes</b></a></td>
-    <td align="center"><a href="#linux"><img src="img/linux.png" width="75px;" height="75px;" alt="Linux"/><br /><b>Linux</b></a></td>
-    <td align="center"><a href="#network"><img src="img/network.png" width="75px;" height="75px;" alt="Network"/><br /><b>Network</b></a></td>
-    <td align="center"><a href="#kafka"><img src="img/kafka.png" width="85px;" height="80px;" alt="Kafka"/><br /><b>Kafka</b></a></td>
+    <td align="center"><a href="#Golang语言"><img src="docs/img/Go.png" width="75px;" height="75px;" alt="go"/><br /><b>Go</b></a></td>
+    <td align="center"><a href="#Kubernetes"><img src="docs/img/kubernetes.png" width="75px;" height="75px;" alt="kubernetes"/><br /><b>Kubernetes</b></a></td>
+    <td align="center"><a href="#linux"><img src="docs/img/linux.png" width="75px;" height="75px;" alt="Linux"/><br /><b>Linux</b></a></td>
+    <td align="center"><a href="#network"><img src="docs/img/network.png" width="75px;" height="75px;" alt="Network"/><br /><b>Network</b></a></td>
+    <td align="center"><a href="#kafka"><img src="docs/img/kafka.png" width="85px;" height="80px;" alt="Kafka"/><br /><b>Kafka</b></a></td>
   </tr>
   <tr>
     <td align="center"><a href="#elasticsearch"><img src="img/elastic.png" width="75px;" height="75px;" alt="Elastic"/><br /><b>Elastic</b></a></td>
-    <td align="center"><a href="#mysql"><img src="images/databases.png" width="75px;" height="75px;" alt="Databases"/><br /><b>Databases</b></a></td>
+    <td align="center"><a href="#mysql"><img src="images/databases.png" width="75px;" height="75px;" alt="Databases"/><br /><b>mysql</b></a></td>
   </tr>
 
 </table>
