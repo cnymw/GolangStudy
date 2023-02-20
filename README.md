@@ -48,7 +48,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
   </tr>
   <tr>
     <td align="center"><a href="#elasticsearch"><img src="docs/img/elastic.png" width="75px;" height="75px;" alt="Elastic"/><br /><b>Elastic</b></a></td>
-    <td align="center"><a href="#mysql"><img src="docs/images/databases.png" width="75px;" height="75px;" alt="Databases"/><br /><b>mysql</b></a></td>
+    <td align="center"><a href="#mysql"><img src="docs/img/databases.png" width="75px;" height="75px;" alt="Databases"/><br /><b>mysql</b></a></td>
   </tr>
 
 </table>
