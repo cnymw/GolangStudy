@@ -16,9 +16,6 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 [在线课程](https://golangstudy.tech/)
 
-![在线课程](https://cnymw.github.io/GolangStudy/docs/img/在线课程.png)
-
-
 ## 如何利用思维导图学习
 
 对于一个新的知识点，我一般是这样结合思维导图来学习的：
