@@ -31,7 +31,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 ## Golang 学习路线
 
-![Golang 学习路线](https://cnymw.github.io/GolangStudy/docs/go-学习路线/go-学习路线.jpg)
+![Golang 学习路线](https://cnymw.github.io/GolangStudy/docs/go-学习路线/go-学习路线.png)
 
 ## Golang 学习目录
 
