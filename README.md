@@ -1,4 +1,4 @@
-# GolangStudy: 从零学习 Golang
+# 狗郎思大帝(GolangStudy)
 
 本项目旨在指导程序员们如何从基础开始系统的学习 Go 语言，并学习开发时所需知识点。
 
@@ -9,12 +9,6 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 本项目更加看重的是对于知识点系统的一个总结，能够通过一句话，一张思维导图来把一类知识进行讲解，这样在面试前把所有的思维导图都过一遍就快的吸收知识点，平时空余的时候拿出思维导图进行复习也能加深理解。
 
 作者通过该学习笔记，拿到过腾讯云，金山办公，青藤云，神州数码等云相关企业 offer，工作岗位是 Golang 服务端开发。
-
-## 在线课程
-
-本项目准备将学习内容转化为在线学习的方式，利用视频&&文字&&思维导图的方式提高大家的学习效率，具体的效果可以看以下链接：
-
-[在线课程](https://golangstudy.tech/)
 
 ## 如何利用思维导图学习
 
@@ -41,14 +35,14 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 <center>
 <table>
   <tr>
-    <td align="center"><a href="#Golang语言"><img src="docs/img/Go.png" width="75px;" height="75px;" alt="go"/><br /><b>Go</b></a></td>
+    <td align="center"><a href="#Golang语言"><img src="docs/img/Go.png" width="75px;" height="75px;" alt="go"/><br /><b>Golang</b></a></td>
     <td align="center"><a href="#Kubernetes"><img src="docs/img/kubernetes.png" width="75px;" height="75px;" alt="kubernetes"/><br /><b>Kubernetes</b></a></td>
     <td align="center"><a href="#linux"><img src="docs/img/linux.png" width="75px;" height="75px;" alt="Linux"/><br /><b>Linux</b></a></td>
     <td align="center"><a href="#network"><img src="docs/img/network.png" width="75px;" height="75px;" alt="Network"/><br /><b>Network</b></a></td>
     <td align="center"><a href="#kafka"><img src="docs/img/kafka.png" width="85px;" height="80px;" alt="Kafka"/><br /><b>Kafka</b></a></td>
   </tr>
   <tr>
-    <td align="center"><a href="#elasticsearch"><img src="docs/img/elastic.png" width="75px;" height="75px;" alt="Elastic"/><br /><b>Elastic</b></a></td>
+    <td align="center"><a href="#elasticsearch"><img src="docs/img/elastic.png" width="75px;" height="75px;" alt="ElasticSearch"/><br /><b>Elastic</b></a></td>
     <td align="center"><a href="#mysql"><img src="docs/img/databases.png" width="75px;" height="75px;" alt="Databases"/><br /><b>mysql</b></a></td>
   </tr>
 
@@ -57,6 +51,8 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-TOPICS-LIST:END -->
+
+---
 
 ## Golang语言
 
@@ -70,30 +66,31 @@ Golang 语言的学习可以分为以下方向：
 学习目录如下：
 
 - 基础
-  - [Go 基础语法](/docs/go-基础语法/go-基础语法.md)
-  - [Go 数据类型](/docs/go-数据类型/go-数据类型.md)
-  - [Go 并发](/docs/go-并发.md)
-  - [Go 接口](/docs/go-接口.md)
-  - [Go 检测竞态条件](/docs/go-检测竞态条件.md)
+  - [Golang 入门](/docs/Golang-入门/Golang-入门.md)
+  - [Golang 基础语法](/docs/go-基础语法/go-基础语法.md)
+  - [Golang 数据类型](/docs/go-数据类型/go-数据类型.md)
+  - [Golang 并发](/docs/go-并发.md)
+  - [Golang 接口](/docs/go-接口.md)
+  - [Golang 检测竞态条件](/docs/go-检测竞态条件.md)
 - 进阶
-  - [Go 调度](/docs/go-调度.md)
-  - [Go 垃圾回收](/docs/go-垃圾回收.md)
-  - [Go channel](/docs/go-channel/go-channel.md)
-  - [Go 性能分析：pprof实战](https://blog.wolfogre.com/posts/go-ppof-practice/)
-- 深入 golang sdk 源码
-  - [Go 源码解读 标识符](/docs/go-源码解读-标识符/go-源码解读-标识符.md)
-  - [Go 源码解读 双向链表 list](/docs/go-源码解读-双向链表list/go-源码解读-双向链表list.md)
-  - [Go 源码解读 程序分析pprof](/docs/go-源码解读-程序分析pprof.md)
-  - [Go 源码解读 同步模块sync mutex](/docs/go-源码解读-同步sync-mutex.md)
-  - [Go 源码解读 同步模块sync once](/docs/go-源码解读-同步sync-once.md)
-  - [Go 源码解读 垃圾回收](/docs/go-源码解读-垃圾回收/go-源码解读-垃圾回收.md)
-  - [Go 源码解读 channel](/docs/go-源码解读-channel/go-源码解读-channel.md)
+  - [Golang 调度](/docs/go-调度.md)
+  - [Golang 垃圾回收](/docs/go-垃圾回收.md)
+  - [Golang channel](/docs/go-channel/go-channel.md)
+  - [Golang 性能分析：pprof实战](https://blog.wolfogre.com/posts/go-ppof-practice/)
+- 深入 Golang sdk 源码
+  - [Golang 源码解读 标识符](/docs/go-源码解读-标识符/go-源码解读-标识符.md)
+  - [Golang 源码解读 双向链表 list](/docs/go-源码解读-双向链表list/go-源码解读-双向链表list.md)
+  - [Golang 源码解读 程序分析pprof](/docs/go-源码解读-程序分析pprof.md)
+  - [Golang 源码解读 同步模块sync mutex](/docs/go-源码解读-同步sync-mutex.md)
+  - [Golang 源码解读 同步模块sync once](/docs/go-源码解读-同步sync-once.md)
+  - [Golang 源码解读 垃圾回收](/docs/go-源码解读-垃圾回收/go-源码解读-垃圾回收.md)
+  - [Golang 源码解读 channel](/docs/go-源码解读-channel/go-源码解读-channel.md)
 - 拓展 zap
-  - [Go 源码解读 高性能日志库 zap](/docs/go-zap.md)
+  - [Golang 源码解读 高性能日志库 zap](/docs/go-zap.md)
 - 拓展 grpool
-  - [Go 源码解读 轻量级线程池 grpool](/docs/go-grpool.md)
+  - [Golang 源码解读 轻量级线程池 grpool](/docs/go-grpool.md)
 - 面试题
-  - [Go 有几种连接字符串的方法?](/docs/go-面试题-连接字符串方法/go-面试题-连接字符串方法.md)
+  - [Golang 有几种连接字符串的方法?](/docs/go-面试题-连接字符串方法/go-面试题-连接字符串方法.md)
   
 ---
 
