@@ -25,7 +25,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 ## Golang 学习路线
 
-![Golang 学习路线](https://cnymw.github.io/GolangStudy/docs/go-学习路线/go-学习路线.png)
+![Golang-学习路线.png](https://cnymw.github.io/GolangStudy/docs/Golang-学习路线/Golang-学习路线.png)
 
 ## Golang 学习目录
 
@@ -66,7 +66,7 @@ Golang 语言的学习可以分为以下方向：
 学习目录如下：
 
 - 基础
-  - [Golang 入门](/docs/Golang-入门/Golang-入门.md)
+  - [GolangStudy系列｜Golang学习｜Golang入门](https://mp.weixin.qq.com/s/q0Cyucw02GQQAF898oPsqg)
   - [Golang 基础语法](/docs/go-基础语法/go-基础语法.md)
   - [Golang 数据类型](/docs/go-数据类型/go-数据类型.md)
   - [Golang 并发](/docs/go-并发.md)
