@@ -1,14 +1,6 @@
-# Go 基础数据类型
+# Golang 基础数据类型
 
-## Go 家族树
-
-![Go家族树](https://cnymw.github.io/GolangStudy/docs/go-基础/go-基础-tree.png)
-
-# 基本概念
-
-## 基本类型
-
-### 整数
+## 整型
 
 - 有符号整数: int8、int16、int32 和 int64
 - 无符号整数: uint8、uint16、uint32 和 uint64
