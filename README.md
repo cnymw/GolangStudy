@@ -27,40 +27,6 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 
 ![Golang-学习路线.png](https://cnymw.github.io/GolangStudy/docs/Golang-学习路线/Golang-学习路线.png)
 
-- Golang 语言基础能力
-  - Golang 语言基础语法
-  - Golang 语言垃圾回收机制
-  - Golang 语言并发理解
-  - Golang 源码理解
-- 计算机基础能力
-  - linux
-  - 数据结构
-  - 算法
-  - 设计模式
-  - 网络
-- 开发进阶能力
-  - 容器化
-    - Kubernetes
-    - Docker
-    - etcd
-  - leetcode
-    - 链表
-    - 哈希表
-    - 树
-    - 动态规划
-    - 栈
-    - 排序
-    - 图
-    - 数组
-  - 分布式
-    - zookeeper
-  - 消息
-    - kafka
-- 数据库能力掌握
-  - redis
-  - mysql
-  - ElasticSearch
-
 ## Golang 学习目录
 
 <!-- ALL-TOPICS-LIST:START -->
@@ -72,7 +38,7 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
     <td align="center"><a href="#Golang语言"><img src="docs/img/Go.png" width="75px;" height="75px;" alt="go"/><br /><b>Golang</b></a></td>
     <td align="center"><a href="#Kubernetes"><img src="docs/img/kubernetes.png" width="75px;" height="75px;" alt="kubernetes"/><br /><b>Kubernetes</b></a></td>
     <td align="center"><a href="#linux"><img src="docs/img/linux.png" width="75px;" height="75px;" alt="Linux"/><br /><b>Linux</b></a></td>
-    <td align="center"><a href="#network"><img src="docs/img/network.png" width="75px;" height="75px;" alt="Network"/><br /><b>Network</b></a></td>
+    <td align="center"><a href="#网络"><img src="docs/img/network.png" width="75px;" height="75px;" alt="Network"/><br /><b>网络</b></a></td>
     <td align="center"><a href="#kafka"><img src="docs/img/kafka.png" width="85px;" height="80px;" alt="Kafka"/><br /><b>Kafka</b></a></td>
   </tr>
   <tr>
@@ -264,7 +230,7 @@ Golang 常用在微服务，分布式场景，不经常用于较大的业务场�
 
 --- 
 
-## network
+## 网络
 
 - [TCP-IP 详解：链路层](/docs/网络-TCP-IP详解-链路层.md)
 - [TCP-IP 详解：IP 网际协议](/docs/网络-TCP-IP详解-IP.md)
