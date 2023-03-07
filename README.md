@@ -70,7 +70,7 @@ Golang 语言的学习可以分为以下方向：
 - 基础
   - [GolangStudy系列｜Golang学习｜Golang入门](https://mp.weixin.qq.com/s/q0Cyucw02GQQAF898oPsqg)
   - [GolangStudy系列｜Golang学习｜Golang程序结构](https://mp.weixin.qq.com/s/Gj6WJe_I1io1Dnxy7uEuXg)
-  - [Golang 数据类型](/docs/go-数据类型/Golang-基础数据类型.md)
+  - [Golang 数据类型](/docs/Golang-基础数据类型/Golang-基础数据类型.md)
   - [Golang 并发](/docs/go-并发.md)
   - [Golang 接口](/docs/go-接口.md)
   - [Golang 检测竞态条件](/docs/go-检测竞态条件.md)
