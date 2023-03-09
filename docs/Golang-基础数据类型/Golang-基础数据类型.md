@@ -94,5 +94,5 @@ s2 := string(b)
 
 # 思维导图
 
-![go-基础-思维导图.png](https://cnymw.github.io/GolangStudy/docs/go-基础/go-基础-思维导图.png)
+![Golang-基础数据类型-思维导图.png](https://cnymw.github.io/GolangStudy/docs/Golang-基础数据类型/Golang-基础数据类型-思维导图.png)
 
