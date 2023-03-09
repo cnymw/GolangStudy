@@ -38,16 +38,23 @@ Go 是一门非常容易上手的语言，语法简洁，代码易读，如果�
 <table>
   <tr>
     <td align="center"><a href="#Golang语言"><img src="docs/img/Go.png" width="75px;" height="75px;" alt="go"/><br /><b>Golang</b></a></td>
-    <td align="center"><a href="#Kubernetes"><img src="docs/img/kubernetes.png" width="75px;" height="75px;" alt="kubernetes"/><br /><b>Kubernetes</b></a></td>
     <td align="center"><a href="#linux"><img src="docs/img/linux.png" width="75px;" height="75px;" alt="Linux"/><br /><b>Linux</b></a></td>
+    <td align="center"><a href="#数据结构"><img src="docs/img/data-structure.png" width="75px;" height="75px;" alt="数据结构"/><br /><b>数据结构</b></a></td>
+    <td align="center"><a href="#算法"><img src="docs/img/algorithm.jpeg" width="75px;" height="75px;" alt="算法"/><br /><b>算法</b></a></td>
+    <td align="center"><a href="#设计模式"><img src="docs/img/design-pattern.jpeg" width="75px;" height="75px;" alt="设计模式"/><br /><b>设计模式</b></a></td>
+  </tr>
+  <tr>
     <td align="center"><a href="#网络"><img src="docs/img/network.png" width="75px;" height="75px;" alt="Network"/><br /><b>网络</b></a></td>
+    <td align="center"><a href="#Kubernetes"><img src="docs/img/kubernetes.png" width="75px;" height="75px;" alt="kubernetes"/><br /><b>Kubernetes</b></a></td>
+    <td align="center"><a href="#Docker"><img src="docs/img/docker.png" width="75px;" height="75px;" alt="Docker"/><br /><b>Docker</b></a></td>
+    <td align="center"><a href="#leetcode"><img src="docs/img/leetcode.png" width="75px;" height="75px;" alt="leetcode"/><br /><b>leetcode</b></a></td>
     <td align="center"><a href="#kafka"><img src="docs/img/kafka.png" width="85px;" height="80px;" alt="Kafka"/><br /><b>Kafka</b></a></td>
   </tr>
   <tr>
-    <td align="center"><a href="#elasticsearch"><img src="docs/img/elastic.png" width="75px;" height="75px;" alt="ElasticSearch"/><br /><b>Elastic</b></a></td>
+    <td align="center"><a href="#redis"><img src="docs/img/redis.png" width="75px;" height="75px;" alt="redis"/><br /><b>redis</b></a></td>
     <td align="center"><a href="#mysql"><img src="docs/img/databases.png" width="75px;" height="75px;" alt="Databases"/><br /><b>mysql</b></a></td>
+    <td align="center"><a href="#elasticsearch"><img src="docs/img/elastic.png" width="75px;" height="75px;" alt="ElasticSearch"/><br /><b>Elastic</b></a></td>
   </tr>
-
 </table>
 </center>
 <!-- markdownlint-enable -->
